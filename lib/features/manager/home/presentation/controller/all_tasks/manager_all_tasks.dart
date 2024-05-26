@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:taskaty/core/extensions/async_value_extension.dart';
 
+import '../../../../../../core/services/network/api/network_api.dart';
+import '../../../../../../core/services/network/network_utils.dart';
 import '../../../../../admin/tasks/data/model/admin_tasks_model.dart';
-import '../../../domain/usecase/get_tasks_usecase.dart';
 
 part 'manager_all_tasks.g.dart';
 
@@ -17,18 +17,19 @@ class ManagerAllTasksController extends _$ManagerAllTasksController {
     DateTime? date,
   }) async {
     state = AsyncValue.loading();
-    final result = await AsyncValue.guard(
-      () => ref.read(
-        getTasksUseCaseProvider(date: date, filter: filter).future,
-      ),
-    );
-    result.handleGuardResults(
-      ref: ref,
-      onError: () => throw result.error!,
-      onSuccess: () async {
-        state = AsyncData(result.requireValue);
+    late List<AdminTasksModel> tasksList;
+
+    await NetworkRequest.instance.requestDataFuture<AdminTasksModel>(
+      url: Api.tasks,
+      method: Method.get,
+      queryParameters: {
+        'StatusId': filter,
+        'FromDate': date,
+      },
+      onSuccessList: (getTasksResponse) async {
+        tasksList = getTasksResponse;
       },
     );
-    return result.requireValue;
+    return tasksList;
   }
 }

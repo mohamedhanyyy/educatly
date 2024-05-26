@@ -60,8 +60,7 @@ class NetworkRequest {
   }) async {
     options?.headers = headers;
 
-    headers['authorization'] =
-        'Bearer ${PreferencesHelper.getUserModel!.token}';
+    headers['authorization'] = 'Bearer ${PreferencesHelper.getToken}';
 
     final response = await _dio!.request(
       url,

@@ -2,7 +2,6 @@ import 'package:taskaty/features/admin/get_managers/data/model/get_managers_mode
 
 import '../../../add_task/data/model/add_task_response.dart';
 
-
 class AdminTasksModel {
   int? id;
   String? title;
@@ -19,17 +18,17 @@ class AdminTasksModel {
 
   AdminTasksModel(
       {this.id,
-        this.title,
-        this.description,
-        this.statusId,
-        this.priorityId,
-        this.assignTo,
-        this.userName,
-        this.startDate,
-        this.endDate,
-        this.user,
-        this.subTasks,
-        this.comments});
+      this.title,
+      this.description,
+      this.statusId,
+      this.priorityId,
+      this.assignTo,
+      this.userName,
+      this.startDate,
+      this.endDate,
+      this.user,
+      this.subTasks,
+      this.comments});
 
   AdminTasksModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -41,7 +40,8 @@ class AdminTasksModel {
     userName = json['userName'];
     startDate = json['startDate'];
     endDate = json['endDate'];
-    user = json['user'] != null ? new ManagerModel.fromJson(json['user']) : null;
+    user =
+        json['user'] != null ? new ManagerModel.fromJson(json['user']) : null;
     if (json['subTasks'] != null) {
       subTasks = <SubTasks>[];
       json['subTasks'].forEach((v) {
@@ -79,9 +79,6 @@ class AdminTasksModel {
     return data;
   }
 }
-
-
-
 
 class Comments {
   int? taskId;

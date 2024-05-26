@@ -7,7 +7,7 @@ part of 'manager_all_tasks.dart';
 // **************************************************************************
 
 String _$managerAllTasksControllerHash() =>
-    r'08645115ad62ffee55db9f6815482b091f4c62c4';
+    r'5e680f033317625ebea49b279382526400a4a681';
 
 /// See also [ManagerAllTasksController].
 @ProviderFor(ManagerAllTasksController)

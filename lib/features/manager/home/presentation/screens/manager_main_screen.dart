@@ -48,7 +48,7 @@ class _HomeScreenState extends ConsumerState<ManagerMainScreen> {
                 builder: (BuildContext _, state) {
               if (state == CubitState.done) {
                 return ManagerStatisticsWidget(
-                    statsData: cubit.statisticsModel!.data!);
+                    statsData: cubit.statisticsModel!.statsData!);
               } else if (state == CubitState.loading)
                 return Center(child: CircularProgressIndicator.adaptive());
 

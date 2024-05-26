@@ -7,7 +7,7 @@ part of 'super_admin_controller.dart';
 // **************************************************************************
 
 String _$superAdminControllerHash() =>
-    r'fa35372eecc5bb4eabca89e9c26066dc3c4a3dfe';
+    r'29b21b1262b35f616cf58ca12ebbe3334dd7d263';
 
 /// See also [SuperAdminController].
 @ProviderFor(SuperAdminController)

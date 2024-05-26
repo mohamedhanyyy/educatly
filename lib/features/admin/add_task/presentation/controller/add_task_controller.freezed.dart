@@ -22,7 +22,6 @@ mixin _$AddTaskState {
   DateTime? get endDate => throw _privateConstructorUsedError;
   int? get priorityId => throw _privateConstructorUsedError;
   ManagerModel? get selectedManager => throw _privateConstructorUsedError;
-  int? get selectedAssigneToIndex => throw _privateConstructorUsedError;
   List<ManagerModel>? get searchManagerList =>
       throw _privateConstructorUsedError;
   List<File>? get filePickerResult => throw _privateConstructorUsedError;
@@ -48,7 +47,6 @@ abstract class $AddTaskStateCopyWith<$Res> {
       DateTime? endDate,
       int? priorityId,
       ManagerModel? selectedManager,
-      int? selectedAssigneToIndex,
       List<ManagerModel>? searchManagerList,
       List<File>? filePickerResult,
       bool? isAddTask,
@@ -75,7 +73,6 @@ class _$AddTaskStateCopyWithImpl<$Res, $Val extends AddTaskState>
     Object? endDate = freezed,
     Object? priorityId = freezed,
     Object? selectedManager = freezed,
-    Object? selectedAssigneToIndex = freezed,
     Object? searchManagerList = freezed,
     Object? filePickerResult = freezed,
     Object? isAddTask = freezed,
@@ -107,10 +104,6 @@ class _$AddTaskStateCopyWithImpl<$Res, $Val extends AddTaskState>
           ? _value.selectedManager
           : selectedManager // ignore: cast_nullable_to_non_nullable
               as ManagerModel?,
-      selectedAssigneToIndex: freezed == selectedAssigneToIndex
-          ? _value.selectedAssigneToIndex
-          : selectedAssigneToIndex // ignore: cast_nullable_to_non_nullable
-              as int?,
       searchManagerList: freezed == searchManagerList
           ? _value.searchManagerList
           : searchManagerList // ignore: cast_nullable_to_non_nullable
@@ -150,7 +143,6 @@ abstract class _$$AddTaskStateImplCopyWith<$Res>
       DateTime? endDate,
       int? priorityId,
       ManagerModel? selectedManager,
-      int? selectedAssigneToIndex,
       List<ManagerModel>? searchManagerList,
       List<File>? filePickerResult,
       bool? isAddTask,
@@ -175,7 +167,6 @@ class __$$AddTaskStateImplCopyWithImpl<$Res>
     Object? endDate = freezed,
     Object? priorityId = freezed,
     Object? selectedManager = freezed,
-    Object? selectedAssigneToIndex = freezed,
     Object? searchManagerList = freezed,
     Object? filePickerResult = freezed,
     Object? isAddTask = freezed,
@@ -207,10 +198,6 @@ class __$$AddTaskStateImplCopyWithImpl<$Res>
           ? _value.selectedManager
           : selectedManager // ignore: cast_nullable_to_non_nullable
               as ManagerModel?,
-      selectedAssigneToIndex: freezed == selectedAssigneToIndex
-          ? _value.selectedAssigneToIndex
-          : selectedAssigneToIndex // ignore: cast_nullable_to_non_nullable
-              as int?,
       searchManagerList: freezed == searchManagerList
           ? _value._searchManagerList
           : searchManagerList // ignore: cast_nullable_to_non_nullable
@@ -245,7 +232,6 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
       required this.endDate,
       this.priorityId,
       this.selectedManager,
-      this.selectedAssigneToIndex,
       final List<ManagerModel>? searchManagerList,
       final List<File>? filePickerResult,
       this.isAddTask,
@@ -268,8 +254,6 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
   final int? priorityId;
   @override
   final ManagerModel? selectedManager;
-  @override
-  final int? selectedAssigneToIndex;
   final List<ManagerModel>? _searchManagerList;
   @override
   List<ManagerModel>? get searchManagerList {
@@ -308,7 +292,7 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddTaskState(taskTitle: $taskTitle, taskDescription: $taskDescription, startDate: $startDate, endDate: $endDate, priorityId: $priorityId, selectedManager: $selectedManager, selectedAssigneToIndex: $selectedAssigneToIndex, searchManagerList: $searchManagerList, filePickerResult: $filePickerResult, isAddTask: $isAddTask, isSaveClick: $isSaveClick, tasks: $tasks)';
+    return 'AddTaskState(taskTitle: $taskTitle, taskDescription: $taskDescription, startDate: $startDate, endDate: $endDate, priorityId: $priorityId, selectedManager: $selectedManager, searchManagerList: $searchManagerList, filePickerResult: $filePickerResult, isAddTask: $isAddTask, isSaveClick: $isSaveClick, tasks: $tasks)';
   }
 
   @override
@@ -322,8 +306,6 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('endDate', endDate))
       ..add(DiagnosticsProperty('priorityId', priorityId))
       ..add(DiagnosticsProperty('selectedManager', selectedManager))
-      ..add(
-          DiagnosticsProperty('selectedAssigneToIndex', selectedAssigneToIndex))
       ..add(DiagnosticsProperty('searchManagerList', searchManagerList))
       ..add(DiagnosticsProperty('filePickerResult', filePickerResult))
       ..add(DiagnosticsProperty('isAddTask', isAddTask))
@@ -347,8 +329,6 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
                 other.priorityId == priorityId) &&
             (identical(other.selectedManager, selectedManager) ||
                 other.selectedManager == selectedManager) &&
-            (identical(other.selectedAssigneToIndex, selectedAssigneToIndex) ||
-                other.selectedAssigneToIndex == selectedAssigneToIndex) &&
             const DeepCollectionEquality()
                 .equals(other._searchManagerList, _searchManagerList) &&
             const DeepCollectionEquality()
@@ -369,7 +349,6 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
       endDate,
       priorityId,
       selectedManager,
-      selectedAssigneToIndex,
       const DeepCollectionEquality().hash(_searchManagerList),
       const DeepCollectionEquality().hash(_filePickerResult),
       isAddTask,
@@ -391,7 +370,6 @@ abstract class _AddTaskState extends AddTaskState {
       required final DateTime? endDate,
       final int? priorityId,
       final ManagerModel? selectedManager,
-      final int? selectedAssigneToIndex,
       final List<ManagerModel>? searchManagerList,
       final List<File>? filePickerResult,
       final bool? isAddTask,
@@ -411,8 +389,6 @@ abstract class _AddTaskState extends AddTaskState {
   int? get priorityId;
   @override
   ManagerModel? get selectedManager;
-  @override
-  int? get selectedAssigneToIndex;
   @override
   List<ManagerModel>? get searchManagerList;
   @override

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,14 +8,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:taskaty/core/constants/assets.dart';
-import 'package:taskaty/core/extensions/async_value_extension.dart';
 import 'package:taskaty/core/helpers/toast_helper.dart';
-import 'package:taskaty/features/admin/edit_task/domain/usecase/edit_task_usecase.dart';
+import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
 import 'package:taskaty/features/admin/get_managers/data/model/get_managers_model.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/router/app_router.dart';
 import '../../../../../core/controllers/button/button_controller.dart';
+import '../../../../../core/services/network/api/network_api.dart';
 import '../../../add_task/data/model/add_task_response.dart';
 import '../../../add_task/presentation/widgets/add_task_done_bottomsheet.dart';
 import '../../../tasks/presentation/controller/get_admin_tasks_controller.dart';
@@ -101,37 +102,49 @@ class EditTaskController extends _$EditTaskController {
 
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
-    var result = await AsyncValue.guard(
-      () => ref.read(editTaskUseCaseProvider(
-        title: title,
-        taskId: state.taskId!,
-        description: description,
-        startDate: state.startDate!,
-        endDate: state.endDate!,
-        statusId: state.statusId!,
-        selectedPriority: state.selectedPriority!,
-        selectedAssignee: state.selectedAssigne,
-        subTasks: state.subTasks!,
-      ).future),
-    );
+    Response? response = await DioHelper.postData(url: Api.updateTask, data: {
+      "title": title,
+      "id": state.taskId,
+      "description": description,
+      "statusId": state.statusId,
+      "priorityId": state.selectedPriority,
+      "assignTo": "${state.selectedAssigne!.id}",
+      "startDate": '${state.startDate}'.replaceAll(' ', 'T'),
+      "endDate": '${state.endDate}'.replaceAll(' ', 'T'),
+      "subTasks": state.subTasks!
+          .map((e) => {"description": '${e.description}'})
+          .toList(),
+    });
+    if (response?.statusCode == 200) {
+      ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
+      ref.invalidate(getAdminTasksControllerProvider);
 
-    result.handleGuardResults(
-      ref: ref,
-      onError: () {
-        if (AppRouter.router.canPop()) AppRouter.router.pop();
-        ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
-      },
-      onSuccess: () {
-        ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-        ref.invalidate(getAdminTasksControllerProvider);
-
-        showModalBottomSheet(
-            context: AppRouter.navigatorState.currentContext!,
-            builder: (context) {
-              return doneBottomSheet(S().task_edited_successfully);
-            });
-      },
-    );
+      showModalBottomSheet(
+          context: AppRouter.navigatorState.currentContext!,
+          builder: (context) {
+            return DoneBottomSheet(message: S().task_edited_successfully);
+          });
+    } else {
+      if (AppRouter.router.canPop()) AppRouter.router.pop();
+      ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
+    }
+    // result.handleGuardResults(
+    //   ref: ref,
+    //   onError: () {
+    //     if (AppRouter.router.canPop()) AppRouter.router.pop();
+    //     ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
+    //   },
+    //   onSuccess: () {
+    //     ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
+    //     ref.invalidate(getAdminTasksControllerProvider);
+    //
+    //     showModalBottomSheet(
+    //         context: AppRouter.navigatorState.currentContext!,
+    //         builder: (context) {
+    //           return doneBottomSheet(S().task_edited_successfully);
+    //         });
+    //   },
+    // );
   }
 
   buildSvgPicture(name) {

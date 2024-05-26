@@ -179,7 +179,7 @@ class _AddCompanyScreenState extends ConsumerState<AddCompanyScreen> {
                         builder: (_, ref, __) {
                           return AppDefaultButton(
                             key: buttonKey,
-                            text: S().save,
+                            text: S().add,
                             radius: 15,
                             width: ScreenUtil().screenWidth,
                             onPressed: () {

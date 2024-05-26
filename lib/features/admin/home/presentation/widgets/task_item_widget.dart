@@ -12,6 +12,7 @@ import 'package:taskaty/core/extensions/context_extension.dart';
 import 'package:taskaty/core/extensions/date.dart';
 import 'package:taskaty/core/widgets/network_image.dart';
 import 'package:taskaty/features/admin/tasks/data/model/admin_tasks_model.dart';
+
 import '../../../../../config/router/app_router_keys.dart';
 import '../../../../../config/router/app_routing_paths.dart';
 import '../../../../../config/theme/color_system/app_colors.dart';
@@ -20,24 +21,41 @@ import '../../../../../config/theme/styles_manager.dart';
 import '../../../../../core/constants/assets.dart';
 import '../../../../../core/helpers/mappers.dart';
 
-class TaskItemWidget extends ConsumerWidget {
+class TaskItemWidget extends ConsumerStatefulWidget {
   TaskItemWidget({super.key, required this.task});
 
   final AdminTasksModel task;
 
   @override
-  Widget build(BuildContext ctx, WidgetRef ref) {
+  ConsumerState<TaskItemWidget> createState() => _TaskItemWidgetState();
+}
+
+class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
+  int completedCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.task.subTasks!.map((e) {
+      if (e.isCompleted!) completedCount++;
+    }).toList();
+    debugPrint('hanyy ${completedCount}');
+  }
+
+  @override
+  Widget build(BuildContext ctx) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: GestureDetector(
         onTap: () {
-          AppRouter.router.pushNamed(AppRoutes.taskaDetails,
-              queryParameters: {AppRouterKeys.taskaDetails: jsonEncode(task)});
+          AppRouter.router.pushNamed(AppRoutes.taskaDetails, queryParameters: {
+            AppRouterKeys.taskaDetails: jsonEncode(widget.task)
+          });
         },
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: colorStatusIdMapper(task.statusId),
+            color: colorStatusIdMapper(widget.task.statusId),
           ),
           margin: EdgeInsets.symmetric(vertical: 5),
           padding: EdgeInsetsDirectional.only(start: 5),
@@ -64,13 +82,13 @@ class TaskItemWidget extends ConsumerWidget {
                                 Padding(
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 4),
-                                  child:
-                                      statusPrioritySvgMapper(task.priorityId),
+                                  child: statusPrioritySvgMapper(
+                                      widget.task.priorityId),
                                 ),
                                 SizedBox(
-                                  width: ScreenUtil().screenWidth*.6,
+                                  width: ScreenUtil().screenWidth * .6,
                                   child: Text(
-                                    '${task.title}',
+                                    '${widget.task.title}',
                                     style: StylesManager.semiBold(
                                       fontSize: 16.sp,
                                       color: Theme.of(ctx).secondaryHeaderColor,
@@ -101,7 +119,9 @@ class TaskItemWidget extends ConsumerWidget {
                                             colorFilter: AppColors
                                                 .colors.green.toColorFilter),
                                         SizedBox(width: 5),
-                                        Text('${DateTime.parse(task.startDate!).getDifferenceFromToday()}', style: StylesManager.bold(
+                                        Text(
+                                          '${DateTime.parse(widget.task.startDate!).getDifferenceFromToday()}',
+                                          style: StylesManager.bold(
                                               color: AppColors.colors.green,
                                               fontSize: AppSizes.size11),
                                         )
@@ -134,7 +154,7 @@ class TaskItemWidget extends ConsumerWidget {
                             ),
                             AppSizes.size5.verticalSpace,
                             Text(
-                              "${task.userName}",
+                              "${widget.task.userName}",
                               style: StylesManager.semiBold(),
                             )
                           ],
@@ -145,13 +165,14 @@ class TaskItemWidget extends ConsumerWidget {
                       padding: const EdgeInsets.only(top: 8),
                       child: LinearPercentIndicator(
                         padding: EdgeInsets.zero,
-                        percent: 0.96,
+                        percent: (completedCount /
+                            (widget.task.subTasks!.length).toDouble()),
                         animation: true,
                         animationDuration: 100,
                         progressColor: AppColors.colors.darkBlue,
                         barRadius: Radius.circular(10),
                         trailing: Text(
-                          '  97 %  ',
+                          ' ${(completedCount * 100 / (widget.task.subTasks!.length)).toStringAsFixed(1)} %  ',
                           style: StylesManager.bold(
                             color: AppColors.colors.darkBlue,
                           ),

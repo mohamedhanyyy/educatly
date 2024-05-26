@@ -31,6 +31,7 @@ class AdminTaskDetails extends ConsumerStatefulWidget {
 }
 
 class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
+  int progressCount = 0;
   @override
   void initState() {
     super.initState();
@@ -38,6 +39,9 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
       AdminTasksModel taskDetails =
           AdminTasksModel.fromJson(jsonDecode(widget.taskaDetails));
 
+      taskDetails.subTasks!.map((e) {
+        if (e.isCompleted!) progressCount++;
+      }).toList();
       ref.read(editTaskControllerProvider.notifier).setData(
             selectedPriority: (taskDetails.priorityId),
             taskTitle: taskDetails.title,
@@ -78,7 +82,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
               statusId: statusIdMapper(taskDetails.statusId),
               title: '${taskDetails.title}',
               priority: taskDetails.priorityId!,
-              progressCount: 50,
+              progressCount: progressCount / taskDetails.subTasks!.length,
               departmentTag: '${taskDetails.description}',
             ),
             TaskInfoWidget(
@@ -109,19 +113,15 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
                         prefix: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Icon(Icons.task_alt,
-                              color: AppColors.colors.darkBlue),
+                              color: e.isCompleted == true
+                                  ? AppColors.colors.green
+                                  : Colors.black),
                         ),
                         controller: TextEditingController(text: e.description),
                         textInputAction: TextInputAction.done,
                         validator: (value) =>
                             ValidationService.notEmptyField(value),
                         onSubmitted: (value) {
-                          ref
-                              .watch(editTaskControllerProvider)
-                              .subTasks!
-                              .map((e) {
-                            // if (e.description == value) return;
-                          }).toList();
                           reader.setTask(task: SubTasks(description: value));
                           reader.setData(isEditTask: false);
                         },

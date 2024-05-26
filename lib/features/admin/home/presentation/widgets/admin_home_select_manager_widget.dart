@@ -32,8 +32,6 @@ class AdminHomeSelectManagerWidget extends ConsumerWidget {
                 controller: controller,
                 onChanged: (val) {
                   reader.searchManager(text: controller.text, managers: data);
-                  print('hany');
-                  print(watcher.managers?.length);
                 },
               ),
               AppSizes.size20.verticalSpace,

@@ -33,6 +33,7 @@ class LoginCubit extends Cubit<CubitState> {
     if (response?.statusCode == 200) {
       emit(CubitState.done);
       PreferencesHelper.saveUserModel(userModel: loginModel!.data!);
+      PreferencesHelper.saveToken(token: loginModel!.data!.token!);
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
 
       if (loginModel?.data?.firstLogin == true) {

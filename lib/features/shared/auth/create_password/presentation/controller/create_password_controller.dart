@@ -44,6 +44,8 @@ class CreatePasswordController extends _$CreatePasswordController {
       },
       onSuccess: () async {
         await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
+        //todo
+        //if there is otp in business, else login screen
         AppRouter.router.pushOtpScreen(email: email);
       },
     );

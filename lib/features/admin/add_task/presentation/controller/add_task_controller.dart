@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,17 +9,17 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:taskaty/core/constants/assets.dart';
-import 'package:taskaty/core/extensions/async_value_extension.dart';
 import 'package:taskaty/core/helpers/toast_helper.dart';
+import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
 import 'package:taskaty/features/admin/get_managers/data/model/get_managers_model.dart';
 import 'package:taskaty/features/admin/home/presentation/bloc/statstics_bloc.dart';
 import 'package:taskaty/features/admin/tasks/presentation/controller/get_admin_tasks_controller.dart';
+import 'package:taskaty/features/shared/auth/login/presentation/controller/login_model.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/router/app_router.dart';
 import '../../../../../core/controllers/button/button_controller.dart';
-import '../../../../../core/helpers/mappers.dart';
-import '../../domain/usecase/add_task_usecase.dart';
+import '../../../../../core/services/network/api/network_api.dart';
 import '../widgets/add_task_done_bottomsheet.dart';
 
 part 'add_task_controller.freezed.dart';
@@ -54,7 +55,6 @@ class AddTaskController extends _$AddTaskController {
 
   void setData({
     int? selectedPriority,
-    int? selectedAssigneToIndex,
     bool? isAddTask,
     bool? isSave,
     ManagerModel? selectedManager,
@@ -66,8 +66,6 @@ class AddTaskController extends _$AddTaskController {
       isSaveClick: isSave ?? state.isSaveClick,
       priorityId: selectedPriority ?? state.priorityId,
       selectedManager: selectedManager ?? state.selectedManager,
-      selectedAssigneToIndex:
-          selectedAssigneToIndex ?? state.selectedAssigneToIndex,
       startDate: startDate ?? state.startDate,
       isAddTask: isAddTask ?? state.isAddTask,
       endDate: endDate ?? state.endDate,
@@ -122,39 +120,50 @@ class AddTaskController extends _$AddTaskController {
 
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
-    final result = await AsyncValue.guard(
-      () => ref.read(addTaskUseCaseProvider(
-        title: title,
-        description: description,
-        startDate: state.startDate!,
-        endDate: state.endDate!,
-        selectedPriority: priorityIdMapper(state.priorityId),
-        selectedAssignee: state.selectedManager,
-        files: state.filePickerResult,
-        subTasks: state.tasks!,
-      ).future),
-    );
+    // List<MultipartFile> fileList = [];
+    // files?.map((e) async {
+    //   fileList.add(await MultipartFile.fromFile(e.path));
+    // }).toList();
 
-    result.handleGuardResults(
-      ref: ref,
-      onError: () {
-        if (AppRouter.router.canPop()) AppRouter.router.pop();
-        ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
-      },
-      onSuccess: () {
-        ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-        ref.invalidate(getAdminTasksControllerProvider);
+    // final list =subTasks.map((e)   async {
+    //   return {
+    //     "description":e,
+    //     "id":'${ await AppSettingsDatabase.instance.getAuthResponse()?.id}',
+    //     "isDeleted": true,
+    //     "isCompleted": true,
+    //     "createdBy": "string",
+    //   };
+    // }).toList();
 
-        showModalBottomSheet(
-            context: AppRouter.navigatorState.currentContext!,
-            builder: (context) {
-              return doneBottomSheet(S().task_added_successfully);
-            });
-        AppRouter.navigatorState.currentContext!
-            .read<AdminStatsticsCubit>()
-            .getStats();
+    Response? response = await DioHelper.postData(
+      url: Api.addTask,
+      data: {
+        "title": title,
+        "description": description,
+        "priorityId": (state.priorityId!),
+        "assignTo": state.selectedManager!.id,
+        "startDate": '${state.startDate}'.replaceAll(' ', 'T'),
+        "endDate": '${state.endDate}'.replaceAll(' ', 'T'),
+        "subTasks": state.tasks!.map((e) => {"description": e}).toList(),
+        "comments": state.tasks!.map((e) => {"description": e}).toList(),
       },
     );
+    if (response?.statusCode == 200) {
+      ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
+      ref.invalidate(getAdminTasksControllerProvider);
+
+      showModalBottomSheet(
+          context: AppRouter.navigatorState.currentContext!,
+          builder: (context) =>
+              DoneBottomSheet(message: S().task_added_successfully));
+      AppRouter.navigatorState.currentContext!
+          .read<AdminStatsticsCubit>()
+          .getStats();
+    } else {
+      ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
+      LoginModel loginModel = LoginModel.fromJson(response?.data);
+      Toast.showErrorToast(loginModel.errors?.first ?? 'add task failed');
+    }
   }
 
   buildSvgPicture(int? priorityId) {

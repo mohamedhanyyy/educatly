@@ -43,16 +43,22 @@ class ManagerTaskDetailsScreen extends ConsumerStatefulWidget {
 
 class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
   List<bool> selected = [];
+  double progress = 0;
   late AdminTasksModel taskDetails;
-
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     taskDetails =
         AdminTasksModel.fromJson(jsonDecode(widget.managerTaskDetails));
     taskDetails.subTasks!.forEach((e) {
       selected.add(e.isCompleted!);
+      if (e.isCompleted!) progress++;
     });
+    progress = (progress / selected.length);
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(S().task_details)),
       body: Column(
@@ -66,7 +72,7 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
                     title: '${taskDetails.title}',
                     priority: taskDetails.priorityId!,
                     statusId: statusIdMapper(taskDetails.statusId),
-                    progressCount: 50,
+                    progressCount: progress,
                     departmentTag: '${taskDetails.description}',
                   ),
                   TaskInfoWidget(

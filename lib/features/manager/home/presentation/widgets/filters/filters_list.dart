@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taskaty/core/controllers/theme/theme_controller.dart';
 import 'package:taskaty/core/extensions/iterator_extension.dart';
 
 import '../../../../../../config/theme/sizes_manager.dart';
@@ -37,10 +38,12 @@ class FiltersListWidget extends StatelessWidget {
                         ref.watch(filtersControllerProvider) == e.id;
                     return DecoratedBox(
                       decoration: BoxDecoration(boxShadow: [
-                        BoxShadow(
-                            blurRadius: 4,
-                            spreadRadius: 5,
-                            color: Colors.grey.shade300)
+                        if (ref.watch(themeControllerProvider) ==
+                            ThemeMode.light)
+                          BoxShadow(
+                              blurRadius: 4,
+                              spreadRadius: 5,
+                              color: Colors.grey.shade300)
                       ]),
                       child: FilterWidget(
                         title: StatisticsData.getStatisticsTitle(e.id),

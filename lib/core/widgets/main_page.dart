@@ -53,7 +53,7 @@ class MainScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Expanded(
-                          child: GestureDetector(
+                          child: InkWell(
                             onTap: () {
                               _goBranch(0);
                             },
@@ -64,7 +64,7 @@ class MainScreen extends StatelessWidget {
                           ),
                         ),
                         Expanded(
-                          child: GestureDetector(
+                          child: InkWell(
                             onTap: () {
                               _goBranch(1);
                             },

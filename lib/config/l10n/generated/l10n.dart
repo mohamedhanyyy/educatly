@@ -180,6 +180,16 @@ class S {
     );
   }
 
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Write section name`
   String get write_section_name {
     return Intl.message(

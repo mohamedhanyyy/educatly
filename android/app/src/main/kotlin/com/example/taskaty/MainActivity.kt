@@ -1,4 +1,4 @@
-package com.example.taskaty
+package com.nuumex.taskaty
 
 import io.flutter.embedding.android.FlutterActivity
 

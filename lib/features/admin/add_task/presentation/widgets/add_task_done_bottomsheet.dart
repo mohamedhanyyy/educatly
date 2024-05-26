@@ -11,32 +11,37 @@ import '../../../../../config/router/app_routing_paths.dart';
 import '../../../../../config/theme/sizes_manager.dart';
 import '../../../../../core/constants/assets.dart';
 
-Widget doneBottomSheet(String message) {
-  return Container(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(top: AppSizes.size40.h),
-          child: SvgPicture.asset(Assets.icons.addTaskSuccess),
-        ),
-        AppSizes.size40.verticalSpace,
-        Text(
-          message,
-          style: StylesManager.bold(fontSize: 18.sp),
-        ),
-        AppSizes.size20.verticalSpace,
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40.w),
-          child: AppDefaultButton(
-            onPressed: () {
-              AppRouter.router.go(AppRoutes.adminHome);
-            },
-            text: S().home,
+class DoneBottomSheet extends StatelessWidget {
+  DoneBottomSheet({super.key, required this.message});
+  final String message;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: AppSizes.size40.h),
+            child: SvgPicture.asset(Assets.icons.addTaskSuccess),
           ),
-        ),
-        AppSizes.size50.verticalSpace,
-      ],
-    ),
-  );
+          AppSizes.size40.verticalSpace,
+          Text(
+            message,
+            style: StylesManager.bold(fontSize: 18.sp),
+          ),
+          AppSizes.size20.verticalSpace,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40.w),
+            child: AppDefaultButton(
+              onPressed: () {
+                AppRouter.router.go(AppRoutes.adminHome);
+              },
+              text: S().home,
+            ),
+          ),
+          AppSizes.size50.verticalSpace,
+        ],
+      ),
+    );
+  }
 }

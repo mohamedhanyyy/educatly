@@ -19,6 +19,7 @@ import '../../../../../core/widgets/refresh_widget.dart';
 import '../../../home/presentation/widgets/admin_home_select_manager_widget.dart';
 import '../../../home/presentation/widgets/priority_bottom_sheet.dart';
 import '../../../home/presentation/widgets/task_item_widget.dart';
+import '../../data/model/admin_tasks_model.dart';
 import '../controller/get_admin_tasks_controller.dart';
 import '../widgets/filter_task_status.dart';
 
@@ -34,7 +35,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
 
   int page = 1;
   ScrollController controller = ScrollController();
-
+  List<AdminTasksModel>? adminTasks;
   @override
   void initState() {
     super.initState();

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../../config/theme/font_system/app_fonts.dart';
 import '../../../../../../config/theme/styles_manager.dart';
 import '../../../../../../core/constants/constants.dart';
+import '../../../../../../core/controllers/theme/theme_controller.dart';
 
-class FilterWidget extends StatelessWidget {
+class FilterWidget extends ConsumerWidget {
   final String title;
   final bool isSelected;
   final Function()? onTap;
@@ -19,7 +21,7 @@ class FilterWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: onTap,
       borderRadius: AppConstants.defaultBorderRadius,
@@ -27,10 +29,13 @@ class FilterWidget extends StatelessWidget {
         padding: AppConstants.defaultVerticalPadding,
         decoration: BoxDecoration(
             borderRadius: AppConstants.defaultBorderRadius,
-            color: isSelected ? AppColors.colors.primary : null,
+            color: isSelected
+                ? AppColors.colors.primary
+                : Theme.of(context).scaffoldBackgroundColor,
             boxShadow: [
-              BoxShadow(
-                  blurRadius: 4, spreadRadius: 5, color: Colors.grey.shade100)
+              if (ref.watch(themeControllerProvider) == ThemeMode.light)
+                BoxShadow(
+                    blurRadius: 4, spreadRadius: 5, color: Colors.grey.shade100)
             ]),
         alignment: Alignment.center,
         child: FittedBox(

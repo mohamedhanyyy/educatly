@@ -65,8 +65,10 @@ class AdminEditSubTask extends ConsumerWidget {
                   label: null,
                   prefix: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child:
-                        Icon(Icons.task_alt, color: AppColors.colors.darkBlue),
+                    child: Icon(Icons.task_alt,
+                        color: e.isCompleted == true
+                            ? AppColors.colors.green
+                            : AppColors.colors.black),
                   ),
                   suffix: IconButton(
                       padding: EdgeInsets.zero,

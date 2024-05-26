@@ -12,7 +12,7 @@ class TaskDetailsWidget extends StatelessWidget {
   final String title;
   final int priority;
   final String statusId;
-  final int progressCount;
+  final double progressCount;
   final String departmentTag;
 
   const TaskDetailsWidget({
@@ -52,7 +52,7 @@ class TaskDetailsWidget extends StatelessWidget {
               ],
             ),
           ),
-          ProgressCountWidget(size: 75, progress: progressCount)
+          ProgressCountDetailsWidget(size: 75, progress: progressCount)
         ],
       ),
     );

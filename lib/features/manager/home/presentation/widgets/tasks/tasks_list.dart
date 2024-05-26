@@ -27,8 +27,7 @@ class TasksListWidget extends ConsumerWidget {
               itemCount: data.length,
               physics: const NeverScrollableScrollPhysics(),
               separatorBuilder: (_, __) => AppSizes.size16.verticalSpace,
-              itemBuilder: (_, index) =>
-                  TaskWidget(managerTaskDetails: data[index]),
+              itemBuilder: (_, index) => TaskWidget(taskDetails: data[index]),
             );
           },
         );

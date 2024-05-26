@@ -1,5 +1,5 @@
 class StatsModel {
-  StatsData? data;
+  StatsData? statsData;
   List<String>? errors;
   List<String>? successMessages;
   int? statusCode;
@@ -7,7 +7,7 @@ class StatsModel {
   bool? hasException;
 
   StatsModel(
-      {this.data,
+      {this.statsData,
       this.errors,
       this.successMessages,
       this.statusCode,
@@ -15,7 +15,8 @@ class StatsModel {
       this.hasException});
 
   StatsModel.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new StatsData.fromJson(json['data']) : null;
+    statsData =
+        json['data'] != null ? new StatsData.fromJson(json['data']) : null;
     errors = json['errors'].cast<String>();
     successMessages = json['successMessages'].cast<String>();
     statusCode = json['statusCode'];
@@ -25,8 +26,8 @@ class StatsModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
+    if (this.statsData != null) {
+      data['data'] = this.statsData!.toJson();
     }
     data['errors'] = this.errors;
     data['successMessages'] = this.successMessages;

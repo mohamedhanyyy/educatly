@@ -1,6 +1,6 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:taskaty/features/manager/stats/bloc/manager_statistics_bloc.dart';
 import 'package:taskaty/features/manager/stats/stats_model.dart';
 
@@ -29,27 +29,57 @@ class _ChartWidgetState extends State<ChartWidget> {
     return BlocBuilder<AdminStatsticsCubit, CubitState>(
         builder: (context, state) {
       if (state == CubitState.done) {
-        return SfCircularChart(
-            margin: EdgeInsets.all(10),
-            series: <CircularSeries>[
-              DoughnutSeries<ChartData, String>(
-                dataSource: chartData(statsCubit.statisticsModel!.data!),
-                xValueMapper: (ChartData data, _) => '${data.x}',
-                yValueMapper: (ChartData data, _) => data.y,
-                dataLabelMapper: (ChartData data, _) => '${data.size}',
-                pointColorMapper: (ChartData data, _) => data.color,
-                dataLabelSettings: DataLabelSettings(isVisible: true),
-                radius: '120%',
-                //todo
-                animationDelay: 0,
-                //todo
-                animationDuration: 0,
-                innerRadius: '55%',
-                explodeAll: false,
-                explode: false,
-              )
-            ]);
-      } else if (state == CubitState.loading)
+        num totalSum =
+            statsCubit.statisticsModel!.statsData!.taskInProgressCount! +
+                statsCubit.statisticsModel!.statsData!.taskNewCount! +
+                statsCubit.statisticsModel!.statsData!.taskCompleteCount!;
+        num inProgressCount =
+            statsCubit.statisticsModel!.statsData!.taskInProgressCount!;
+        num newCount = statsCubit.statisticsModel!.statsData!.taskNewCount!;
+        num completedCount =
+            statsCubit.statisticsModel!.statsData!.taskCompleteCount!;
+        return PieChart(
+          PieChartData(
+            sectionsSpace: 0,
+            sections: [
+              PieChartSectionData(
+                  value: completedCount / totalSum,
+                  title:
+                      '${(completedCount / totalSum * 100).toStringAsFixed(1)}%',
+                  color: Colors.green,
+                  titleStyle: TextStyle(fontSize: 10)),
+              PieChartSectionData(
+                  value: newCount / totalSum,
+                  title: '${(newCount / totalSum * 100).toStringAsFixed(1)}%',
+                  color: Colors.blue,
+                  titleStyle: TextStyle(fontSize: 10)),
+              PieChartSectionData(
+                  value: inProgressCount / totalSum,
+                  title:
+                      '${(inProgressCount / totalSum * 100).toStringAsFixed(1)}%',
+                  color: Colors.orange,
+                  titleStyle: TextStyle(fontSize: 12)),
+            ],
+          ),
+        );
+      }
+      // {
+      //   return SfCircularChart(
+      //       margin: EdgeInsets.all(10),
+      //       series: <CircularSeries>[
+      //         DoughnutSeries<ChartData, String>(
+      //           dataSource: chartData(statsCubit.statisticsModel!.data!),
+      //           xValueMapper: (ChartData data, _) => '${data.x}',
+      //           yValueMapper: (ChartData data, _) => data.y,
+      //           dataLabelMapper: (ChartData data, _) => '${data.size}',
+      //           pointColorMapper: (ChartData data, _) => data.color,
+      //           dataLabelSettings: DataLabelSettings(isVisible: true),
+      //           radius: '120%',
+      //           innerRadius: '55%',
+      //         )
+      //       ]);
+      // }
+      else if (state == CubitState.loading)
         return Center(child: CircularProgressIndicator.adaptive());
       return const SizedBox.shrink();
     });
@@ -66,13 +96,10 @@ class ChartData {
 }
 
 List<ChartData> chartData(StatsData model) => [
-      ChartData(model.taskNewCount!, model.taskNewCount!,
+      ChartData(model.taskNewCount!, model.taskAllCount!,
           '${model.taskNewCount}%', Color(0xff14BBD8)),
-      ChartData(
-          model.taskInProgressCount == 0 ? 2 : model.taskInProgressCount,
-          model.taskInProgressCount == 0 ? 2 : model.taskInProgressCount,
-          '${model.taskInProgressCount}%',
-          Colors.orange),
-      ChartData(model.taskCompleteCount, model.taskCompleteCount,
+      ChartData(model.taskInProgressCount, model.taskAllCount,
+          '${model.taskInProgressCount}%', Colors.orange),
+      ChartData(model.taskCompleteCount, model.taskAllCount,
           '${model.taskCompleteCount}%', AppColors.colors.green),
     ];

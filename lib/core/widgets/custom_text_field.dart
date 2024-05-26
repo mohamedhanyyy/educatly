@@ -24,16 +24,19 @@ class CustomTextInputField extends StatelessWidget {
   final TextInputAction textInputAction;
   final ValueChanged<String?>? onChanged;
   final VoidCallback? onTap;
+  final VoidCallback? onTapOutside;
   final ValueChanged<String?>? onSubmitted;
   final TextEditingController? controller;
   final Widget? suffix;
   final Widget? prefix;
   final InputBorder? inputBorder;
+  final FocusNode? focusNode;
   final InputBorder? errorBorder;
 
   CustomTextInputField({
     Key? key,
     this.onSubmitted,
+    this.focusNode,
     this.errorText,
     this.onChanged,
     this.errorBorder,
@@ -41,6 +44,7 @@ class CustomTextInputField extends StatelessWidget {
     this.contentPadding,
     this.enabled = true,
     this.validator,
+    this.onTapOutside,
     this.onTap,
     this.labelColor,
     this.controller,
@@ -60,6 +64,7 @@ class CustomTextInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
       maxLength: maxLength,
       enabled: enabled,
       maxLines: maxLines,
@@ -70,7 +75,7 @@ class CustomTextInputField extends StatelessWidget {
       onFieldSubmitted: onSubmitted,
       validator: validator,
       controller: controller,
-       cursorWidth: 1.5,
+      cursorWidth: 1.5,
       cursorHeight: 22,
       cursorErrorColor: AppColors.colors.primary,
       cursorColor: AppColors.colors.primary,
@@ -110,8 +115,15 @@ class CustomTextInputField extends StatelessWidget {
         labelText: label == '' ? '' : label,
       ),
       strutStyle: const StrutStyle(forceStrutHeight: true),
-      onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
-      onTap: () => unFocusCursorRTL(controller!),
+      onTapOutside: (event) {
+        if (onTapOutside != null) {
+          onTapOutside!();
+        }
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      onTap: () {
+        return unFocusCursorRTL(controller!);
+      },
       style: StylesManager.medium(
           fontSize: 15.sp,
           height: 1.7,

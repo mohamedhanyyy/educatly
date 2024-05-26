@@ -20,12 +20,19 @@ import 'progress_count.dart';
 import 'remaining_time.dart';
 
 class TaskWidget extends ConsumerWidget {
-  final AdminTasksModel managerTaskDetails;
-
-  const TaskWidget({super.key, required this.managerTaskDetails});
+  final AdminTasksModel taskDetails;
+  final List<bool> selected = [];
+  double progress = 0;
+  TaskWidget({super.key, required this.taskDetails});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    progress = 0;
+    taskDetails.subTasks!.forEach((e) {
+      selected.add(e.isCompleted!);
+      if (e.isCompleted!) progress++;
+    });
+    progress = progress / selected.length;
     return DecoratedBox(
       decoration: AppConstants.defaultBoxDecoration
           .copyWith(color: Theme.of(context).scaffoldBackgroundColor),
@@ -36,7 +43,7 @@ class TaskWidget extends ConsumerWidget {
         child: InkWell(
           onTap: () {
             AppRouter.router.pushTaskScreen(
-                managerTaskDetails: json.encode(managerTaskDetails).toString());
+                managerTaskDetails: json.encode(taskDetails).toString());
           },
           child: SizedBox(
             height: 120.h,
@@ -53,12 +60,12 @@ class TaskWidget extends ConsumerWidget {
                             width: 16.h,
                             height: 16.h,
                             child: SvgPicture.asset(
-                                managerTaskDetails.priorityId!.getPriorityFlag),
+                                taskDetails.priorityId!.getPriorityFlag),
                           ),
                           AppSizes.size10.horizontalSpace,
                           // ? Title
                           Text(
-                            managerTaskDetails.title!,
+                            taskDetails.title!,
                             style: StylesManager.bold(
                               fontSize: AppFonts.font.large.sp,
                             ),
@@ -68,17 +75,16 @@ class TaskWidget extends ConsumerWidget {
                       Row(
                         children: [
                           RemainingTimeWidget(
-                              date:
-                                  DateTime.parse(managerTaskDetails.endDate!)),
+                              date: DateTime.parse(taskDetails.endDate!)),
                           AppSizes.size10.horizontalSpace,
                           DepartmentTagWidget(
-                              tag: statusIdMapper(managerTaskDetails.statusId))
+                              tag: statusIdMapper(taskDetails.statusId))
                         ],
                       ),
                     ],
                   ),
                 ),
-                ProgressCountWidget(progress: 1)
+                ProgressCountTaskWidget(progress: progress * 100)
               ],
             ).paddingAll(AppSizes.size24.sp),
           ),

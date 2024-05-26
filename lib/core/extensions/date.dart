@@ -17,7 +17,11 @@ extension DateDifferenceExtension on DateTime {
       } else if (difference.inHours >= 24 && difference.inHours < 48) {
         return S().yesterday;
       } else if (difference.inDays > 1 && difference.inDays <= 5) {
-        return S().ago + '${difference.inDays} ' + S().days_ago;
+        if (AppRouter.navigatorState.currentContext!.isCurrentArabic) {
+          return S().ago + '${difference.inDays} ' + S().days_ago;
+        } else {
+          return '${difference.inDays} ' + S().days_ago;
+        }
       } else if (difference.inDays > 5 && difference.inDays < 14) {
         return S().last_week;
       } else if (difference.inDays >= 14 && difference.inDays < 30) {

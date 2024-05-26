@@ -16,6 +16,7 @@ import '../controller/add_task_controller.dart';
 
 class AdminAddSubTask extends ConsumerWidget {
   final TextEditingController controller = TextEditingController();
+  final FocusNode focusNode = FocusNode();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -65,10 +66,8 @@ class AdminAddSubTask extends ConsumerWidget {
                     contentPadding: EdgeInsets.symmetric(vertical: 15),
                     prefix: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Icon(
-                        Icons.task_alt_outlined,
-                        color: AppColors.colors.primary,
-                      ),
+                      child: Icon(Icons.task_alt_outlined,
+                          color: AppColors.colors.primary),
                     ),
                     suffix: IconButton(
                         padding: EdgeInsets.zero,
@@ -101,7 +100,6 @@ class AdminAddSubTask extends ConsumerWidget {
                     color: Theme.of(context).scaffoldBackgroundColor)),
             child: CustomTextInputField(
               errorText: '',
-              onTap: () {},
               controller: controller,
               fillColor: Theme.of(context).scaffoldBackgroundColor,
               autoFocus: true,

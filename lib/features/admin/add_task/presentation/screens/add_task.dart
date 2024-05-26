@@ -33,12 +33,10 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
 
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   static final buttonKey = UniqueKey();
-
   @override
   Widget build(BuildContext context) {
     final controller = ref.read(addTaskControllerProvider.notifier);
     final controllerWatcher = ref.watch(addTaskControllerProvider);
-
     return Scaffold(
       // resizeToAvoidBottomInset: true,
       extendBody: true,

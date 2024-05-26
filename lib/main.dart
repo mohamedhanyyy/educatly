@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,11 +14,10 @@ Future<void> main() async {
 
   DioHelper.init();
   await PreferencesHelper.init();
-
+  await refreshToken();
   await SystemChrome.setPreferredOrientations(
-    [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
-  );
-  // print(PreferencesHelper.getUserModel!.token);
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
   runApp(
     ProviderScope(
       child: RequestsInspector(
@@ -31,6 +31,12 @@ Future<void> main() async {
   );
 }
 
+refreshToken() async {
+  Response? response = await DioHelper.getData(url: 'url');
+  if (response?.data['date']) {
+    PreferencesHelper.saveToken(token: response?.data['token']);
+  }
+}
 //   "email": "superadmin@domain.com",
 //   "email": "basicuser@domain.com",
 //   "password": "P@ssword123"

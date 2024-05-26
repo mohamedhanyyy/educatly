@@ -59,7 +59,7 @@ class SuperAdminController extends _$SuperAdminController {
       showModalBottomSheet(
           context: AppRouter.navigatorState.currentContext!,
           builder: (context) {
-            return doneBottomSheet(S().user_added_successfully);
+            return DoneBottomSheet(message: S().user_added_successfully);
           });
       ref.invalidate(getManagersControllerProvider);
     } else

@@ -11,7 +11,7 @@ class DioHelper {
     headers: {
       "Accept": "application/json",
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${PreferencesHelper.getUserModel?.token}'
+      'Authorization': 'Bearer ${PreferencesHelper.getToken}'
     },
     receiveDataWhenStatusError: true,
     followRedirects: false,
@@ -25,7 +25,7 @@ class DioHelper {
   static Dio? dio = init();
 
   static Future<Response?> postData({required String url, data}) async {
-    String? token = PreferencesHelper.getUserModel?.token;
+    String? token = PreferencesHelper.getToken;
     try {
       Response? response = await dio?.post(url,
           options: Options(headers: {'Authorization': 'Bearer $token'}),
@@ -43,7 +43,7 @@ class DioHelper {
   }
 
   static Future<Response?> putData({required String url, data}) async {
-    String? token = PreferencesHelper.getUserModel?.token;
+    String? token = PreferencesHelper.getToken;
     try {
       Response? response = await dio?.put(url,
           options: Options(headers: {'Authorization': 'Bearer $token'}),
@@ -62,7 +62,7 @@ class DioHelper {
 
   static Future<Response?> getData(
       {required String url, Map<String, dynamic>? data}) async {
-    String? token = PreferencesHelper.getUserModel?.token;
+    String? token = PreferencesHelper.getToken;
 
     try {
       Response? response = await dio?.get(url,

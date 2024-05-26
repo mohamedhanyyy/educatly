@@ -41,7 +41,7 @@ class AppRouter {
     navigatorKey: navigatorState,
     debugLogDiagnostics: kDebugMode,
     // initialLocation: AppRoutes.login,
-    initialLocation: PreferencesHelper.getUserModel?.token == null
+    initialLocation: PreferencesHelper.getToken == null
         ? AppRoutes.login
         : PreferencesHelper.getUserModel?.role == 'SystemAdmin'
             ? AppRoutes.adminHome

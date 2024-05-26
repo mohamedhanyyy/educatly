@@ -3,7 +3,6 @@ import 'package:taskaty/features/admin/get_managers/data/model/get_managers_mode
 
 import '../../../features/admin/add_task/data/model/add_task_response.dart';
 import '../../../features/admin/add_user/data/model/add_user_response.dart';
-import '../../../features/admin/edit_task/data/model/edit_task_response.dart';
 import '../../../features/admin/tasks/data/model/admin_tasks_model.dart';
 import '../../../features/manager/home/data/model/statistics.dart';
 import '../../../features/manager/home/data/model/task.dart';
@@ -28,8 +27,6 @@ class EntityFactory {
       return CompanyModel.fromJson(json) as T;
     } else if (T.toString() == "AdminTasksModel") {
       return AdminTasksModel.fromJson(json) as T;
-    } else if (T.toString() == "EditTaskModel") {
-      return EditTaskModel.fromJson(json) as T;
     } else if (T.toString() == "ManagerModel") {
       return ManagerModel.fromJson(json) as T;
     } else if (T.toString() == "StatisticsResponse") {

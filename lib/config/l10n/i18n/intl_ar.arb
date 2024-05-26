@@ -20,6 +20,8 @@
   "write_assigne_to": "اكتب اسم المسند إليه",
   "sub_task_details": "تفاصيل المهمة الفرعية ",
   "app_lang": "لغة التطبيق",
+  "add_comment": "أضف تعليقاً",
+  "write_comment":"أكتب تعليقاً",
   "edit_name": "تعديل الاسم",
   "username": "اسم المستخدم",
   "dark_mood": "الوضع الليلي",
@@ -32,6 +34,9 @@
   "edit_avatar": "تعديل صورة الحساب",
   "personal_info": "المعلومات الشخصية",
   "edit_profile": "تعديل بيانات الحساب",
+  "comments": "التعليقات",
+  "comment": "التعليق",
+
   "edit_username": "تعديل اسم المستخدم",
   "new_password": "كلمة المرور الجديدة",
   "update_password": "تحديث كلمة المرور",

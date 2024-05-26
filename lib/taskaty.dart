@@ -11,6 +11,7 @@ import 'config/theme/theme_manager.dart';
 import 'core/controllers/localization/localization_controller.dart';
 import 'core/controllers/theme/theme_controller.dart';
 import 'features/admin/home/presentation/bloc/statstics_bloc.dart';
+import 'features/admin/tasks/presentation/bloc/get_admin_tasks_bloc.dart';
 import 'features/manager/stats/bloc/manager_statistics_bloc.dart';
 
 class Taskaty extends ConsumerWidget {
@@ -24,6 +25,7 @@ class Taskaty extends ConsumerWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider<LoginCubit>(create: (_) => LoginCubit()),
+            BlocProvider<AdminGetTasksBloc>(create: (_) => AdminGetTasksBloc()),
             BlocProvider<AdminStatsticsCubit>(
                 create: (_) => AdminStatsticsCubit()),
             BlocProvider<ManagerStatisticsCubit>(

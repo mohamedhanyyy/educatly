@@ -21,6 +21,7 @@ mixin _$AddTaskState {
   DateTime? get startDate => throw _privateConstructorUsedError;
   DateTime? get endDate => throw _privateConstructorUsedError;
   int? get priorityId => throw _privateConstructorUsedError;
+  String? get comment => throw _privateConstructorUsedError;
   ManagerModel? get selectedManager => throw _privateConstructorUsedError;
   List<ManagerModel>? get searchManagerList =>
       throw _privateConstructorUsedError;
@@ -46,6 +47,7 @@ abstract class $AddTaskStateCopyWith<$Res> {
       DateTime? startDate,
       DateTime? endDate,
       int? priorityId,
+      String? comment,
       ManagerModel? selectedManager,
       List<ManagerModel>? searchManagerList,
       List<File>? filePickerResult,
@@ -72,6 +74,7 @@ class _$AddTaskStateCopyWithImpl<$Res, $Val extends AddTaskState>
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? priorityId = freezed,
+    Object? comment = freezed,
     Object? selectedManager = freezed,
     Object? searchManagerList = freezed,
     Object? filePickerResult = freezed,
@@ -100,6 +103,10 @@ class _$AddTaskStateCopyWithImpl<$Res, $Val extends AddTaskState>
           ? _value.priorityId
           : priorityId // ignore: cast_nullable_to_non_nullable
               as int?,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
       selectedManager: freezed == selectedManager
           ? _value.selectedManager
           : selectedManager // ignore: cast_nullable_to_non_nullable
@@ -142,6 +149,7 @@ abstract class _$$AddTaskStateImplCopyWith<$Res>
       DateTime? startDate,
       DateTime? endDate,
       int? priorityId,
+      String? comment,
       ManagerModel? selectedManager,
       List<ManagerModel>? searchManagerList,
       List<File>? filePickerResult,
@@ -166,6 +174,7 @@ class __$$AddTaskStateImplCopyWithImpl<$Res>
     Object? startDate = freezed,
     Object? endDate = freezed,
     Object? priorityId = freezed,
+    Object? comment = freezed,
     Object? selectedManager = freezed,
     Object? searchManagerList = freezed,
     Object? filePickerResult = freezed,
@@ -194,6 +203,10 @@ class __$$AddTaskStateImplCopyWithImpl<$Res>
           ? _value.priorityId
           : priorityId // ignore: cast_nullable_to_non_nullable
               as int?,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
       selectedManager: freezed == selectedManager
           ? _value.selectedManager
           : selectedManager // ignore: cast_nullable_to_non_nullable
@@ -231,6 +244,7 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
       required this.startDate,
       required this.endDate,
       this.priorityId,
+      this.comment,
       this.selectedManager,
       final List<ManagerModel>? searchManagerList,
       final List<File>? filePickerResult,
@@ -252,6 +266,8 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
   final DateTime? endDate;
   @override
   final int? priorityId;
+  @override
+  final String? comment;
   @override
   final ManagerModel? selectedManager;
   final List<ManagerModel>? _searchManagerList;
@@ -292,7 +308,7 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddTaskState(taskTitle: $taskTitle, taskDescription: $taskDescription, startDate: $startDate, endDate: $endDate, priorityId: $priorityId, selectedManager: $selectedManager, searchManagerList: $searchManagerList, filePickerResult: $filePickerResult, isAddTask: $isAddTask, isSaveClick: $isSaveClick, tasks: $tasks)';
+    return 'AddTaskState(taskTitle: $taskTitle, taskDescription: $taskDescription, startDate: $startDate, endDate: $endDate, priorityId: $priorityId, comment: $comment, selectedManager: $selectedManager, searchManagerList: $searchManagerList, filePickerResult: $filePickerResult, isAddTask: $isAddTask, isSaveClick: $isSaveClick, tasks: $tasks)';
   }
 
   @override
@@ -305,6 +321,7 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('startDate', startDate))
       ..add(DiagnosticsProperty('endDate', endDate))
       ..add(DiagnosticsProperty('priorityId', priorityId))
+      ..add(DiagnosticsProperty('comment', comment))
       ..add(DiagnosticsProperty('selectedManager', selectedManager))
       ..add(DiagnosticsProperty('searchManagerList', searchManagerList))
       ..add(DiagnosticsProperty('filePickerResult', filePickerResult))
@@ -327,6 +344,7 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
             (identical(other.endDate, endDate) || other.endDate == endDate) &&
             (identical(other.priorityId, priorityId) ||
                 other.priorityId == priorityId) &&
+            (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.selectedManager, selectedManager) ||
                 other.selectedManager == selectedManager) &&
             const DeepCollectionEquality()
@@ -348,6 +366,7 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
       startDate,
       endDate,
       priorityId,
+      comment,
       selectedManager,
       const DeepCollectionEquality().hash(_searchManagerList),
       const DeepCollectionEquality().hash(_filePickerResult),
@@ -369,6 +388,7 @@ abstract class _AddTaskState extends AddTaskState {
       required final DateTime? startDate,
       required final DateTime? endDate,
       final int? priorityId,
+      final String? comment,
       final ManagerModel? selectedManager,
       final List<ManagerModel>? searchManagerList,
       final List<File>? filePickerResult,
@@ -387,6 +407,8 @@ abstract class _AddTaskState extends AddTaskState {
   DateTime? get endDate;
   @override
   int? get priorityId;
+  @override
+  String? get comment;
   @override
   ManagerModel? get selectedManager;
   @override

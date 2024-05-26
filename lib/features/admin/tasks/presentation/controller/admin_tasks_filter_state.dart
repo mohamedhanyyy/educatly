@@ -11,6 +11,7 @@ abstract class AdminTasksFilterState with _$AdminTasksFilterState {
     int? selectedStatusId,
     int? page,
     String? searchText,
+    String? comment,
     ManagerModel? selectedManager,
     List<ManagerModel>? managers,
   }) = _AdminTasksFilterState;

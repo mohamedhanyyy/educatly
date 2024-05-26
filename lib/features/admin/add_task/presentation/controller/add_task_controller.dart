@@ -56,6 +56,7 @@ class AddTaskController extends _$AddTaskController {
   void setData({
     int? selectedPriority,
     bool? isAddTask,
+    String? comment,
     bool? isSave,
     ManagerModel? selectedManager,
     DateTime? startDate,
@@ -63,6 +64,7 @@ class AddTaskController extends _$AddTaskController {
     List<File>? filePickerResult,
   }) {
     state = state.copyWith(
+      comment: comment ?? state.comment,
       isSaveClick: isSave ?? state.isSaveClick,
       priorityId: selectedPriority ?? state.priorityId,
       selectedManager: selectedManager ?? state.selectedManager,
@@ -145,7 +147,7 @@ class AddTaskController extends _$AddTaskController {
         "startDate": '${state.startDate}'.replaceAll(' ', 'T'),
         "endDate": '${state.endDate}'.replaceAll(' ', 'T'),
         "subTasks": state.tasks!.map((e) => {"description": e}).toList(),
-        "comments": state.tasks!.map((e) => {"description": e}).toList(),
+        "comments": [state.comment].map((e) => {"description": e}).toList(),
       },
     );
     if (response?.statusCode == 200) {

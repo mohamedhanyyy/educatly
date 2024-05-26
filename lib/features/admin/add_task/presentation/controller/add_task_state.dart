@@ -10,6 +10,7 @@ abstract class AddTaskState with _$AddTaskState {
     required DateTime? startDate,
     required DateTime? endDate,
     int? priorityId,
+    String? comment,
     ManagerModel? selectedManager,
     List<ManagerModel>? searchManagerList,
     List<File>? filePickerResult,

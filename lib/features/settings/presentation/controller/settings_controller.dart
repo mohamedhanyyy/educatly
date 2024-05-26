@@ -74,10 +74,17 @@ class SettingsController extends _$SettingsController {
         await DioHelper.postData(url: Api.updateProfile, data: data);
 
     if (response?.statusCode == 200) {
+      AuthResponse authResponse = PreferencesHelper.getUserModel!;
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-      AuthResponse authResponse = AuthResponse.fromJson(response?.data);
-
-      PreferencesHelper.saveUserModel(userModel: authResponse);
+      PreferencesHelper.saveUserModel(
+          userModel: AuthResponse(
+              token: authResponse.token,
+              role: authResponse.role,
+              id: authResponse.id,
+              fullName: userName,
+              email: email,
+              firstLogin: authResponse.firstLogin,
+              userName: authResponse.userName));
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
     }

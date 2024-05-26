@@ -22,6 +22,7 @@ mixin _$AdminTasksFilterState {
   int? get selectedStatusId => throw _privateConstructorUsedError;
   int? get page => throw _privateConstructorUsedError;
   String? get searchText => throw _privateConstructorUsedError;
+  String? get comment => throw _privateConstructorUsedError;
   ManagerModel? get selectedManager => throw _privateConstructorUsedError;
   List<ManagerModel>? get managers => throw _privateConstructorUsedError;
 
@@ -43,6 +44,7 @@ abstract class $AdminTasksFilterStateCopyWith<$Res> {
       int? selectedStatusId,
       int? page,
       String? searchText,
+      String? comment,
       ManagerModel? selectedManager,
       List<ManagerModel>? managers});
 }
@@ -67,6 +69,7 @@ class _$AdminTasksFilterStateCopyWithImpl<$Res,
     Object? selectedStatusId = freezed,
     Object? page = freezed,
     Object? searchText = freezed,
+    Object? comment = freezed,
     Object? selectedManager = freezed,
     Object? managers = freezed,
   }) {
@@ -94,6 +97,10 @@ class _$AdminTasksFilterStateCopyWithImpl<$Res,
       searchText: freezed == searchText
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
               as String?,
       selectedManager: freezed == selectedManager
           ? _value.selectedManager
@@ -123,6 +130,7 @@ abstract class _$$AdminTasksFilterStateImplCopyWith<$Res>
       int? selectedStatusId,
       int? page,
       String? searchText,
+      String? comment,
       ManagerModel? selectedManager,
       List<ManagerModel>? managers});
 }
@@ -145,6 +153,7 @@ class __$$AdminTasksFilterStateImplCopyWithImpl<$Res>
     Object? selectedStatusId = freezed,
     Object? page = freezed,
     Object? searchText = freezed,
+    Object? comment = freezed,
     Object? selectedManager = freezed,
     Object? managers = freezed,
   }) {
@@ -173,6 +182,10 @@ class __$$AdminTasksFilterStateImplCopyWithImpl<$Res>
           ? _value.searchText
           : searchText // ignore: cast_nullable_to_non_nullable
               as String?,
+      comment: freezed == comment
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as String?,
       selectedManager: freezed == selectedManager
           ? _value.selectedManager
           : selectedManager // ignore: cast_nullable_to_non_nullable
@@ -195,6 +208,7 @@ class _$AdminTasksFilterStateImpl extends _AdminTasksFilterState {
       this.selectedStatusId,
       this.page,
       this.searchText,
+      this.comment,
       this.selectedManager,
       final List<ManagerModel>? managers})
       : _managers = managers,
@@ -213,6 +227,8 @@ class _$AdminTasksFilterStateImpl extends _AdminTasksFilterState {
   @override
   final String? searchText;
   @override
+  final String? comment;
+  @override
   final ManagerModel? selectedManager;
   final List<ManagerModel>? _managers;
   @override
@@ -226,7 +242,7 @@ class _$AdminTasksFilterStateImpl extends _AdminTasksFilterState {
 
   @override
   String toString() {
-    return 'AdminTasksFilterState(startDate: $startDate, endDate: $endDate, selectedPriorityId: $selectedPriorityId, selectedStatusId: $selectedStatusId, page: $page, searchText: $searchText, selectedManager: $selectedManager, managers: $managers)';
+    return 'AdminTasksFilterState(startDate: $startDate, endDate: $endDate, selectedPriorityId: $selectedPriorityId, selectedStatusId: $selectedStatusId, page: $page, searchText: $searchText, comment: $comment, selectedManager: $selectedManager, managers: $managers)';
   }
 
   @override
@@ -244,6 +260,7 @@ class _$AdminTasksFilterStateImpl extends _AdminTasksFilterState {
             (identical(other.page, page) || other.page == page) &&
             (identical(other.searchText, searchText) ||
                 other.searchText == searchText) &&
+            (identical(other.comment, comment) || other.comment == comment) &&
             (identical(other.selectedManager, selectedManager) ||
                 other.selectedManager == selectedManager) &&
             const DeepCollectionEquality().equals(other._managers, _managers));
@@ -258,6 +275,7 @@ class _$AdminTasksFilterStateImpl extends _AdminTasksFilterState {
       selectedStatusId,
       page,
       searchText,
+      comment,
       selectedManager,
       const DeepCollectionEquality().hash(_managers));
 
@@ -277,6 +295,7 @@ abstract class _AdminTasksFilterState extends AdminTasksFilterState {
       final int? selectedStatusId,
       final int? page,
       final String? searchText,
+      final String? comment,
       final ManagerModel? selectedManager,
       final List<ManagerModel>? managers}) = _$AdminTasksFilterStateImpl;
   const _AdminTasksFilterState._() : super._();
@@ -293,6 +312,8 @@ abstract class _AdminTasksFilterState extends AdminTasksFilterState {
   int? get page;
   @override
   String? get searchText;
+  @override
+  String? get comment;
   @override
   ManagerModel? get selectedManager;
   @override

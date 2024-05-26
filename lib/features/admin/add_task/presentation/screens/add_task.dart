@@ -17,6 +17,7 @@ import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/network_image.dart';
 import '../controller/add_task_controller.dart';
 import '../widgets/add_subtask_widget.dart';
+import '../widgets/add_task_comment_widget.dart';
 import '../widgets/add_task_date_picker_widget.dart';
 import '../widgets/custom_dropdown.dart';
 import '../widgets/priority_bottom_sheet.dart';
@@ -145,6 +146,8 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                 ),
               ),
               AdminAddSubTask(),
+
+              AddTaskCommentsWidget(),
               // AddTaskFilesWidget(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

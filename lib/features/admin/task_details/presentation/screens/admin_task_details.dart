@@ -97,27 +97,62 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
                 if (watcher.subTasks?.isNotEmpty == true)
                   Column(
                       children: watcher.subTasks!.map((e) {
-                    return Container(
-                      margin: EdgeInsets.symmetric(vertical: AppSizes.size5.h),
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.onInverseSurface,
-                        borderRadius: BorderRadius.circular(AppSizes.size10),
-                        border:
-                            Border.all(color: Theme.of(context).disabledColor),
-                      ),
-                      child: CustomTextInputField(
-                        // errorText: '',
-                        label: null,
-                        enabled: false,
-                        prefix: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Icon(Icons.task_alt,
-                              color: e.isCompleted == true
-                                  ? AppColors.colors.green
-                                  : Colors.black),
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppSizes.size10.verticalSpace,
+                        Text(S().subtasks),
+                        Container(
+                          margin:
+                              EdgeInsets.symmetric(vertical: AppSizes.size5.h),
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color:
+                                Theme.of(context).colorScheme.onInverseSurface,
+                            borderRadius:
+                                BorderRadius.circular(AppSizes.size10),
+                            border: Border.all(
+                                color: Theme.of(context).disabledColor),
+                          ),
+                          child: CustomTextInputField(
+                            // errorText: '',
+                            label: null,
+                            enabled: false,
+                            prefix: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Icon(Icons.task_alt,
+                                  color: e.isCompleted == true
+                                      ? AppColors.colors.green
+                                      : Colors.black),
+                            ),
+                            controller:
+                                TextEditingController(text: e.description),
+                            textInputAction: TextInputAction.done,
+                            validator: (value) =>
+                                ValidationService.notEmptyField(value),
+                            onSubmitted: (value) {
+                              reader.setTask(
+                                  task: SubTasks(description: value));
+                              reader.setData(isEditTask: false);
+                            },
+                          ).marginZero,
                         ),
-                        controller: TextEditingController(text: e.description),
+                      ],
+                    );
+                  }).toList()),
+                AppSizes.size10.verticalSpace,
+                if (taskDetails.comments?.isNotEmpty == true)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(S().comment),
+                      CustomTextInputField(
+                        label: taskDetails.comments!.first.description,
+                        enabled: false,
+                        assignLabelWithHint: true,
+                        maxLines: 4,
                         textInputAction: TextInputAction.done,
                         validator: (value) =>
                             ValidationService.notEmptyField(value),
@@ -126,9 +161,8 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
                           reader.setData(isEditTask: false);
                         },
                       ).marginZero,
-                    );
-                  }).toList()),
-                AppSizes.size16.verticalSpace,
+                    ],
+                  )
               ],
             ),
           ].addSeparator(child: AppSizes.size20.verticalSpace).toList(),

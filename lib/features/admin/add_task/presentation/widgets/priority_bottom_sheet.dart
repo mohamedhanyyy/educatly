@@ -31,7 +31,7 @@ class AdminAddTaskPriority extends ConsumerWidget {
           ),
           SizedBox(
             width: 400.w,
-            child: GestureDetector(
+            child: InkWell(
               onTap: () {
                 ref
                     .read(addTaskControllerProvider.notifier)
@@ -56,7 +56,7 @@ class AdminAddTaskPriority extends ConsumerWidget {
             thickness: 0.3,
             color: ColorSystemLight().black2,
           ),
-          GestureDetector(
+          InkWell(
             onTap: () {
               ref
                   .read(addTaskControllerProvider.notifier)
@@ -80,7 +80,7 @@ class AdminAddTaskPriority extends ConsumerWidget {
             thickness: 0.3,
             color: ColorSystemLight().black2,
           ),
-          GestureDetector(
+          InkWell(
             onTap: () {
               ref
                   .read(addTaskControllerProvider.notifier)

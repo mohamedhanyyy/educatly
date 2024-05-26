@@ -27,7 +27,6 @@ class UserWidget extends StatelessWidget {
               width: AppSizes.size30.h,
               height: AppSizes.size30.h,
               clipBehavior: Clip.antiAlias,
-              padding: EdgeInsets.all(AppSizes.size2.h),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.colors.background.withOpacity(0.5),

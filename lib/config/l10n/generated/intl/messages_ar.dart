@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("إضافة"),
+        "add_comment": MessageLookupByLibrary.simpleMessage("أضف تعليقاً"),
         "add_company": MessageLookupByLibrary.simpleMessage("أضف الشركة"),
         "add_document": MessageLookupByLibrary.simpleMessage("اضف مستند"),
         "add_logo": MessageLookupByLibrary.simpleMessage("أضف لوجو"),
@@ -47,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+        "comment": MessageLookupByLibrary.simpleMessage("التعليق"),
+        "comments": MessageLookupByLibrary.simpleMessage("التعليقات"),
         "companies": MessageLookupByLibrary.simpleMessage("الشركات"),
         "company_address": MessageLookupByLibrary.simpleMessage("عنوان الشركة"),
         "company_arabic_name":
@@ -283,6 +286,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome": MessageLookupByLibrary.simpleMessage("مرحبا بك"),
         "write_assigne_to":
             MessageLookupByLibrary.simpleMessage("اكتب اسم المسند إليه"),
+        "write_comment": MessageLookupByLibrary.simpleMessage("أكتب تعليقاً"),
         "write_employee_name":
             MessageLookupByLibrary.simpleMessage("اكتب اسم المدير"),
         "write_section_name":

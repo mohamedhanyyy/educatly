@@ -9,9 +9,9 @@ import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/constants/constants.dart';
 import 'package:taskaty/core/helpers/mappers.dart';
 import 'package:taskaty/features/admin/edit_task/presentation/controller/edit_task_controller.dart';
+import 'package:taskaty/features/admin/edit_task/presentation/widgets/admin_subtasks_widget.dart';
 import 'package:taskaty/features/admin/edit_task/presentation/widgets/edit_priority.dart';
 import 'package:taskaty/features/admin/edit_task/presentation/widgets/edit_status.dart';
-import 'package:taskaty/features/admin/edit_task/presentation/widgets/admin_subtasks_widget.dart';
 import 'package:taskaty/features/admin/tasks/data/model/admin_tasks_model.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
@@ -25,8 +25,6 @@ import '../../../../../core/widgets/network_image.dart';
 import '../../../add_task/presentation/widgets/custom_dropdown.dart';
 import '../widgets/edit_task_date_picker_widget.dart';
 import '../widgets/search_managers_bottomsheet.dart';
-
-
 
 class EditTaskScreen extends ConsumerStatefulWidget {
   final String editTaskId;

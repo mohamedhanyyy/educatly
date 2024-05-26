@@ -14,7 +14,7 @@ Future<void> main() async {
 
   DioHelper.init();
   await PreferencesHelper.init();
-  await refreshToken();
+  // await refreshToken();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 

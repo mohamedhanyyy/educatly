@@ -1810,6 +1810,46 @@ class S {
     );
   }
 
+  /// `Add comment`
+  String get add_comment {
+    return Intl.message(
+      'Add comment',
+      name: 'add_comment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comments`
+  String get comments {
+    return Intl.message(
+      'Comments',
+      name: 'comments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Comment`
+  String get comment {
+    return Intl.message(
+      'Comment',
+      name: 'comment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write a comment`
+  String get write_comment {
+    return Intl.message(
+      'Write a comment',
+      name: 'write_comment',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Title must contain two words at least`
   String get title_must_contain_two_words_at_least {
     return Intl.message(

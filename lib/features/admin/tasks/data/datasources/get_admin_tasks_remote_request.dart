@@ -51,7 +51,8 @@ class GetAdminTasksRemoteRequestImpl implements GetAdminTasksRemoteRequest {
         'PriorityId': selectedPriorityId,
         'StatusId': selectedStatusId,
         'ManagerId': selectedManager?.id,
-        'Page': page,
+        'PageSize': 1000,
+        'Page': 0
       },
       onSuccessList: (response) {
         tasks = response;

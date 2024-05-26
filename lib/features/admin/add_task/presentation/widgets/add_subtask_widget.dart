@@ -119,7 +119,7 @@ class AdminAddSubTask extends ConsumerWidget {
               },
             ),
           ),
-        AppSizes.size16.verticalSpace,
+        AppSizes.size6.verticalSpace,
       ],
     );
   }

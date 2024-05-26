@@ -33,21 +33,28 @@ class AdminTasksScreen extends ConsumerStatefulWidget {
 class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
   final TextEditingController searchController = TextEditingController();
 
-  int page = 1;
-  ScrollController controller = ScrollController();
+  bool isLoading = false;
+
   List<AdminTasksModel>? adminTasks;
+  // late AdminGetTasksBloc adminBloc;
   @override
   void initState() {
     super.initState();
+    // adminBloc = context.read<AdminGetTasksBloc>();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       ref
           .read(adminTasksFilterControllerProvider.notifier)
-          .setData(selectedStatusId: 1, page: page);
-      ref.invalidate(getAdminTasksControllerProvider);
+          .setData(selectedStatusId: 1);
+      // adminBloc.getAdminTasks(ref: ref);
+
+      // ref.invalidate(getAdminTasksControllerProvider);
     });
-    // controller.addListener((){
-    //   if(controller.position.ma)
+    // _scrollController.addListener(() {
+    //   if (_scrollController.position.pixels ==
+    //       _scrollController.position.maxScrollExtent) {
+    //     adminBloc.getAdminTasks(ref: ref);
+    //   }
     // });
   }
 
@@ -265,6 +272,24 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                     );
                   },
                 )
+            // BlocBuilder<AdminGetTasksBloc, GetAdminTasksState>(
+            //     builder: (context, state) {
+            //   if (state is GetAdminTasksStateDone) {
+            //     return ListView.builder(
+            //       controller: _scrollController,
+            //       itemBuilder: (context, index) {
+            //         return TaskItemWidget(
+            //             task: adminBloc.tasks.elementAt(index));
+            //       },
+            //       shrinkWrap: true,
+            //       itemCount: adminBloc.tasks.length,
+            //       physics: const BouncingScrollPhysics(),
+            //     );
+            //   } else if (state is GetAdminTasksStateLoading) {
+            //     return CustomLoadingWidget(100);
+            //   }
+            //   return Text('error');
+            // })
           ],
         ).defaultScreenPadding,
       ),

@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "add_comment": MessageLookupByLibrary.simpleMessage("Add comment"),
         "add_company": MessageLookupByLibrary.simpleMessage("Add company"),
         "add_document": MessageLookupByLibrary.simpleMessage("Add document"),
         "add_logo": MessageLookupByLibrary.simpleMessage("Add logo"),
@@ -47,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "comment": MessageLookupByLibrary.simpleMessage("Comment"),
+        "comments": MessageLookupByLibrary.simpleMessage("Comments"),
         "companies": MessageLookupByLibrary.simpleMessage("Companies"),
         "company_address":
             MessageLookupByLibrary.simpleMessage("Company address"),
@@ -277,6 +280,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "write_assigne_to":
             MessageLookupByLibrary.simpleMessage("Write assigne to"),
+        "write_comment":
+            MessageLookupByLibrary.simpleMessage("Write a comment"),
         "write_employee_name":
             MessageLookupByLibrary.simpleMessage("Write emplyee name"),
         "write_section_name":

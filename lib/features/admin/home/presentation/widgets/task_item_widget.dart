@@ -39,7 +39,6 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
     widget.task.subTasks!.map((e) {
       if (e.isCompleted!) completedCount++;
     }).toList();
-    debugPrint('hanyy ${completedCount}');
   }
 
   @override

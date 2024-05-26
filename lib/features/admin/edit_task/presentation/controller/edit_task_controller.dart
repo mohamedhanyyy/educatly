@@ -118,33 +118,14 @@ class EditTaskController extends _$EditTaskController {
     if (response?.statusCode == 200) {
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
       ref.invalidate(getAdminTasksControllerProvider);
-
       showModalBottomSheet(
           context: AppRouter.navigatorState.currentContext!,
           builder: (context) {
             return DoneBottomSheet(message: S().task_edited_successfully);
           });
     } else {
-      if (AppRouter.router.canPop()) AppRouter.router.pop();
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
     }
-    // result.handleGuardResults(
-    //   ref: ref,
-    //   onError: () {
-    //     if (AppRouter.router.canPop()) AppRouter.router.pop();
-    //     ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
-    //   },
-    //   onSuccess: () {
-    //     ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-    //     ref.invalidate(getAdminTasksControllerProvider);
-    //
-    //     showModalBottomSheet(
-    //         context: AppRouter.navigatorState.currentContext!,
-    //         builder: (context) {
-    //           return doneBottomSheet(S().task_edited_successfully);
-    //         });
-    //   },
-    // );
   }
 
   buildSvgPicture(name) {

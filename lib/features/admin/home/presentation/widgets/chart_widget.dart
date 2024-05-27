@@ -46,12 +46,12 @@ class _ChartWidgetState extends State<ChartWidget> {
                   value: completedCount / totalSum,
                   title:
                       '${(completedCount / totalSum * 100).toStringAsFixed(1)}%',
-                  color: Colors.green,
+                  color: Colors.red,
                   titleStyle: TextStyle(fontSize: 10)),
               PieChartSectionData(
                   value: newCount / totalSum,
                   title: '${(newCount / totalSum * 100).toStringAsFixed(1)}%',
-                  color: Colors.blue,
+                  color: Colors.green,
                   titleStyle: TextStyle(fontSize: 10)),
               PieChartSectionData(
                   value: inProgressCount / totalSum,
@@ -62,24 +62,7 @@ class _ChartWidgetState extends State<ChartWidget> {
             ],
           ),
         );
-      }
-      // {
-      //   return SfCircularChart(
-      //       margin: EdgeInsets.all(10),
-      //       series: <CircularSeries>[
-      //         DoughnutSeries<ChartData, String>(
-      //           dataSource: chartData(statsCubit.statisticsModel!.data!),
-      //           xValueMapper: (ChartData data, _) => '${data.x}',
-      //           yValueMapper: (ChartData data, _) => data.y,
-      //           dataLabelMapper: (ChartData data, _) => '${data.size}',
-      //           pointColorMapper: (ChartData data, _) => data.color,
-      //           dataLabelSettings: DataLabelSettings(isVisible: true),
-      //           radius: '120%',
-      //           innerRadius: '55%',
-      //         )
-      //       ]);
-      // }
-      else if (state == CubitState.loading)
+      } else if (state == CubitState.loading)
         return Center(child: CircularProgressIndicator.adaptive());
       return const SizedBox.shrink();
     });

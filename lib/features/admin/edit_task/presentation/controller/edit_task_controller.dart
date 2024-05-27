@@ -18,6 +18,7 @@ import '../../../../../core/controllers/button/button_controller.dart';
 import '../../../../../core/services/network/api/network_api.dart';
 import '../../../add_task/data/model/add_task_response.dart';
 import '../../../add_task/presentation/widgets/add_task_done_bottomsheet.dart';
+import '../../../tasks/data/model/admin_tasks_model.dart';
 import '../../../tasks/presentation/controller/get_admin_tasks_controller.dart';
 
 part 'edit_task_controller.freezed.dart';
@@ -39,6 +40,7 @@ class EditTaskController extends _$EditTaskController {
     int? taskId,
     int? statusId,
     bool? isEditTask,
+    bool? isEditComment,
     bool? isSave,
     String? taskTitle,
     String? taskDescription,
@@ -47,10 +49,13 @@ class EditTaskController extends _$EditTaskController {
     DateTime? endDate,
     List<File>? filePickerResult,
     List<SubTasks>? tasks,
+    List<Comments>? comments,
   }) {
     state = state.copyWith(
       isSaveClick: isSave ?? state.isSaveClick,
       taskId: taskId ?? state.taskId,
+      isEditComment: isEditComment ?? state.isEditComment,
+      comments: comments ?? state.comments,
       subTasks: tasks ?? state.subTasks,
       searchAssigneToList: state.searchAssigneToList,
       selectedPriority: selectedPriority ?? state.selectedPriority,
@@ -75,6 +80,19 @@ class EditTaskController extends _$EditTaskController {
     final newList = List<SubTasks>.from(state.subTasks ?? []);
     newList.remove(task);
     state = state.copyWith(subTasks: newList);
+  }
+
+  void setComment({required Comments comment}) {
+    final newList = List<Comments>.from(state.comments ?? []);
+    newList.remove(comment);
+    newList.add(comment);
+    state = state.copyWith(comments: newList);
+  }
+
+  void removeComment({required Comments comment}) {
+    final newList = List<Comments>.from(state.comments ?? []);
+    newList.remove(comment);
+    state = state.copyWith(comments: newList);
   }
 
   String getFormattedStartDate() {
@@ -114,6 +132,7 @@ class EditTaskController extends _$EditTaskController {
       "subTasks": state.subTasks!
           .map((e) => {"description": '${e.description}'})
           .toList(),
+      "comments": state.comments!.map((e) => {"description": '${e}'}).toList(),
     });
     if (response?.statusCode == 200) {
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);

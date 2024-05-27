@@ -16,7 +16,9 @@ abstract class EditTaskState with _$EditTaskState {
     int? selectedAssigneToIndex,
     List<String>? searchAssigneToList,
     bool? isEditTask,
+    bool? isEditComment,
     bool? isSaveClick,
     List<SubTasks>? subTasks,
+    List<Comments>? comments,
   }) = _EditTaskState;
 }

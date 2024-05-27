@@ -37,6 +37,7 @@ refreshToken() async {
     PreferencesHelper.saveToken(token: response?.data['token']);
   }
 }
+
 //   "email": "superadmin@domain.com",
 //   "email": "basicuser@domain.com",
 //   "password": "P@ssword123"

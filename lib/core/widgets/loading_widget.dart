@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomLoadingWidget extends StatelessWidget {
   final double? topPadding;
 
-  CustomLoadingWidget(this.topPadding);
+  CustomLoadingWidget([this.topPadding]);
 
   @override
   Widget build(BuildContext context) {

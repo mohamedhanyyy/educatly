@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
-import '../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../config/theme/sizes_manager.dart';
 import 'chart_widget.dart';
 
@@ -36,7 +35,7 @@ class StatisticsWidget extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  CircleAvatar(backgroundColor: Color(0xff14BBD8), radius: 6),
+                  CircleAvatar(backgroundColor: Colors.green, radius: 6),
                   SizedBox(width: 8),
                   Text(S().neww),
                 ],
@@ -45,7 +44,7 @@ class StatisticsWidget extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: Row(
                   children: [
-                    CircleAvatar(backgroundColor: Color(0xffFA942F), radius: 6),
+                    CircleAvatar(backgroundColor: Colors.orange, radius: 6),
                     SizedBox(width: 8),
                     Text(S().in_progress),
                   ],
@@ -53,8 +52,7 @@ class StatisticsWidget extends ConsumerWidget {
               ),
               Row(
                 children: [
-                  CircleAvatar(
-                      backgroundColor: AppColors.colors.green, radius: 6),
+                  CircleAvatar(backgroundColor: Colors.red, radius: 6),
                   SizedBox(width: 8),
                   Text(S().completed),
                 ],

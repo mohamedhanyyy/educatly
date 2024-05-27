@@ -9,19 +9,27 @@ import '../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../core/constants/assets.dart';
 import '../../../../../core/controllers/theme/theme_controller.dart';
 
-class AdminHomeScreen extends StatelessWidget {
+class AdminHomeScreen extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   AdminHomeScreen({
     Key? key,
     required this.navigationShell,
   }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar2'));
 
+  @override
+  State<AdminHomeScreen> createState() => _AdminHomeScreenState();
+}
+
+class _AdminHomeScreenState extends State<AdminHomeScreen> {
+  int index = 0;
+
   void _goBranch(int index) {
-    navigationShell.goBranch(
+    this.index = index;
+    setState(() {});
+    widget.navigationShell.goBranch(
       index,
-      initialLocation: index == navigationShell.currentIndex,
+      initialLocation: index == widget.navigationShell.currentIndex,
     );
   }
 
@@ -29,7 +37,7 @@ class AdminHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: navigationShell,
+        body: widget.navigationShell,
         bottomNavigationBar: Padding(
           padding: EdgeInsets.only(bottom: 6, top: 6),
           child: Container(
@@ -61,7 +69,11 @@ class AdminHomeScreen extends StatelessWidget {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset(Assets.icons.category),
+                                child: SvgPicture.asset(
+                                  Assets.icons.category,
+                                  width: index == 0 ? 25 : 20,
+                                  height: index == 0 ? 25 : 20,
+                                ),
                               ),
                             ),
                           ),
@@ -72,7 +84,11 @@ class AdminHomeScreen extends StatelessWidget {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset(Assets.icons.setting),
+                                child: SvgPicture.asset(
+                                  Assets.icons.setting,
+                                  width: index == 1 ? 25 : 20,
+                                  height: index == 1 ? 25 : 20,
+                                ),
                               ),
                             ),
                           ),

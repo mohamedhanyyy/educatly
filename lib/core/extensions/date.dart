@@ -30,7 +30,7 @@ extension DateDifferenceExtension on DateTime {
         if (AppRouter.navigatorState.currentContext!.isCurrentArabic) {
           return S().ago + '$weeks ' + S().weeks_ago;
         } else {
-          return S().weeks_ago + '$weeks ' + S().ago;
+          return '$weeks ' + S().weeks_ago;
         }
       } else if (difference.inDays >= 30 && difference.inDays < 365) {
         final months = (difference.inDays / 30).round();

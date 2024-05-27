@@ -35,7 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "adding_subtask":
             MessageLookupByLibrary.simpleMessage("إضافة مهمة فرعية"),
         "admin": MessageLookupByLibrary.simpleMessage("الادمن"),
-        "ago": MessageLookupByLibrary.simpleMessage("قبل "),
+        "ago": MessageLookupByLibrary.simpleMessage("منذ "),
         "all_companies": MessageLookupByLibrary.simpleMessage("جميع الشركات"),
         "all_managers": MessageLookupByLibrary.simpleMessage("جميع المديرين"),
         "all_tasks": MessageLookupByLibrary.simpleMessage("جميع المهام"),

@@ -12,10 +12,10 @@ import '../../../../../config/theme/styles_manager.dart';
 import '../../../../../core/constants/assets.dart';
 import '../../../../../core/services/validation/validation_service.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
-import '../../../add_task/data/model/add_task_response.dart';
+import '../../../tasks/data/model/admin_tasks_model.dart';
 import '../controller/edit_task_controller.dart';
 
-class AdminEditSubTask extends ConsumerWidget {
+class AdminEditComment extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reader = ref.read(editTaskControllerProvider.notifier);
@@ -25,7 +25,7 @@ class AdminEditSubTask extends ConsumerWidget {
           onTap: () {
             ref
                 .read(editTaskControllerProvider.notifier)
-                .setData(isEditTask: true);
+                .setData(isEditComment: true);
           },
           child: Container(
             padding: EdgeInsets.all(AppSizes.size10.w),
@@ -38,7 +38,7 @@ class AdminEditSubTask extends ConsumerWidget {
               children: [
                 SvgPicture.asset(Assets.icons.addTask),
                 AppSizes.size8.horizontalSpace,
-                Text(S().add_subtask,
+                Text(S().add_comment,
                     style: StylesManager.medium(
                         color: ColorSystemLight().black2,
                         fontSize: AppSizes.size16))
@@ -46,12 +46,12 @@ class AdminEditSubTask extends ConsumerWidget {
             ),
           ),
         ),
-        if (ref.watch(editTaskControllerProvider).subTasks?.isNotEmpty == true)
+        if (ref.watch(editTaskControllerProvider).comments?.isNotEmpty == true)
           Padding(
             padding: const EdgeInsets.only(top: 2),
             child: Column(
                 children:
-                    ref.watch(editTaskControllerProvider).subTasks!.map((e) {
+                    ref.watch(editTaskControllerProvider).comments!.map((e) {
               return Container(
                 margin: EdgeInsets.symmetric(vertical: AppSizes.size5.h),
                 height: 50,
@@ -65,35 +65,32 @@ class AdminEditSubTask extends ConsumerWidget {
                   label: null,
                   prefix: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Icon(Icons.task_alt,
-                        color: e.isCompleted == true
-                            ? AppColors.colors.green
-                            : Theme.of(context).secondaryHeaderColor),
+                    child: Icon(Icons.task_alt),
                   ),
                   suffix: IconButton(
                       padding: EdgeInsets.zero,
-                      icon: Icon(Icons.delete, color: Colors.red),
+                      icon: Icon(Icons.delete, color: AppColors.colors.primary),
                       onPressed: () {
                         ref
                             .read(editTaskControllerProvider.notifier)
-                            .removeTask(task: e);
+                            .removeComment(comment: e);
                       }),
                   controller: TextEditingController(text: e.description),
                   textInputAction: TextInputAction.done,
                   validator: (value) => ValidationService.notEmptyField(value),
                   onSubmitted: (value) {
-                    ref.watch(editTaskControllerProvider).subTasks!.map((e) {
-                      if (e.description == value) return;
+                    ref.watch(editTaskControllerProvider).comments!.map((e) {
+                      if (e == value) return;
                     }).toList();
-                    reader.removeTask(task: e);
-                    reader.setTask(task: SubTasks(description: value));
-                    reader.setData(isEditTask: false);
+                    reader.removeComment(comment: e);
+                    reader.setComment(comment: e);
+                    reader.setData(isEditComment: false);
                   },
                 ).marginZero,
               );
             }).toList()),
           ),
-        if (ref.watch(editTaskControllerProvider).isEditTask == true)
+        if (ref.watch(editTaskControllerProvider).isEditComment == true)
           Container(
             padding: EdgeInsets.symmetric(horizontal: AppSizes.size2.w),
             margin: EdgeInsets.only(top: AppSizes.size4.h),
@@ -112,12 +109,12 @@ class AdminEditSubTask extends ConsumerWidget {
                 padding: EdgeInsets.symmetric(horizontal: AppSizes.size10.w),
                 child: SvgPicture.asset(Assets.icons.addTask),
               ),
-              label: S().sub_task_details,
+              label: S().comment,
               textInputAction: TextInputAction.next,
               onSubmitted: (value) {
                 if (value != '')
-                  reader.setTask(task: SubTasks(description: value));
-                reader.setData(isEditTask: false);
+                  reader.setComment(comment: Comments(description: value));
+                reader.setData(isEditComment: false);
               },
             ),
           ),

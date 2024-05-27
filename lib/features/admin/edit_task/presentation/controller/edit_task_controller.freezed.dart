@@ -27,8 +27,10 @@ mixin _$EditTaskState {
   int? get selectedAssigneToIndex => throw _privateConstructorUsedError;
   List<String>? get searchAssigneToList => throw _privateConstructorUsedError;
   bool? get isEditTask => throw _privateConstructorUsedError;
+  bool? get isEditComment => throw _privateConstructorUsedError;
   bool? get isSaveClick => throw _privateConstructorUsedError;
   List<SubTasks>? get subTasks => throw _privateConstructorUsedError;
+  List<Comments>? get comments => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EditTaskStateCopyWith<EditTaskState> get copyWith =>
@@ -53,8 +55,10 @@ abstract class $EditTaskStateCopyWith<$Res> {
       int? selectedAssigneToIndex,
       List<String>? searchAssigneToList,
       bool? isEditTask,
+      bool? isEditComment,
       bool? isSaveClick,
-      List<SubTasks>? subTasks});
+      List<SubTasks>? subTasks,
+      List<Comments>? comments});
 }
 
 /// @nodoc
@@ -81,8 +85,10 @@ class _$EditTaskStateCopyWithImpl<$Res, $Val extends EditTaskState>
     Object? selectedAssigneToIndex = freezed,
     Object? searchAssigneToList = freezed,
     Object? isEditTask = freezed,
+    Object? isEditComment = freezed,
     Object? isSaveClick = freezed,
     Object? subTasks = freezed,
+    Object? comments = freezed,
   }) {
     return _then(_value.copyWith(
       taskTitle: freezed == taskTitle
@@ -129,6 +135,10 @@ class _$EditTaskStateCopyWithImpl<$Res, $Val extends EditTaskState>
           ? _value.isEditTask
           : isEditTask // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isEditComment: freezed == isEditComment
+          ? _value.isEditComment
+          : isEditComment // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isSaveClick: freezed == isSaveClick
           ? _value.isSaveClick
           : isSaveClick // ignore: cast_nullable_to_non_nullable
@@ -137,6 +147,10 @@ class _$EditTaskStateCopyWithImpl<$Res, $Val extends EditTaskState>
           ? _value.subTasks
           : subTasks // ignore: cast_nullable_to_non_nullable
               as List<SubTasks>?,
+      comments: freezed == comments
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comments>?,
     ) as $Val);
   }
 }
@@ -161,8 +175,10 @@ abstract class _$$EditTaskStateImplCopyWith<$Res>
       int? selectedAssigneToIndex,
       List<String>? searchAssigneToList,
       bool? isEditTask,
+      bool? isEditComment,
       bool? isSaveClick,
-      List<SubTasks>? subTasks});
+      List<SubTasks>? subTasks,
+      List<Comments>? comments});
 }
 
 /// @nodoc
@@ -187,8 +203,10 @@ class __$$EditTaskStateImplCopyWithImpl<$Res>
     Object? selectedAssigneToIndex = freezed,
     Object? searchAssigneToList = freezed,
     Object? isEditTask = freezed,
+    Object? isEditComment = freezed,
     Object? isSaveClick = freezed,
     Object? subTasks = freezed,
+    Object? comments = freezed,
   }) {
     return _then(_$EditTaskStateImpl(
       taskTitle: freezed == taskTitle
@@ -235,6 +253,10 @@ class __$$EditTaskStateImplCopyWithImpl<$Res>
           ? _value.isEditTask
           : isEditTask // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isEditComment: freezed == isEditComment
+          ? _value.isEditComment
+          : isEditComment // ignore: cast_nullable_to_non_nullable
+              as bool?,
       isSaveClick: freezed == isSaveClick
           ? _value.isSaveClick
           : isSaveClick // ignore: cast_nullable_to_non_nullable
@@ -243,6 +265,10 @@ class __$$EditTaskStateImplCopyWithImpl<$Res>
           ? _value._subTasks
           : subTasks // ignore: cast_nullable_to_non_nullable
               as List<SubTasks>?,
+      comments: freezed == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comments>?,
     ));
   }
 }
@@ -262,10 +288,13 @@ class _$EditTaskStateImpl extends _EditTaskState with DiagnosticableTreeMixin {
       this.selectedAssigneToIndex,
       final List<String>? searchAssigneToList,
       this.isEditTask,
+      this.isEditComment,
       this.isSaveClick,
-      final List<SubTasks>? subTasks})
+      final List<SubTasks>? subTasks,
+      final List<Comments>? comments})
       : _searchAssigneToList = searchAssigneToList,
         _subTasks = subTasks,
+        _comments = comments,
         super._();
 
   @override
@@ -300,6 +329,8 @@ class _$EditTaskStateImpl extends _EditTaskState with DiagnosticableTreeMixin {
   @override
   final bool? isEditTask;
   @override
+  final bool? isEditComment;
+  @override
   final bool? isSaveClick;
   final List<SubTasks>? _subTasks;
   @override
@@ -311,9 +342,19 @@ class _$EditTaskStateImpl extends _EditTaskState with DiagnosticableTreeMixin {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<Comments>? _comments;
+  @override
+  List<Comments>? get comments {
+    final value = _comments;
+    if (value == null) return null;
+    if (_comments is EqualUnmodifiableListView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditTaskState(taskTitle: $taskTitle, taskDescription: $taskDescription, startDate: $startDate, taskId: $taskId, endDate: $endDate, selectedPriority: $selectedPriority, statusId: $statusId, selectedAssigne: $selectedAssigne, selectedAssigneToIndex: $selectedAssigneToIndex, searchAssigneToList: $searchAssigneToList, isEditTask: $isEditTask, isSaveClick: $isSaveClick, subTasks: $subTasks)';
+    return 'EditTaskState(taskTitle: $taskTitle, taskDescription: $taskDescription, startDate: $startDate, taskId: $taskId, endDate: $endDate, selectedPriority: $selectedPriority, statusId: $statusId, selectedAssigne: $selectedAssigne, selectedAssigneToIndex: $selectedAssigneToIndex, searchAssigneToList: $searchAssigneToList, isEditTask: $isEditTask, isEditComment: $isEditComment, isSaveClick: $isSaveClick, subTasks: $subTasks, comments: $comments)';
   }
 
   @override
@@ -333,8 +374,10 @@ class _$EditTaskStateImpl extends _EditTaskState with DiagnosticableTreeMixin {
           DiagnosticsProperty('selectedAssigneToIndex', selectedAssigneToIndex))
       ..add(DiagnosticsProperty('searchAssigneToList', searchAssigneToList))
       ..add(DiagnosticsProperty('isEditTask', isEditTask))
+      ..add(DiagnosticsProperty('isEditComment', isEditComment))
       ..add(DiagnosticsProperty('isSaveClick', isSaveClick))
-      ..add(DiagnosticsProperty('subTasks', subTasks));
+      ..add(DiagnosticsProperty('subTasks', subTasks))
+      ..add(DiagnosticsProperty('comments', comments));
   }
 
   @override
@@ -362,9 +405,12 @@ class _$EditTaskStateImpl extends _EditTaskState with DiagnosticableTreeMixin {
                 .equals(other._searchAssigneToList, _searchAssigneToList) &&
             (identical(other.isEditTask, isEditTask) ||
                 other.isEditTask == isEditTask) &&
+            (identical(other.isEditComment, isEditComment) ||
+                other.isEditComment == isEditComment) &&
             (identical(other.isSaveClick, isSaveClick) ||
                 other.isSaveClick == isSaveClick) &&
-            const DeepCollectionEquality().equals(other._subTasks, _subTasks));
+            const DeepCollectionEquality().equals(other._subTasks, _subTasks) &&
+            const DeepCollectionEquality().equals(other._comments, _comments));
   }
 
   @override
@@ -381,8 +427,10 @@ class _$EditTaskStateImpl extends _EditTaskState with DiagnosticableTreeMixin {
       selectedAssigneToIndex,
       const DeepCollectionEquality().hash(_searchAssigneToList),
       isEditTask,
+      isEditComment,
       isSaveClick,
-      const DeepCollectionEquality().hash(_subTasks));
+      const DeepCollectionEquality().hash(_subTasks),
+      const DeepCollectionEquality().hash(_comments));
 
   @JsonKey(ignore: true)
   @override
@@ -404,8 +452,10 @@ abstract class _EditTaskState extends EditTaskState {
       final int? selectedAssigneToIndex,
       final List<String>? searchAssigneToList,
       final bool? isEditTask,
+      final bool? isEditComment,
       final bool? isSaveClick,
-      final List<SubTasks>? subTasks}) = _$EditTaskStateImpl;
+      final List<SubTasks>? subTasks,
+      final List<Comments>? comments}) = _$EditTaskStateImpl;
   const _EditTaskState._() : super._();
 
   @override
@@ -431,9 +481,13 @@ abstract class _EditTaskState extends EditTaskState {
   @override
   bool? get isEditTask;
   @override
+  bool? get isEditComment;
+  @override
   bool? get isSaveClick;
   @override
   List<SubTasks>? get subTasks;
+  @override
+  List<Comments>? get comments;
   @override
   @JsonKey(ignore: true)
   _$$EditTaskStateImplCopyWith<_$EditTaskStateImpl> get copyWith =>

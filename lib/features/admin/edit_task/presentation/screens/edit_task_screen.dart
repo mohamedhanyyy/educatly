@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taskaty/config/router/app_router.dart';
 import 'package:taskaty/config/theme/sizes_manager.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/constants/constants.dart';
 import 'package:taskaty/core/helpers/mappers.dart';
+import 'package:taskaty/features/admin/comment/controller/add_comment_controller.dart';
 import 'package:taskaty/features/admin/edit_task/presentation/controller/edit_task_controller.dart';
 import 'package:taskaty/features/admin/edit_task/presentation/widgets/admin_subtasks_widget.dart';
 import 'package:taskaty/features/admin/edit_task/presentation/widgets/edit_priority.dart';
@@ -38,9 +38,11 @@ class EditTaskScreen extends ConsumerStatefulWidget {
 class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
   final TextEditingController taskTitleController = TextEditingController();
   final TextEditingController taskDetailsController = TextEditingController();
+  final TextEditingController comment = TextEditingController();
 
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   static final buttonKey = UniqueKey();
+  static final commentButtonKey = UniqueKey();
   late AdminTasksModel taskDetails;
   @override
   void initState() {
@@ -53,6 +55,7 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
       ref.read(editTaskControllerProvider.notifier).setData(
             selectedPriority: (taskDetails.priorityId),
             taskTitle: taskDetails.title,
+            comments: taskDetails.comments,
             taskId: taskDetails.id,
             selectedAssigne: taskDetails.user,
             statusId: taskDetails.statusId,
@@ -73,6 +76,33 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(S().edit_task),
+        actions: [
+          Consumer(
+            builder: (_, ref, __) {
+              return AppDefaultButton(
+                borderRadius: 2,
+                key: buttonKey,
+                width: AppSizes.size50.w,
+                height: AppSizes.size45.h,
+                borderColor: ColorSystemLight().primary,
+                isBordered: true,
+                text: S().edit,
+                textColor: ColorSystemLight().scaffold,
+                backgroundColor: ColorSystemLight().primary,
+                onPressed: () {
+                  controller.setData(isSave: true);
+                  if (formKey.currentState!.validate()) {
+                    controller.editTask(
+                      title: taskTitleController.text,
+                      description: taskDetailsController.text,
+                      key: buttonKey,
+                    );
+                  }
+                },
+              );
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
         padding:
@@ -167,61 +197,85 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                   padding: EdgeInsets.symmetric(
                       horizontal: AppSizes.size6.w,
                       vertical: AppSizes.size10.h),
-                  child: Text(
-                    S().editing_adding_subtask,
-                    style: StylesManager.semiBold(fontSize: AppSizes.size12),
-                  ),
+                  child: Text(S().editing_adding_subtask,
+                      style: StylesManager.semiBold(fontSize: AppSizes.size12)),
                 ),
                 AdminEditSubTask(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppDefaultButton(
-                      borderRadius: 2,
-                      onPressed: () {
-                        AppRouter.router.pop();
-                      },
-                      width: AppSizes.size150.w,
-                      height: AppSizes.size45.h,
-                      borderColor: ColorSystemLight().primary,
-                      isBordered: true,
-                      text: S().cancel,
-                      textColor: ColorSystemLight().primary,
-                      backgroundColor:
-                          Theme.of(context).scaffoldBackgroundColor,
-                    ),
-                    AppSizes.size30.horizontalSpace,
-                    Consumer(
-                      builder: (_, ref, __) {
-                        return AppDefaultButton(
-                          borderRadius: 2,
-                          key: buttonKey,
-                          width: AppSizes.size150.w,
-                          height: AppSizes.size45.h,
-                          borderColor: ColorSystemLight().primary,
-                          isBordered: true,
-                          text: S().edit,
-                          textColor: ColorSystemLight().scaffold,
-                          backgroundColor: ColorSystemLight().primary,
-                          onPressed: () {
-                            controller.setData(isSave: true);
-                            if (formKey.currentState!.validate()) {
-                              controller.editTask(
-                                title: taskTitleController.text,
-                                description: taskDetailsController.text,
-                                key: buttonKey,
-                              );
-                            }
-                          },
+                Text(S().comments),
+                if (taskDetails.comments?.isNotEmpty == true)
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: taskDetails.comments!.map((e) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(vertical: 8.0),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                          width: double.infinity,
+                          decoration:
+                              BoxDecoration(color: AppColors.colors.lines),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.article,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              AppSizes.size5.horizontalSpace,
+                              Text(e.description!),
+                            ],
+                          ),
                         );
-                      },
-                    ),
-                  ],
-                ),
+                      }).toList()),
+                AppSizes.size50.verticalSpace
               ],
             ),
           ),
         ).defaultScreenPadding,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        color: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
+          child: Row(
+            children: [
+              Flexible(
+                  child: SizedBox(
+                height: 40,
+                child: CustomTextInputField(
+                  label: 'comment',
+                  controller: comment,
+                ),
+              )),
+              AppSizes.size10.horizontalSpace,
+              Consumer(
+                builder: (_, ref, __) {
+                  return AppDefaultButton(
+                      borderRadius: 2,
+                      key: commentButtonKey,
+                      width: AppSizes.size50.w,
+                      height: AppSizes.size45.h,
+                      borderColor: ColorSystemLight().primary,
+                      isBordered: true,
+                      text: S().add,
+                      textColor: ColorSystemLight().scaffold,
+                      backgroundColor: ColorSystemLight().primary,
+                      onPressed: () {
+                        taskDetails.comments
+                            ?.add(Comments(description: comment.text));
+                        ref
+                            .read(addCommentControllerProvider.notifier)
+                            .addComment(
+                                key: commentButtonKey,
+                                comment: comment.text,
+                                taskId: taskDetails.id.toString(),
+                                ref: ref);
+                        comment.clear();
+                      });
+                },
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

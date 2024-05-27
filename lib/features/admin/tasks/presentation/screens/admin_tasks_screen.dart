@@ -137,7 +137,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                     onTap: () {
                       showModalBottomSheet(
                           context: context,
-                          // isScrollControlled: true,
+                          isScrollControlled: true,
                           showDragHandle: true,
                           useRootNavigator: true,
                           builder: (context) => AdminHomeSelectManagerWidget());

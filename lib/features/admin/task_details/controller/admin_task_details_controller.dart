@@ -18,7 +18,4 @@ class AdminTaskDetailsController extends _$AdminTaskDetailsController {
   void setData({List<SubTasks>? subTasks}) {
     state = state.copyWith(tasks: subTasks ?? state.tasks);
   }
-  // void setSubTasksList(List<SubtaskModel> subtasks) {
-  //   state = state.copyWith(subtasks: subtasks, selectedSubtasks: []);
-  // }
 }

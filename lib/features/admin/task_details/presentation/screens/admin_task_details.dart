@@ -77,6 +77,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TaskDetailsWidget(
               statusId: statusIdMapper(taskDetails.statusId),
@@ -93,76 +94,78 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
             ),
             DescriptionWidget(description: '${taskDetails.description}'),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                AppSizes.size10.verticalSpace,
+                Text(S().subtasks),
                 if (watcher.subTasks?.isNotEmpty == true)
                   Column(
-                      children: watcher.subTasks!.map((e) {
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppSizes.size10.verticalSpace,
-                        Text(S().subtasks),
-                        Container(
-                          margin:
-                              EdgeInsets.symmetric(vertical: AppSizes.size5.h),
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).colorScheme.onInverseSurface,
-                            borderRadius:
-                                BorderRadius.circular(AppSizes.size10),
-                            border: Border.all(
-                                color: Theme.of(context).disabledColor),
-                          ),
-                          child: CustomTextInputField(
-                            // errorText: '',
-                            label: null,
-                            enabled: false,
-                            prefix: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                              child: Icon(Icons.task_alt,
-                                  color: e.isCompleted == true
-                                      ? AppColors.colors.green
-                                      : Colors.black),
+                      children: watcher.subTasks!
+                          .map(
+                            (e) => Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: AppSizes.size5.h),
+                              height: 50,
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onInverseSurface,
+                                borderRadius:
+                                    BorderRadius.circular(AppSizes.size10),
+                                border: Border.all(
+                                    color: Theme.of(context).disabledColor),
+                              ),
+                              child: CustomTextInputField(
+                                label: null,
+                                enabled: false,
+                                prefix: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: Icon(Icons.task_alt_outlined,
+                                      color: e.isCompleted == true
+                                          ? AppColors.colors.green
+                                          : Colors.black),
+                                ),
+                                controller:
+                                    TextEditingController(text: e.description),
+                                textInputAction: TextInputAction.done,
+                                validator: (value) =>
+                                    ValidationService.notEmptyField(value),
+                                onSubmitted: (value) {
+                                  reader.setTask(
+                                      task: SubTasks(description: value));
+                                  reader.setData(isEditTask: false);
+                                },
+                              ).marginZero,
                             ),
-                            controller:
-                                TextEditingController(text: e.description),
-                            textInputAction: TextInputAction.done,
-                            validator: (value) =>
-                                ValidationService.notEmptyField(value),
-                            onSubmitted: (value) {
-                              reader.setTask(
-                                  task: SubTasks(description: value));
-                              reader.setData(isEditTask: false);
-                            },
-                          ).marginZero,
-                        ),
-                      ],
-                    );
-                  }).toList()),
+                          )
+                          .toList()),
                 AppSizes.size10.verticalSpace,
+                Text(S().comments),
                 if (taskDetails.comments?.isNotEmpty == true)
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(S().comment),
-                      CustomTextInputField(
-                        label: taskDetails.comments!.first.description,
-                        enabled: false,
-                        assignLabelWithHint: true,
-                        maxLines: 4,
-                        textInputAction: TextInputAction.done,
-                        validator: (value) =>
-                            ValidationService.notEmptyField(value),
-                        onSubmitted: (value) {
-                          reader.setTask(task: SubTasks(description: value));
-                          reader.setData(isEditTask: false);
-                        },
-                      ).marginZero,
-                    ],
-                  )
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: taskDetails.comments!.map((e) {
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 10, top: 2),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                          width: double.infinity,
+                          decoration:
+                              BoxDecoration(color: AppColors.colors.lines),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.article,
+                                color: Theme.of(context).primaryColor,
+                              ),
+                              AppSizes.size5.horizontalSpace,
+                              Text(e.description!),
+                            ],
+                          ),
+                        );
+                      }).toList())
               ],
             ),
           ].addSeparator(child: AppSizes.size20.verticalSpace).toList(),

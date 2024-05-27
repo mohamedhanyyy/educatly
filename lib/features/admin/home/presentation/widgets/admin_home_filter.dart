@@ -69,7 +69,7 @@ class AdminHomeFilterWidget extends ConsumerWidget {
             onTap: () {
               showModalBottomSheet(
                   context: context,
-                  // isScrollControlled: true,
+                  isScrollControlled: true,
                   showDragHandle: true,
                   useRootNavigator: true,
                   builder: (context) => AdminHomeSelectManagerWidget());
@@ -99,10 +99,8 @@ class AdminHomeFilterWidget extends ConsumerWidget {
                   underline: SizedBox.shrink(),
                   icon: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                    child: Image.asset(
-                      'assets/images/arrowDown.png',
-                      color: Theme.of(context).secondaryHeaderColor,
-                    ),
+                    child: Image.asset('assets/images/arrowDown.png',
+                        color: Theme.of(context).secondaryHeaderColor),
                   ),
                   items: null,
                   onChanged: (val) {}),

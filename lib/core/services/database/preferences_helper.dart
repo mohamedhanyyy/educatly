@@ -49,7 +49,13 @@ class PreferencesHelper {
   static String get getName {
     AuthResponse? userModel = AuthResponse.fromJson(
         json.decode('${preferences?.getString('userModel')}'));
-    return userModel.userName ?? '';
+    return userModel.fullName ?? '';
+  }
+
+  static String get getMail {
+    AuthResponse? userModel = AuthResponse.fromJson(
+        json.decode('${preferences?.getString('userModel')}'));
+    return userModel.email ?? '';
   }
 
   static void logOut() {

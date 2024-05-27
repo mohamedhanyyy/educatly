@@ -1900,6 +1900,16 @@ class S {
     );
   }
 
+  /// `Reset`
+  String get reset {
+    return Intl.message(
+      'Reset',
+      name: 'reset',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Filter reset done`
   String get filter_reset {
     return Intl.message(

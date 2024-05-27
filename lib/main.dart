@@ -14,7 +14,6 @@ Future<void> main() async {
 
   DioHelper.init();
   await PreferencesHelper.init();
-  // await refreshToken();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
@@ -38,6 +37,6 @@ refreshToken() async {
   }
 }
 
-//   "email": "superadmin@domain.com",
+//   "email": "superadmin1@domain.com",
 //   "email": "basicuser@domain.com",
 //   "password": "P@ssword123"

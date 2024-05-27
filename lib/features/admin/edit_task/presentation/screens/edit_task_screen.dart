@@ -7,7 +7,6 @@ import 'package:taskaty/config/theme/sizes_manager.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/constants/constants.dart';
 import 'package:taskaty/core/helpers/mappers.dart';
-import 'package:taskaty/features/admin/comment/controller/add_comment_controller.dart';
 import 'package:taskaty/features/admin/edit_task/presentation/controller/edit_task_controller.dart';
 import 'package:taskaty/features/admin/edit_task/presentation/widgets/admin_subtasks_widget.dart';
 import 'package:taskaty/features/admin/edit_task/presentation/widgets/edit_priority.dart';
@@ -18,11 +17,13 @@ import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../config/theme/color_system/color_system_light.dart';
 import '../../../../../config/theme/styles_manager.dart';
+import '../../../../../core/constants/assets.dart';
 import '../../../../../core/services/validation/validation_service.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/network_image.dart';
 import '../../../add_task/presentation/widgets/custom_dropdown.dart';
+import '../widgets/admin_comments_widget.dart';
 import '../widgets/edit_task_date_picker_widget.dart';
 import '../widgets/search_managers_bottomsheet.dart';
 
@@ -38,11 +39,10 @@ class EditTaskScreen extends ConsumerStatefulWidget {
 class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
   final TextEditingController taskTitleController = TextEditingController();
   final TextEditingController taskDetailsController = TextEditingController();
-  final TextEditingController comment = TextEditingController();
 
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   static final buttonKey = UniqueKey();
-  static final commentButtonKey = UniqueKey();
+  FocusNode focusNode = FocusNode();
   late AdminTasksModel taskDetails;
   @override
   void initState() {
@@ -73,32 +73,34 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
     final controllerWatcher = ref.watch(editTaskControllerProvider);
 
     return Scaffold(
-      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(S().edit_task),
         actions: [
           Consumer(
             builder: (_, ref, __) {
-              return AppDefaultButton(
-                borderRadius: 2,
-                key: buttonKey,
-                width: AppSizes.size50.w,
-                height: AppSizes.size45.h,
-                borderColor: ColorSystemLight().primary,
-                isBordered: true,
-                text: S().edit,
-                textColor: ColorSystemLight().scaffold,
-                backgroundColor: ColorSystemLight().primary,
-                onPressed: () {
-                  controller.setData(isSave: true);
-                  if (formKey.currentState!.validate()) {
-                    controller.editTask(
-                      title: taskTitleController.text,
-                      description: taskDetailsController.text,
-                      key: buttonKey,
-                    );
-                  }
-                },
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                child: AppDefaultButton(
+                  borderRadius: 2,
+                  key: buttonKey,
+                  width: AppSizes.size80.w,
+                  height: AppSizes.size45.h,
+                  borderColor: ColorSystemLight().primary,
+                  isBordered: true,
+                  text: S().edit,
+                  textColor: ColorSystemLight().scaffold,
+                  backgroundColor: ColorSystemLight().primary,
+                  onPressed: () {
+                    controller.setData(isSave: true);
+                    if (formKey.currentState!.validate()) {
+                      controller.editTask(
+                        title: taskTitleController.text,
+                        description: taskDetailsController.text,
+                        key: buttonKey,
+                      );
+                    }
+                  },
+                ),
               );
             },
           )
@@ -211,15 +213,16 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                           padding:
                               EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                           width: double.infinity,
-                          decoration:
-                              BoxDecoration(color: AppColors.colors.lines),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                              border: Border.all(
+                                  color:
+                                      Theme.of(context).secondaryHeaderColor)),
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.article,
-                                color: Theme.of(context).primaryColor,
-                              ),
-                              AppSizes.size5.horizontalSpace,
+                              SvgPicture.asset(Assets.icons.comments),
+                              AppSizes.size10.horizontalSpace,
                               Text(e.description!),
                             ],
                           ),
@@ -231,52 +234,7 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
           ),
         ).defaultScreenPadding,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
-          child: Row(
-            children: [
-              Flexible(
-                  child: SizedBox(
-                height: 40,
-                child: CustomTextInputField(
-                  label: 'comment',
-                  controller: comment,
-                ),
-              )),
-              AppSizes.size10.horizontalSpace,
-              Consumer(
-                builder: (_, ref, __) {
-                  return AppDefaultButton(
-                      borderRadius: 2,
-                      key: commentButtonKey,
-                      width: AppSizes.size50.w,
-                      height: AppSizes.size45.h,
-                      borderColor: ColorSystemLight().primary,
-                      isBordered: true,
-                      text: S().add,
-                      textColor: ColorSystemLight().scaffold,
-                      backgroundColor: ColorSystemLight().primary,
-                      onPressed: () {
-                        taskDetails.comments
-                            ?.add(Comments(description: comment.text));
-                        ref
-                            .read(addCommentControllerProvider.notifier)
-                            .addComment(
-                                key: commentButtonKey,
-                                comment: comment.text,
-                                taskId: taskDetails.id.toString(),
-                                ref: ref);
-                        comment.clear();
-                      });
-                },
-              )
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: AdminCommentsWidget(taskDetails),
     );
   }
 }

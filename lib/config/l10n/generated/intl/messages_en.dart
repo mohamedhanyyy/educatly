@@ -207,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "refresh": MessageLookupByLibrary.simpleMessage("Refresh"),
         "resend_otp": MessageLookupByLibrary.simpleMessage("Resend otp"),
         "resend_otp_to": MessageLookupByLibrary.simpleMessage("Resend otp in"),
+        "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
         "seconds": MessageLookupByLibrary.simpleMessage("Seconds"),

@@ -61,7 +61,6 @@ class SettingsController extends _$SettingsController {
     final data = FormData.fromMap(
       {
         'name': userName,
-        'phoneNumber': mobileNumber,
         'email': email,
         if (avatar != null)
           "image": await MultipartFile.fromFile(
@@ -76,16 +75,20 @@ class SettingsController extends _$SettingsController {
     if (response?.statusCode == 200) {
       AuthResponse authResponse = PreferencesHelper.getUserModel!;
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-      PreferencesHelper.saveUserModel(
+      print(response?.data['data']['fullName']);
+      print(response?.data['data']['email']);
+      await PreferencesHelper.saveUserModel(
           userModel: AuthResponse(
-              token: authResponse.token,
-              role: authResponse.role,
-              id: authResponse.id,
-              fullName: userName,
-              email: email,
-              firstLogin: authResponse.firstLogin,
-              userName: authResponse.userName));
+        token: authResponse.token,
+        role: authResponse.role,
+        id: authResponse.id,
+        fullName: response?.data['data']['fullName'],
+        email: response?.data['data']['email'],
+        firstLogin: authResponse.firstLogin,
+        userName: authResponse.userName,
+      ));
     } else {
+      print(response?.statusMessage);
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
     }
   }

@@ -185,6 +185,7 @@
   "refresh": "Refresh",
   "something_went_wrong": "Something went wrong !",
   "editing_adding_subtask": "Editing / adding subtask",
+  "reset": "Reset",
   "filter_reset": "Filter reset done",
   "select_first_date": "select start date first",
   "duration_must_be_at_least_three_hours": "Task duration must be at least three hours",

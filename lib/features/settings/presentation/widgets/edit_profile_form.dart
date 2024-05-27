@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taskaty/core/services/database/preferences_helper.dart';
 import 'package:taskaty/features/shared/auth/login/data/model/auth_response.dart';
 
 import '../../../../config/l10n/generated/l10n.dart';
@@ -31,8 +32,10 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController(text: widget.user.fullName);
-    _emailController = TextEditingController(text: widget.user.email);
+    _nameController =
+        TextEditingController(text: PreferencesHelper.getUserModel?.fullName);
+    _emailController =
+        TextEditingController(text: PreferencesHelper.getUserModel?.email);
   }
 
   bool _canUpdate() {

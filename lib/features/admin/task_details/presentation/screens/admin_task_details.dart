@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taskaty/config/theme/color_system/app_colors.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/extensions/iterator_extension.dart';
@@ -10,6 +11,7 @@ import 'package:taskaty/core/helpers/mappers.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/sizes_manager.dart';
+import '../../../../../core/constants/assets.dart';
 import '../../../../../core/services/validation/validation_service.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../manager/tasks/presentation/widgets/description/description_widget.dart';
@@ -152,15 +154,18 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
                           padding:
                               EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                           width: double.infinity,
-                          decoration:
-                              BoxDecoration(color: AppColors.colors.lines),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                  color: Theme.of(context).highlightColor),
+                              color: Theme.of(context).scaffoldBackgroundColor),
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.article,
-                                color: Theme.of(context).primaryColor,
+                              SvgPicture.asset(
+                                Assets.icons.comments,
+                                // color: Theme.of(context).primaryColor,
                               ),
-                              AppSizes.size5.horizontalSpace,
+                              AppSizes.size10.horizontalSpace,
                               Text(e.description!),
                             ],
                           ),

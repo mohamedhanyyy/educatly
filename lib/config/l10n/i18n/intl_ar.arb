@@ -66,6 +66,8 @@
   "ago": "منذ ",
   "minutes_ago": "دقائق",
   "hours_ago": "ساعات",
+  "reset": "إعادة",
+
   "yesterday": "أمس",
   "days_ago": "أيام",
   "last_week": "الأسبوع الماضي",
@@ -186,7 +188,7 @@
   "subTask_must_be_at_least_three_words": "عنوان المهمة الفرعية لا يمكن أن يقل عن ثلاث كلمات",
   "refresh": "إعادة تحميل",
   "something_went_wrong": "حدث خطأ ما ! ",
-  "editing_adding_subtask": "إضافةأو تعديل النص",
+  "editing_adding_subtask": "إضافة أو تعديل النص",
   "filter_reset": "تم إعادة ظبط الفلتر",
   "select_first_date": "اختر تاريخ البداية أولاً",
   "duration_must_be_at_least_three_hours": "يجب ألا تقل مدة المهمة عن ثلاث ساعات",

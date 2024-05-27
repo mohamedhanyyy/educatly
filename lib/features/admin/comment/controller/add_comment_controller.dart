@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:taskaty/features/admin/edit_task/presentation/controller/edit_task_controller.dart';
+import 'package:taskaty/config/router/app_router.dart';
 import 'package:taskaty/features/admin/tasks/presentation/controller/get_admin_tasks_controller.dart';
 
 import '../../../../core/controllers/button/button_controller.dart';
@@ -44,7 +44,7 @@ class AddCommentController extends _$AddCommentController {
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
       ref.invalidate(addCommentControllerProvider);
       ref.invalidate(getAdminTasksControllerProvider);
-      ref.invalidate(editTaskControllerProvider);
+      AppRouter.router.pop();
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
     }

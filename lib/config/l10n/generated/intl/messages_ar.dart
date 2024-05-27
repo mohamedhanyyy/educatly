@@ -100,7 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit_username":
             MessageLookupByLibrary.simpleMessage("تعديل اسم المستخدم"),
         "editing_adding_subtask":
-            MessageLookupByLibrary.simpleMessage("إضافةأو تعديل النص"),
+            MessageLookupByLibrary.simpleMessage("إضافة أو تعديل النص"),
         "editing_subtask":
             MessageLookupByLibrary.simpleMessage("تعديل المهمة الفرعية"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
@@ -213,6 +213,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "resend_otp": MessageLookupByLibrary.simpleMessage("إعادة إرسال الكود"),
         "resend_otp_to":
             MessageLookupByLibrary.simpleMessage("إعادة إرسال الكود خلال"),
+        "reset": MessageLookupByLibrary.simpleMessage("إعادة"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
         "seconds": MessageLookupByLibrary.simpleMessage("ثانية"),

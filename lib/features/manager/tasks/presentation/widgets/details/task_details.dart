@@ -27,7 +27,7 @@ class TaskDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 75.h,
+      height: 100.h,
       child: Row(
         children: [
           Expanded(
@@ -36,12 +36,15 @@ class TaskDetailsWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // ? Title
-                Text(
-                  title,
-                  style: StylesManager.bold(
-                    fontSize: AppFonts.font.xXLarge.sp,
+                Flexible(
+                  child: Text(
+                    title,
+                    style: StylesManager.bold(
+                      fontSize: AppFonts.font.xXLarge.sp,
+                    ),
                   ),
                 ),
+                // SizedBox(height: 10),
                 Row(
                   children: [
                     DepartmentTagWidget(tag: statusId),

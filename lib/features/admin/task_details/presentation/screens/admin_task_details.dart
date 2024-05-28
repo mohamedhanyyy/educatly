@@ -12,12 +12,9 @@ import 'package:taskaty/core/helpers/mappers.dart';
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/sizes_manager.dart';
 import '../../../../../core/constants/assets.dart';
-import '../../../../../core/services/validation/validation_service.dart';
-import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../manager/tasks/presentation/widgets/description/description_widget.dart';
 import '../../../../manager/tasks/presentation/widgets/details/task_details.dart';
 import '../../../../manager/tasks/presentation/widgets/info/task_info.dart';
-import '../../../add_task/data/model/add_task_response.dart';
 import '../../../edit_task/presentation/controller/edit_task_controller.dart';
 import '../../../edit_task/presentation/widgets/delete_task_widget.dart';
 import '../../../tasks/data/model/admin_tasks_model.dart';
@@ -62,7 +59,6 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
     AdminTasksModel taskDetails =
         AdminTasksModel.fromJson(jsonDecode(widget.taskaDetails));
     final watcher = ref.watch(editTaskControllerProvider);
-    final reader = ref.read(editTaskControllerProvider.notifier);
     return Scaffold(
       appBar: AppBar(
         title: Text(S().task_details),
@@ -106,9 +102,10 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
                       children: watcher.subTasks!
                           .map(
                             (e) => Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: AppSizes.size5.h),
                               margin: EdgeInsets.symmetric(
                                   vertical: AppSizes.size5.h),
-                              height: 50,
                               decoration: BoxDecoration(
                                 color: Theme.of(context)
                                     .colorScheme
@@ -118,27 +115,18 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
                                 border: Border.all(
                                     color: Theme.of(context).disabledColor),
                               ),
-                              child: CustomTextInputField(
-                                label: null,
-                                enabled: false,
-                                prefix: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: Icon(Icons.task_alt_outlined,
-                                      color: e.isCompleted == true
-                                          ? AppColors.colors.green
-                                          : Colors.black),
-                                ),
-                                controller:
-                                    TextEditingController(text: e.description),
-                                textInputAction: TextInputAction.done,
-                                validator: (value) =>
-                                    ValidationService.notEmptyField(value),
-                                onSubmitted: (value) {
-                                  reader.setTask(
-                                      task: SubTasks(description: value));
-                                  reader.setData(isEditTask: false);
-                                },
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: Icon(Icons.task_alt_outlined,
+                                        color: e.isCompleted == true
+                                            ? AppColors.colors.green
+                                            : Colors.black),
+                                  ),
+                                  Flexible(child: Text(e.description!)),
+                                ],
                               ).marginZero,
                             ),
                           )
@@ -166,7 +154,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
                                 // color: Theme.of(context).primaryColor,
                               ),
                               AppSizes.size10.horizontalSpace,
-                              Text(e.description!),
+                              Flexible(child: Text(e.description!)),
                             ],
                           ),
                         );

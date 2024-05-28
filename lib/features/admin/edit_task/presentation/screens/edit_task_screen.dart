@@ -39,11 +39,11 @@ class EditTaskScreen extends ConsumerStatefulWidget {
 class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
   final TextEditingController taskTitleController = TextEditingController();
   final TextEditingController taskDetailsController = TextEditingController();
+  late AdminTasksModel taskDetails;
 
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   static final buttonKey = UniqueKey();
   FocusNode focusNode = FocusNode();
-  late AdminTasksModel taskDetails;
   @override
   void initState() {
     super.initState();
@@ -51,7 +51,6 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
       taskDetails = AdminTasksModel.fromJson(jsonDecode(widget.editTaskId));
       taskTitleController.text = taskDetails.title ?? "";
       taskDetailsController.text = taskDetails.description ?? "";
-
       ref.read(editTaskControllerProvider.notifier).setData(
             selectedPriority: (taskDetails.priorityId),
             taskTitle: taskDetails.title,
@@ -179,8 +178,11 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                                   AppColors.colors.background.withOpacity(0.5),
                             ),
                             child: ClipOval(
-                              child: AppCachedNetworkImage(
-                                  "${AppConstants.subDomain}${controllerWatcher.selectedAssigne?.imageName}"),
+                              child: AppCachedNetworkImage(controllerWatcher
+                                          .selectedAssigne?.imageName ==
+                                      null
+                                  ? AppConstants.userAvatar
+                                  : "${AppConstants.subDomain}${controllerWatcher.selectedAssigne?.imageName}"),
                             ),
                           ),
                     function: () {
@@ -223,7 +225,7 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                             children: [
                               SvgPicture.asset(Assets.icons.comments),
                               AppSizes.size10.horizontalSpace,
-                              Text(e.description!),
+                              Flexible(child: Text(e.description!)),
                             ],
                           ),
                         );

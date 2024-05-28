@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:taskaty/core/services/database/preferences_helper.dart';
 
+import '../../../features/shared/auth/login/presentation/controller/login_model.dart';
+import '../../helpers/toast_helper.dart';
 import '../network/api/network_api.dart';
 
 class DioHelper {
@@ -33,7 +35,10 @@ class DioHelper {
       log('RESPONSE STATUS CODE:${response?.statusCode}');
       log('RESPONSE DATA:${response?.data}');
       log('RESPONSE REQUEST OPTIONS:${response?.requestOptions.data}');
-
+      if (response?.statusCode != 200) {
+        LoginModel loginModel = LoginModel.fromJson(response?.data);
+        Toast.showErrorToast(loginModel.errors?.first ?? 'error happened');
+      }
       return response;
     } catch (e) {
       log('$e');

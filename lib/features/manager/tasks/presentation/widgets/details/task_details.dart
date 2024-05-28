@@ -35,7 +35,6 @@ class TaskDetailsWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // ? Title
                 Flexible(
                   child: Text(
                     title,
@@ -44,7 +43,6 @@ class TaskDetailsWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                // SizedBox(height: 10),
                 Row(
                   children: [
                     DepartmentTagWidget(tag: statusId),

@@ -44,11 +44,10 @@ class ResetPasswordController extends _$ResetPasswordController {
         try {
           ref.invalidate(settingsControllerProvider);
           await ref.read(settingsControllerProvider.future);
-        } catch (e) {}
-        await Future.delayed(
-          const Duration(milliseconds: 1700),
-          () => AppRouter.router.goNamed(AppRoutes.settings),
-        );
+          AppRouter.router.goNamed(AppRoutes.login);
+        } catch (e) {
+          AppRouter.router.goNamed(AppRoutes.settings);
+        }
       },
     );
   }

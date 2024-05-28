@@ -31,6 +31,9 @@ class DashboardRemoteRequestImpl implements DashboardRemoteRequest {
       queryParameters: {
         'StatusId': filter,
         'FromDate': date,
+        'ToDate': date.toString().split(' ').first + ' 23:59:59.999',
+        'PageSize': 1000,
+        'Page': 0,
       },
       onSuccessList: (getTasksResponse) async {
         tasksList = getTasksResponse;

@@ -16,9 +16,10 @@ class ChangePasswordScreen extends StatelessWidget {
 
   static final Key buttonKey = UniqueKey();
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController newPass = TextEditingController();
   final TextEditingController currentPass = TextEditingController();
   final TextEditingController name = TextEditingController();
+  final TextEditingController newPass = TextEditingController();
+
   final TextEditingController confirmNewPass = TextEditingController();
 
   @override
@@ -30,7 +31,7 @@ class ChangePasswordScreen extends StatelessWidget {
         child: Column(
           children: [
             CustomTextInputField(
-              label: S().name,
+              label: S().username,
               controller: name,
               textInputAction: TextInputAction.next,
               validator: (value) => ValidationService.notEmptyField(value),
@@ -66,7 +67,7 @@ class ChangePasswordScreen extends StatelessWidget {
               builder: (context, ref, child) {
                 return AppDefaultButton(
                   key: buttonKey,
-                  text: S().update,
+                  text: S().save,
                   width: ScreenUtil().screenWidth,
                   onPressed: () async {
                     if (formKey.currentState!.validate()) {

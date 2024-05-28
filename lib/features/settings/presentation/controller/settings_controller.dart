@@ -42,7 +42,7 @@ class SettingsController extends _$SettingsController {
 
     if (response?.statusCode == 200) {
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-      AppRouter.router.pop();
+      AppRouter.router.push(AppRoutes.login);
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
       errorHandler(response);

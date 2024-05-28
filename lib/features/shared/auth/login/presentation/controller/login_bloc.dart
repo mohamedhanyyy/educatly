@@ -10,7 +10,6 @@ import 'package:taskaty/features/shared/auth/login/presentation/controller/login
 import '../../../../../../config/router/app_router.dart';
 import '../../../../../../config/router/app_routing_paths.dart';
 import '../../../../../../core/controllers/button/button_controller.dart';
-import '../../../../../../core/helpers/toast_helper.dart';
 import '../../../../../../core/services/network/api/network_api.dart';
 
 class LoginCubit extends Cubit<CubitState> {
@@ -33,11 +32,13 @@ class LoginCubit extends Cubit<CubitState> {
     if (response?.statusCode == 200) {
       emit(CubitState.done);
       PreferencesHelper.saveUserModel(userModel: loginModel!.data!);
+      PreferencesHelper.saveLoginDate();
+
       PreferencesHelper.saveToken(token: loginModel!.data!.token!);
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
 
       if (loginModel?.data?.firstLogin == true) {
-        AppRouter.router.go(AppRoutes.createPassword);
+        AppRouter.router.go(AppRoutes.changePassword);
       } else if (loginModel?.data?.role == 'SystemAdmin') {
         AppRouter.router.go(AppRoutes.adminHome);
       } else {
@@ -45,7 +46,7 @@ class LoginCubit extends Cubit<CubitState> {
       }
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
-      Toast.showErrorToast(loginModel?.errors?.first ?? 'login failed');
+      // Toast.showErrorToast(loginModel?.errors?.first ?? 'login failed');
     }
   }
 }

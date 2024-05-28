@@ -46,7 +46,7 @@ class TaskWidget extends ConsumerWidget {
                 managerTaskDetails: json.encode(taskDetails).toString());
           },
           child: SizedBox(
-            height: 120.h,
+            // height: 150.h,
             child: Row(
               children: [
                 Expanded(
@@ -64,14 +64,17 @@ class TaskWidget extends ConsumerWidget {
                           ),
                           AppSizes.size10.horizontalSpace,
                           // ? Title
-                          Text(
-                            taskDetails.title!,
-                            style: StylesManager.bold(
-                              fontSize: AppFonts.font.large.sp,
+                          Flexible(
+                            child: Text(
+                              taskDetails.title!,
+                              style: StylesManager.bold(
+                                fontSize: AppFonts.font.large.sp,
+                              ),
                             ),
                           )
                         ],
                       ),
+                      AppSizes.size10.verticalSpace,
                       Row(
                         children: [
                           RemainingTimeWidget(

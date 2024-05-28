@@ -25,6 +25,8 @@ class ManagerAllTasksController extends _$ManagerAllTasksController {
       queryParameters: {
         'StatusId': filter,
         'FromDate': date,
+        'PageSize': 1000,
+        'Page': 0,
       },
       onSuccessList: (getTasksResponse) async {
         tasksList = getTasksResponse;

@@ -93,9 +93,9 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
           if (taskDetails.comments?.isNotEmpty == true)
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: taskDetails.comments!.map((e) {
                   return Container(
-                    margin: const EdgeInsets.only(bottom: 10, top: 2),
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -112,8 +112,8 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
                     ),
                   );
                 }).toList()),
-          ManagerCommentsWidget(taskDetails),
-        ].addSeparator(child: AppSizes.size20.verticalSpace).toList(),
+          ManagerAddCommentWidget(taskDetails),
+        ].addSeparator(child: AppSizes.size10.verticalSpace).toList(),
       ).paddingSymmetric(
               vertical: AppSizes.size20.h, horizontal: AppSizes.size10.w)),
       bottomNavigationBar: Padding(

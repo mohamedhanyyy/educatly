@@ -10,6 +10,16 @@ class PreferencesHelper {
     preferences = await SharedPreferences.getInstance();
   }
 
+  static Future<void> saveLoginDate() async {
+    await preferences?.setString(
+        'loginDate', '${DateTime.now().add(Duration(days: 10))}');
+    print('HANY ${preferences?.getString('loginDate')}');
+  }
+
+  static String? get getLoginDate {
+    return preferences?.getString('loginDate');
+  }
+
   static Future<void> saveToken({required String token}) async {
     await preferences?.setString('token', token);
   }

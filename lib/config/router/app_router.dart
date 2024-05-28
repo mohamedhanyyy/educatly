@@ -32,16 +32,18 @@ import '../../features/shared/splash/presentation/screens/splash.dart';
 import 'app_router_keys.dart';
 import 'app_routing_paths.dart';
 
+DateTime loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
+Duration duration = loginTime.difference(DateTime.now());
+
 class AppRouter {
-  const AppRouter._();
+  AppRouter._();
 
   static final navigatorState = GlobalKey<NavigatorState>(debugLabel: 'root');
 
   static final GoRouter router = GoRouter(
     navigatorKey: navigatorState,
     debugLogDiagnostics: kDebugMode,
-    // initialLocation: AppRoutes.login,
-    initialLocation: PreferencesHelper.getToken == null
+    initialLocation: PreferencesHelper.getToken == null || duration.inDays <= 0
         ? AppRoutes.login
         : PreferencesHelper.getUserModel?.role == 'SystemAdmin'
             ? AppRoutes.adminHome

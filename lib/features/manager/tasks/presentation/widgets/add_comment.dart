@@ -12,8 +12,8 @@ import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../admin/tasks/data/model/admin_tasks_model.dart';
 
-class ManagerCommentsWidget extends ConsumerWidget {
-  ManagerCommentsWidget(this.taskDetails);
+class ManagerAddCommentWidget extends ConsumerWidget {
+  ManagerAddCommentWidget(this.taskDetails);
   static final commentButtonKey = UniqueKey();
   final TextEditingController commentsController = TextEditingController();
   late AdminTasksModel taskDetails;
@@ -24,7 +24,6 @@ class ManagerCommentsWidget extends ConsumerWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: Theme.of(context).secondaryHeaderColor)),
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       padding: EdgeInsets.all(5),
       child: InkWell(
         onTap: () {
@@ -70,10 +69,11 @@ class ManagerCommentsWidget extends ConsumerWidget {
                                               managerCommentsControllerProvider
                                                   .notifier)
                                           .addComment(
-                                              key: commentButtonKey,
-                                              comment: commentsController.text,
-                                              taskId: taskDetails.id.toString(),
-                                              ref: ref);
+                                            key: commentButtonKey,
+                                            comment: commentsController.text,
+                                            taskId: taskDetails.id.toString(),
+                                            ref: ref,
+                                          );
                                       commentsController.clear();
                                     });
                               },

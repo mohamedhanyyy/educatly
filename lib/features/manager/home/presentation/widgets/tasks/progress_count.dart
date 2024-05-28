@@ -10,11 +10,8 @@ class ProgressCountDetailsWidget extends StatelessWidget {
   final double progress;
   final double size;
 
-  const ProgressCountDetailsWidget({
-    super.key,
-    this.size = 70,
-    required this.progress,
-  });
+  const ProgressCountDetailsWidget(
+      {super.key, this.size = 70, required this.progress});
 
   @override
   Widget build(BuildContext context) {

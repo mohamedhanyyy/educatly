@@ -41,8 +41,6 @@ class ResetPasswordRemoteRequestImpl implements ResetPasswordRemoteRequest {
       },
       onSuccess: (resetResponse) async {
         response = resetResponse;
-        //todo
-        // save auth response to prefereences
       },
     );
     return response;

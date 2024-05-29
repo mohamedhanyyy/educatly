@@ -14,7 +14,6 @@ import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
 import 'package:taskaty/features/admin/get_managers/data/model/get_managers_model.dart';
 import 'package:taskaty/features/admin/home/presentation/bloc/statstics_bloc.dart';
 import 'package:taskaty/features/admin/tasks/presentation/controller/get_admin_tasks_controller.dart';
-import 'package:taskaty/features/shared/auth/login/presentation/controller/login_model.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/router/app_router.dart';
@@ -151,6 +150,7 @@ class AddTaskController extends _$AddTaskController {
       },
     );
     if (response?.statusCode == 200) {
+      print('ok');
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
       ref.invalidate(getAdminTasksControllerProvider);
 
@@ -162,9 +162,10 @@ class AddTaskController extends _$AddTaskController {
           .read<AdminStatsticsCubit>()
           .getStats();
     } else {
+      print(response?.data);
+      print(response?.statusCode);
+      print(response?.requestOptions.data);
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
-      LoginModel loginModel = LoginModel.fromJson(response?.data);
-      Toast.showErrorToast(loginModel.errors?.first ?? 'add task failed');
     }
   }
 

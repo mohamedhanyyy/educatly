@@ -1,11 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:taskaty/config/router/app_router_navigator.dart';
-import 'package:taskaty/core/extensions/async_value_extension.dart';
+import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
 
 import '../../../../../../config/router/app_router.dart';
 import '../../../../../../core/controllers/button/button_controller.dart';
-import '../../domain/usecase/forget_password_usecase.dart';
+import '../../../../../../core/services/network/api/network_api.dart';
 
 part 'forget_password_controller.g.dart';
 
@@ -19,20 +20,13 @@ class ForgetPasswordController extends _$ForgetPasswordController {
     required String email,
   }) async {
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
-    final result = await AsyncValue.guard(
-      () => ref.read(forgetPasswordUseCaseProvider(email: email).future),
-    );
-    result.handleGuardResults(
-      ref: ref,
-      onError: () async {
-        if (AppRouter.router.canPop()) AppRouter.router.pop();
-        ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
-        throw result.error!;
-      },
-      onSuccess: () async {
-        await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-        AppRouter.router.pushOtpScreen(email: email);
-      },
-    );
+    Response? response = await DioHelper.postData(
+        url: Api.forgetPassword, data: {'email': email});
+    if (response?.statusCode == 200) {
+      await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
+      AppRouter.router.pushOtpScreen(email: email);
+    } else {
+      ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
+    }
   }
 }

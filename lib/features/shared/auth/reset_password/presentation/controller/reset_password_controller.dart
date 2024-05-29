@@ -1,12 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:taskaty/core/extensions/async_value_extension.dart';
+import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
 
 import '../../../../../../config/router/app_router.dart';
 import '../../../../../../config/router/app_routing_paths.dart';
 import '../../../../../../core/controllers/button/button_controller.dart';
+import '../../../../../../core/services/network/api/network_api.dart';
 import '../../../../../settings/presentation/controller/settings_controller.dart';
-import '../../domain/usecase/reset_password_usecase.dart';
 
 part 'reset_password_controller.g.dart';
 
@@ -24,31 +25,20 @@ class ResetPasswordController extends _$ResetPasswordController {
   }) async {
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
-    final result = await AsyncValue.guard(
-      () => ref.read(resetPasswordUseCaseProvider(
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-        resetPasswordToken: resetPasswordToken,
-      ).future),
-    );
-    result.handleGuardResults(
-      ref: ref,
-      onError: () async {
-        if (AppRouter.router.canPop()) AppRouter.router.pop();
-        ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
-        throw result.error!;
-      },
-      onSuccess: () async {
-        await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-        try {
-          ref.invalidate(settingsControllerProvider);
-          await ref.read(settingsControllerProvider.future);
-          AppRouter.router.goNamed(AppRoutes.login);
-        } catch (e) {
-          AppRouter.router.goNamed(AppRoutes.settings);
-        }
-      },
-    );
+    Response? response =
+        await DioHelper.postData(url: Api.resetPassword, data: {
+      "email": email,
+      "password": password,
+      "confirmPassword": confirmPassword,
+    });
+    if (response?.statusCode == 200) {
+      await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
+
+      ref.invalidate(settingsControllerProvider);
+      await ref.read(settingsControllerProvider.future);
+      AppRouter.router.goNamed(AppRoutes.login);
+    } else {
+      ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
+    }
   }
 }

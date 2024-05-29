@@ -30,7 +30,7 @@ import '../widgets/search_managers_bottomsheet.dart';
 class EditTaskScreen extends ConsumerStatefulWidget {
   final String editTaskId;
 
-  EditTaskScreen({required this.editTaskId, Key? key});
+  EditTaskScreen({required this.editTaskId, Key? key}) {}
 
   @override
   ConsumerState<EditTaskScreen> createState() => _EditTaskScreenState();
@@ -49,6 +49,7 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       taskDetails = AdminTasksModel.fromJson(jsonDecode(widget.editTaskId));
+
       taskTitleController.text = taskDetails.title ?? "";
       taskDetailsController.text = taskDetails.description ?? "";
       ref.read(editTaskControllerProvider.notifier).setData(
@@ -78,13 +79,13 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
           Consumer(
             builder: (_, ref, __) {
               return Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: AppDefaultButton(
                   borderRadius: 2,
                   key: buttonKey,
                   width: AppSizes.size80.w,
                   height: AppSizes.size45.h,
-                  borderColor: ColorSystemLight().primary,
+                  // borderColor: ColorSystemLight().primary,
                   isBordered: true,
                   text: S().edit,
                   textColor: ColorSystemLight().scaffold,

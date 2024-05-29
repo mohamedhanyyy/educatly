@@ -251,6 +251,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "task_already_added":
             MessageLookupByLibrary.simpleMessage("المهمة مضافة بالفعل"),
         "task_assign": MessageLookupByLibrary.simpleMessage("إسناد المهام"),
+        "task_deleted_successfully":
+            MessageLookupByLibrary.simpleMessage("تم حذف المهمة بنجاح"),
         "task_description":
             MessageLookupByLibrary.simpleMessage("وصف المهمة :"),
         "task_details": MessageLookupByLibrary.simpleMessage("تفاصيل المهمة"),

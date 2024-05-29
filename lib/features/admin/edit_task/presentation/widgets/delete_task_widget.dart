@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taskaty/config/theme/styles_manager.dart';
+import 'package:taskaty/core/extensions/context_extension.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/router/app_router.dart';
@@ -90,7 +91,6 @@ class TaskActionWidget extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-
               AppRouter.router.pop();
 
               AppRouter.router.pushNamed(
@@ -105,11 +105,14 @@ class TaskActionWidget extends StatelessWidget {
                     width: 50.w,
                     child: SvgPicture.asset(
                       'assets/icons/editTask.svg',
+                      colorFilter:
+                          Theme.of(context).secondaryHeaderColor.toColorFilter,
                     )),
                 Text(
                   S().edit,
                   style: StylesManager.bold(
-                      fontSize: 18.sp, color: Color(0xff5A5A5A)),
+                      fontSize: 18.sp,
+                      color: Theme.of(context).secondaryHeaderColor),
                 ),
               ],
             ),
@@ -132,11 +135,18 @@ class TaskActionWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                      width:50.w,child: SvgPicture.asset('assets/icons/deleteTask2.svg')),
+                      width: 50.w,
+                      child: SvgPicture.asset(
+                        'assets/icons/deleteTask2.svg',
+                        colorFilter: Theme.of(context)
+                            .secondaryHeaderColor
+                            .toColorFilter,
+                      )),
                   Text(
                     S().delete,
                     style: StylesManager.bold(
-                        fontSize: 18.sp, color: Color(0xff5A5A5A)),
+                        fontSize: 18.sp,
+                        color: Theme.of(context).secondaryHeaderColor),
                   ),
                 ],
               ),

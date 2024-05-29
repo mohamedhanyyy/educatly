@@ -154,7 +154,6 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
               context.read<ManagerStatisticsCubit>().getManagerStatistics();
               AppRouter.router.pop();
             } else {
-              print(response?.requestOptions.data);
               ref
                   .read(buttonControllerProvider.notifier)
                   .setErrorStatus(widget.buttonKey);

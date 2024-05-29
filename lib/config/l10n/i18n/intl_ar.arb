@@ -14,6 +14,8 @@
   "hany": "هاني ",
   "login": "تسجيل دخول",
   "settings": "الإعدادات",
+  "task_deleted_successfully": "تم حذف المهمة بنجاح",
+
   "write_section_name": "ادخل اسم القسم",
   "logout": "تسجيل خروج",
   "password": "كلمة المرور",

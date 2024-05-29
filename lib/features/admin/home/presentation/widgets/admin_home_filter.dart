@@ -23,27 +23,30 @@ class AdminHomeFilterWidget extends ConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            height: AppSizes.size40.h,
-            width: customWidth * .3,
-            padding: EdgeInsets.symmetric(horizontal: AppSizes.size12.w),
-            decoration: BoxDecoration(
-              color: Theme.of(context).scaffoldBackgroundColor,
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey.shade200, blurRadius: 2, spreadRadius: 2)
-              ],
-              borderRadius: BorderRadius.circular(AppSizes.size10.r),
-            ),
-            child: InkWell(
-              onTap: () {
-                showModalBottomSheet(
-                    showDragHandle: true,
-                    useRootNavigator: true,
-                    isScrollControlled: true,
-                    context: context,
-                    builder: (context) => AdminFilterTaskStatusWidget());
-              },
+          GestureDetector(
+            onTap: () {
+              showModalBottomSheet(
+                  showDragHandle: true,
+                  useRootNavigator: true,
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (context) => AdminFilterTaskStatusWidget());
+            },
+            child: Container(
+              height: AppSizes.size40.h,
+              width: customWidth * .29,
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.size12.w),
+              decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                // if(ref.wa)
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey.shade200,
+                      blurRadius: 2,
+                      spreadRadius: 2)
+                ],
+                borderRadius: BorderRadius.circular(AppSizes.size10.r),
+              ),
               child: DropdownButton(
                   isExpanded: true,
                   hint: Text(
@@ -65,45 +68,49 @@ class AdminHomeFilterWidget extends ConsumerWidget {
                   onChanged: (val) {}),
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  showDragHandle: true,
-                  useRootNavigator: true,
-                  builder: (context) => AdminHomeSelectManagerWidget());
-            },
-            child: Container(
-              height: AppSizes.size40.h,
-              width: customWidth * .3,
-              padding: EdgeInsets.symmetric(horizontal: AppSizes.size12.w),
-              decoration: BoxDecoration(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.shade200,
-                      blurRadius: 2,
-                      spreadRadius: 2)
-                ],
-                borderRadius: BorderRadius.circular(10),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: GestureDetector(
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    showDragHandle: true,
+                    useRootNavigator: true,
+                    builder: (context) => AdminHomeSelectManagerWidget());
+              },
+              child: Container(
+                height: AppSizes.size40.h,
+                width: customWidth * .29,
+                padding: EdgeInsets.symmetric(horizontal: AppSizes.size12.w),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey.shade200,
+                        blurRadius: 2,
+                        spreadRadius: 2)
+                  ],
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: DropdownButton(
+                    isExpanded: true,
+                    hint: Text(
+                      filterWatcher.selectedManager != null
+                          ? filterWatcher.selectedManager!.userName!
+                          : S().manager,
+                      style: StylesManager.medium(fontSize: 13.sp),
+                    ),
+                    underline: SizedBox.shrink(),
+                    icon: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                      child: Image.asset('assets/images/arrowDown.png',
+                          color: Theme.of(context).secondaryHeaderColor),
+                    ),
+                    items: null,
+                    onChanged: (val) {}),
               ),
-              child: DropdownButton(
-                  isExpanded: true,
-                  hint: Text(
-                    filterWatcher.selectedManager != null
-                        ? filterWatcher.selectedManager!.userName!
-                        : S().manager,
-                    style: StylesManager.medium(fontSize: 13.sp),
-                  ),
-                  underline: SizedBox.shrink(),
-                  icon: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                    child: Image.asset('assets/images/arrowDown.png',
-                        color: Theme.of(context).secondaryHeaderColor),
-                  ),
-                  items: null,
-                  onChanged: (val) {}),
             ),
           ),
           GestureDetector(
@@ -117,7 +124,7 @@ class AdminHomeFilterWidget extends ConsumerWidget {
             },
             child: Container(
               height: AppSizes.size40.h,
-              width: customWidth * .3,
+              width: customWidth * .29,
               padding: EdgeInsets.symmetric(horizontal: AppSizes.size12.w),
               decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,

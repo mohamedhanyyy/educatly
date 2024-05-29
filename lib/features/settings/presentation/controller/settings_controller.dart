@@ -88,7 +88,6 @@ class SettingsController extends _$SettingsController {
         userName: authResponse.userName,
       ));
     } else {
-      print(response?.statusMessage);
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
     }
   }

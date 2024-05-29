@@ -28,8 +28,6 @@ class _ManagerTasksScreenState extends ConsumerState<ManagerTasksScreen> {
                     await ref.refresh(managerAllTasksControllerProvider),
               ),
               data: (data) {
-                print(data.length);
-                print('zzz');
                 return ListView.separated(
                     shrinkWrap: true,
                     itemCount: data.length,

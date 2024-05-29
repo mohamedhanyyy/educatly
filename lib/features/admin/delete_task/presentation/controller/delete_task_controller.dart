@@ -19,7 +19,6 @@ class DeleteTaskController extends _$DeleteTaskController {
     required int id,
     required Key key,
   }) async {
-     
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
     final result = await AsyncValue.guard(
@@ -34,7 +33,7 @@ class DeleteTaskController extends _$DeleteTaskController {
       onSuccess: () async {
         await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
         ref.invalidate(getAdminTasksControllerProvider);
-        Toast.showToast(S().task_edited_successfully);
+        Toast.showSuccessToast(S().task_deleted_successfully);
         AppRouter.router.go(AppRoutes.adminHome);
       },
     );

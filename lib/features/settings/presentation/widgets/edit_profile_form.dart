@@ -62,8 +62,9 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
           // ? Email
           CustomTextInputField(
             label: S().email,
-            // isDisabled: true,
             controller: _emailController,
+            onChanged: (value) => setState(() => _canUpdate()),
+            validator: (value) => ValidationService.emailValidation(value),
           ).paddingSymmetric(vertical: AppSizes.size20.h),
           // ? Mobile
 
@@ -82,14 +83,8 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
                               .updateProfile(
                                 key: buttonKey,
                                 avatar: ref.watch(avatarControllerProvider),
-                                userName: _nameController.text.trim() !=
-                                        widget.user.fullName
-                                    ? _nameController.text.trim()
-                                    : null,
-                                email: _emailController.text.trim() !=
-                                        widget.user.email
-                                    ? _emailController.text.trim()
-                                    : null,
+                                userName: _nameController.text.trim(),
+                                email: _emailController.text.trim(),
                               );
                         }
                       }

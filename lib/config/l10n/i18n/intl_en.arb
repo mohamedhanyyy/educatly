@@ -24,6 +24,7 @@
   "username": "User name",
   "dark_mood": "Dark mode",
   "email": "Email",
+  "task_deleted_successfully": "Task deleted successfully",
   "otp": "Check your email",
   "resend_otp": "Resend otp",
   "app_settings": "App settings",

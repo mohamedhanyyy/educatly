@@ -71,7 +71,6 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
               ),
               AppSizes.size15.verticalSpace,
               AddTaskDatePickerWidget(),
-              // AppSizes.size15.verticalSpace,
               customDropDown(
                 widget:
                     controller.priorityIconMapper(controllerWatcher.priorityId),

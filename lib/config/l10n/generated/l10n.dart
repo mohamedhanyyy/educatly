@@ -290,6 +290,16 @@ class S {
     );
   }
 
+  /// `Task deleted successfully`
+  String get task_deleted_successfully {
+    return Intl.message(
+      'Task deleted successfully',
+      name: 'task_deleted_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Check your email`
   String get otp {
     return Intl.message(

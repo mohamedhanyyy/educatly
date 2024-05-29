@@ -16,7 +16,7 @@ class ManagerAddCommentWidget extends ConsumerWidget {
   ManagerAddCommentWidget(this.taskDetails);
   static final commentButtonKey = UniqueKey();
   final TextEditingController commentsController = TextEditingController();
-  late AdminTasksModel taskDetails;
+  late final AdminTasksModel taskDetails;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(

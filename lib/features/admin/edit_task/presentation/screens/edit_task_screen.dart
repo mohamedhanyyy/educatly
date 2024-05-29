@@ -49,7 +49,7 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       taskDetails = AdminTasksModel.fromJson(jsonDecode(widget.editTaskId));
-
+      setState(() {});
       taskTitleController.text = taskDetails.title ?? "";
       taskDetailsController.text = taskDetails.description ?? "";
       ref.read(editTaskControllerProvider.notifier).setData(

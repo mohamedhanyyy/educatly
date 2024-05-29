@@ -146,11 +146,12 @@ class AddTaskController extends _$AddTaskController {
         "startDate": '${state.startDate}'.replaceAll(' ', 'T'),
         "endDate": '${state.endDate}'.replaceAll(' ', 'T'),
         "subTasks": state.tasks!.map((e) => {"description": e}).toList(),
-        "comments": [state.comment].map((e) => {"description": e}).toList(),
+        "comments": state.comment == null
+            ? []
+            : [state.comment].map((e) => {"description": e}).toList(),
       },
     );
     if (response?.statusCode == 200) {
-      print('ok');
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
       ref.invalidate(getAdminTasksControllerProvider);
 
@@ -162,14 +163,11 @@ class AddTaskController extends _$AddTaskController {
           .read<AdminStatsticsCubit>()
           .getStats();
     } else {
-      print(response?.data);
-      print(response?.statusCode);
-      print(response?.requestOptions.data);
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
     }
   }
 
-  buildSvgPicture(int? priorityId) {
+  priorityIconMapper(int? priorityId) {
     Map<int, String> map = {
       1: Assets.icons.flag0,
       2: Assets.icons.flag1,

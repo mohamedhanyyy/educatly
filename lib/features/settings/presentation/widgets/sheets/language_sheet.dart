@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:taskaty/config/router/app_router.dart';
 
 import '../../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../../config/theme/sizes_manager.dart';
@@ -32,6 +33,9 @@ class LanguageSheet extends ConsumerWidget {
                       ref
                           .read(localizationControllerProvider.notifier)
                           .setAppLocalization(LanguageData.code);
+                      if (AppRouter.router.canPop()) {
+                        AppRouter.router.pop();
+                      }
                     }
                   },
                   trailing: Icon(

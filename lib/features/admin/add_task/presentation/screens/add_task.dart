@@ -74,7 +74,7 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
               // AppSizes.size15.verticalSpace,
               customDropDown(
                 widget:
-                    controller.buildSvgPicture(controllerWatcher.priorityId),
+                    controller.priorityIconMapper(controllerWatcher.priorityId),
                 textColor: controllerWatcher.priorityId != null
                     ? Theme.of(context).secondaryHeaderColor
                     : Theme.of(context).hintColor,

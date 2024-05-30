@@ -17,7 +17,7 @@ class PreferencesHelper {
   }
 
   static String? get getLoginDate {
-    return preferences?.getString('loginDate');
+    return preferences?.getString('loginDate') ?? DateTime.now().toString();
   }
 
   static Future<void> saveToken({required String token}) async {

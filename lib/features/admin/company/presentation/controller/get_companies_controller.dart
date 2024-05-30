@@ -4,7 +4,6 @@ import 'package:taskaty/features/admin/company/data/model/company_model.dart';
 
 import '../../domain/usecase/get_companies_usecase.dart';
 
-
 part 'get_companies_controller.g.dart';
 
 @Riverpod(keepAlive: true)

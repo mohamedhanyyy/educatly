@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taskaty/config/theme/sizes_manager.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
+import 'package:taskaty/core/widgets/loading_widget.dart';
 
 import '../../../stats/bloc/manager_statistics_bloc.dart';
 import '../controller/calender_controller.dart';
@@ -50,7 +51,7 @@ class _HomeScreenState extends ConsumerState<ManagerMainScreen> {
                 return ManagerStatisticsWidget(
                     statsData: cubit.statisticsModel!.statsData!);
               } else if (state == CubitState.loading)
-                return Center(child: CircularProgressIndicator.adaptive());
+                return CustomLoadingWidget();
 
               return const SizedBox.shrink();
             }),

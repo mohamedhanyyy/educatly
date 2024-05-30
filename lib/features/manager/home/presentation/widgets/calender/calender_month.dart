@@ -37,7 +37,7 @@ class CalenderMonthWidget extends ConsumerWidget {
           child: ListWheelScrollView(
             itemExtent: 65.w,
             offAxisFraction: 0,
-            perspective: 0.003,
+            perspective: 0.004,
             controller: _controller,
             physics: const FixedExtentScrollPhysics(),
             children: List.generate(_dateTime.getDaysCount, (index) {
@@ -48,9 +48,7 @@ class CalenderMonthWidget extends ConsumerWidget {
                 child: RotatedBox(
                   quarterTurns: 1,
                   child: CalenderDayWidget(
-                    dateTime: _date,
-                    controller: _controller,
-                  ),
+                      dateTime: _date, controller: _controller),
                 ),
               );
             }),

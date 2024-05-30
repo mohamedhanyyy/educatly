@@ -25,7 +25,7 @@ class Api {
   static const String updateProfile = "Authentication/Profile";
   static const String changePassword = "Authentication/ChangePassword";
 
-  static const String getCompany = "Companies/GetAll";
+  static const String getCompany = "Companies/GetAllWithCountTasks";
   static const String managers = "Managers";
 
   static const String addTask = "Tasks/Add";

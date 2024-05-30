@@ -43,7 +43,7 @@ refreshToken() async {
   }
 }
 
-//   "email": "superadmin1@domain.com",
+//   "email": "superadmin@domain.com",
 //   "email": "basicuser@domain.com",
 //   "password": "P@ssword123"
 

@@ -10,7 +10,7 @@ import '../../../../../../config/theme/styles_manager.dart';
 import '../../controller/calender_controller.dart';
 import '../../controller/dashboard_controller.dart';
 
-class CalenderDayWidget extends ConsumerWidget {
+class CalenderDayWidget extends ConsumerStatefulWidget {
   final DateTime _dateTime;
   final FixedExtentScrollController _controller;
 
@@ -22,16 +22,23 @@ class CalenderDayWidget extends ConsumerWidget {
         _dateTime = dateTime;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<CalenderDayWidget> createState() => _CalenderDayWidgetState();
+}
+
+class _CalenderDayWidgetState extends ConsumerState<CalenderDayWidget> {
+  @override
+  Widget build(BuildContext context) {
     final _isSelected =
-        _dateTime == ref.watch(calenderControllerProvider).selectedDate;
+        widget._dateTime == ref.watch(calenderControllerProvider).selectedDate;
+    //todo
+    setState(() {});
     return InkWell(
       borderRadius: BorderRadius.circular(10),
       onTap: ref.watch(dashboardControllerProvider).isLoading
           ? null
           : () => ref
               .read(calenderControllerProvider.notifier)
-              .selectFullDate(_dateTime, _controller),
+              .selectFullDate(widget._dateTime, widget._controller),
       child: Container(
         width: 55.w,
         padding: EdgeInsets.symmetric(horizontal: AppSizes.size4.w),
@@ -47,7 +54,7 @@ class CalenderDayWidget extends ConsumerWidget {
           children: [
             Spacer(flex: 2),
             Text(
-              DateFormat('dd').format(_dateTime),
+              DateFormat('dd').format(widget._dateTime),
               style: _isSelected
                   ? StylesManager.bold(
                       fontSize: AppFonts.font.xXLarge.sp,
@@ -57,7 +64,7 @@ class CalenderDayWidget extends ConsumerWidget {
             Spacer(),
             FittedBox(
               child: Text(
-                DateFormat('EEE').format(_dateTime),
+                DateFormat('EEE').format(widget._dateTime),
                 style: _isSelected
                     ? StylesManager.bold(
                         color: Theme.of(context).scaffoldBackgroundColor,

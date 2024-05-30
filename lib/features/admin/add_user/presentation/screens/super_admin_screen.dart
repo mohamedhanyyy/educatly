@@ -11,7 +11,6 @@ import '../../../../../config/theme/sizes_manager.dart';
 import '../../../../../config/theme/styles_manager.dart';
 import '../../../../../core/services/validation/validation_service.dart';
 import '../../../../../core/widgets/app_button.dart';
-import '../../../../../core/widgets/custom_password_field.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../data/model/user_type_model.dart';
 import '../controller/super_admin/super_admin_controller.dart';
@@ -21,7 +20,7 @@ class SuperAdminScreen extends ConsumerWidget {
   final TextEditingController mailController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController fullNameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  // final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
   final List<UserTypeModel> userTypes = [
     UserTypeModel(2, "Admin"),
@@ -34,7 +33,6 @@ class SuperAdminScreen extends ConsumerWidget {
     final controllerWatcher = ref.watch(superAdminControllerProvider);
     return Scaffold(
       appBar: AppBar(
-
         title: Text(S().add_user),
         backgroundColor: AppColors.colors.primary,
       ),
@@ -74,13 +72,6 @@ class SuperAdminScreen extends ConsumerWidget {
                           ValidationService.emailValidation(value),
                     ),
                     AppSizes.size10.verticalSpace,
-                    CustomPasswordInputField(
-                      label: S().password,
-                      controller: passwordController,
-                      validator: (value) =>
-                          ValidationService.validatePassword(value),
-                    ),
-                    AppSizes.size10.verticalSpace,
                     ClipRRect(
                       clipBehavior: Clip.antiAlias,
                       borderRadius: BorderRadius.circular(5),
@@ -106,7 +97,6 @@ class SuperAdminScreen extends ConsumerWidget {
                                   value: e,
                                   child: Text(
                                     e.name,
-
                                     style: StylesManager.bold(
                                         fontSize: AppSizes.size12,
                                         color: Colors.black),
@@ -131,7 +121,6 @@ class SuperAdminScreen extends ConsumerWidget {
                                     key: buttonKey,
                                     fullName: fullNameController.text,
                                     userName: userNameController.text,
-                                    password: passwordController.text,
                                     userTypeModel: controllerWatcher.userType,
                                     email: mailController.text,
                                   );

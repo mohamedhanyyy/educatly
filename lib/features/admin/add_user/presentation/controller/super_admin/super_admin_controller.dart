@@ -38,7 +38,6 @@ class SuperAdminController extends _$SuperAdminController {
     required String userName,
     String? fullName,
     required String email,
-    required String password,
     required UserTypeModel? userTypeModel,
     required Key key,
   }) async {
@@ -47,7 +46,6 @@ class SuperAdminController extends _$SuperAdminController {
     Response? response = await DioHelper.postData(url: Api.registerUser, data: {
       "userName": userName,
       'fullName': fullName,
-      'password': password,
       "email": email,
       "role": userTypeModel?.id,
       'companyId': 0,

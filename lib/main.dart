@@ -46,3 +46,5 @@ refreshToken() async {
 //   "email": "superadmin1@domain.com",
 //   "email": "basicuser@domain.com",
 //   "password": "P@ssword123"
+
+//{  "email": "superadmin1@domain.com","password": "P@ssword123"}

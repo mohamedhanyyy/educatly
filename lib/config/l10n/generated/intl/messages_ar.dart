@@ -87,7 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit_email":
             MessageLookupByLibrary.simpleMessage("تعديل البريد الإلكتروني"),
         "edit_mobile": MessageLookupByLibrary.simpleMessage("تعديل رقم الجوال"),
-        "edit_name": MessageLookupByLibrary.simpleMessage("تعديل الاسم"),
+        "edit_name": MessageLookupByLibrary.simpleMessage("تعديل الإسم"),
         "edit_profile":
             MessageLookupByLibrary.simpleMessage("تعديل بيانات الحساب"),
         "edit_subtask":
@@ -121,7 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "من فضلك ادخل البريد الإلكتروني \n لارسال تعليمات استرداد كلمة المرور"),
         "forgot_password":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
-        "full_name": MessageLookupByLibrary.simpleMessage("الاسم كاملاٍ"),
+        "full_name": MessageLookupByLibrary.simpleMessage("الاسم كاملاً"),
         "hany": MessageLookupByLibrary.simpleMessage("هاني "),
         "hello": MessageLookupByLibrary.simpleMessage("أهلا"),
         "high": MessageLookupByLibrary.simpleMessage("مرتفعة"),
@@ -162,7 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mobile": MessageLookupByLibrary.simpleMessage("الجوال"),
         "months": MessageLookupByLibrary.simpleMessage("أشهر"),
         "months_ago": MessageLookupByLibrary.simpleMessage("أشهر"),
-        "name": MessageLookupByLibrary.simpleMessage("الاسم"),
+        "name": MessageLookupByLibrary.simpleMessage("الإسم"),
         "name_long_warning":
             MessageLookupByLibrary.simpleMessage("اسم المستخدم طويل"),
         "name_short_warning":
@@ -259,7 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "task_edited_successfully":
             MessageLookupByLibrary.simpleMessage("تم تعديل المهمة بنجاح!"),
         "task_name_or_user_name":
-            MessageLookupByLibrary.simpleMessage("اسم المهمة او اسم المستخدم"),
+            MessageLookupByLibrary.simpleMessage("اسم المهمة أو اسم المستخدم"),
         "task_title": MessageLookupByLibrary.simpleMessage("عنوان المهمة"),
         "tasks": MessageLookupByLibrary.simpleMessage("المهام"),
         "tasks_required":
@@ -286,7 +286,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اسم المستخدم غير صحيح"),
         "weeks": MessageLookupByLibrary.simpleMessage("أسبوع"),
         "weeks_ago": MessageLookupByLibrary.simpleMessage("أسابيع"),
-        "welcome": MessageLookupByLibrary.simpleMessage("مرحبا بك"),
+        "welcome": MessageLookupByLibrary.simpleMessage("مرحباً بك"),
         "write_assigne_to":
             MessageLookupByLibrary.simpleMessage("اكتب اسم المسند إليه"),
         "write_comment": MessageLookupByLibrary.simpleMessage("أكتب تعليقاً"),

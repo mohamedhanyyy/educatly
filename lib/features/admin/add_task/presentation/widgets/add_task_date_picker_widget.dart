@@ -24,6 +24,7 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
               ? 10
               : 0),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Flexible(
             child: GestureDetector(
@@ -92,7 +93,7 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
           Flexible(
             child: GestureDetector(
               onTap: () async {
-                final DateTime? endDate = await showDatePicker(
+                final endDate = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
                   firstDate: DateTime.now(),

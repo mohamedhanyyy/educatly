@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taskaty/features/shared/auth/login/data/model/auth_response.dart';
 
@@ -13,7 +14,7 @@ class PreferencesHelper {
   static Future<void> saveLoginDate() async {
     await preferences?.setString(
         'loginDate', '${DateTime.now().add(Duration(days: 10))}');
-    print('HANY ${preferences?.getString('loginDate')}');
+    debugPrint('HANY ${preferences?.getString('loginDate')}');
   }
 
   static String? get getLoginDate {

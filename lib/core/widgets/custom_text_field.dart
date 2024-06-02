@@ -28,6 +28,7 @@ class CustomTextInputField extends StatelessWidget {
   final ValueChanged<String?>? onSubmitted;
   final TextEditingController? controller;
   final Widget? suffix;
+  final String? initialValue;
   final Widget? prefix;
   final InputBorder? inputBorder;
   final FocusNode? focusNode;
@@ -37,6 +38,7 @@ class CustomTextInputField extends StatelessWidget {
     Key? key,
     this.onSubmitted,
     this.focusNode,
+    this.initialValue,
     this.errorText,
     this.onChanged,
     this.errorBorder,
@@ -64,6 +66,7 @@ class CustomTextInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       focusNode: focusNode,
       maxLength: maxLength,
       enabled: enabled,

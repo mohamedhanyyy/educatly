@@ -39,6 +39,9 @@ class AdminCommentsWidget extends ConsumerWidget {
                         children: [
                           Flexible(
                             child: CustomTextInputField(
+                              maxLines: null,
+                              type: TextInputType.multiline,
+                              textInputAction: TextInputAction.newline,
                               label: S().add_comment,
                               controller: commentsController,
                             ),

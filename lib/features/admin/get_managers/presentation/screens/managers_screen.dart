@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
+import 'package:taskaty/core/constants/constants.dart';
+import 'package:taskaty/core/widgets/loading_widget.dart';
 import 'package:taskaty/core/widgets/network_image.dart';
 import 'package:taskaty/features/admin/get_managers/data/model/get_managers_model.dart';
 
@@ -35,7 +37,7 @@ class GetManagersScreen extends ConsumerWidget {
       body: ref
           .watch(getManagersControllerProvider)
           .when(
-            loading: () => Center(child: CircularProgressIndicator.adaptive()),
+            loading: () => CustomLoadingWidget(),
             error: (error, stackTrace) => RefreshWidget(
               onTap: () async =>
                   await ref.refresh(getManagersControllerProvider),
@@ -80,8 +82,11 @@ class GetManagersScreen extends ConsumerWidget {
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       clipBehavior: Clip.antiAlias,
-                      child: AppCachedNetworkImage(manager.imageName ?? '',
-                          width: 30, height: 30, fit: BoxFit.cover)),
+                      child: AppCachedNetworkImage(
+                          '${AppConstants.subDomain}${manager.imageName}' ?? '',
+                          width: 30,
+                          height: 30,
+                          fit: BoxFit.cover)),
                 ),
               ),
               AppSizes.size5.verticalSpace,

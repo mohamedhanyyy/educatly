@@ -54,16 +54,16 @@ class SuperAdminController extends _$SuperAdminController {
     });
     Response? response =
         await DioHelper.postData(url: Api.registerUser, data: formData);
-
-    if (response?.statusCode == 201) {
+    print(response?.requestOptions.data);
+    if (response?.statusCode == 200) {
       await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
+      ref.invalidate(getManagersControllerProvider);
 
       showModalBottomSheet(
           context: AppRouter.navigatorState.currentContext!,
           builder: (context) {
             return DoneBottomSheet(message: S().user_added_successfully);
           });
-      ref.invalidate(getManagersControllerProvider);
     } else
       await ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
   }

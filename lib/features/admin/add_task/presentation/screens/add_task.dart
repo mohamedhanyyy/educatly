@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taskaty/config/router/app_router.dart';
 import 'package:taskaty/config/theme/sizes_manager.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/constants/constants.dart';
@@ -63,7 +62,6 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
               AppSizes.size10.verticalSpace,
               CustomTextInputField(
                 label: S().task_details,
-                assignLabelWithHint: true,
                 controller: taskDetailsController,
                 textInputAction: TextInputAction.newline,
                 type: TextInputType.multiline,
@@ -149,51 +147,28 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
 
               AddTaskCommentsWidget(),
               // AddTaskFilesWidget(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppDefaultButton(
-                    onPressed: () {
-                      AppRouter.router.pop();
-                    },
-                    width: AppSizes.size150.w,
-                    height: AppSizes.size45.h,
-                    borderColor: ColorSystemLight().primary,
-                    isBordered: true,
-                    text: S().cancel,
-                    textColor: ColorSystemLight().primary,
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                  ),
-                  AppSizes.size30.horizontalSpace,
-                  Consumer(
-                    builder: (_, ref, __) {
-                      return AppDefaultButton(
-                        key: buttonKey,
-                        width: AppSizes.size150.w,
-                        height: AppSizes.size45.h,
-                        borderColor: ColorSystemLight().scaffold,
-                        isBordered: true,
-                        text: S().save,
-                        textColor: ColorSystemLight().scaffold,
-                        // backgroundColor: Theme.of(context).primaryColor,
-                        onPressed: () {
-                          controller.setData(isSave: true);
-                          if (formKey.currentState!.validate()) {
-                            controller.addTask(
-                              title: taskTitleController.text,
-                              description: taskDetailsController.text,
-                              key: buttonKey,
-                            );
-                          }
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
             ],
           ),
         ).defaultScreenPadding,
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+        child: AppDefaultButton(
+          key: buttonKey,
+          text: S().save,
+          textColor: ColorSystemLight().scaffold,
+          backgroundColor: AppColors.colors.darkBlue,
+          onPressed: () {
+            controller.setData(isSave: true);
+            if (formKey.currentState!.validate()) {
+              controller.addTask(
+                title: taskTitleController.text,
+                description: taskDetailsController.text,
+                key: buttonKey,
+              );
+            }
+          },
+        ),
       ),
     );
   }

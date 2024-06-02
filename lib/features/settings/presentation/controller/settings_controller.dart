@@ -75,8 +75,8 @@ class SettingsController extends _$SettingsController {
     if (response?.statusCode == 200) {
       AuthResponse authResponse = PreferencesHelper.getUserModel!;
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-      print(response?.data['data']['fullName']);
-      print(response?.data['data']['email']);
+      debugPrint(response?.data['data']['fullName']);
+      debugPrint(response?.data['data']['email']);
       await PreferencesHelper.saveUserModel(
           userModel: AuthResponse(
         token: authResponse.token,

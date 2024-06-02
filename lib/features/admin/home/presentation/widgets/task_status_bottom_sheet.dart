@@ -20,8 +20,7 @@ class AdminFilterTaskStatusWidget extends ConsumerWidget {
           Padding(
             padding: EdgeInsets.only(
                 top: AppSizes.size20.h, bottom: AppSizes.size50.h),
-            child:
-                Text(S().tasks_status, style: StylesManager.bold(fontSize: 24)),
+            child: Text(S().status, style: StylesManager.bold(fontSize: 24)),
           ),
           Divider(
             height: AppSizes.size10.h,

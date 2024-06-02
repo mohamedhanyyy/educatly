@@ -60,7 +60,7 @@ class _HomeScreenState extends ConsumerState<ManagerMainScreen> {
             AppSizes.size10.verticalSpace,
             FiltersListWidget(controller: _controller),
             AppSizes.size20.verticalSpace,
-            TasksListWidget()
+            ManagerTasksListWidget()
           ],
         ).defaultScreenPadding,
       ),

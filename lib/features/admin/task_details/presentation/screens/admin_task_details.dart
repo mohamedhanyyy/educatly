@@ -106,7 +106,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
                           .map(
                             (e) => Container(
                               padding: EdgeInsets.symmetric(
-                                  vertical: AppSizes.size5.h),
+                                  vertical: AppSizes.size12.h),
                               margin: EdgeInsets.symmetric(
                                   vertical: AppSizes.size5.h),
                               decoration: BoxDecoration(
@@ -126,7 +126,8 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
                                     child: Icon(Icons.task_alt_outlined,
                                         color: e.isCompleted == true
                                             ? AppColors.colors.green
-                                            : Colors.black),
+                                            : Theme.of(context)
+                                                .secondaryHeaderColor),
                                   ),
                                   Flexible(child: Text(e.description!)),
                                 ],
@@ -142,9 +143,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
                       children: taskDetails.comments!.map((e) {
                         return Container(
                           margin: const EdgeInsets.symmetric(vertical: 8.0),
-                          padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                          width: double.infinity,
+                          padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               color: Theme.of(context).scaffoldBackgroundColor,
@@ -152,6 +151,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
                                   color:
                                       Theme.of(context).secondaryHeaderColor)),
                           child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SvgPicture.asset(Assets.icons.comments),
                               AppSizes.size10.horizontalSpace,

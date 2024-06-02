@@ -41,10 +41,7 @@ class AdminScreen extends ConsumerWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-
             children: [
-
-
               AppSizes.size10.verticalSpace,
               Form(
                 key: formKey,
@@ -76,7 +73,6 @@ class AdminScreen extends ConsumerWidget {
                     ),
                     AppSizes.size10.verticalSpace,
                     ClipRRect(
-                    
                       clipBehavior: Clip.antiAlias,
                       borderRadius: BorderRadius.circular(5),
                       child: DropdownButtonFormField2(

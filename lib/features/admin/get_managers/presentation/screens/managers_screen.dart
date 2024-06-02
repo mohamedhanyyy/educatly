@@ -80,13 +80,15 @@ class GetManagersScreen extends ConsumerWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(5.0),
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50),
-                      clipBehavior: Clip.antiAlias,
-                      child: AppCachedNetworkImage(
-                          '${AppConstants.subDomain}${manager.imageName}' ?? '',
-                          width: 30,
-                          height: 30,
-                          fit: BoxFit.cover)),
+                    borderRadius: BorderRadius.circular(50),
+                    clipBehavior: Clip.antiAlias,
+                    child: AppCachedNetworkImage(
+                      '${AppConstants.subDomain}${manager.imageName}',
+                      width: 30,
+                      height: 30,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
               AppSizes.size5.verticalSpace,

@@ -18,7 +18,7 @@ Future<void> main() async {
   // debugPrint('${nowTime}');
   // debugPrint('${loginTime}');
   // debugPrint('${nowTime.difference(loginTime)}');
-  print(PreferencesHelper.getToken);
+  debugPrint(PreferencesHelper.getToken);
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 

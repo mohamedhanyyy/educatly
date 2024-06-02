@@ -20,7 +20,6 @@ class RequestsInspectorInterceptor extends Interceptor {
 
     InspectorController().addNewRequest(
       RequestDetails(
-
         requestMethod: RequestMethod.values
             .firstWhere((e) => e.name == response.requestOptions.method),
         url: url,

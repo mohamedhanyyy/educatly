@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "change_password":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
         "comment": MessageLookupByLibrary.simpleMessage("التعليق"),
+        "comment_is_empty":
+            MessageLookupByLibrary.simpleMessage("هذا التعليق فارغ !"),
         "comments": MessageLookupByLibrary.simpleMessage("التعليقات"),
         "companies": MessageLookupByLibrary.simpleMessage("الشركات"),
         "company_address": MessageLookupByLibrary.simpleMessage("عنوان الشركة"),
@@ -181,6 +183,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "next_week": MessageLookupByLibrary.simpleMessage("الأسبوع القادم"),
         "next_year": MessageLookupByLibrary.simpleMessage("العام القادم"),
         "no": MessageLookupByLibrary.simpleMessage("لا"),
+        "no_notifications_right_now": MessageLookupByLibrary.simpleMessage(
+            "لا يوجد إشعارات في الوقت الحالي"),
         "no_tasks":
             MessageLookupByLibrary.simpleMessage("لا يوجد مهام، حاول لاحقاً! "),
         "not_completed": MessageLookupByLibrary.simpleMessage("الغير مكتملة"),
@@ -276,6 +280,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tomorrow": MessageLookupByLibrary.simpleMessage("غدًا"),
         "too_short_password":
             MessageLookupByLibrary.simpleMessage("كلمة المرور قصيرة"),
+        "two_days_ago": MessageLookupByLibrary.simpleMessage("منذ يومان"),
+        "two_weeks_ago": MessageLookupByLibrary.simpleMessage("منذ اسبوعين"),
         "update": MessageLookupByLibrary.simpleMessage("تحديث"),
         "update_password":
             MessageLookupByLibrary.simpleMessage("تحديث كلمة المرور"),

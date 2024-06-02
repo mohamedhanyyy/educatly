@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/widgets/custom_password_field.dart';
 
-
 import '../../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../../config/theme/font_system/app_fonts.dart';

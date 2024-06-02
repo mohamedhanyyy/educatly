@@ -6,8 +6,8 @@ import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/sizes_manager.dart';
 import 'chart_widget.dart';
 
-class StatisticsWidget extends ConsumerWidget {
-  const StatisticsWidget({super.key});
+class AdminStatisticsWidget extends ConsumerWidget {
+  const AdminStatisticsWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

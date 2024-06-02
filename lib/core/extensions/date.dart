@@ -13,11 +13,17 @@ extension DateDifferenceExtension on DateTime {
         if (difference.inMinutes < 1) return S().now;
         return S().ago + '${difference.inMinutes} ' + S().minutes_ago;
       } else if (difference.inHours >= 1 && difference.inHours < 24) {
-        return S().ago + '${difference.inHours} ' + S().hours_ago;
+        if (AppRouter.navigatorState.currentContext!.isCurrentArabic) {
+          if (difference.inHours <= 10)
+            return S().ago + '${difference.inHours} ' + "ساعات";
+          return S().ago + '${difference.inHours} ' + "ساعة";
+        }
+        return '${difference.inHours} ' + S().hours_ago;
       } else if (difference.inHours >= 24 && difference.inHours < 48) {
         return S().yesterday;
       } else if (difference.inDays > 1 && difference.inDays <= 5) {
         if (AppRouter.navigatorState.currentContext!.isCurrentArabic) {
+          if (difference.inDays == 2) return S().two_days_ago;
           return S().ago + '${difference.inDays} ' + S().days_ago;
         } else {
           return '${difference.inDays} ' + S().days_ago;
@@ -28,6 +34,9 @@ extension DateDifferenceExtension on DateTime {
         final weeks = (difference.inDays / 7).round();
 
         if (AppRouter.navigatorState.currentContext!.isCurrentArabic) {
+          if (weeks == 2) {
+            return S().two_weeks_ago;
+          }
           return S().ago + '$weeks ' + S().weeks_ago;
         } else {
           return '$weeks ' + S().weeks_ago;

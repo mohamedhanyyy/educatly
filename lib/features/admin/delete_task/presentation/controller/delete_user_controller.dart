@@ -23,7 +23,6 @@ class DeleteUserController extends _$DeleteUserController {
     required String id,
     required Key key,
   }) async {
-     
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
     final result = await AsyncValue.guard(

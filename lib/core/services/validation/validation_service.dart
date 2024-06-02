@@ -79,9 +79,8 @@ class ValidationService {
       return S().text_field_empty_warning;
     }
 
-
-    final list=value.trim().split(' ');
-    if (list.length<2) {
+    final list = value.trim().split(' ');
+    if (list.length < 2) {
       return S().title_must_contain_two_words_at_least;
     }
     return null;

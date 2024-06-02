@@ -47,7 +47,6 @@ class AdminController extends _$AdminController {
     required UserTypeModel? userTypeModel,
     required Key key,
   }) async {
-     
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
     final result = await AsyncValue.guard(
       () => ref.read(superAdminUseCaseProvider(

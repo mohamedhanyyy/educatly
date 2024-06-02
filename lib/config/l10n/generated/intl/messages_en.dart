@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change password"),
         "comment": MessageLookupByLibrary.simpleMessage("Comment"),
+        "comment_is_empty":
+            MessageLookupByLibrary.simpleMessage("This comment is empty"),
         "comments": MessageLookupByLibrary.simpleMessage("Comments"),
         "companies": MessageLookupByLibrary.simpleMessage("Companies"),
         "company_address":
@@ -177,6 +179,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "next_week": MessageLookupByLibrary.simpleMessage("Next week"),
         "next_year": MessageLookupByLibrary.simpleMessage("Next year"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "no_notifications_right_now":
+            MessageLookupByLibrary.simpleMessage("No notifications right now"),
         "no_tasks":
             MessageLookupByLibrary.simpleMessage("No tasks try again !"),
         "not_completed": MessageLookupByLibrary.simpleMessage("Not completed"),
@@ -270,6 +274,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tomorrow": MessageLookupByLibrary.simpleMessage("Tomorrow"),
         "too_short_password":
             MessageLookupByLibrary.simpleMessage("Too short password"),
+        "two_days_ago": MessageLookupByLibrary.simpleMessage("Two days ago"),
+        "two_weeks_ago": MessageLookupByLibrary.simpleMessage("Two weeks ago"),
         "update": MessageLookupByLibrary.simpleMessage("Update"),
         "update_password":
             MessageLookupByLibrary.simpleMessage("Update password"),

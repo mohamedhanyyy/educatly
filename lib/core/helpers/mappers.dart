@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../config/l10n/generated/l10n.dart';
 import '../constants/assets.dart';
+
 priorityIdMapper(id) {
   switch (id) {
     case 1:
@@ -13,16 +14,18 @@ priorityIdMapper(id) {
       return S().high;
   }
 }
+
 mappingPriorityStrings(String p) {
   switch (p) {
-    case 'Low'|| "منخفضة":
+    case 'Low' || "منخفضة":
       return 1;
-    case 'Medium' ||"متوسطة":
+    case 'Medium' || "متوسطة":
       return 2;
     case 'High' || "مرتفعة":
       return 3;
   }
 }
+
 statusIdMapper(id) {
   switch (id) {
     case 1:
@@ -33,6 +36,7 @@ statusIdMapper(id) {
       return S().completed;
   }
 }
+
 colorStatusIdMapper(id) {
   switch (id) {
     case 1:
@@ -43,8 +47,6 @@ colorStatusIdMapper(id) {
       return Colors.red;
   }
 }
-
-
 
 statusPrioritySvgMapper(name) {
   Map<int, String> map = {

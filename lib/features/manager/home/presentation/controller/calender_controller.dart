@@ -19,7 +19,7 @@ class CalenderController extends _$CalenderController {
         DateTime.now().day,
       ),
       selectedDate: DateTime(
-        DateTime.now().year,  
+        DateTime.now().year,
         DateTime.now().month,
         DateTime.now().day,
       ),
@@ -43,7 +43,6 @@ class CalenderController extends _$CalenderController {
           ? state.selectedDate.day - 1
           : 0,
     );
-
   }
 
   void previousMonth(FixedExtentScrollController controller) {
@@ -79,7 +78,6 @@ class CalenderController extends _$CalenderController {
           ? state.selectedDate.day - 1
           : 0,
     );
-
   }
 
   void animateToSelectedDate(FixedExtentScrollController controller) {

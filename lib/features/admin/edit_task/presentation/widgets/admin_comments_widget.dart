@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:taskaty/core/extensions/context_extension.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/color_system/color_system_light.dart';
@@ -53,10 +54,14 @@ class AdminCommentsWidget extends ConsumerWidget {
                                   borderRadius: 2,
                                   key: commentButtonKey,
                                   width: AppSizes.size50.w,
-                                  height: AppSizes.size45.h,
+                                  height: AppSizes.size50.h,
                                   borderColor: ColorSystemLight().primary,
                                   isBordered: true,
-                                  child: SvgPicture.asset(Assets.icons.send),
+                                  child: RotatedBox(
+                                      quarterTurns:
+                                          context.isCurrentArabic ? 3 : 0,
+                                      child:
+                                          SvgPicture.asset(Assets.icons.send)),
                                   textColor: ColorSystemLight().scaffold,
                                   backgroundColor: ColorSystemLight().primary,
                                   onPressed: () {
@@ -97,7 +102,9 @@ class AdminCommentsWidget extends ConsumerWidget {
               ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: SvgPicture.asset(Assets.icons.send),
+                child: RotatedBox(
+                    quarterTurns: context.isCurrentArabic ? 3 : 0,
+                    child: SvgPicture.asset(Assets.icons.send)),
               ),
             ),
           ],

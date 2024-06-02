@@ -19,11 +19,11 @@ import 'department_tag.dart';
 import 'progress_count.dart';
 import 'remaining_time.dart';
 
-class TaskWidget extends ConsumerWidget {
+class ManagerTaskWidget extends ConsumerWidget {
   final AdminTasksModel taskDetails;
   final List<bool> selected = [];
   double progress = 0;
-  TaskWidget({super.key, required this.taskDetails});
+  ManagerTaskWidget({super.key, required this.taskDetails});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

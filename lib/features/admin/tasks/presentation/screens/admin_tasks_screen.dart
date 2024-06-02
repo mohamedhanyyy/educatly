@@ -1,3 +1,4 @@
+import 'package:animation_list/animation_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +8,7 @@ import 'package:taskaty/config/router/app_routing_paths.dart';
 import 'package:taskaty/config/theme/styles_manager.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/extensions/context_extension.dart';
+import 'package:taskaty/features/admin/home/presentation/widgets/no_tasks_widget.dart';
 import 'package:taskaty/features/admin/tasks/presentation/controller/admin_tasks_filter_controller.dart';
 import 'package:taskaty/features/admin/tasks/presentation/widgets/filter_tasks_date_picker_widget.dart';
 
@@ -252,44 +254,19 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                         await ref.refresh(getAdminTasksControllerProvider),
                   ),
                   data: (tasks) {
-                    if (tasks.isEmpty) {
-                      return Padding(
-                          padding: EdgeInsets.only(top: AppSizes.size100.h),
-                          child: Center(
-                              child: Text(
-                            S().no_tasks,
-                            style: StylesManager.semiBold(
-                                fontSize: AppSizes.size16.sp),
-                          )));
-                    }
-                    return ListView.builder(
-                      itemBuilder: (context, index) {
-                        return TaskItemWidget(task: tasks.elementAt(index));
-                      },
-                      shrinkWrap: true,
-                      itemCount: tasks.length,
-                      physics: const BouncingScrollPhysics(),
-                    );
+                    return tasks.isEmpty
+                        ? NoTasksWidget()
+                        : AnimationList(
+                            duration: 1250,
+                            reBounceDepth: 0,
+                            children: tasks
+                                .map((e) => TaskItemWidget(task: e))
+                                .toList(),
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                          );
                   },
                 )
-            // BlocBuilder<AdminGetTasksBloc, GetAdminTasksState>(
-            //     builder: (context, state) {
-            //   if (state is GetAdminTasksStateDone) {
-            //     return ListView.builder(
-            //       controller: _scrollController,
-            //       itemBuilder: (context, index) {
-            //         return TaskItemWidget(
-            //             task: adminBloc.tasks.elementAt(index));
-            //       },
-            //       shrinkWrap: true,
-            //       itemCount: adminBloc.tasks.length,
-            //       physics: const BouncingScrollPhysics(),
-            //     );
-            //   } else if (state is GetAdminTasksStateLoading) {
-            //     return CustomLoadingWidget(100);
-            //   }
-            //   return Text('error');
-            // })
           ],
         ).defaultScreenPadding,
       ),

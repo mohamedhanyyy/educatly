@@ -83,10 +83,7 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
             startDate: DateTime.parse(taskDetails.startDate!),
           ),
           DescriptionWidget(description: '${taskDetails.description}'),
-          TaskHeadLineWidget(
-            title: S().subtasks,
-            icon: Assets.icons.subtasks,
-          ),
+          TaskHeadLineWidget(title: S().subtasks, icon: Assets.icons.subtasks),
           if (taskDetails.subTasks!.isNotEmpty)
             ManagerSubTaskWidget(taskDetails: taskDetails, selected: selected),
           Text(S().comments),
@@ -96,14 +93,14 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: taskDetails.comments!.map((e) {
                   return Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                    width: double.infinity,
+                    padding: EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         border:
                             Border.all(color: Theme.of(context).highlightColor),
                         color: Theme.of(context).scaffoldBackgroundColor),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SvgPicture.asset(Assets.icons.comments),
                         AppSizes.size10.horizontalSpace,
@@ -117,13 +114,10 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
       ).paddingSymmetric(
               vertical: AppSizes.size20.h, horizontal: AppSizes.size10.w)),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
         child: AppDefaultButton(
           key: widget.buttonKey,
-          borderColor: Colors.white,
-          borderRadius: 2,
-          isBordered: true,
-          backgroundColor: AppColors.colors.primary,
+          backgroundColor: AppColors.colors.darkBlue,
           onPressed: () async {
             ref
                 .read(buttonControllerProvider.notifier)

@@ -32,7 +32,7 @@ class DeleteUserRemoteRequestImpl implements DeleteUserRemoteRequest {
       method: Method.post,
       // params: {'id': id},
     );
- // print('$data');
- return 1;
+    // print('$data');
+    return 1;
   }
 }

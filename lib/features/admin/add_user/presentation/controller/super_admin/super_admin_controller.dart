@@ -54,7 +54,7 @@ class SuperAdminController extends _$SuperAdminController {
     });
     Response? response =
         await DioHelper.postData(url: Api.registerUser, data: formData);
-    print(response?.requestOptions.data);
+    debugPrint(response?.requestOptions.data);
     if (response?.statusCode == 200) {
       await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
       ref.invalidate(getManagersControllerProvider);

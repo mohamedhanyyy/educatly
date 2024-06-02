@@ -144,7 +144,6 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                 ),
               ),
               AdminAddSubTask(),
-
               AddTaskCommentsWidget(),
               // AddTaskFilesWidget(),
             ],

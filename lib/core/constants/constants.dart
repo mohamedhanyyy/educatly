@@ -7,7 +7,8 @@ class AppConstants {
   AppConstants._();
 
   static const String subDomain = 'https://taskaty.azurewebsites.net/Upload/';
-  static const String userAvatar = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjIE9x_0IgzoW3whWyqVDXqK0K1hNxzNf_6meiHJJVTh4z7cz_LLY7aYXo6B-PfxqmYDc&usqp=CAU';
+  static const String userAvatar =
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjIE9x_0IgzoW3whWyqVDXqK0K1hNxzNf_6meiHJJVTh4z7cz_LLY7aYXo6B-PfxqmYDc&usqp=CAU';
   static const String isoFormat = 'yyyy-MM-ddTHH:mm:ss.SSSZ';
   static const String normalFormat = 'dd-MMM-yyyy - HH:mm';
 

@@ -67,13 +67,16 @@
   "new_password_should_no_match_current": "يجب ألا تتطابق كلمة المرور الجديدة مع كلمة المرور الحالية",
   "create_new_password_desc": "الرجاء الانتباه بإن كلمة المرور الجديدة يجب أن \n تختلف عن كلمة المرور القديمة",
   "notifications": "الإشعارات",
+  "comment_is_empty": "هذا التعليق فارغ !",
+
   "now": "الآن",
   "ago": "منذ ",
   "minutes_ago": "دقائق",
   "hours_ago": "ساعات",
   "reset": "إعادة",
-
   "yesterday": "أمس",
+  "no_notifications_right_now": "لا يوجد إشعارات في الوقت الحالي",
+
   "days_ago": "أيام",
   "last_week": "الأسبوع الماضي",
   "weeks_ago": "أسابيع",
@@ -160,6 +163,9 @@
   "search_by_task_name": "ابحث باسم المهمة ...",
   "search": "بحث",
   "add_logo": "أضف لوجو",
+  "two_days_ago": "منذ يومان",
+  "two_weeks_ago": "منذ اسبوعين",
+
   "all_companies": "جميع الشركات",
   "completed_tasks": "المهام المكتملة",
   "manager": "المدير",

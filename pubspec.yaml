@@ -46,6 +46,7 @@ dependencies:
   material_segmented_control: ^5.0.1
   fl_chart: ^0.68.0
   connectivity_plus: ^5.0.2
+  animation_list: ^3.0.0
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1
@@ -75,6 +76,7 @@ flutter:
     - assets/icons/files/
     - assets/images/
     - assets/json/
+    - assets/json/notasks.json
 
   fonts:
     - family: Cairo
@@ -87,7 +89,6 @@ flutter:
         - asset: assets/fonts/cairo/Cairo-Medium.ttf
         - asset: assets/fonts/cairo/Cairo-Regular.ttf
         - asset: assets/fonts/cairo/Cairo-SemiBold.ttf
-
 
 flutter_intl:
   enabled: true

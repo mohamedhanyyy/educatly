@@ -1820,6 +1820,16 @@ class S {
     );
   }
 
+  /// `Two weeks ago`
+  String get two_weeks_ago {
+    return Intl.message(
+      'Two weeks ago',
+      name: 'two_weeks_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `User added successfully`
   String get user_added_successfully {
     return Intl.message(
@@ -1840,6 +1850,16 @@ class S {
     );
   }
 
+  /// `No notifications right now`
+  String get no_notifications_right_now {
+    return Intl.message(
+      'No notifications right now',
+      name: 'no_notifications_right_now',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Status`
   String get status {
     return Intl.message(
@@ -1850,11 +1870,31 @@ class S {
     );
   }
 
+  /// `Two days ago`
+  String get two_days_ago {
+    return Intl.message(
+      'Two days ago',
+      name: 'two_days_ago',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add comment`
   String get add_comment {
     return Intl.message(
       'Add comment',
       name: 'add_comment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This comment is empty`
+  String get comment_is_empty {
+    return Intl.message(
+      'This comment is empty',
+      name: 'comment_is_empty',
       desc: '',
       args: [],
     );

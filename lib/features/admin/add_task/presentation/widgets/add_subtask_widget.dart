@@ -37,7 +37,10 @@ class AdminAddSubTask extends ConsumerWidget {
                   ),
                   child: CustomTextInputField(
                     label: null,
-                    autoFocus: true,
+                    // maxLines: null,
+                    // type: TextInputType.multiline,
+                    // textInputAction: TextInputAction.newline,
+                    autoFocus: false,
                     contentPadding: EdgeInsets.symmetric(vertical: 15),
                     prefix: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -54,7 +57,6 @@ class AdminAddSubTask extends ConsumerWidget {
                           reader.removeTask(task: e);
                         }),
                     controller: TextEditingController(text: e),
-                    textInputAction: TextInputAction.next,
                     validator: (value) =>
                         ValidationService.subTaskValidator(value),
                     onSubmitted: (value) {
@@ -65,10 +67,7 @@ class AdminAddSubTask extends ConsumerWidget {
                 );
               }).toList()),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: AppSizes.size2.w),
           margin: EdgeInsets.only(top: AppSizes.size4.h),
-          width: double.infinity,
-          height: 50,
           decoration: BoxDecoration(
               color: Theme.of(context).scaffoldBackgroundColor,
               borderRadius: BorderRadius.circular(8),
@@ -76,21 +75,33 @@ class AdminAddSubTask extends ConsumerWidget {
                   Border.all(color: Theme.of(context).scaffoldBackgroundColor)),
           child: CustomTextInputField(
             controller: controller,
+            suffix: Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: CircleAvatar(
+                radius: 15,
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: Icon(Icons.done),
+                  onPressed: () {
+                    if (watcher.tasks?.contains(controller.text) == true) {
+                      Toast.showToast(S().task_already_added);
+                      return;
+                    }
+                    if (controller.text != '')
+                      reader.setTask(task: controller.text);
+                  },
+                ),
+              ),
+            ),
             fillColor: Theme.of(context).scaffoldBackgroundColor,
-            autoFocus: false,
+            maxLines: null,
+            type: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
             prefix: Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSizes.size10.w),
               child: SvgPicture.asset(Assets.icons.addTask),
             ),
             label: S().sub_task_details,
-            textInputAction: TextInputAction.next,
-            onSubmitted: (value) {
-              if (watcher.tasks?.contains(value) == true) {
-                Toast.showToast(S().task_already_added);
-                return;
-              }
-              if (value != '') reader.setTask(task: value!);
-            },
           ),
         ),
         AppSizes.size6.verticalSpace,

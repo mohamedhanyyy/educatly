@@ -122,7 +122,7 @@ class CustomTextInputField extends StatelessWidget {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       onTap: () {
-        return unFocusCursorRTL(controller!);
+        unFocusCursorRTL(controller!);
       },
       style: StylesManager.medium(
           fontSize: 15.sp,

@@ -62,7 +62,7 @@ class _AdminMainScreenState extends ConsumerState<AdminMainScreen> {
                                     adminTasksFilterControllerProvider.notifier)
                                 .setData(searchText: val);
                         },
-                        label: S().task_name_or_user_name,
+                        label: S().search_by_task_name,
                         prefix: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: AppSizes.size10.w),

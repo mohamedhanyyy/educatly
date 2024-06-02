@@ -20,7 +20,7 @@ class CompanyItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding:
-      EdgeInsets.only(top: 31.h, bottom: 20.h, right: 27.w, left: 27.w),
+          EdgeInsets.only(top: 21.h, bottom: 10.h, right: 17.w, left: 17.w),
       margin: EdgeInsets.symmetric(vertical: 20.h),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -42,6 +42,7 @@ class CompanyItemWidget extends StatelessWidget {
             padding: EdgeInsets.only(top: 20.h, bottom: 6.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   width: 120.w,
@@ -51,7 +52,8 @@ class CompanyItemWidget extends StatelessWidget {
                       AppSizes.size5.horizontalSpace,
                       Flexible(
                         child: Text(
-                          '${S().completed_tasks} : 250',
+                          textAlign: TextAlign.center,
+                          '${S().completed_tasks}\n${companyData.tasksState?.taskCompleteCount}',
                           style: StylesManager.regular(fontSize: 13.sp),
                         ),
                       ),
@@ -59,10 +61,7 @@ class CompanyItemWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 2,
-                  height: 15,
-                  color: AppColors.colors.chartBlue,
-                ),
+                    width: 2, height: 15, color: AppColors.colors.chartBlue),
                 //  Spacer(),
                 SizedBox(
                   width: 120.w,
@@ -72,7 +71,8 @@ class CompanyItemWidget extends StatelessWidget {
                       AppSizes.size5.horizontalSpace,
                       Flexible(
                         child: Text(
-                          '${S().all_tasks} : 500',
+                          textAlign: TextAlign.center,
+                          '${S().in_progress_tasks}\n${companyData.tasksState?.taskInProgressCount}',
                           style: StylesManager.regular(fontSize: 13.sp),
                         ),
                       ),
@@ -90,7 +90,7 @@ class CompanyItemWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   clipBehavior: Clip.antiAlias,
                   child: AppCachedNetworkImage(
-                      AppConstants.userAvatar,
+                      '${AppConstants.subDomain}${companyData.manager?.imageName}',
                       width: 30,
                       height: 30,
                       fit: BoxFit.cover)),

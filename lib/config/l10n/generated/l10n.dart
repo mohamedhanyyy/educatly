@@ -190,6 +190,16 @@ class S {
     );
   }
 
+  /// `In progress tasks`
+  String get in_progress_tasks {
+    return Intl.message(
+      'In progress tasks',
+      name: 'in_progress_tasks',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Write section name`
   String get write_section_name {
     return Intl.message(
@@ -235,6 +245,16 @@ class S {
     return Intl.message(
       'Password',
       name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User image`
+  String get user_image {
+    return Intl.message(
+      'User image',
+      name: 'user_image',
       desc: '',
       args: [],
     );
@@ -1490,11 +1510,21 @@ class S {
     );
   }
 
-  /// `Task name or user name`
-  String get task_name_or_user_name {
+  /// `Task name`
+  String get task_name {
     return Intl.message(
-      'Task name or user name',
-      name: 'task_name_or_user_name',
+      'Task name',
+      name: 'task_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search by task name...`
+  String get search_by_task_name {
+    return Intl.message(
+      'Search by task name...',
+      name: 'search_by_task_name',
       desc: '',
       args: [],
     );

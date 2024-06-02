@@ -103,7 +103,7 @@ class _AddCompanyScreenState extends ConsumerState<AddCompanyScreen> {
                     addCompanySearchManagers(context, ref);
                   }),
               AppSizes.size20.verticalSpace,
-              Text(S().add_logo,
+              Text(S().user_image,
                   style: StylesManager.semiBold(fontSize: 13.sp)),
               AppSizes.size5.verticalSpace,
               InkWell(

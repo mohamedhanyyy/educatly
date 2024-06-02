@@ -38,25 +38,33 @@ class _ChartWidgetState extends State<ChartWidget> {
         num newCount = statsCubit.statisticsModel!.statsData!.taskNewCount!;
         num completedCount =
             statsCubit.statisticsModel!.statsData!.taskCompleteCount!;
+        //
+        double completedCountPrcentage = completedCount / totalSum;
+        double inProgressCountPrcentage = inProgressCount / totalSum;
+        double newCountPrcentage = newCount / totalSum;
         return PieChart(
           PieChartData(
             sectionsSpace: 0,
             sections: [
               PieChartSectionData(
-                  value: completedCount / totalSum,
+                  value: completedCountPrcentage != 0
+                      ? completedCountPrcentage
+                      : 1,
                   title:
-                      '${(completedCount / totalSum * 100).toStringAsFixed(1)}%',
+                      '${(completedCountPrcentage * 100).toStringAsFixed(1)}%',
                   color: Colors.red,
                   titleStyle: TextStyle(fontSize: 10)),
               PieChartSectionData(
-                  value: newCount / totalSum,
-                  title: '${(newCount / totalSum * 100).toStringAsFixed(1)}%',
+                  value: newCountPrcentage != 0 ? newCountPrcentage : 1,
+                  title: '${(newCountPrcentage * 100).toStringAsFixed(1)}%',
                   color: Colors.green,
                   titleStyle: TextStyle(fontSize: 10)),
               PieChartSectionData(
-                  value: inProgressCount / totalSum,
+                  value: inProgressCountPrcentage != 0
+                      ? inProgressCountPrcentage
+                      : 1,
                   title:
-                      '${(inProgressCount / totalSum * 100).toStringAsFixed(1)}%',
+                      '${(inProgressCountPrcentage * 100).toStringAsFixed(1)}%',
                   color: Colors.orange,
                   titleStyle: TextStyle(fontSize: 12)),
             ],

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -39,17 +41,19 @@ class SuperAdminController extends _$SuperAdminController {
     String? fullName,
     required String email,
     required UserTypeModel? userTypeModel,
+    required File file,
     required Key key,
   }) async {
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
-
-    Response? response = await DioHelper.postData(url: Api.registerUser, data: {
+    FormData formData = FormData.fromMap({
       "userName": userName,
       'fullName': fullName,
       "email": email,
       "role": userTypeModel?.id,
-      'companyId': 0,
+      "ImageName": await MultipartFile.fromFile(file.path),
     });
+    Response? response =
+        await DioHelper.postData(url: Api.registerUser, data: formData);
 
     if (response?.statusCode == 201) {
       await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);

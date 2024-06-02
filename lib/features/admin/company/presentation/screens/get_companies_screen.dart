@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
+import 'package:taskaty/core/widgets/loading_widget.dart';
 
 import '../../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../../config/router/app_router.dart';
@@ -31,17 +32,15 @@ class GetCompaniesScreen extends ConsumerWidget {
         child: ref
             .watch(getCompaniesControllerProvider)
             .when(
-              loading: () =>
-                  Center(child: CircularProgressIndicator.adaptive()),
+              loading: () => CustomLoadingWidget(),
               error: (error, stackTrace) => RefreshWidget(
                 onTap: () async =>
                     await ref.refresh(getCompaniesControllerProvider),
               ),
               data: (companyData) {
                 return ListView.builder(
-                  itemBuilder: (_, index) {
-                    return CompanyItemWidget(companyData[index]);
-                  },
+                  itemBuilder: (_, index) =>
+                      CompanyItemWidget(companyData[index]),
                   shrinkWrap: true,
                   itemCount: companyData.length,
                   physics: const BouncingScrollPhysics(),

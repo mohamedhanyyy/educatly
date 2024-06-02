@@ -16,21 +16,19 @@ import 'package:taskaty/features/admin/tasks/data/model/admin_tasks_model.dart';
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../config/theme/color_system/color_system_light.dart';
-import '../../../../../config/theme/styles_manager.dart';
-import '../../../../../core/constants/assets.dart';
 import '../../../../../core/services/validation/validation_service.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/network_image.dart';
 import '../../../add_task/presentation/widgets/custom_dropdown.dart';
-import '../widgets/admin_comments_widget.dart';
+import '../widgets/edit_task_appbar.dart';
 import '../widgets/edit_task_date_picker_widget.dart';
 import '../widgets/search_managers_bottomsheet.dart';
 
 class EditTaskScreen extends ConsumerStatefulWidget {
   final String editTaskId;
 
-  EditTaskScreen({required this.editTaskId, Key? key}) {}
+  EditTaskScreen({required this.editTaskId, Key? key});
 
   @override
   ConsumerState<EditTaskScreen> createState() => _EditTaskScreenState();
@@ -43,13 +41,11 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
 
   static final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   static final buttonKey = UniqueKey();
-  FocusNode focusNode = FocusNode();
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((time) {
       taskDetails = AdminTasksModel.fromJson(jsonDecode(widget.editTaskId));
-      setState(() {});
       taskTitleController.text = taskDetails.title ?? "";
       taskDetailsController.text = taskDetails.description ?? "";
       ref.read(editTaskControllerProvider.notifier).setData(
@@ -73,49 +69,13 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
     final controllerWatcher = ref.watch(editTaskControllerProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S().edit_task),
-        actions: [
-          Consumer(
-            builder: (_, ref, __) {
-              return Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: AppDefaultButton(
-                  borderRadius: 2,
-                  key: buttonKey,
-                  width: AppSizes.size80.w,
-                  height: AppSizes.size45.h,
-                  // borderColor: ColorSystemLight().primary,
-                  isBordered: true,
-                  text: S().edit,
-                  textColor: ColorSystemLight().scaffold,
-                  backgroundColor: ColorSystemLight().primary,
-                  onPressed: () {
-                    controller.setData(isSave: true);
-                    if (formKey.currentState!.validate()) {
-                      controller.editTask(
-                        title: taskTitleController.text,
-                        description: taskDetailsController.text,
-                        key: buttonKey,
-                      );
-                    }
-                  },
-                ),
-              );
-            },
-          )
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding:
-            EdgeInsets.only(top: AppSizes.size10.h, bottom: AppSizes.size10.h),
-        child: Form(
-          key: formKey,
-          autovalidateMode: AutovalidateMode.disabled,
-          child: Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.paddingOf(context).bottom,
-            ),
+        appBar: editTaskAppBar(controller, buttonKey, formKey,
+            taskTitleController.text, taskDetailsController.text),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: AppSizes.size10.h),
+          child: Form(
+            key: formKey,
+            autovalidateMode: AutovalidateMode.disabled,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -131,8 +91,9 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                   label: S().edit_task_details,
                   assignLabelWithHint: true,
                   controller: taskDetailsController,
-                  textInputAction: TextInputAction.next,
-                  maxLines: 4,
+                  textInputAction: TextInputAction.newline,
+                  type: TextInputType.multiline,
+                  maxLines: null,
                   validator: (value) => ValidationService.notEmptyField(value),
                 ),
                 AppSizes.size10.verticalSpace,
@@ -152,7 +113,6 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                 ),
                 AppSizes.size10.verticalSpace,
                 customDropDown(
-                  fontSize: 12,
                   title: controllerWatcher.statusId == null
                       ? S().status
                       : statusIdMapper(controllerWatcher.statusId),
@@ -189,55 +149,36 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                     function: () {
                       adminEditManagers(context, ref);
                     }),
-                if (controllerWatcher.selectedAssigne == null &&
-                    controllerWatcher.isSaveClick == true)
-                  Text(
-                    S().select_assignee,
-                    style: StylesManager.regular(
-                        color: AppColors.colors.error,
-                        fontSize: AppSizes.size12.sp),
-                  ),
                 AppSizes.size10.verticalSpace,
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: AppSizes.size6.w,
-                      vertical: AppSizes.size10.h),
-                  child: Text(S().editing_adding_subtask,
-                      style: StylesManager.semiBold(fontSize: AppSizes.size12)),
-                ),
                 AdminEditSubTask(),
-                Text(S().comments),
-                if (taskDetails.comments?.isNotEmpty == true)
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: taskDetails.comments!.map((e) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(vertical: 8.0),
-                          padding:
-                              EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Theme.of(context).scaffoldBackgroundColor,
-                              border: Border.all(
-                                  color:
-                                      Theme.of(context).secondaryHeaderColor)),
-                          child: Row(
-                            children: [
-                              SvgPicture.asset(Assets.icons.comments),
-                              AppSizes.size10.horizontalSpace,
-                              Flexible(child: Text(e.description!)),
-                            ],
-                          ),
-                        );
-                      }).toList()),
-                AppSizes.size50.verticalSpace
               ],
             ),
-          ),
-        ).defaultScreenPadding,
-      ),
-      bottomNavigationBar: AdminCommentsWidget(taskDetails),
-    );
+          ).defaultScreenPadding,
+        ),
+        bottomNavigationBar: Consumer(
+          builder: (_, ref, __) {
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+              child: AppDefaultButton(
+                borderRadius: 2,
+                key: buttonKey,
+                height: AppSizes.size50.h,
+                text: S().edit,
+                textColor: ColorSystemLight().scaffold,
+                backgroundColor: AppColors.colors.darkBlue,
+                onPressed: () {
+                  controller.setData(isSave: true);
+                  if (formKey.currentState!.validate()) {
+                    controller.editTask(
+                      title: taskTitleController.text,
+                      description: taskDetailsController.text,
+                      key: buttonKey,
+                    );
+                  }
+                },
+              ),
+            );
+          },
+        ));
   }
 }

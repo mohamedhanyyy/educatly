@@ -131,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "in_completed": MessageLookupByLibrary.simpleMessage("الغير مكتملة"),
         "in_date": MessageLookupByLibrary.simpleMessage("في"),
         "in_progress": MessageLookupByLibrary.simpleMessage("قيد التنفيذ"),
+        "in_progress_tasks":
+            MessageLookupByLibrary.simpleMessage("المهام قيد التنفيذ"),
         "invalid_date": MessageLookupByLibrary.simpleMessage("تاريخ غير صالح"),
         "language": MessageLookupByLibrary.simpleMessage("اللغة"),
         "last_month": MessageLookupByLibrary.simpleMessage("الشهر الماضي"),
@@ -216,6 +218,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset": MessageLookupByLibrary.simpleMessage("إعادة"),
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "search": MessageLookupByLibrary.simpleMessage("بحث"),
+        "search_by_task_name":
+            MessageLookupByLibrary.simpleMessage("ابحث باسم المهمة ..."),
         "seconds": MessageLookupByLibrary.simpleMessage("ثانية"),
         "section_name": MessageLookupByLibrary.simpleMessage("اسم القسم"),
         "section_name_required":
@@ -258,8 +262,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "task_details": MessageLookupByLibrary.simpleMessage("تفاصيل المهمة"),
         "task_edited_successfully":
             MessageLookupByLibrary.simpleMessage("تم تعديل المهمة بنجاح!"),
-        "task_name_or_user_name":
-            MessageLookupByLibrary.simpleMessage("اسم المهمة أو اسم المستخدم"),
+        "task_name": MessageLookupByLibrary.simpleMessage("اسم المهمة"),
         "task_title": MessageLookupByLibrary.simpleMessage("عنوان المهمة"),
         "tasks": MessageLookupByLibrary.simpleMessage("المهام"),
         "tasks_required":
@@ -280,6 +283,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم إضافة المستخدم بنجاح"),
         "user_deleted_successfully":
             MessageLookupByLibrary.simpleMessage("تم حذف المستخدم بنجاح"),
+        "user_image": MessageLookupByLibrary.simpleMessage("صورة المستخدم"),
         "user_type": MessageLookupByLibrary.simpleMessage("نوع المستخدم"),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "username_not_valid":

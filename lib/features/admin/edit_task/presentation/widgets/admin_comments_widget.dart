@@ -31,78 +31,72 @@ class AdminCommentsWidget extends ConsumerWidget {
           showModalBottomSheet(
               showDragHandle: true,
               context: context,
-              builder: (context) => Container(
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Row(
-                          children: [
-                            Flexible(
-                              child: SizedBox(
-                                height: 40,
-                                child: CustomTextInputField(
-                                  label: S().add_comment,
-                                  controller: commentsController,
-                                ),
-                              ),
+              builder: (context) => Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        children: [
+                          Flexible(
+                            child: CustomTextInputField(
+                              label: S().add_comment,
+                              controller: commentsController,
                             ),
-                            AppSizes.size5.horizontalSpace,
-                            Consumer(
-                              builder: (_, ref, __) {
-                                return AppDefaultButton(
-                                    borderRadius: 2,
-                                    key: commentButtonKey,
-                                    width: AppSizes.size50.w,
-                                    height: AppSizes.size45.h,
-                                    borderColor: ColorSystemLight().primary,
-                                    isBordered: true,
-                                    child: SvgPicture.asset(Assets.icons.send),
-                                    textColor: ColorSystemLight().scaffold,
-                                    backgroundColor: ColorSystemLight().primary,
-                                    onPressed: () {
-                                      if (commentsController.text == '') return;
-                                      taskDetails.comments?.add(Comments(
-                                          description:
-                                              commentsController.text));
-                                      ref
-                                          .read(addCommentControllerProvider
-                                              .notifier)
-                                          .addComment(
-                                              key: commentButtonKey,
-                                              comment: commentsController.text,
-                                              taskId: taskDetails.id.toString(),
-                                              ref: ref);
-                                      commentsController.clear();
-                                    });
-                              },
-                            )
-                          ],
-                        ),
+                          ),
+                          AppSizes.size5.horizontalSpace,
+                          Consumer(
+                            builder: (_, ref, __) {
+                              return AppDefaultButton(
+                                  borderRadius: 2,
+                                  key: commentButtonKey,
+                                  width: AppSizes.size50.w,
+                                  height: AppSizes.size45.h,
+                                  borderColor: ColorSystemLight().primary,
+                                  isBordered: true,
+                                  child: SvgPicture.asset(Assets.icons.send),
+                                  textColor: ColorSystemLight().scaffold,
+                                  backgroundColor: ColorSystemLight().primary,
+                                  onPressed: () {
+                                    if (commentsController.text == '') return;
+                                    taskDetails.comments?.add(Comments(
+                                        description: commentsController.text));
+                                    ref
+                                        .read(addCommentControllerProvider
+                                            .notifier)
+                                        .addComment(
+                                            key: commentButtonKey,
+                                            comment: commentsController.text,
+                                            taskId: taskDetails.id.toString(),
+                                            ref: ref);
+                                    commentsController.clear();
+                                  });
+                            },
+                          )
+                        ],
                       ),
                     ),
                   ));
         },
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Consumer(
-              builder: (_, ref, __) {
-                return AppDefaultButton(
-                  borderRadius: 2,
-                  key: commentButtonKey,
-                  width: AppSizes.size50.w,
-                  height: AppSizes.size45.h,
-                  borderColor: ColorSystemLight().primary,
-                  isBordered: true,
-                  child: SvgPicture.asset(Assets.icons.send),
-                  textColor: ColorSystemLight().scaffold,
-                  backgroundColor: ColorSystemLight().primary,
-                  onPressed: () {},
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(S().add_comment),
             ),
-            AppSizes.size10.horizontalSpace,
-            Text(S().add_comment),
+            Container(
+              key: commentButtonKey,
+              width: AppSizes.size45.w,
+              height: AppSizes.size45.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: ColorSystemLight().primary,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(Assets.icons.send),
+              ),
+            ),
           ],
         ),
       ),

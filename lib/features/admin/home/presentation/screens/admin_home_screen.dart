@@ -69,10 +69,11 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: SvgPicture.asset(
-                                  Assets.icons.category,
-                                  width: index == 0 ? 25 : 20,
-                                  height: index == 0 ? 25 : 20,
+                                child: Icon(
+                                  Icons.home_outlined,
+                                  size: index == 0 ? 35 : 25,
+                                  color: Colors.white,
+                                  // height: index == 0 ? 25 : 20,
                                 ),
                               ),
                             ),
@@ -86,8 +87,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: SvgPicture.asset(
                                   Assets.icons.setting,
-                                  width: index == 1 ? 25 : 20,
-                                  height: index == 1 ? 25 : 20,
+                                  width: index == 1 ? 28 : 23,
+                                  height: index == 1 ? 28 : 23,
                                 ),
                               ),
                             ),

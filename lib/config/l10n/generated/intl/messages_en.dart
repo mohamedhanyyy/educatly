@@ -129,6 +129,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "in_completed": MessageLookupByLibrary.simpleMessage("In-completed"),
         "in_date": MessageLookupByLibrary.simpleMessage("in"),
         "in_progress": MessageLookupByLibrary.simpleMessage("In progress"),
+        "in_progress_tasks":
+            MessageLookupByLibrary.simpleMessage("In progress tasks"),
         "invalid_date": MessageLookupByLibrary.simpleMessage("Invalid date"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "last_month": MessageLookupByLibrary.simpleMessage("Last month"),
@@ -210,6 +212,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "reset": MessageLookupByLibrary.simpleMessage("Reset"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "search": MessageLookupByLibrary.simpleMessage("Search"),
+        "search_by_task_name":
+            MessageLookupByLibrary.simpleMessage("Search by task name..."),
         "seconds": MessageLookupByLibrary.simpleMessage("Seconds"),
         "section_name": MessageLookupByLibrary.simpleMessage("Section name"),
         "section_name_required":
@@ -252,8 +256,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "task_details": MessageLookupByLibrary.simpleMessage("Task details"),
         "task_edited_successfully":
             MessageLookupByLibrary.simpleMessage("Task edited successfully!"),
-        "task_name_or_user_name":
-            MessageLookupByLibrary.simpleMessage("Task name or user name"),
+        "task_name": MessageLookupByLibrary.simpleMessage("Task name"),
         "task_title": MessageLookupByLibrary.simpleMessage("Task title"),
         "tasks": MessageLookupByLibrary.simpleMessage("Tasks"),
         "tasks_required":
@@ -274,6 +277,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("User added successfully"),
         "user_deleted_successfully":
             MessageLookupByLibrary.simpleMessage("User deleted successfully"),
+        "user_image": MessageLookupByLibrary.simpleMessage("User image"),
         "user_type": MessageLookupByLibrary.simpleMessage("User type"),
         "username": MessageLookupByLibrary.simpleMessage("User name"),
         "username_not_valid":

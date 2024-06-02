@@ -196,7 +196,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                       onChanged: (val) {
                         reader.setData(searchText: val);
                       },
-                      label: S().task_name_or_user_name,
+                      label: S().search_by_task_name,
                       prefix: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: SvgPicture.asset('assets/icons/search1.svg',

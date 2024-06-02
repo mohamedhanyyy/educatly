@@ -21,7 +21,9 @@ class AddTaskCommentsWidget extends ConsumerWidget {
             ref.read(addTaskControllerProvider.notifier).setData(comment: val);
           },
           label: S().write_comment,
-          maxLines: 3,
+          maxLines: null,
+          type: TextInputType.multiline,
+          textInputAction: TextInputAction.newline,
         ),
         AppSizes.size16.verticalSpace,
       ],

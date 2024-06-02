@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,13 +33,6 @@ Future<void> main() async {
       ),
     ),
   );
-}
-
-refreshToken() async {
-  Response? response = await DioHelper.getData(url: 'url');
-  if (response?.data['date']) {
-    PreferencesHelper.saveToken(token: response?.data['token']);
-  }
 }
 
 //   "email": "superadmin@domain.com",

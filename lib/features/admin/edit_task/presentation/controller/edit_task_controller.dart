@@ -11,6 +11,7 @@ import 'package:taskaty/core/constants/assets.dart';
 import 'package:taskaty/core/helpers/toast_helper.dart';
 import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
 import 'package:taskaty/features/admin/get_managers/data/model/get_managers_model.dart';
+import 'package:taskaty/features/shared/auth/login/presentation/controller/login_model.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/router/app_router.dart';
@@ -134,16 +135,20 @@ class EditTaskController extends _$EditTaskController {
           .toList(),
       "comments": state.comments!.map((e) => {"description": '${e}'}).toList(),
     });
-    if (response?.statusCode == 200) {
+
+    if (response?.data['statusCode'] <= 204) {
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-      ref.invalidate(getAdminTasksControllerProvider);
       showModalBottomSheet(
           context: AppRouter.navigatorState.currentContext!,
           builder: (context) {
             return DoneBottomSheet(message: S().task_edited_successfully);
           });
+      ref.invalidate(getAdminTasksControllerProvider);
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
+      LoginModel loginModel = LoginModel.fromJson(response?.data);
+      if (loginModel.errors != null)
+        Toast.showErrorToast('${loginModel.errors?.first}');
     }
   }
 

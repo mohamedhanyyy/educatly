@@ -198,9 +198,8 @@ class AppRouter {
       GoRoute(
           path: AppRoutes.taskaDetails,
           name: AppRoutes.taskaDetails,
-          builder: (context, state) => AdminTaskDetails(
-              taskaDetails:
-                  state.uri.queryParameters[AppRouterKeys.taskaDetails]!)),
+          builder: (context, state) => AdminTaskDetailsScreen(
+              task: state.uri.queryParameters[AppRouterKeys.taskaDetails]!)),
 
       ///? Main
       StatefulShellRoute.indexedStack(

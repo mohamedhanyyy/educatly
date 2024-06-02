@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taskaty/config/theme/color_system/app_colors.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
+import 'package:taskaty/core/constants/constants.dart';
 import 'package:taskaty/core/extensions/iterator_extension.dart';
 import 'package:taskaty/core/helpers/mappers.dart';
 
@@ -16,28 +17,29 @@ import '../../../../manager/tasks/presentation/widgets/description/description_w
 import '../../../../manager/tasks/presentation/widgets/details/task_details.dart';
 import '../../../../manager/tasks/presentation/widgets/info/task_info.dart';
 import '../../../edit_task/presentation/controller/edit_task_controller.dart';
+import '../../../edit_task/presentation/widgets/admin_comments_widget.dart';
 import '../../../edit_task/presentation/widgets/delete_task_widget.dart';
 import '../../../tasks/data/model/admin_tasks_model.dart';
 
-class AdminTaskDetails extends ConsumerStatefulWidget {
-  AdminTaskDetails({super.key, required this.taskaDetails});
+class AdminTaskDetailsScreen extends ConsumerStatefulWidget {
+  AdminTaskDetailsScreen({super.key, required this.task});
 
-  final String taskaDetails;
+  final String task;
   static final buttonKey = UniqueKey();
 
   @override
-  ConsumerState<AdminTaskDetails> createState() => _AdminTaskDetailsState();
+  ConsumerState<AdminTaskDetailsScreen> createState() =>
+      _AdminTaskDetailsState();
 }
 
-class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
+class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
   int progressCount = 0;
+  late AdminTasksModel taskDetails;
   @override
   void initState() {
     super.initState();
+    taskDetails = AdminTasksModel.fromJson(jsonDecode(widget.task));
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      AdminTasksModel taskDetails =
-          AdminTasksModel.fromJson(jsonDecode(widget.taskaDetails));
-
       taskDetails.subTasks!.map((e) {
         if (e.isCompleted!) progressCount++;
       }).toList();
@@ -45,6 +47,8 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
             selectedPriority: (taskDetails.priorityId),
             taskTitle: taskDetails.title,
             taskId: taskDetails.id,
+            selectedAssigne: taskDetails.user,
+            comments: taskDetails.comments,
             statusId: taskDetails.statusId,
             tasks: taskDetails.subTasks,
             taskDescription: taskDetails.description,
@@ -56,8 +60,6 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
 
   @override
   Widget build(BuildContext context) {
-    AdminTasksModel taskDetails =
-        AdminTasksModel.fromJson(jsonDecode(widget.taskaDetails));
     final watcher = ref.watch(editTaskControllerProvider);
     return Scaffold(
       appBar: AppBar(
@@ -86,7 +88,8 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
             ),
             TaskInfoWidget(
               userName: '${taskDetails.userName}',
-              userImage: 'taskDetails',
+              userImage:
+                  '${AppConstants.subDomain}${taskDetails.user?.imageName}',
               endDate: DateTime.parse(taskDetails.endDate!),
               startDate: DateTime.parse(taskDetails.startDate!),
             ),
@@ -138,27 +141,25 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: taskDetails.comments!.map((e) {
                         return Container(
-                          margin: const EdgeInsets.only(bottom: 10, top: 2),
+                          margin: const EdgeInsets.symmetric(vertical: 8.0),
                           padding:
                               EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                           width: double.infinity,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
+                              color: Theme.of(context).scaffoldBackgroundColor,
                               border: Border.all(
-                                  color: Theme.of(context).highlightColor),
-                              color: Theme.of(context).scaffoldBackgroundColor),
+                                  color:
+                                      Theme.of(context).secondaryHeaderColor)),
                           child: Row(
                             children: [
-                              SvgPicture.asset(
-                                Assets.icons.comments,
-                                // color: Theme.of(context).primaryColor,
-                              ),
+                              SvgPicture.asset(Assets.icons.comments),
                               AppSizes.size10.horizontalSpace,
                               Flexible(child: Text(e.description!)),
                             ],
                           ),
                         );
-                      }).toList())
+                      }).toList()),
               ],
             ),
           ].addSeparator(child: AppSizes.size20.verticalSpace).toList(),
@@ -167,6 +168,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetails> {
           horizontal: AppSizes.size10.w,
         ),
       ),
+      bottomNavigationBar: AdminCommentsWidget(taskDetails),
     );
   }
 }

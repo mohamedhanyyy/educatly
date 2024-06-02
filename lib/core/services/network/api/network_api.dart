@@ -4,7 +4,6 @@ class Api {
 
   /// Auth
   static const String login = "Authentication/Login";
-  static const String logout = "Authentication/Revoke";
   static const String verifyOtp = "Authentication/VerifyOtp";
   static const String resetPassword = "Authentication/ResetPassword";
   static const String forgetPassword = "Authentication/ForgetPassword";
@@ -13,7 +12,6 @@ class Api {
 
   /// Pages
   static const String privacyPolicy = "PrivacyPolicy";
-  static const String dashboard = "user/getUserDash";
   static const String statistics = "StatisticsTasks";
 
   ///Task
@@ -21,7 +19,6 @@ class Api {
   static const String updateSubTask = "Tasks/UpdateSubTasksStatus";
 
   /// Edit Profile
-  static const String user = "Authentication/GetUserProfile";
   static const String updateProfile = "Authentication/Profile";
   static const String changePassword = "Authentication/ChangePassword";
 

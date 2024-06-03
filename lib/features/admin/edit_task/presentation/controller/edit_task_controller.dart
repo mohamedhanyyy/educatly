@@ -131,7 +131,8 @@ class EditTaskController extends _$EditTaskController {
       "startDate": '${state.startDate}'.replaceAll(' ', 'T'),
       "endDate": '${state.endDate}'.replaceAll(' ', 'T'),
       "subTasks": state.subTasks!
-          .map((e) => {"description": '${e.description}'})
+          .map((e) =>
+              {"description": '${e.description}', 'isCompleted': e.isCompleted})
           .toList(),
       "comments": state.comments!.map((e) => {"description": '${e}'}).toList(),
     });

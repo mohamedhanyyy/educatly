@@ -44,6 +44,7 @@ class AdminEditSubTask extends ConsumerWidget {
               child: CustomTextInputField(
                 errorText: '',
                 label: null,
+                enabled: e.isCompleted == true ? false : true,
                 prefix: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Icon(Icons.task_alt,

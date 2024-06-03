@@ -250,6 +250,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sub_task_details":
             MessageLookupByLibrary.simpleMessage("تفاصيل المهمة الفرعية "),
         "subtasks": MessageLookupByLibrary.simpleMessage("المهام الفرعية"),
+        "subtasks_click_to_select": MessageLookupByLibrary.simpleMessage(
+            "المهام الفرعية ( اضغط لتغيير الحالة )"),
         "subtasks_empty":
             MessageLookupByLibrary.simpleMessage("المهام الفرعية فارغة"),
         "super_admin": MessageLookupByLibrary.simpleMessage("مدير النظام"),

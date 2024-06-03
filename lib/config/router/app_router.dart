@@ -6,10 +6,10 @@ import 'package:taskaty/features/admin/home/presentation/screens/admin_home_scre
 import 'package:taskaty/features/admin/home/presentation/screens/admin_main_screen.dart';
 import 'package:taskaty/features/admin/task_details/presentation/screens/admin_task_details.dart';
 import 'package:taskaty/features/admin/tasks/presentation/screens/admin_tasks_screen.dart';
+import 'package:taskaty/features/manager/home/presentation/screens/manager_home_screen.dart';
 import 'package:taskaty/features/manager/tasks/presentation/screens/manager_tasks.dart';
 
 import '../../core/services/database/preferences_helper.dart';
-import '../../core/widgets/main_page.dart';
 import '../../features/admin/add_task/presentation/screens/add_task.dart';
 import '../../features/admin/add_user/presentation/screens/admin_screen.dart';
 import '../../features/admin/add_user/presentation/screens/super_admin_screen.dart';
@@ -204,7 +204,7 @@ class AppRouter {
       ///? Main
       StatefulShellRoute.indexedStack(
         builder: (_, __, navigationShell) {
-          return MainScreen(navigationShell: navigationShell);
+          return ManagerHomeScreen(navigationShell: navigationShell);
         },
         branches: [
           ///? Home

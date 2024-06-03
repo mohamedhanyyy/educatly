@@ -13,7 +13,6 @@ class TaskDetailsWidget extends StatelessWidget {
   final int priority;
   final String statusId;
   final double progressCount;
-  final String departmentTag;
 
   const TaskDetailsWidget({
     super.key,
@@ -21,7 +20,6 @@ class TaskDetailsWidget extends StatelessWidget {
     required this.statusId,
     required this.priority,
     required this.progressCount,
-    required this.departmentTag,
   });
 
   @override

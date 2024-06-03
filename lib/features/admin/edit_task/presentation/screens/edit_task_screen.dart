@@ -155,30 +155,26 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
             ),
           ).defaultScreenPadding,
         ),
-        bottomNavigationBar: Consumer(
-          builder: (_, ref, __) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-              child: AppDefaultButton(
-                borderRadius: 2,
-                key: buttonKey,
-                height: AppSizes.size50.h,
-                text: S().edit,
-                textColor: ColorSystemLight().scaffold,
-                backgroundColor: AppColors.colors.darkBlue,
-                onPressed: () {
-                  controller.setData(isSave: true);
-                  if (formKey.currentState!.validate()) {
-                    controller.editTask(
-                      title: taskTitleController.text,
-                      description: taskDetailsController.text,
-                      key: buttonKey,
-                    );
-                  }
-                },
-              ),
-            );
-          },
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+          child: AppDefaultButton(
+            borderRadius: 2,
+            key: buttonKey,
+            height: AppSizes.size50.h,
+            text: S().edit,
+            textColor: ColorSystemLight().scaffold,
+            backgroundColor: AppColors.colors.darkBlue,
+            onPressed: () {
+              controller.setData(isSave: true);
+              if (formKey.currentState!.validate()) {
+                controller.editTask(
+                  title: taskTitleController.text,
+                  description: taskDetailsController.text,
+                  key: buttonKey,
+                );
+              }
+            },
+          ),
         ));
   }
 }

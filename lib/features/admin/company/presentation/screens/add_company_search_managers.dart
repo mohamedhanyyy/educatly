@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/constants/constants.dart';
+import 'package:taskaty/core/widgets/loading_widget.dart';
 import 'package:taskaty/features/admin/company/presentation/controller/add_company_controller.dart';
 import 'package:taskaty/features/admin/get_managers/presentation/controller/get_managers_controller.dart';
 
@@ -40,8 +41,8 @@ class AddCompanySearchManagers extends ConsumerWidget {
     return ref
         .watch(getManagersControllerProvider)
         .when(
-            loading: () => Center(child: CircularProgressIndicator.adaptive()),
-            error: (error, stackTrace) => RefreshWidget(
+            loading: () => CustomLoadingWidget(),
+            error: (error, _) => RefreshWidget(
                 onTap: () async =>
                     await ref.refresh(getManagersControllerProvider)),
             data: (managers) {
@@ -61,15 +62,12 @@ class AddCompanySearchManagers extends ConsumerWidget {
                   if (watcher.searchManagerList?.isEmpty == true)
                     Flexible(
                       child: ListView.separated(
-                        separatorBuilder: (context, index) {
-                          return AppSizes.size10.verticalSpace;
-                        },
+                        separatorBuilder: (context, index) =>
+                            AppSizes.size10.verticalSpace,
                         itemBuilder: (context, index) {
                           return ListTile(
                             onTap: () {
-                              ref
-                                  .read(addCompanyControllerProvider.notifier)
-                                  .setData(selectedManager: managers[index]);
+                              reader.setData(selectedManager: managers[index]);
                               AppRouter.router.pop();
                             },
                             leading: Container(
@@ -107,12 +105,10 @@ class AddCompanySearchManagers extends ConsumerWidget {
                         itemBuilder: (context, index) {
                           return ListTile(
                             onTap: () {
-                              ref
-                                  .read(addCompanyControllerProvider.notifier)
-                                  .setData(
-                                      selectedManager: ref
-                                          .watch(addCompanyControllerProvider)
-                                          .searchManagerList?[index]);
+                              reader.setData(
+                                  selectedManager: ref
+                                      .watch(addCompanyControllerProvider)
+                                      .searchManagerList?[index]);
                               AppRouter.router.pop();
                             },
                             leading: Container(
@@ -138,7 +134,6 @@ class AddCompanySearchManagers extends ConsumerWidget {
                           );
                         },
                         itemCount: watcher.searchManagerList?.length ?? 0,
-                        // shrinkWrap: true,
                         physics: const BouncingScrollPhysics(),
                       ),
                     )

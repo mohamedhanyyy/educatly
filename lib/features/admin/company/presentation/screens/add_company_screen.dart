@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:taskaty/config/router/app_router.dart';
 import 'package:taskaty/config/theme/color_system/app_colors.dart';
 import 'package:taskaty/config/theme/styles_manager.dart';
 
@@ -43,9 +42,7 @@ class _AddCompanyScreenState extends ConsumerState<AddCompanyScreen> {
     final controllerWatcher = ref.watch(addCompanyControllerProvider);
     final controllerReader = ref.read(addCompanyControllerProvider.notifier);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S().add_company),
-      ),
+      appBar: AppBar(title: Text(S().add_company)),
       body: Form(
         key: formKey,
         child: SingleChildScrollView(
@@ -67,6 +64,9 @@ class _AddCompanyScreenState extends ConsumerState<AddCompanyScreen> {
               ),
               AppSizes.size10.verticalSpace,
               CustomTextInputField(
+                maxLines: null,
+                textInputAction: TextInputAction.newline,
+                type: TextInputType.multiline,
                 label: S().company_address,
                 controller: addressController,
                 suffix: Padding(
@@ -169,55 +169,28 @@ class _AddCompanyScreenState extends ConsumerState<AddCompanyScreen> {
                   ),
                 ),
               ),
-              AppSizes.size70.verticalSpace,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: AppSizes.size26.w),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Consumer(
-                        builder: (_, ref, __) {
-                          return AppDefaultButton(
-                            key: buttonKey,
-                            text: S().add,
-                            radius: 15,
-                            width: ScreenUtil().screenWidth,
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                controllerReader.addCompany(
-                                  key: buttonKey,
-                                  address: addressController.text,
-                                  arabicName: arabicNameController.text,
-                                  englishName: englishNameController.text,
-                                  companyLogo: file,
-                                  managerId:
-                                      controllerWatcher.selectedManager!.id!,
-                                );
-                              }
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                    AppSizes.size30.horizontalSpace,
-                    Flexible(
-                      child: AppDefaultButton(
-                          text: S().cancel,
-                          borderRadius: 2,
-                          isBordered: true,
-                          radius: 15,
-                          textColor: AppColors.colors.primary,
-                          borderColor: Colors.blue,
-                          backgroundColor: Colors.white,
-                          onPressed: () {
-                            AppRouter.router.pop();
-                          }),
-                    )
-                  ],
-                ),
-              ),
             ],
           ).horizontalScreenPadding,
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(10),
+        child: AppDefaultButton(
+          key: buttonKey,
+          text: S().add,
+          backgroundColor: AppColors.colors.darkBlue,
+          onPressed: () {
+            if (formKey.currentState!.validate()) {
+              controllerReader.addCompany(
+                key: buttonKey,
+                address: addressController.text,
+                arabicName: arabicNameController.text,
+                englishName: englishNameController.text,
+                companyLogo: file,
+                managerId: controllerWatcher.selectedManager!.id!,
+              );
+            }
+          },
         ),
       ),
     );

@@ -49,7 +49,6 @@ class AdminScreen extends ConsumerWidget {
                 child: Column(
                   children: [
                     CustomTextInputField(
-                      maxLength: 10,
                       label: S().username,
                       controller: userNameController,
                       textInputAction: TextInputAction.next,
@@ -107,7 +106,6 @@ class AdminScreen extends ConsumerWidget {
                     ),
                     AppSizes.size10.verticalSpace,
                     CustomTextInputField(
-                      maxLength: 10,
                       label: S().full_name,
                       controller: fullNameController,
                       textInputAction: TextInputAction.next,
@@ -143,28 +141,24 @@ class AdminScreen extends ConsumerWidget {
                     //       showSearchCompanyBottomSheetContent(context, ref);
                     //     }),
                     AppSizes.size20.verticalSpace,
-                    Consumer(
-                      builder: (_, ref, __) {
-                        return AppDefaultButton(
-                          key: buttonKey,
-                          text: S().add_user,
-                          width: ScreenUtil().screenWidth,
-                          onPressed: () async {
-                            if (formKey.currentState!.validate()) {
-                              await ref
-                                  .read(adminControllerProvider.notifier)
-                                  .addUser(
-                                      key: buttonKey,
-                                      fullName: fullNameController.text,
-                                      userName: userNameController.text,
-                                      password: passwordController.text,
-                                      email: emailController.text,
-                                      userTypeModel: ref
-                                          .read(adminControllerProvider)
-                                          .userType);
-                            }
-                          },
-                        );
+                    AppDefaultButton(
+                      key: buttonKey,
+                      text: S().add_user,
+                      width: ScreenUtil().screenWidth,
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          await ref
+                              .read(adminControllerProvider.notifier)
+                              .addUser(
+                                  key: buttonKey,
+                                  fullName: fullNameController.text,
+                                  userName: userNameController.text,
+                                  password: passwordController.text,
+                                  email: emailController.text,
+                                  userTypeModel: ref
+                                      .read(adminControllerProvider)
+                                      .userType);
+                        }
                       },
                     ),
                   ],

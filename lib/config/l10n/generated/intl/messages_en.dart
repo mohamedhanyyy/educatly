@@ -244,6 +244,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sub_task_details":
             MessageLookupByLibrary.simpleMessage("Subtask details"),
         "subtasks": MessageLookupByLibrary.simpleMessage("Subtasks"),
+        "subtasks_click_to_select": MessageLookupByLibrary.simpleMessage(
+            "Subtasks ( Click to change status )"),
         "subtasks_empty":
             MessageLookupByLibrary.simpleMessage("Subtasks empty"),
         "super_admin": MessageLookupByLibrary.simpleMessage("System admin"),

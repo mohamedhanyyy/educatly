@@ -1820,6 +1820,16 @@ class S {
     );
   }
 
+  /// `Subtasks ( Click to change status )`
+  String get subtasks_click_to_select {
+    return Intl.message(
+      'Subtasks ( Click to change status )',
+      name: 'subtasks_click_to_select',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Two weeks ago`
   String get two_weeks_ago {
     return Intl.message(

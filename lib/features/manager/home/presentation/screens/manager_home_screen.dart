@@ -8,27 +8,36 @@ import 'package:taskaty/core/constants/assets.dart';
 import 'package:taskaty/core/controllers/theme/theme_controller.dart';
 import 'package:taskaty/core/services/database/preferences_helper.dart';
 
-import '../../config/router/app_router.dart';
+import '../../../../../config/router/app_router.dart';
 
-class MainScreen extends StatelessWidget {
+class ManagerHomeScreen extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
 
-  const MainScreen({
+  ManagerHomeScreen({
     Key? key,
     required this.navigationShell,
   }) : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
 
+  @override
+  State<ManagerHomeScreen> createState() => _ManagerHomeScreenState();
+}
+
+class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
+  int index = 0;
+
   void _goBranch(int index) {
-    navigationShell.goBranch(
+    this.index = index;
+    setState(() {});
+    widget.navigationShell.goBranch(
       index,
-      initialLocation: index == navigationShell.currentIndex,
+      initialLocation: index == widget.navigationShell.currentIndex,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: navigationShell,
+      body: widget.navigationShell,
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(bottom: 6, top: 6),
         child: Container(
@@ -59,7 +68,11 @@ class MainScreen extends StatelessWidget {
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: SvgPicture.asset(Assets.icons.category),
+                              child: Icon(
+                                Icons.home_outlined,
+                                color: Colors.white,
+                                size: index == 0 ? 35 : 28,
+                              ),
                             ),
                           ),
                         ),
@@ -70,7 +83,11 @@ class MainScreen extends StatelessWidget {
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: SvgPicture.asset(Assets.icons.setting),
+                              child: Icon(
+                                Icons.settings,
+                                size: index == 1 ? 35 : 28,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

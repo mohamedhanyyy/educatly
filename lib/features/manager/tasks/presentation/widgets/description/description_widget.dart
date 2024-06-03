@@ -26,9 +26,7 @@ class DescriptionWidget extends StatelessWidget {
         AppSizes.size10.verticalSpace,
         Text(
           description,
-          style: StylesManager.regular(
-            fontSize: AppFonts.font.medium.sp,
-          ),
+          style: StylesManager.regular(fontSize: AppFonts.font.medium.sp),
         ),
       ],
     );

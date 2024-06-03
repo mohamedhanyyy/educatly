@@ -84,7 +84,6 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
               title: '${taskDetails.title}',
               priority: taskDetails.priorityId!,
               progressCount: progressCount / taskDetails.subTasks!.length,
-              departmentTag: '${taskDetails.description}',
             ),
             TaskInfoWidget(
               userName: '${taskDetails.userName}',

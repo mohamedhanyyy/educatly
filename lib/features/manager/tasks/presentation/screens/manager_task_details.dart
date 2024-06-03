@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:taskaty/config/theme/color_system/app_colors.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
+import 'package:taskaty/core/constants/constants.dart';
 import 'package:taskaty/core/extensions/iterator_extension.dart';
 import 'package:taskaty/core/helpers/mappers.dart';
 import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
@@ -18,6 +18,7 @@ import 'package:taskaty/features/manager/home/presentation/controller/all_tasks/
 import 'package:taskaty/features/manager/home/presentation/controller/dashboard_controller.dart';
 import 'package:taskaty/features/manager/home/presentation/controller/filters_controller.dart';
 import 'package:taskaty/features/manager/tasks/presentation/widgets/add_comment.dart';
+import 'package:taskaty/features/manager/tasks/presentation/widgets/comments_widget.dart';
 import 'package:taskaty/features/manager/tasks/presentation/widgets/sub_tasks_widget.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
@@ -67,48 +68,26 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
       body: SingleChildScrollView(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
           TaskDetailsWidget(
             title: '${taskDetails.title}',
             priority: taskDetails.priorityId!,
             statusId: statusIdMapper(taskDetails.statusId),
             progressCount: progress,
-            departmentTag: '${taskDetails.description}',
           ),
           TaskInfoWidget(
             userName: '${taskDetails.userName}',
-            userImage: 'taskDetails',
+            userImage:
+                '${AppConstants.subDomain}${taskDetails.user?.imageName}',
             endDate: DateTime.parse(taskDetails.endDate!),
             startDate: DateTime.parse(taskDetails.startDate!),
           ),
           DescriptionWidget(description: '${taskDetails.description}'),
-          TaskHeadLineWidget(title: S().subtasks, icon: Assets.icons.subtasks),
-          if (taskDetails.subTasks!.isNotEmpty)
-            ManagerSubTaskWidget(taskDetails: taskDetails, selected: selected),
+          TaskHeadLineWidget(
+              title: S().subtasks_click_to_select, icon: Assets.icons.subtasks),
+          ManagerSubTaskWidget(taskDetails: taskDetails, selected: selected),
           Text(S().comments),
-          if (taskDetails.comments?.isNotEmpty == true)
-            Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: taskDetails.comments!.map((e) {
-                  return Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border:
-                            Border.all(color: Theme.of(context).highlightColor),
-                        color: Theme.of(context).scaffoldBackgroundColor),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset(Assets.icons.comments),
-                        AppSizes.size10.horizontalSpace,
-                        Flexible(child: Text(e.description!)),
-                      ],
-                    ),
-                  );
-                }).toList()),
+          ManagerCommentsWidget(tasksModel: taskDetails),
           ManagerAddCommentWidget(taskDetails),
         ].addSeparator(child: AppSizes.size10.verticalSpace).toList(),
       ).paddingSymmetric(
@@ -122,12 +101,9 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
             ref
                 .read(buttonControllerProvider.notifier)
                 .setLoadingStatus(widget.buttonKey);
-
             final subTasksLength = taskDetails.subTasks!.length;
             final selectedLength = selected.length;
-
             final commonLength = min(subTasksLength, selectedLength);
-
             List<SubTasks> list = [];
             for (int i = 0; i < commonLength; i++) {
               list.add(SubTasks(

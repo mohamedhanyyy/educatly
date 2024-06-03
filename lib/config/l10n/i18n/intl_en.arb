@@ -178,6 +178,7 @@
   "manager_name": "Manager name",
   "user_deleted_successfully": "User deleted successfully",
   "add_super_admin": "Add super admin",
+  "subtasks_click_to_select": "Subtasks ( Click to change status )",
   "two_weeks_ago": "Two weeks ago",
   "user_added_successfully": "User added successfully",
   "login_again": "Login again",

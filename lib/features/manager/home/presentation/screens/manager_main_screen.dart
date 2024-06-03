@@ -30,7 +30,8 @@ class _HomeScreenState extends ConsumerState<ManagerMainScreen> {
     super.initState();
     cubit = context.read<ManagerStatisticsCubit>();
     cubit.getManagerStatistics();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(Duration(milliseconds: 500));
       ref
           .watch(calenderControllerProvider.notifier)
           .animateToSelectedDate(_controller);

@@ -114,6 +114,7 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
                 data: list.map((e) {
                   return {'id': e.id, 'isCompleted': e.isCompleted};
                 }).toList());
+
             if (response?.statusCode == 200) {
               ref
                   .read(buttonControllerProvider.notifier)

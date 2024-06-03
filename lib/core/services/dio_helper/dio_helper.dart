@@ -56,7 +56,10 @@ class DioHelper {
       log('RESPONSE STATUS CODE:${response?.statusCode}');
       log('RESPONSE DATA:${response?.data}');
       log('RESPONSE REQUEST OPTIONS:${response?.requestOptions.data}');
-
+      if (response?.statusCode != 200) {
+        LoginModel loginModel = LoginModel.fromJson(response?.data);
+        Toast.showErrorToast(loginModel.errors?.first ?? 'error happened');
+      }
       return response;
     } catch (e) {
       log('$e');
@@ -76,7 +79,10 @@ class DioHelper {
       log('RESPONSE STATUS CODE:${response?.headers}');
       log('RESPONSE DATA:${response?.data}');
       log('RESPONSE REQUEST OPTIONS:${response?.requestOptions.data}');
-
+      if (response!.statusCode! > 202) {
+        LoginModel loginModel = LoginModel.fromJson(response.data);
+        Toast.showErrorToast(loginModel.errors?.first ?? 'error happened');
+      }
       return response;
     } catch (e) {
       log('$e');

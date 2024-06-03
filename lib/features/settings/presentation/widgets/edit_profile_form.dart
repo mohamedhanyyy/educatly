@@ -50,24 +50,19 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
       autovalidateMode: AutovalidateMode.always,
       child: Column(
         children: [
-          // ? Avatar
           EditAvatarWidget().paddingSymmetric(vertical: AppSizes.size20.h),
-          // ? Name
           CustomTextInputField(
             label: S().name,
             controller: _nameController,
             onChanged: (value) => setState(() => _canUpdate()),
             validator: (value) => ValidationService.nameValidation(value),
           ),
-          // ? Email
           CustomTextInputField(
             label: S().email,
             controller: _emailController,
             onChanged: (value) => setState(() => _canUpdate()),
             validator: (value) => ValidationService.emailValidation(value),
           ).paddingSymmetric(vertical: AppSizes.size20.h),
-          // ? Mobile
-
           AppSizes.size20.verticalSpace,
           Consumer(
             builder: (context, ref, child) {

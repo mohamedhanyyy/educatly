@@ -10,12 +10,10 @@ import 'package:taskaty/config/theme/color_system/app_colors.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/constants/constants.dart';
 import 'package:taskaty/core/extensions/iterator_extension.dart';
-import 'package:taskaty/core/helpers/mappers.dart';
 import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
 import 'package:taskaty/core/widgets/app_button.dart';
 import 'package:taskaty/features/admin/add_task/data/model/add_task_response.dart';
 import 'package:taskaty/features/manager/home/presentation/controller/all_tasks/manager_all_tasks.dart';
-import 'package:taskaty/features/manager/home/presentation/controller/dashboard_controller.dart';
 import 'package:taskaty/features/manager/home/presentation/controller/filters_controller.dart';
 import 'package:taskaty/features/manager/tasks/presentation/widgets/add_comment.dart';
 import 'package:taskaty/features/manager/tasks/presentation/widgets/comments_widget.dart';
@@ -26,6 +24,7 @@ import '../../../../../config/router/app_router.dart';
 import '../../../../../config/theme/sizes_manager.dart';
 import '../../../../../core/constants/assets.dart';
 import '../../../../../core/controllers/button/button_controller.dart';
+import '../../../../../core/helpers/toast_helper.dart';
 import '../../../../../core/services/network/api/network_api.dart';
 import '../../../../admin/tasks/data/model/admin_tasks_model.dart';
 import '../../../stats/bloc/manager_statistics_bloc.dart';
@@ -71,9 +70,9 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
         children: [
           TaskDetailsWidget(
             title: '${taskDetails.title}',
-            priority: taskDetails.priorityId!,
-            statusId: statusIdMapper(taskDetails.statusId),
-            progressCount: progress,
+            priorityId: taskDetails.priorityId!,
+            statusId: taskDetails.statusId!,
+            progress: progress,
           ),
           TaskInfoWidget(
             userName: '${taskDetails.userName}',
@@ -114,16 +113,15 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
                 data: list.map((e) {
                   return {'id': e.id, 'isCompleted': e.isCompleted};
                 }).toList());
-
             if (response?.statusCode == 200) {
               ref
                   .read(buttonControllerProvider.notifier)
                   .setSuccessStatus(widget.buttonKey);
               ref.invalidate(managerAllTasksControllerProvider);
               ref.invalidate(filtersControllerProvider);
-              ref.invalidate(dashboardControllerProvider);
               context.read<ManagerStatisticsCubit>().getManagerStatistics();
               AppRouter.router.pop();
+              Toast.showSuccessToast(S().task_edited_successfully);
             } else {
               ref
                   .read(buttonControllerProvider.notifier)

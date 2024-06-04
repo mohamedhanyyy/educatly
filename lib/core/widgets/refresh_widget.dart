@@ -16,6 +16,9 @@ class RefreshWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: AppSizes.size20.h),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             S().something_went_wrong,

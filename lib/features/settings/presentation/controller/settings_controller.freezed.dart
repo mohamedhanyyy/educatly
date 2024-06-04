@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SettingsState {
   AuthResponse? get user => throw _privateConstructorUsedError;
+  int? get x => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SettingsStateCopyWith<SettingsState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $SettingsStateCopyWith<$Res> {
           SettingsState value, $Res Function(SettingsState) then) =
       _$SettingsStateCopyWithImpl<$Res, SettingsState>;
   @useResult
-  $Res call({AuthResponse? user});
+  $Res call({AuthResponse? user, int? x});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$SettingsStateCopyWithImpl<$Res, $Val extends SettingsState>
   @override
   $Res call({
     Object? user = freezed,
+    Object? x = freezed,
   }) {
     return _then(_value.copyWith(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AuthResponse?,
+      x: freezed == x
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$SettingsStateImplCopyWith<$Res>
       __$$SettingsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AuthResponse? user});
+  $Res call({AuthResponse? user, int? x});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? user = freezed,
+    Object? x = freezed,
   }) {
     return _then(_$SettingsStateImpl(
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
               as AuthResponse?,
+      x: freezed == x
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -92,14 +103,16 @@ class __$$SettingsStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SettingsStateImpl extends _SettingsState {
-  const _$SettingsStateImpl({this.user}) : super._();
+  const _$SettingsStateImpl({this.user, this.x}) : super._();
 
   @override
   final AuthResponse? user;
+  @override
+  final int? x;
 
   @override
   String toString() {
-    return 'SettingsState(user: $user)';
+    return 'SettingsState(user: $user, x: $x)';
   }
 
   @override
@@ -107,11 +120,12 @@ class _$SettingsStateImpl extends _SettingsState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SettingsStateImpl &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.x, x) || other.x == x));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, user, x);
 
   @JsonKey(ignore: true)
   @override
@@ -121,12 +135,14 @@ class _$SettingsStateImpl extends _SettingsState {
 }
 
 abstract class _SettingsState extends SettingsState {
-  const factory _SettingsState({final AuthResponse? user}) =
+  const factory _SettingsState({final AuthResponse? user, final int? x}) =
       _$SettingsStateImpl;
   const _SettingsState._() : super._();
 
   @override
   AuthResponse? get user;
+  @override
+  int? get x;
   @override
   @JsonKey(ignore: true)
   _$$SettingsStateImplCopyWith<_$SettingsStateImpl> get copyWith =>

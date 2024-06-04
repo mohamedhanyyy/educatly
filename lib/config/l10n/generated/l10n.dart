@@ -1850,6 +1850,16 @@ class S {
     );
   }
 
+  /// `User updated successfully`
+  String get user_updated_successfully {
+    return Intl.message(
+      'User updated successfully',
+      name: 'user_updated_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Login again`
   String get login_again {
     return Intl.message(

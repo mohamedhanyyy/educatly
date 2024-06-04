@@ -16,34 +16,29 @@ class UserWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: AppSizes.size50.h,
-      child: FittedBox(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: AppSizes.size30.h,
-              height: AppSizes.size30.h,
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.colors.background.withOpacity(0.5),
-              ),
-              child: ClipOval(
-                child: AppCachedNetworkImage(userImage),
-              ),
-            ),
-            Text(
-              userName,
-              style: StylesManager.light(
-                fontSize: AppFonts.font.medium.sp,
-              ),
-            )
-          ],
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          width: AppSizes.size30.h,
+          height: AppSizes.size30.h,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: AppColors.colors.background.withOpacity(0.5),
+          ),
+          child: ClipOval(child: AppCachedNetworkImage(userImage)),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          child: Text(
+            userName,
+            style: StylesManager.light(fontSize: AppFonts.font.medium.sp),
+            textAlign: TextAlign.center,
+          ),
+        )
+      ],
     );
   }
 }

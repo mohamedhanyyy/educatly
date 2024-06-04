@@ -35,7 +35,6 @@ class ResetPasswordController extends _$ResetPasswordController {
       await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
 
       ref.invalidate(settingsControllerProvider);
-      await ref.read(settingsControllerProvider.future);
       AppRouter.router.goNamed(AppRoutes.login);
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);

@@ -16,8 +16,9 @@ Future<AuthResponse> updateProfileUseCase(
   String? email,
 }) {
   return ref.read(settingsRepositoryProvider).updateProfile(
-      avatar: avatar,
-      userName: userName,
-      mobileNumber: mobileNumber,
-      email: email);
+        avatar: avatar,
+        userName: userName,
+        mobileNumber: mobileNumber,
+        email: email,
+      );
 }

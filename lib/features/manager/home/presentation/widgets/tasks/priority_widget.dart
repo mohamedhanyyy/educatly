@@ -21,27 +21,21 @@ class PriorityWidget extends StatelessWidget {
       padding: AppConstants.defaultHorizontalPadding,
       decoration: BoxDecoration(
         color: _color.withOpacity(0.25),
-        borderRadius: AppConstants.defaultBorderRadius,
-        border: Border.all(
-          color: _color,
-        ),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: _color),
       ),
       alignment: Alignment.center,
       child: Row(
         children: [
           SizedBox(
             height: AppSizes.size16.h,
-            child: FittedBox(
-              child: SvgPicture.asset(priority.getPriorityFlag),
-            ),
+            child: SvgPicture.asset(priority.getPriorityFlag),
           ),
           AppSizes.size4.horizontalSpace,
           Text(
             priority.getPriorityTitle,
             style: StylesManager.extraBold(
-              color: _color,
-              fontSize: AppFonts.font.small.sp,
-            ),
+                color: _color, fontSize: AppFonts.font.small.sp),
           ),
         ],
       ),

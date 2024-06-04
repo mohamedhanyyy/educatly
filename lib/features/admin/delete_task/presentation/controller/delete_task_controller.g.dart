@@ -7,7 +7,7 @@ part of 'delete_task_controller.dart';
 // **************************************************************************
 
 String _$deleteTaskControllerHash() =>
-    r'f3c5b967e8a4f4e4b47728d879a180f71fa90447';
+    r'0eda0ce9d26bdccd633857f82a1f1a52a962f34b';
 
 /// See also [DeleteTaskController].
 @ProviderFor(DeleteTaskController)

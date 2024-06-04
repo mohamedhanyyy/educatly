@@ -11,18 +11,24 @@ import 'package:taskaty/features/shared/auth/login/data/model/auth_response.dart
 
 import '../../../../../config/router/app_router.dart';
 import '../../../../../config/router/app_routing_paths.dart';
+import '../../../../config/l10n/generated/l10n.dart';
 import '../../../../core/controllers/button/button_controller.dart';
+import '../../../../core/helpers/toast_helper.dart';
 import '../../../../core/services/network/api/network_api.dart';
 
 part 'settings_controller.freezed.dart';
 part 'settings_controller.g.dart';
 part 'settings_state.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 class SettingsController extends _$SettingsController {
   @override
-  Future<SettingsState> build() async {
-    return await SettingsState();
+  SettingsState build() {
+    return SettingsState(user: PreferencesHelper.getUserModel);
+  }
+
+  void setData(AuthResponse user) {
+    state = state.copyWith(user: user);
   }
 
   Future<void> changePassword({
@@ -58,41 +64,39 @@ class SettingsController extends _$SettingsController {
   }) async {
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
-    FormData data = FormData.fromMap(
+    final data = FormData.fromMap(
       {
         'FullName': userName,
         'Email': email,
         if (avatar != null)
           "ImageName": await MultipartFile.fromFile(avatar.path,
-              filename: avatar.path.split('/').last),
+              filename: avatar.path.split('/').last)
       },
     );
-    Response? response =
+    final response =
         await DioHelper.postData(url: Api.updateProfile, data: data);
     if (response?.statusCode == 200) {
-      AuthResponse authResponse = PreferencesHelper.getUserModel!;
+      final authResponse = PreferencesHelper.getUserModel!;
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-      debugPrint(response?.requestOptions.data.toString());
-      debugPrint(response?.data['data']['email']);
-
-      PreferencesHelper.saveUserModel(
-          userModel: AuthResponse(
-              token: authResponse.token,
-              role: authResponse.role,
-              id: authResponse.id,
-              fullName: response?.data['data']['fullName'],
-              email: response?.data['data']['email'],
-              firstLogin: authResponse.firstLogin,
-              userName: authResponse.userName));
+      final editedUserModel = AuthResponse(
+          token: authResponse.token,
+          role: authResponse.role,
+          id: authResponse.id,
+          fullName: response?.data['data']['fullName'],
+          email: response?.data['data']['email'],
+          firstLogin: authResponse.firstLogin,
+          userName: authResponse.userName);
+      PreferencesHelper.saveUserModel(userModel: editedUserModel);
+      ref.read(settingsControllerProvider.notifier).setData(editedUserModel);
+      Toast.showSuccessToast(S().user_updated_successfully);
       AppRouter.router.go(AppRoutes.settings);
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
     }
   }
 
-  Future<void> logout(Key key) async {
+  void logout(Key key) {
     PreferencesHelper.logOut();
-
     AppRouter.router.go(AppRoutes.login);
   }
 }

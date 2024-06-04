@@ -51,8 +51,8 @@ class TaskInfoWidget extends StatelessWidget {
           Expanded(
             flex: 1,
             child: UserWidget(
-              userName: userName,
-              userImage: '',
+              userName: '$userName',
+              userImage: '${AppConstants.subDomain}${userImage}',
             ),
           )
         ]

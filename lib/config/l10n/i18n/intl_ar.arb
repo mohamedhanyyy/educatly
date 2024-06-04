@@ -77,7 +77,7 @@
   "reset": "إعادة",
   "yesterday": "أمس",
   "no_notifications_right_now": "لا يوجد إشعارات في الوقت الحالي",
-
+  "user_updated_successfully": "تم تحديث الملف الشخصي بنجاح",
   "days_ago": "أيام",
   "last_week": "الأسبوع الماضي",
   "weeks_ago": "أسابيع",
@@ -92,7 +92,7 @@
   "tomorrow": "غدًا",
   "days": "يوم",
   "next_week": "الأسبوع القادم",
-  "weeks": "أسبوع",
+  "weeks": "أسابيع",
   "next_month": "الشهر القادم",
   "months": "أشهر",
   "next_year": "العام القادم",

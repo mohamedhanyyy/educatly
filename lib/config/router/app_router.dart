@@ -18,10 +18,10 @@ import '../../features/admin/company/presentation/screens/get_companies_screen.d
 import '../../features/admin/get_managers/presentation/screens/managers_screen.dart';
 import '../../features/manager/home/presentation/screens/manager_main_screen.dart';
 import '../../features/manager/tasks/presentation/screens/manager_task_details.dart';
-import '../../features/settings/presentation/screens/change_password.dart';
+import '../../features/settings/presentation/screens/change_password_screen.dart';
 import '../../features/settings/presentation/screens/edit_profile.dart';
-import '../../features/settings/presentation/screens/privacy_policy.dart';
-import '../../features/settings/presentation/screens/settings.dart';
+import '../../features/settings/presentation/screens/privacy_screen_screen.dart';
+import '../../features/settings/presentation/screens/settings_screen.dart';
 import '../../features/shared/auth/create_password/presentation/screens/create_password.dart';
 import '../../features/shared/auth/forget_password/presentation/screens/forget_password.dart';
 import '../../features/shared/auth/login/presentation/screens/login.dart';

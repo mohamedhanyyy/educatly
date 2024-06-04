@@ -6,7 +6,7 @@ import '../../../../../admin/tasks/data/model/admin_tasks_model.dart';
 
 part 'manager_all_tasks.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class ManagerAllTasksController extends _$ManagerAllTasksController {
   Future<List<AdminTasksModel>> build() async {
     return await getTasksList();
@@ -16,7 +16,6 @@ class ManagerAllTasksController extends _$ManagerAllTasksController {
     int? filter,
     DateTime? date,
   }) async {
-    state = AsyncValue.loading();
     late List<AdminTasksModel> tasksList;
 
     await NetworkRequest.instance.requestDataFuture<AdminTasksModel>(
@@ -28,7 +27,7 @@ class ManagerAllTasksController extends _$ManagerAllTasksController {
         'PageSize': 1000,
         'Page': 0,
       },
-      onSuccessList: (getTasksResponse) async {
+      onSuccessList: (getTasksResponse) {
         tasksList = getTasksResponse;
       },
     );

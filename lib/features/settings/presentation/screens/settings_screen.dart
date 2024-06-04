@@ -15,25 +15,18 @@ import '../widgets/profile_option.dart';
 import '../widgets/sheets/language_sheet.dart';
 import '../widgets/sheets/logout_sheet.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+class SettingsScreen extends ConsumerWidget {
+  SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ProfileDetailsWidget(),
-
               ...[
                 Text(
                   S().personal_info,
@@ -62,8 +55,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       AppRouter.router.pushNamed(AppRoutes.notifications),
                 ),
               ],
-
-              //?/ Privacy Policy
               ...[
                 Text(
                   S().app_settings,
@@ -114,11 +105,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 AppSizes.size10.verticalSpace,
               ],
-
-              //?/ Logout
               ProfileOption(
                 title: S().logout,
-                // hasTrailing: false,
                 icon: Icons.logout_rounded,
                 onTap: () async {
                   await showModalBottomSheet(

@@ -46,7 +46,7 @@ class LogoutSheet extends StatelessWidget {
                 width: ScreenUtil().screenWidth,
                 backgroundColor: AppColors.colors.error,
                 onPressed: () async {
-                  await ref
+                  ref
                       .read(settingsControllerProvider.notifier)
                       .logout(buttonKey);
                 },

@@ -41,7 +41,7 @@ class DioHelper {
       }
       return response;
     } catch (e) {
-      log('$e');
+      log('CATCH ERROR $e');
 
       return e is DioException ? e.response : null;
     }
@@ -62,7 +62,7 @@ class DioHelper {
       }
       return response;
     } catch (e) {
-      log('$e');
+      log('CATCH ERROR $e');
 
       return e is DioException ? e.response : null;
     }

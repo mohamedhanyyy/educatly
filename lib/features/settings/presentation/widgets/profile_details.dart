@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:taskaty/core/services/database/preferences_helper.dart';
+import 'package:taskaty/features/settings/presentation/controller/settings_controller.dart';
 
 import '../../../../config/theme/font_system/app_fonts.dart';
 import '../../../../config/theme/sizes_manager.dart';
 import '../../../../config/theme/styles_manager.dart';
 import 'profile_avatar.dart';
 
-class ProfileDetailsWidget extends StatelessWidget {
+class ProfileDetailsWidget extends ConsumerWidget {
   const ProfileDetailsWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final watcher = ref.watch(settingsControllerProvider);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -28,13 +30,13 @@ class ProfileDetailsWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              '${PreferencesHelper.getUserModel?.fullName}',
+              '${watcher.user?.fullName}',
               style: StylesManager.bold(
                 fontSize: AppFonts.font.large.sp,
               ),
             ),
             Text(
-              '${PreferencesHelper.getUserModel?.email}',
+              '${watcher.user?.email}',
               style: StylesManager.medium(
                 fontSize: AppFonts.font.medium.sp,
               ),

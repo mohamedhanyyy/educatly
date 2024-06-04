@@ -19,17 +19,12 @@ class _ManagerTasksScreenState extends ConsumerState<ManagerTasksScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(S().all_tasks)),
-        body: ref.watch(managerAllTasksControllerProvider).when(
+      appBar: AppBar(title: Text(S().all_tasks)),
+      body: ref.watch(managerAllTasksControllerProvider).when(
             loading: () => CustomLoadingWidget(0),
-            error: (error, stackTrace) => SizedBox(
-                  width: 100,
-                  child: Center(
-                    child: RefreshWidget(
-                        onTap: () async => await ref
-                            .refresh(managerAllTasksControllerProvider)),
-                  ),
-                ),
+            error: (error, stackTrace) => RefreshWidget(
+                onTap: () async =>
+                    await ref.refresh(managerAllTasksControllerProvider)),
             data: (tasks) {
               return AnimationList(
                   duration: 1250,
@@ -38,6 +33,8 @@ class _ManagerTasksScreenState extends ConsumerState<ManagerTasksScreen> {
                   children: tasks
                       .map((e) => ManagerTaskWidget(taskDetails: e))
                       .toList());
-            }));
+            },
+          ),
+    );
   }
 }

@@ -42,7 +42,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
   }
 
   @override
-  Widget build(BuildContext ctx) {
+  Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: GestureDetector(
@@ -62,10 +62,10 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
             elevation: 0,
             borderOnForeground: false,
             margin: EdgeInsets.zero,
-            color: Theme.of(ctx).scaffoldBackgroundColor,
+            color: Theme.of(context).scaffoldBackgroundColor,
             child: Container(
               decoration: BoxDecoration(
-                  border: Border.all(color: Theme.of(ctx).highlightColor),
+                  border: Border.all(color: Theme.of(context).highlightColor),
                   borderRadius: BorderRadius.circular(10)),
               child: Padding(
                 padding: const EdgeInsets.all(3),
@@ -79,20 +79,16 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                             Row(
                               children: [
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  child: statusPrioritySvgMapper(
-                                      widget.task.priorityId),
-                                ),
-                                SizedBox(
-                                  width: ScreenUtil().screenWidth * .6,
-                                  child: Text(
-                                    '${widget.task.title}',
-                                    style: StylesManager.semiBold(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 4),
+                                    child: statusPrioritySvgMapper(
+                                        widget.task.priorityId)),
+                                Text(
+                                  '${widget.task.title}',
+                                  style: StylesManager.semiBold(
                                       fontSize: 16.sp,
-                                      color: Theme.of(ctx).secondaryHeaderColor,
-                                    ),
-                                  ),
+                                      color: Theme.of(context)
+                                          .secondaryHeaderColor),
                                 ),
                               ],
                             ),
@@ -107,8 +103,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                                       borderRadius: BorderRadius.circular(8),
                                       color: AppColors.colors.lightGreen,
                                       border: Border.all(
-                                        color: AppColors.colors.green,
-                                      ),
+                                          color: AppColors.colors.green),
                                     ),
                                     child: Row(
                                       mainAxisAlignment:
@@ -134,6 +129,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                         ),
                         Spacer(),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CircleAvatar(
                               backgroundColor:
@@ -153,6 +149,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                             ),
                             AppSizes.size5.verticalSpace,
                             Text(
+                              textAlign: TextAlign.center,
                               "${widget.task.userName}",
                               style: StylesManager.semiBold(),
                             )

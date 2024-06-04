@@ -288,6 +288,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("User deleted successfully"),
         "user_image": MessageLookupByLibrary.simpleMessage("User image"),
         "user_type": MessageLookupByLibrary.simpleMessage("User type"),
+        "user_updated_successfully":
+            MessageLookupByLibrary.simpleMessage("User updated successfully"),
         "username": MessageLookupByLibrary.simpleMessage("User name"),
         "username_not_valid":
             MessageLookupByLibrary.simpleMessage("Username is not valid"),

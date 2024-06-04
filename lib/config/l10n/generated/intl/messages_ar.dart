@@ -295,10 +295,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم حذف المستخدم بنجاح"),
         "user_image": MessageLookupByLibrary.simpleMessage("صورة المستخدم"),
         "user_type": MessageLookupByLibrary.simpleMessage("نوع المستخدم"),
+        "user_updated_successfully":
+            MessageLookupByLibrary.simpleMessage("تم تحديث الملف الشخصي بنجاح"),
         "username": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
         "username_not_valid":
             MessageLookupByLibrary.simpleMessage("اسم المستخدم غير صحيح"),
-        "weeks": MessageLookupByLibrary.simpleMessage("أسبوع"),
+        "weeks": MessageLookupByLibrary.simpleMessage("أسابيع"),
         "weeks_ago": MessageLookupByLibrary.simpleMessage("أسابيع"),
         "welcome": MessageLookupByLibrary.simpleMessage("مرحباً بك"),
         "write_assigne_to":

@@ -35,7 +35,6 @@ class AdminAddSubTask extends ConsumerWidget {
                   ),
                   child: CustomTextInputField(
                     label: null,
-                    autoFocus: true,
                     contentPadding: EdgeInsets.symmetric(vertical: 15),
                     prefix: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -51,10 +50,7 @@ class AdminAddSubTask extends ConsumerWidget {
                           onTap: () {
                             reader.removeTask(task: e);
                           },
-                          child: Icon(
-                            Icons.clear,
-                            color: Colors.red,
-                          ),
+                          child: Icon(Icons.clear, color: Colors.red),
                         ),
                       ),
                     ),
@@ -85,7 +81,6 @@ class AdminAddSubTask extends ConsumerWidget {
             errorText: '',
             controller: controller,
             fillColor: Theme.of(context).scaffoldBackgroundColor,
-            autoFocus: true,
             prefix: Padding(
               padding: EdgeInsets.symmetric(horizontal: AppSizes.size10.w),
               child: SvgPicture.asset(Assets.icons.addTask),

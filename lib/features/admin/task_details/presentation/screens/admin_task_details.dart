@@ -8,7 +8,6 @@ import 'package:taskaty/config/theme/color_system/app_colors.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/constants/constants.dart';
 import 'package:taskaty/core/extensions/iterator_extension.dart';
-import 'package:taskaty/core/helpers/mappers.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/sizes_manager.dart';
@@ -38,11 +37,13 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
   @override
   void initState() {
     super.initState();
+
     taskDetails = AdminTasksModel.fromJson(jsonDecode(widget.task));
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       taskDetails.subTasks!.map((e) {
         if (e.isCompleted!) progressCount++;
       }).toList();
+
       ref.read(editTaskControllerProvider.notifier).setData(
             selectedPriority: (taskDetails.priorityId),
             taskTitle: taskDetails.title,
@@ -80,10 +81,10 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TaskDetailsWidget(
-              statusId: statusIdMapper(taskDetails.statusId),
+              statusId: (taskDetails.statusId!),
               title: '${taskDetails.title}',
-              priority: taskDetails.priorityId!,
-              progressCount: progressCount / taskDetails.subTasks!.length,
+              priorityId: taskDetails.priorityId!,
+              progress: progressCount / taskDetails.subTasks!.length,
             ),
             TaskInfoWidget(
               userName: '${taskDetails.userName}',

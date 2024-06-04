@@ -7,11 +7,11 @@ part of 'manager_all_tasks.dart';
 // **************************************************************************
 
 String _$managerAllTasksControllerHash() =>
-    r'5e680f033317625ebea49b279382526400a4a681';
+    r'937ef3925c677fe56a39cda400fdc0ce0c73b800';
 
 /// See also [ManagerAllTasksController].
 @ProviderFor(ManagerAllTasksController)
-final managerAllTasksControllerProvider = AutoDisposeAsyncNotifierProvider<
+final managerAllTasksControllerProvider = AsyncNotifierProvider<
     ManagerAllTasksController, List<AdminTasksModel>>.internal(
   ManagerAllTasksController.new,
   name: r'managerAllTasksControllerProvider',
@@ -22,7 +22,6 @@ final managerAllTasksControllerProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$ManagerAllTasksController
-    = AutoDisposeAsyncNotifier<List<AdminTasksModel>>;
+typedef _$ManagerAllTasksController = AsyncNotifier<List<AdminTasksModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

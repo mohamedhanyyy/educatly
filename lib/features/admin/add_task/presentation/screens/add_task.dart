@@ -85,7 +85,6 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                       builder: (context) => AdminAddTaskPriority());
                 },
               ),
-
               if (controllerWatcher.priorityId == null &&
                   controllerWatcher.isSaveClick == true)
                 Padding(
@@ -97,7 +96,6 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                           fontSize: AppSizes.size12.sp)),
                 ),
               AppSizes.size10.verticalSpace,
-
               customDropDown(
                   textColor: controllerWatcher.selectedManager != null
                       ? Theme.of(context).secondaryHeaderColor
@@ -123,7 +121,6 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                   function: () {
                     searchManagers(context, ref);
                   }),
-
               if (controllerWatcher.selectedManager == null &&
                   controllerWatcher.isSaveClick == true)
                 Padding(
@@ -135,7 +132,6 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                           fontSize: AppSizes.size12.sp)),
                 ),
               AppSizes.size10.verticalSpace,
-
               Padding(
                 padding: EdgeInsets.symmetric(vertical: AppSizes.size4.h),
                 child: Text(
@@ -145,7 +141,6 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
               ),
               AdminAddSubTask(),
               AddTaskCommentsWidget(),
-              // AddTaskFilesWidget(),
             ],
           ),
         ).defaultScreenPadding,

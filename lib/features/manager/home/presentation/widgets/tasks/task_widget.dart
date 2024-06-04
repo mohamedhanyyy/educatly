@@ -7,7 +7,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:taskaty/config/router/app_router_navigator.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/extensions/priority.dart';
-import 'package:taskaty/core/helpers/mappers.dart';
 
 import '../../../../../../config/router/app_router.dart';
 import '../../../../../../config/theme/font_system/app_fonts.dart';
@@ -28,11 +27,14 @@ class ManagerTaskWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     progress = 0;
+    selected.clear();
     taskDetails.subTasks!.forEach((e) {
       selected.add(e.isCompleted!);
+
       if (e.isCompleted!) progress++;
     });
     progress = progress / selected.length;
+
     return DecoratedBox(
       decoration: AppConstants.defaultBoxDecoration
           .copyWith(color: Theme.of(context).scaffoldBackgroundColor),
@@ -75,8 +77,7 @@ class ManagerTaskWidget extends ConsumerWidget {
                           RemainingTimeWidget(
                               date: DateTime.parse(taskDetails.endDate!)),
                           AppSizes.size10.horizontalSpace,
-                          DepartmentTagWidget(
-                              tag: statusIdMapper(taskDetails.statusId))
+                          StatusWidget(statusId: taskDetails.statusId)
                         ],
                       ),
                     ],

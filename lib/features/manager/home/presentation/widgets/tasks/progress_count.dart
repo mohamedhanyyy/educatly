@@ -20,7 +20,7 @@ class ProgressCountDetailsWidget extends StatelessWidget {
       height: size.h,
       child: FittedBox(
         child: CircularPercentIndicator(
-          percent: (progress).toDouble(),
+          percent: progress.toDouble(),
           radius: (size / 2).h,
           lineWidth: 10.h,
           progressColor: AppColors.colors.primary,

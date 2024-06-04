@@ -19,12 +19,6 @@ class AddCommentController extends _$AddCommentController {
     return AddCommentState();
   }
 
-  void setData({
-    bool? isAddTask,
-  }) {
-    state = state.copyWith();
-  }
-
   Future<void> addComment({
     required Key key,
     required String comment,

@@ -202,9 +202,12 @@
   "refresh": "إعادة تحميل",
   "something_went_wrong": "حدث خطأ ما ! ",
   "editing_adding_subtask": "إضافة أو تعديل النص",
-  "filter_reset": "تم إعادة ظبط الفلتر",
+  "filter_reset_done": "تم إعادة ظبط الفلتر",
   "select_first_date": "اختر تاريخ البداية أولاً",
   "duration_must_be_at_least_three_hours": "يجب ألا تقل مدة المهمة عن ثلاث ساعات",
   "filter": "فلترة",
-  "no_tasks": "لا يوجد مهام، حاول لاحقاً! "
+  "filter_reset": "إعادة ظبط",
+  "no_tasks": "لا يوجد مهام، حاول لاحقاً! ",
+  "choose_company_image": "قم باختيار صورة الشركة"
+
 }

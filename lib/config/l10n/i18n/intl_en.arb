@@ -190,6 +190,8 @@
   "add_comment": "Add comment",
   "comment_is_empty": "This comment is empty",
   "comments": "Comments",
+  "filter_reset": "Filter reset",
+
   "comment": "Comment",
   "write_comment": "Write a comment",
   "title_must_contain_two_words_at_least": "Title must contain two words at least",
@@ -198,10 +200,11 @@
   "something_went_wrong": "Something went wrong !",
   "editing_adding_subtask": "Editing / adding subtask",
   "reset": "Reset",
-  "filter_reset": "Filter reset done",
+  "filter_reset_done": "Filter reset done",
   "select_first_date": "select start date first",
   "duration_must_be_at_least_three_hours": "Task duration must be at least three hours",
   "filter": "Filter",
   "no_tasks": "No tasks try again !",
-  "completed": "Completed"
+  "completed": "Completed",
+  "choose_company_image": "Choose company image"
 }

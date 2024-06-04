@@ -236,7 +236,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                       ref.invalidate(adminTasksFilterControllerProvider);
                       ref.invalidate(getAdminTasksControllerProvider);
                       searchController.clear();
-                      Toast.showToast(S().filter_reset);
+                      Toast.showToast(S().filter_reset_done);
                     },
                   ),
                 ],

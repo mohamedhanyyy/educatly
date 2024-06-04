@@ -5,8 +5,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:taskaty/core/extensions/async_value_extension.dart';
 
+import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/router/app_router.dart';
 import '../../../../../core/controllers/button/button_controller.dart';
+import '../../../../../core/helpers/toast_helper.dart';
 import '../../../get_managers/data/model/get_managers_model.dart';
 import '../../domain/usecase/add_company_usecase.dart';
 import 'get_companies_controller.dart';
@@ -58,7 +60,12 @@ class AddCompanyController extends _$AddCompanyController {
     required String managerId,
     required File? companyLogo,
   }) async {
+    if (companyLogo == null) {
+      Toast.showErrorToast(S().choose_company_image);
+      return AddCompanyState();
+    }
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
+
     final result = await AsyncValue.guard(() => ref.read(
         addCompanyUseCaseProvider(
                 managerId: managerId,

@@ -1940,6 +1940,16 @@ class S {
     );
   }
 
+  /// `Filter reset`
+  String get filter_reset {
+    return Intl.message(
+      'Filter reset',
+      name: 'filter_reset',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Comment`
   String get comment {
     return Intl.message(
@@ -2021,10 +2031,10 @@ class S {
   }
 
   /// `Filter reset done`
-  String get filter_reset {
+  String get filter_reset_done {
     return Intl.message(
       'Filter reset done',
-      name: 'filter_reset',
+      name: 'filter_reset_done',
       desc: '',
       args: [],
     );
@@ -2075,6 +2085,16 @@ class S {
     return Intl.message(
       'Completed',
       name: 'completed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose company image`
+  String get choose_company_image {
+    return Intl.message(
+      'Choose company image',
+      name: 'choose_company_image',
       desc: '',
       args: [],
     );

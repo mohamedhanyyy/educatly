@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
+        "choose_company_image":
+            MessageLookupByLibrary.simpleMessage("قم باختيار صورة الشركة"),
         "comment": MessageLookupByLibrary.simpleMessage("التعليق"),
         "comment_is_empty":
             MessageLookupByLibrary.simpleMessage("هذا التعليق فارغ !"),
@@ -117,7 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "end_task": MessageLookupByLibrary.simpleMessage("إنهاء المهمة"),
         "error": MessageLookupByLibrary.simpleMessage("خطأ"),
         "filter": MessageLookupByLibrary.simpleMessage("فلترة"),
-        "filter_reset":
+        "filter_reset": MessageLookupByLibrary.simpleMessage("إعادة ظبط"),
+        "filter_reset_done":
             MessageLookupByLibrary.simpleMessage("تم إعادة ظبط الفلتر"),
         "forget_description": MessageLookupByLibrary.simpleMessage(
             "من فضلك ادخل البريد الإلكتروني \n لارسال تعليمات استرداد كلمة المرور"),

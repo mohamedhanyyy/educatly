@@ -48,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "change_password":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "choose_company_image":
+            MessageLookupByLibrary.simpleMessage("Choose company image"),
         "comment": MessageLookupByLibrary.simpleMessage("Comment"),
         "comment_is_empty":
             MessageLookupByLibrary.simpleMessage("This comment is empty"),
@@ -115,7 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "end_task": MessageLookupByLibrary.simpleMessage("End task"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "filter": MessageLookupByLibrary.simpleMessage("Filter"),
-        "filter_reset":
+        "filter_reset": MessageLookupByLibrary.simpleMessage("Filter reset"),
+        "filter_reset_done":
             MessageLookupByLibrary.simpleMessage("Filter reset done"),
         "forget_description": MessageLookupByLibrary.simpleMessage(
             "Please enter your email to get \n the information you need to reset your password"),

@@ -46,7 +46,7 @@ class AdminHomeSearchWidget extends ConsumerWidget {
           AppSizes.size6.horizontalSpace,
           ElevatedButton.icon(
             label: Text(
-              S().filter,
+              S().filter_reset,
               style: StylesManager.regular(
                   fontSize: AppSizes.size12.sp,
                   color: Theme.of(context).scaffoldBackgroundColor),
@@ -62,15 +62,14 @@ class AdminHomeSearchWidget extends ConsumerWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppSizes.size5.r))),
             onPressed: () {
-              if (filterWatcher.searchText == null &&
-                  filterWatcher.selectedPriorityId == null &&
+              if (filterWatcher.selectedPriorityId == null &&
                   filterWatcher.selectedStatusId == null &&
                   filterWatcher.selectedManager == null &&
                   searchController.text == '') return;
 
               ref.invalidate(adminTasksFilterControllerProvider);
               searchController.clear();
-              Toast.showSuccessToast(S().filter_reset);
+              Toast.showSuccessToast(S().filter_reset_done);
             },
           ),
         ],

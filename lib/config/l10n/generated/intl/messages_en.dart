@@ -168,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Username is too long"),
         "name_short_warning":
             MessageLookupByLibrary.simpleMessage("Username is too short"),
+        "new_email": MessageLookupByLibrary.simpleMessage("New email"),
         "new_password": MessageLookupByLibrary.simpleMessage("New password"),
         "new_password_confirm":
             MessageLookupByLibrary.simpleMessage("New password confirmation"),

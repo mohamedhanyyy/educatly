@@ -35,8 +35,5 @@ Future<void> main() async {
   );
 }
 
-//   "email": "superadmin@domain.com",
-//   "email": "basicuser@domain.com",
-//   "password": "P@ssword123"
-
-//{  "email": "superadmin1@domain.com","password": "P@ssword123"}
+//basicuser
+//{"email":"superadmin1@domain.com","password":"P@ssword123"}

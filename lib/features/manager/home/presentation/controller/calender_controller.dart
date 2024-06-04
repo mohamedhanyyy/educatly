@@ -86,6 +86,5 @@ class CalenderController extends _$CalenderController {
       state.selectedDate.day - 1,
       duration: Duration(milliseconds: 300),
     );
-    // print(state.selectedDate.day-1);
   }
 }

@@ -9,10 +9,6 @@ extension AsyncValueExtension on AsyncValue {
       if (error != null) {
         Toast.showErrorToast(error.toString());
       }
-      if (onError != null) {
-        //todo
-        // onError();
-      }
     } else {
       if (onSuccess != null) {
         onSuccess();

@@ -36,105 +36,76 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(child: const AppLogo()),
-            AppSizes.size20.verticalSpace,
-            Text(
-              S().welcome,
-              style: StylesManager.bold(
-                fontSize: AppFonts.font.xXXLarge.sp,
-              ),
-            ),
-            Text(
-              S().login_desc,
-              style: StylesManager.medium(
-                fontSize: AppFonts.font.large.sp,
-              ),
-            ),
-            AppSizes.size50.verticalSpace,
-            Form(
-              key: loginKey,
-              autovalidateMode: AutovalidateMode.disabled,
-              child: Column(
-                children: [
-                  CustomTextInputField(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(child: const AppLogo()),
+          AppSizes.size20.verticalSpace,
+          Text(
+            S().welcome,
+            style: StylesManager.bold(fontSize: AppFonts.font.xXXLarge.sp),
+          ),
+          Text(
+            S().login_desc,
+            style: StylesManager.medium(fontSize: AppFonts.font.large.sp),
+          ),
+          AppSizes.size50.verticalSpace,
+          Form(
+            key: loginKey,
+            autovalidateMode: AutovalidateMode.disabled,
+            child: Column(
+              children: [
+                CustomTextInputField(
                     label: S().email,
                     controller: mailController,
                     textInputAction: TextInputAction.next,
                     validator: (value) =>
-                        ValidationService.emailValidation(value),
-                  ),
-                  AppSizes.size20.verticalSpace,
-                  CustomPasswordInputField(
-                    label: S().password,
-                    controller: passwordController,
-                    validator: (value) =>
-                        ValidationService.validatePassword(value),
-                  ),
-                  AppSizes.size16.verticalSpace,
-                  // Forget Password
-                  Align(
-                    alignment: AlignmentDirectional.centerEnd,
-                    child: InkWell(
-                      onTap: () =>
-                          AppRouter.router.pushNamed(AppRoutes.forgetPassword),
-                      child: Text(
-                        S().forgot_password,
-                        style: StylesManager.bold(
-                          fontSize: AppFonts.font.small.sp,
-                        ),
+                        ValidationService.emailValidation(value)),
+                AppSizes.size20.verticalSpace,
+                CustomPasswordInputField(
+                  label: S().password,
+                  controller: passwordController,
+                  validator: (value) =>
+                      ValidationService.validatePassword(value),
+                ),
+                AppSizes.size16.verticalSpace,
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: InkWell(
+                    onTap: () =>
+                        AppRouter.router.pushNamed(AppRoutes.forgetPassword),
+                    child: Text(
+                      S().forgot_password,
+                      style: StylesManager.bold(
+                        fontSize: AppFonts.font.small.sp,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Consumer(builder: (_, ref, __) {
-                      return AppDefaultButton(
-                        key: buttonKey,
-                        text: S().login,
-                        width: ScreenUtil().screenWidth,
-                        onPressed: () {
-                          if (loginKey.currentState!.validate()) {
-                            loginCubit.login(
-                              key: buttonKey,
-                              ref: ref,
-                              email: mailController.text,
-                              password: passwordController.text,
-                            );
-                          }
-                        },
-                      );
-                    }),
-                  ),
-                  AppSizes.size50.verticalSpace,
-                  // Consumer(
-                  //   builder: (_, ref, __) {
-                  //     return AppDefaultButton(
-                  //       key: buttonKey,
-                  //       text: S().login,
-                  //       width: ScreenUtil().screenWidth,
-                  //       onPressed: () {
-                  //         if (loginKey.currentState!.validate()) {
-                  //           ref.read(loginControllerProvider.notifier).login(
-                  //                 key: buttonKey,
-                  //                 email: mailController.text,
-                  //                 password: passwordController.text,
-                  //               );
-                  //         }
-                  //       },
-                  //     );
-                  //   },
-                  // )
-                ],
-              ),
+                ),
+                AppSizes.size10.verticalSpace,
+                Consumer(builder: (_, ref, __) {
+                  return AppDefaultButton(
+                    key: buttonKey,
+                    text: S().login,
+                    width: ScreenUtil().screenWidth,
+                    onPressed: () {
+                      if (loginKey.currentState!.validate()) {
+                        loginCubit.login(
+                          key: buttonKey,
+                          ref: ref,
+                          email: mailController.text,
+                          password: passwordController.text,
+                        );
+                      }
+                    },
+                  );
+                }),
+                AppSizes.size50.verticalSpace
+              ],
             ),
-          ],
-        ).horizontalScreenPadding,
-      ),
+          ),
+        ],
+      ).horizontalScreenPadding,
     );
   }
 }

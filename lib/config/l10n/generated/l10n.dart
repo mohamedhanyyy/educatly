@@ -1860,6 +1860,16 @@ class S {
     );
   }
 
+  /// `New email`
+  String get new_email {
+    return Intl.message(
+      'New email',
+      name: 'new_email',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No notifications right now`
   String get no_notifications_right_now {
     return Intl.message(

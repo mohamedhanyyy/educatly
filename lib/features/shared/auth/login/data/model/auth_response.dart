@@ -6,7 +6,7 @@ class AuthResponse extends Equatable {
   final String? userName;
   final String? fullName;
   final String? email;
-  final dynamic id;
+  final id;
   final bool? firstLogin;
 
   AuthResponse(

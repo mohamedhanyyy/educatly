@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../core/services/network/api/network_api.dart';
@@ -55,12 +54,6 @@ class AddCompanyRemoteRequestImpl implements AddCompanyRemoteRequest {
       url: Api.addCompany,
       method: Method.post,
       params: formData,
-      onError: (val, r) {
-        debugPrint('error is $val $r');
-      },
-      onSuccess: (response) {
-        debugPrint('add task response ${response.endDate}');
-      },
     );
     return AddTaskResponse();
   }
@@ -81,16 +74,7 @@ class AddCompanyRemoteRequestImpl implements AddCompanyRemoteRequest {
           : await MultipartFile.fromFile(companyLogo.path),
     });
     await NetworkRequest.instance.requestDataFuture<AddTaskResponse>(
-      url: Api.addCompany,
-      method: Method.post,
-      params: formData,
-      onError: (val, r) {
-        debugPrint('error is $val $r');
-      },
-      onSuccess: (response) {
-        debugPrint('add task response ${response.endDate}');
-      },
-    );
+        url: Api.addCompany, method: Method.post, params: formData);
     return AddTaskResponse();
   }
 }

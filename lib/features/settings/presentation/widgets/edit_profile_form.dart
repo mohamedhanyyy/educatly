@@ -7,6 +7,7 @@ import 'package:taskaty/features/shared/auth/login/data/model/auth_response.dart
 import '../../../../config/l10n/generated/l10n.dart';
 import '../../../../config/theme/sizes_manager.dart';
 import '../../../../config/theme/widget_manager.dart';
+import '../../../../core/helpers/toast_helper.dart';
 import '../../../../core/services/validation/validation_service.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
@@ -32,15 +33,7 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
   @override
   void initState() {
     super.initState();
-    _nameController =
-        TextEditingController(text: PreferencesHelper.getUserModel?.fullName);
-    _emailController =
-        TextEditingController(text: PreferencesHelper.getUserModel?.email);
-  }
-
-  bool _canUpdate() {
-    return _nameController.text.trim() != widget.user.userName ||
-        _emailController.text.trim() != widget.user.email;
+    _nameController.text = PreferencesHelper.getUserModel?.fullName ?? "";
   }
 
   @override
@@ -54,37 +47,35 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
           CustomTextInputField(
             label: S().name,
             controller: _nameController,
-            onChanged: (value) => setState(() => _canUpdate()),
             validator: (value) => ValidationService.nameValidation(value),
           ),
           CustomTextInputField(
-            label: S().email,
+            label: S().new_email,
             controller: _emailController,
-            onChanged: (value) => setState(() => _canUpdate()),
-            validator: (value) => ValidationService.emailValidation(value),
           ).paddingSymmetric(vertical: AppSizes.size20.h),
           AppSizes.size20.verticalSpace,
           Consumer(
             builder: (context, ref, child) {
               return AppDefaultButton(
-                key: buttonKey,
-                text: S().update,
-                width: ScreenUtil().screenWidth,
-                onPressed: _canUpdate()
-                    ? () async {
-                        if (formKey.currentState!.validate()) {
-                          await ref
-                              .read(settingsControllerProvider.notifier)
-                              .updateProfile(
-                                key: buttonKey,
-                                avatar: ref.watch(avatarControllerProvider),
-                                userName: _nameController.text.trim(),
-                                email: _emailController.text.trim(),
-                              );
-                        }
-                      }
-                    : null,
-              );
+                  key: buttonKey,
+                  text: S().update,
+                  width: ScreenUtil().screenWidth,
+                  onPressed: () {
+                    if (_emailController.text == widget.user.email) {
+                      Toast.showErrorToast(S().email_not_valid);
+                      return;
+                    }
+                    if (formKey.currentState!.validate()) {
+                      ref
+                          .read(settingsControllerProvider.notifier)
+                          .updateProfile(
+                            key: buttonKey,
+                            avatar: ref.watch(avatarControllerProvider),
+                            userName: _nameController.text.trim(),
+                            email: _emailController.text.trim(),
+                          );
+                    }
+                  });
             },
           ),
         ],

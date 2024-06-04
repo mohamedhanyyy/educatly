@@ -7,8 +7,8 @@ import '../../../../admin/tasks/data/model/admin_tasks_model.dart';
 class ManagerSubTaskWidget extends ConsumerStatefulWidget {
   ManagerSubTaskWidget(
       {super.key, required this.taskDetails, required this.selected});
-  late AdminTasksModel taskDetails;
-  List<bool> selected = [];
+  late final AdminTasksModel taskDetails;
+  final List<bool> selected;
 
   @override
   ConsumerState<ManagerSubTaskWidget> createState() =>
@@ -18,7 +18,7 @@ class ManagerSubTaskWidget extends ConsumerStatefulWidget {
 class _ManagerSubTaskWidgetState extends ConsumerState<ManagerSubTaskWidget> {
   @override
   Widget build(BuildContext context) {
-    if (widget.taskDetails.subTasks!.isNotEmpty == true)
+    if (widget.taskDetails.subTasks?.isNotEmpty == true)
       return Column(
         mainAxisSize: MainAxisSize.min,
         children: widget.taskDetails.subTasks!.map((e) {

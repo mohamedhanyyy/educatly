@@ -62,14 +62,11 @@ class AdminController extends _$AdminController {
       ref: ref,
       onError: () async {
         if (AppRouter.router.canPop()) AppRouter.router.pop();
-        debugPrint(result.error.toString());
-
         ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
       },
       onSuccess: () async {
         await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
         AppRouter.router.go(AppRoutes.settings);
-        debugPrint('SUCCESS ${result.requireValue}');
       },
     );
   }

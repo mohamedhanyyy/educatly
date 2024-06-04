@@ -40,9 +40,7 @@ class AdminGetTasksBloc extends Cubit<GetAdminTasksState> {
         'Page': page,
       },
     );
-    // print('zzzzzz');
-    // print(response?.statusCode);
-    // print(response?.data);
+
     if (response?.statusCode == 200) {
       final jsonResponse = json.decode(response?.data);
       final List<AdminTasksModel> data =

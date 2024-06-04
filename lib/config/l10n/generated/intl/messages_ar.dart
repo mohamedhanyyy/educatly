@@ -171,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("اسم المستخدم طويل"),
         "name_short_warning":
             MessageLookupByLibrary.simpleMessage("اسم المستخدم قصير"),
+        "new_email":
+            MessageLookupByLibrary.simpleMessage("البريد الإلكتروني الجديد"),
         "new_password":
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
         "new_password_confirm":

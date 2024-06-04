@@ -49,7 +49,6 @@ class NetworkRequest {
     _dio!.interceptors.add(RequestsInspectorInterceptor());
   }
 
-  ///The returned data is processed uniformly and parsed into corresponding Bean
   Future<BaseResponse<T>> _request<T>(
     String method,
     String url, {
@@ -139,16 +138,10 @@ class NetworkRequest {
           );
         } else if (result.code! >= StatusCode.internalServerError &&
             result.code! <= 599) {
-          // AppRouter.router.push(AppRoutes.serverError, extra: {
-          //   "message": result.message,
-          // });
           throw UnRegisteredSocialException(
             message: result.message ?? '',
           );
         } else if (result.code! >= 1000 && result.code! <= 1999) {
-          // AppRouter.router.push(AppRoutes.serverError, extra: {
-          //   "message": result.message,
-          // });
         } else if (result.code == StatusCode.validationResponse) {
           throw UnRegisteredSocialException(
             message: result.message ?? '',
@@ -159,14 +152,10 @@ class NetworkRequest {
     }, onError: (e) {
       NetError error = ExceptionHandle.handleException(e);
       if (error.code == StatusCode.timeoutError) {
-        // AppRouter.router.push(AppRoutes.connectionTimeout, extra: {
-        //   "message": "Connection Timeout\nPlease try app later.",
-        // });
         throw (
           ServerException(message: "Connection Timeout\nPlease try app later."),
         );
       }
-      // throw ServerException(message: 'STATUS CODE ${error.code}');
     });
   }
 

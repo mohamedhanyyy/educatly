@@ -58,35 +58,33 @@ class SettingsController extends _$SettingsController {
   }) async {
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
-    final data = FormData.fromMap(
+    FormData data = FormData.fromMap(
       {
-        'name': userName,
-        'email': email,
+        'FullName': userName,
+        'Email': email,
         if (avatar != null)
-          "image": await MultipartFile.fromFile(
-            avatar.path,
-            filename: avatar.path.split('/').last,
-          ),
+          "ImageName": await MultipartFile.fromFile(avatar.path,
+              filename: avatar.path.split('/').last),
       },
     );
     Response? response =
         await DioHelper.postData(url: Api.updateProfile, data: data);
-
     if (response?.statusCode == 200) {
       AuthResponse authResponse = PreferencesHelper.getUserModel!;
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-      debugPrint(response?.data['data']['fullName']);
+      debugPrint(response?.requestOptions.data.toString());
       debugPrint(response?.data['data']['email']);
-      await PreferencesHelper.saveUserModel(
+
+      PreferencesHelper.saveUserModel(
           userModel: AuthResponse(
-        token: authResponse.token,
-        role: authResponse.role,
-        id: authResponse.id,
-        fullName: response?.data['data']['fullName'],
-        email: response?.data['data']['email'],
-        firstLogin: authResponse.firstLogin,
-        userName: authResponse.userName,
-      ));
+              token: authResponse.token,
+              role: authResponse.role,
+              id: authResponse.id,
+              fullName: response?.data['data']['fullName'],
+              email: response?.data['data']['email'],
+              firstLogin: authResponse.firstLogin,
+              userName: authResponse.userName));
+      AppRouter.router.go(AppRoutes.settings);
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
     }

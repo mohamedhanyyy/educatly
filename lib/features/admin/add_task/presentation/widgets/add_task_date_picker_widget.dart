@@ -109,8 +109,6 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
                   Toast.showErrorToast(S().select_first_date);
                   return;
                 }
-                debugPrint('zzz ${watcher.startDate!.hour}');
-                debugPrint('zzz ${selectedTime.hour}');
 
                 if (watcher.startDate?.day == endDate.day &&
                     selectedTime.hour - watcher.startDate!.hour < 3) {

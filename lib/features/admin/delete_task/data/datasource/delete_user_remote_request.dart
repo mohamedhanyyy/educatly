@@ -28,11 +28,7 @@ class DeleteUserRemoteRequestImpl implements DeleteUserRemoteRequest {
   @override
   Future<int> deleteTask(id) async {
     await NetworkRequest.instance.requestDataFuture<int>(
-      url: '${Api.deleteTask}/$id',
-      method: Method.post,
-      // params: {'id': id},
-    );
-    // print('$data');
+        url: '${Api.deleteTask}/$id', method: Method.post);
     return 1;
   }
 }

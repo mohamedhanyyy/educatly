@@ -21,7 +21,7 @@ import 'remaining_time.dart';
 
 class ManagerTaskWidget extends ConsumerWidget {
   final AdminTasksModel taskDetails;
-  final List<bool> selected = [];
+  List<bool> selected = [];
   double progress = 0;
   ManagerTaskWidget({super.key, required this.taskDetails});
 
@@ -43,10 +43,9 @@ class ManagerTaskWidget extends ConsumerWidget {
         child: InkWell(
           onTap: () {
             AppRouter.router.pushTaskScreen(
-                managerTaskDetails: json.encode(taskDetails).toString());
+                managerTaskDetails: '${json.encode(taskDetails)}');
           },
           child: SizedBox(
-            // height: 150.h,
             child: Row(
               children: [
                 Expanded(
@@ -55,21 +54,17 @@ class ManagerTaskWidget extends ConsumerWidget {
                     children: [
                       Row(
                         children: [
-                          // ? Priority
                           SizedBox(
-                            width: 16.h,
-                            height: 16.h,
-                            child: SvgPicture.asset(
-                                taskDetails.priorityId!.getPriorityFlag),
-                          ),
+                              width: 16.h,
+                              height: 16.h,
+                              child: SvgPicture.asset(
+                                  taskDetails.priorityId!.getPriorityFlag)),
                           AppSizes.size10.horizontalSpace,
-                          // ? Title
                           Flexible(
                             child: Text(
                               taskDetails.title!,
                               style: StylesManager.bold(
-                                fontSize: AppFonts.font.large.sp,
-                              ),
+                                  fontSize: AppFonts.font.large.sp),
                             ),
                           )
                         ],

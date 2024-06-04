@@ -39,14 +39,10 @@ class RequestsInspectorInterceptor extends Interceptor {
       Toast.showErrorToast(S().login_again);
       AppRouter.router.pushNamed(AppRoutes.login);
     }
-    // if (response.statusCode != 200 &&
-    //     response.statusCode != 201 &&
-    //     response.statusCode != 202) {
     BaseResponse errors = BaseResponse.fromJson(jsonDecode(response.data));
     debugPrint('ERRORS ERRORS ${errors.errors.length}');
     if (errors.errors.isNotEmpty == true)
       Toast.showErrorToast(errors.errors.first);
-    // }
     super.onResponse(response, handler);
   }
 

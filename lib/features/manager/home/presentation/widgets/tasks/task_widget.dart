@@ -20,19 +20,17 @@ import 'remaining_time.dart';
 
 class ManagerTaskWidget extends ConsumerWidget {
   final AdminTasksModel taskDetails;
-  List<bool> selected = [];
-  double progress = 0;
   ManagerTaskWidget({super.key, required this.taskDetails});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    progress = 0;
-    selected.clear();
+    List<bool> selected = [];
+    double progress = 0;
     taskDetails.subTasks!.forEach((e) {
       selected.add(e.isCompleted!);
-
       if (e.isCompleted!) progress++;
     });
+
     progress = progress / selected.length;
 
     return DecoratedBox(

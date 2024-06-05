@@ -200,11 +200,13 @@
   "something_went_wrong": "Something went wrong !",
   "editing_adding_subtask": "Editing / adding subtask",
   "reset": "Reset",
+  "start_date_must_precede_end_date": "Start date must precede end date",
   "filter_reset_done": "Filter reset done",
   "select_first_date": "select start date first",
   "duration_must_be_at_least_three_hours": "Task duration must be at least three hours",
   "filter": "Filter",
   "no_tasks": "No tasks try again !",
   "completed": "Completed",
-  "choose_company_image": "Choose company image"
+  "choose_company_image": "Choose company image",
+  "company_added_successfully": "Company added successfully"
 }

@@ -9,7 +9,7 @@ class AvatarController extends _$AvatarController {
   @override
   File? build() => null;
 
-  updateAvatar(File avatar) {
+  updateAvatar(File? avatar) {
     state = avatar;
   }
 }

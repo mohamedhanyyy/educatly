@@ -8,14 +8,14 @@ import '../../core/extensions/string.dart';
 
 class PickerDialog {
   Future<void> pickGalleryImage({
-    ValueChanged<File>? onGet,
+    ValueChanged<File?>? onGet,
   }) async {
     final ImagePicker picker = ImagePicker();
     XFile? imagePaths = await picker.pickImage(
       imageQuality: 100,
       source: ImageSource.gallery,
     );
-    onGet!(imagePaths!.getFile);
+    onGet!(imagePaths?.getFile);
   }
 
   Future<void> pickGalleryImages({

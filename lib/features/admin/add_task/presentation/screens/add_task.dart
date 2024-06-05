@@ -4,11 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:taskaty/config/theme/sizes_manager.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/constants/constants.dart';
+import 'package:taskaty/core/extensions/context_extension.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../config/theme/color_system/color_system_light.dart';
 import '../../../../../config/theme/styles_manager.dart';
+import '../../../../../core/extensions/priority.dart';
 import '../../../../../core/helpers/mappers.dart';
 import '../../../../../core/services/validation/validation_service.dart';
 import '../../../../../core/widgets/app_button.dart';
@@ -38,8 +40,6 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
     final controller = ref.read(addTaskControllerProvider.notifier);
     final controllerWatcher = ref.watch(addTaskControllerProvider);
     return Scaffold(
-      // resizeToAvoidBottomInset: true,
-      extendBody: true,
       appBar: AppBar(title: Text(S().add_new_task)),
       body: SingleChildScrollView(
         padding:
@@ -52,6 +52,16 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
             children: [
               CustomTextInputField(
                 label: S().task_title,
+                prefix: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: SvgPicture.asset(
+                    'assets/icons/taskDesc.svg',
+                    width: 20,
+                    height: 20,
+                    colorFilter:
+                        Theme.of(context).unselectedWidgetColor.toColorFilter,
+                  ),
+                ),
                 maxLength: 40,
                 controller: taskTitleController,
                 textInputAction: TextInputAction.next,
@@ -61,6 +71,16 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
               ),
               AppSizes.size10.verticalSpace,
               CustomTextInputField(
+                prefix: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: SvgPicture.asset(
+                    'assets/icons/taskDesc.svg',
+                    width: 20,
+                    height: 20,
+                    colorFilter:
+                        Theme.of(context).unselectedWidgetColor.toColorFilter,
+                  ),
+                ),
                 label: S().task_details,
                 controller: taskDetailsController,
                 textInputAction: TextInputAction.newline,
@@ -71,8 +91,7 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
               AppSizes.size15.verticalSpace,
               AddTaskDatePickerWidget(),
               customDropDown(
-                widget:
-                    controller.priorityIconMapper(controllerWatcher.priorityId),
+                widget: priorityIconMapper(controllerWatcher.priorityId),
                 textColor: controllerWatcher.priorityId != null
                     ? Theme.of(context).secondaryHeaderColor
                     : Theme.of(context).hintColor,

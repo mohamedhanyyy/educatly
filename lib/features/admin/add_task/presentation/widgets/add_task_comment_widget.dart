@@ -9,7 +9,6 @@ import '../controller/add_task_controller.dart';
 
 class AddTaskCommentsWidget extends ConsumerWidget {
   AddTaskCommentsWidget({super.key});
-  final TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +24,7 @@ class AddTaskCommentsWidget extends ConsumerWidget {
           type: TextInputType.multiline,
           textInputAction: TextInputAction.newline,
         ),
-        AppSizes.size16.verticalSpace,
+        AppSizes.size16.verticalSpace
       ],
     );
   }

@@ -15,7 +15,7 @@ AddCompanyRepository addCompanyRepository(AddCompanyRepositoryRef ref) {
 }
 
 abstract class AddCompanyRepository {
-  Future<AddTaskResponse> addCompany({
+  Future<void> addCompany({
     required String arabicName,
     required String englishName,
     required String managerId,

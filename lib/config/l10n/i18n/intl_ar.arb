@@ -203,11 +203,15 @@
   "something_went_wrong": "حدث خطأ ما ! ",
   "editing_adding_subtask": "إضافة أو تعديل النص",
   "filter_reset_done": "تم إعادة ظبط الفلتر",
+  "start_date_must_precede_end_date": "تاريخ البداية يجب أن يسبق تاريخ النهاية",
+
   "select_first_date": "اختر تاريخ البداية أولاً",
   "duration_must_be_at_least_three_hours": "يجب ألا تقل مدة المهمة عن ثلاث ساعات",
   "filter": "فلترة",
   "filter_reset": "إعادة ظبط",
   "no_tasks": "لا يوجد مهام، حاول لاحقاً! ",
-  "choose_company_image": "قم باختيار صورة الشركة"
+  "choose_company_image": "قم باختيار صورة الشركة",
+  "company_added_successfully": "تم إضافة الشركة بنجاح"
+
 
 }

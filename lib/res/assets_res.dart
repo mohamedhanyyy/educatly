@@ -8,5 +8,6 @@ class AssetsRes {
 
   static const String PLUGIN_NAME = 'taskaty';
   static const String PLUGIN_VERSION = '1.0.0+3';
+  static const String TASKDESC = 'assets/icons/taskDesc.svg';
   static const String NOTASKS = 'assets/json/notasks.json';
 }

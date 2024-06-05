@@ -10,7 +10,7 @@ import '../../../add_task/data/model/add_task_response.dart';
 part 'add_company_remote_request.g.dart';
 
 abstract class AddCompanyRemoteRequest {
-  Future<AddTaskResponse> addCompany({
+  Future<void> addCompany({
     required String arabicName,
     required String managerId,
     required String englishName,
@@ -34,7 +34,7 @@ AddCompanyRemoteRequest addCompanyRemoteRequest(
 
 class AddCompanyRemoteRequestImpl implements AddCompanyRemoteRequest {
   @override
-  Future<AddTaskResponse> addCompany({
+  Future<void> addCompany({
     required String arabicName,
     required String englishName,
     required String address,
@@ -55,7 +55,7 @@ class AddCompanyRemoteRequestImpl implements AddCompanyRemoteRequest {
       method: Method.post,
       params: formData,
     );
-    return AddTaskResponse();
+    // return AddTaskResponse();
   }
 
   @override
@@ -65,7 +65,7 @@ class AddCompanyRemoteRequestImpl implements AddCompanyRemoteRequest {
     required String address,
     required File? companyLogo,
   }) async {
-    FormData formData = FormData.fromMap({
+    final formData = FormData.fromMap({
       "nameAr": arabicName,
       "nameEn": englishName,
       'address': address,

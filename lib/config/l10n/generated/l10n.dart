@@ -2030,6 +2030,16 @@ class S {
     );
   }
 
+  /// `Start date must precede end date`
+  String get start_date_must_precede_end_date {
+    return Intl.message(
+      'Start date must precede end date',
+      name: 'start_date_must_precede_end_date',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Filter reset done`
   String get filter_reset_done {
     return Intl.message(
@@ -2095,6 +2105,16 @@ class S {
     return Intl.message(
       'Choose company image',
       name: 'choose_company_image',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Company added successfully`
+  String get company_added_successfully {
+    return Intl.message(
+      'Company added successfully',
+      name: 'company_added_successfully',
       desc: '',
       args: [],
     );

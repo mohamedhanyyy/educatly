@@ -52,7 +52,7 @@ class AddCompanyController extends _$AddCompanyController {
     );
   }
 
-  Future<AddCompanyState> addCompany({
+  Future<void> addCompany({
     required Key key,
     required String arabicName,
     required String englishName,
@@ -62,7 +62,7 @@ class AddCompanyController extends _$AddCompanyController {
   }) async {
     if (companyLogo == null) {
       Toast.showErrorToast(S().choose_company_image);
-      return AddCompanyState();
+      return;
     }
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
@@ -83,10 +83,9 @@ class AddCompanyController extends _$AddCompanyController {
       onSuccess: () async {
         await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
         ref.invalidate(getCompaniesControllerProvider);
-
+        Toast.showSuccessToast(S().company_added_successfully);
         AppRouter.router.pop();
       },
     );
-    return AddCompanyState();
   }
 }

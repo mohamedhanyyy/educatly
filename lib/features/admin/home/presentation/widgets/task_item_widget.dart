@@ -83,12 +83,15 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                                         horizontal: 4),
                                     child: statusPrioritySvgMapper(
                                         widget.task.priorityId)),
-                                Text(
-                                  '${widget.task.title}',
-                                  style: StylesManager.semiBold(
-                                      fontSize: 16.sp,
-                                      color: Theme.of(context)
-                                          .secondaryHeaderColor),
+                                SizedBox(
+                                  width: ScreenUtil().screenWidth * .6,
+                                  child: Text(
+                                    '${widget.task.title}',
+                                    style: StylesManager.semiBold(
+                                        fontSize: 16.sp,
+                                        color: Theme.of(context)
+                                            .secondaryHeaderColor),
+                                  ),
                                 ),
                               ],
                             ),

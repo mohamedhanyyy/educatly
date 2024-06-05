@@ -73,6 +73,7 @@ flutter:
     - assets/fonts/cairo/
     - assets/icons/
     - assets/icons/files/
+    - assets/icons/taskDesc.svg
     - assets/images/
     - assets/json/
     - assets/json/notasks.json

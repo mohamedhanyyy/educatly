@@ -26,7 +26,6 @@ mixin _$AddTaskState {
   List<ManagerModel>? get searchManagerList =>
       throw _privateConstructorUsedError;
   List<File>? get filePickerResult => throw _privateConstructorUsedError;
-  bool? get isAddTask => throw _privateConstructorUsedError;
   bool? get isSaveClick => throw _privateConstructorUsedError;
   List<String>? get tasks => throw _privateConstructorUsedError;
 
@@ -51,7 +50,6 @@ abstract class $AddTaskStateCopyWith<$Res> {
       ManagerModel? selectedManager,
       List<ManagerModel>? searchManagerList,
       List<File>? filePickerResult,
-      bool? isAddTask,
       bool? isSaveClick,
       List<String>? tasks});
 }
@@ -78,7 +76,6 @@ class _$AddTaskStateCopyWithImpl<$Res, $Val extends AddTaskState>
     Object? selectedManager = freezed,
     Object? searchManagerList = freezed,
     Object? filePickerResult = freezed,
-    Object? isAddTask = freezed,
     Object? isSaveClick = freezed,
     Object? tasks = freezed,
   }) {
@@ -119,10 +116,6 @@ class _$AddTaskStateCopyWithImpl<$Res, $Val extends AddTaskState>
           ? _value.filePickerResult
           : filePickerResult // ignore: cast_nullable_to_non_nullable
               as List<File>?,
-      isAddTask: freezed == isAddTask
-          ? _value.isAddTask
-          : isAddTask // ignore: cast_nullable_to_non_nullable
-              as bool?,
       isSaveClick: freezed == isSaveClick
           ? _value.isSaveClick
           : isSaveClick // ignore: cast_nullable_to_non_nullable
@@ -153,7 +146,6 @@ abstract class _$$AddTaskStateImplCopyWith<$Res>
       ManagerModel? selectedManager,
       List<ManagerModel>? searchManagerList,
       List<File>? filePickerResult,
-      bool? isAddTask,
       bool? isSaveClick,
       List<String>? tasks});
 }
@@ -178,7 +170,6 @@ class __$$AddTaskStateImplCopyWithImpl<$Res>
     Object? selectedManager = freezed,
     Object? searchManagerList = freezed,
     Object? filePickerResult = freezed,
-    Object? isAddTask = freezed,
     Object? isSaveClick = freezed,
     Object? tasks = freezed,
   }) {
@@ -219,10 +210,6 @@ class __$$AddTaskStateImplCopyWithImpl<$Res>
           ? _value._filePickerResult
           : filePickerResult // ignore: cast_nullable_to_non_nullable
               as List<File>?,
-      isAddTask: freezed == isAddTask
-          ? _value.isAddTask
-          : isAddTask // ignore: cast_nullable_to_non_nullable
-              as bool?,
       isSaveClick: freezed == isSaveClick
           ? _value.isSaveClick
           : isSaveClick // ignore: cast_nullable_to_non_nullable
@@ -241,14 +228,13 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
   const _$AddTaskStateImpl(
       {this.taskTitle,
       this.taskDescription,
-      required this.startDate,
-      required this.endDate,
+      this.startDate,
+      this.endDate,
       this.priorityId,
       this.comment,
       this.selectedManager,
       final List<ManagerModel>? searchManagerList,
       final List<File>? filePickerResult,
-      this.isAddTask,
       this.isSaveClick,
       final List<String>? tasks})
       : _searchManagerList = searchManagerList,
@@ -293,8 +279,6 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
   }
 
   @override
-  final bool? isAddTask;
-  @override
   final bool? isSaveClick;
   final List<String>? _tasks;
   @override
@@ -308,7 +292,7 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddTaskState(taskTitle: $taskTitle, taskDescription: $taskDescription, startDate: $startDate, endDate: $endDate, priorityId: $priorityId, comment: $comment, selectedManager: $selectedManager, searchManagerList: $searchManagerList, filePickerResult: $filePickerResult, isAddTask: $isAddTask, isSaveClick: $isSaveClick, tasks: $tasks)';
+    return 'AddTaskState(taskTitle: $taskTitle, taskDescription: $taskDescription, startDate: $startDate, endDate: $endDate, priorityId: $priorityId, comment: $comment, selectedManager: $selectedManager, searchManagerList: $searchManagerList, filePickerResult: $filePickerResult, isSaveClick: $isSaveClick, tasks: $tasks)';
   }
 
   @override
@@ -325,7 +309,6 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('selectedManager', selectedManager))
       ..add(DiagnosticsProperty('searchManagerList', searchManagerList))
       ..add(DiagnosticsProperty('filePickerResult', filePickerResult))
-      ..add(DiagnosticsProperty('isAddTask', isAddTask))
       ..add(DiagnosticsProperty('isSaveClick', isSaveClick))
       ..add(DiagnosticsProperty('tasks', tasks));
   }
@@ -351,8 +334,6 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
                 .equals(other._searchManagerList, _searchManagerList) &&
             const DeepCollectionEquality()
                 .equals(other._filePickerResult, _filePickerResult) &&
-            (identical(other.isAddTask, isAddTask) ||
-                other.isAddTask == isAddTask) &&
             (identical(other.isSaveClick, isSaveClick) ||
                 other.isSaveClick == isSaveClick) &&
             const DeepCollectionEquality().equals(other._tasks, _tasks));
@@ -370,7 +351,6 @@ class _$AddTaskStateImpl extends _AddTaskState with DiagnosticableTreeMixin {
       selectedManager,
       const DeepCollectionEquality().hash(_searchManagerList),
       const DeepCollectionEquality().hash(_filePickerResult),
-      isAddTask,
       isSaveClick,
       const DeepCollectionEquality().hash(_tasks));
 
@@ -385,14 +365,13 @@ abstract class _AddTaskState extends AddTaskState {
   const factory _AddTaskState(
       {final String? taskTitle,
       final String? taskDescription,
-      required final DateTime? startDate,
-      required final DateTime? endDate,
+      final DateTime? startDate,
+      final DateTime? endDate,
       final int? priorityId,
       final String? comment,
       final ManagerModel? selectedManager,
       final List<ManagerModel>? searchManagerList,
       final List<File>? filePickerResult,
-      final bool? isAddTask,
       final bool? isSaveClick,
       final List<String>? tasks}) = _$AddTaskStateImpl;
   const _AddTaskState._() : super._();
@@ -415,8 +394,6 @@ abstract class _AddTaskState extends AddTaskState {
   List<ManagerModel>? get searchManagerList;
   @override
   List<File>? get filePickerResult;
-  @override
-  bool? get isAddTask;
   @override
   bool? get isSaveClick;
   @override

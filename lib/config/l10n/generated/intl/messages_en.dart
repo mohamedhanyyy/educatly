@@ -55,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("This comment is empty"),
         "comments": MessageLookupByLibrary.simpleMessage("Comments"),
         "companies": MessageLookupByLibrary.simpleMessage("Companies"),
+        "company_added_successfully":
+            MessageLookupByLibrary.simpleMessage("Company added successfully"),
         "company_address":
             MessageLookupByLibrary.simpleMessage("Company address"),
         "company_arabic_name":
@@ -241,6 +243,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("Something went wrong !"),
         "start_date": MessageLookupByLibrary.simpleMessage("Start date"),
+        "start_date_must_precede_end_date":
+            MessageLookupByLibrary.simpleMessage(
+                "Start date must precede end date"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "subTask_must_be_at_least_three_words":
             MessageLookupByLibrary.simpleMessage(

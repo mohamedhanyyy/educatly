@@ -10,14 +10,14 @@ import 'core/services/dio_helper/dio_helper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // DateTime nowTime = DateTime.now();
+  DateTime nowTime = DateTime.now();
 
   DioHelper.init();
   await PreferencesHelper.init();
-  // DateTime loginTime = (DateTime.parse(PreferencesHelper.getLoginDate!));
-  // debugPrint('${nowTime}');
-  // debugPrint('${loginTime}');
-  // debugPrint('${nowTime.difference(loginTime)}');
+  DateTime loginTime = (DateTime.parse(PreferencesHelper.getLoginDate!));
+  debugPrint('${nowTime}');
+  debugPrint('${loginTime}');
+  debugPrint('${nowTime.difference(loginTime)}');
   debugPrint(PreferencesHelper.getToken);
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

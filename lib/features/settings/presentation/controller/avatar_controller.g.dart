@@ -6,7 +6,7 @@ part of 'avatar_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$avatarControllerHash() => r'eea14bc384b2eecc301fdfaf9849c29b13fd9c26';
+String _$avatarControllerHash() => r'43217331bf33828a1bcad55a1bb351340fb69808';
 
 /// See also [AvatarController].
 @ProviderFor(AvatarController)

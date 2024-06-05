@@ -10,7 +10,7 @@ class AddCompanyRepositoryImpl implements AddCompanyRepository {
   AddCompanyRepositoryImpl({required this.addCompanyRemoteRequest});
 
   @override
-  Future<AddTaskResponse> addCompany(
+  Future<void> addCompany(
       {required String arabicName,
       required String englishName,
       File? companyLogo,

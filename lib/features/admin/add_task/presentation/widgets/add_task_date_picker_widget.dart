@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:taskaty/config/theme/styles_manager.dart';
+import 'package:taskaty/core/extensions/context_extension.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/color_system/color_system_light.dart';
@@ -17,6 +18,7 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final watcher = ref.watch(addTaskControllerProvider);
+    final reader = ref.read(addTaskControllerProvider.notifier);
     return Padding(
       padding: EdgeInsets.only(
           bottom: (watcher.startDate == null || watcher.endDate == null) &&
@@ -29,28 +31,32 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
           Flexible(
             child: GestureDetector(
               onTap: () async {
-                final DateTime? selectedDate = await showDatePicker(
+                final selectedDate = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
                   firstDate: DateTime.now(),
                   lastDate: DateTime.now().add(Duration(days: 30)),
                 );
                 if (selectedDate == null) return;
-
-                final TimeOfDay? selectedTime = await showTimePicker(
-                  context: context,
-                  initialTime: TimeOfDay.fromDateTime(selectedDate),
-                );
+                if (watcher.endDate != null) {
+                  if (selectedDate.isAfter(watcher.endDate!)) {
+                    Toast.showErrorToast(S().start_date_must_precede_end_date);
+                    return;
+                  }
+                }
+                final selectedTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.fromDateTime(selectedDate));
 
                 if (selectedTime == null) return;
-                ref.read(addTaskControllerProvider.notifier).setData(
-                        startDate: DateTime(
-                      selectedDate.year,
-                      selectedDate.month,
-                      selectedDate.day,
-                      selectedTime.hour,
-                      selectedTime.minute,
-                    ));
+                reader.setData(
+                    startDate: DateTime(
+                  selectedDate.year,
+                  selectedDate.month,
+                  selectedDate.day,
+                  selectedTime.hour,
+                  selectedTime.minute,
+                ));
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,14 +72,19 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${ref.read(addTaskControllerProvider.notifier).getFormattedStartDate()}',
+                          reader.getFormattedStartDate(),
                           style: TextStyle(
                               fontSize: 11.sp,
                               color: watcher.startDate == null
                                   ? ColorSystemLight().black2
                                   : ColorSystemLight().black),
                         ),
-                        SvgPicture.asset(Assets.icons.pickDate)
+                        SvgPicture.asset(
+                          Assets.icons.pickDate,
+                          colorFilter: Theme.of(context)
+                              .unselectedWidgetColor
+                              .toColorFilter,
+                        )
                       ],
                     ),
                   ),
@@ -93,6 +104,10 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
           Flexible(
             child: GestureDetector(
               onTap: () async {
+                if (watcher.startDate == null) {
+                  Toast.showErrorToast(S().select_first_date);
+                  return;
+                }
                 final endDate = await showDatePicker(
                   context: context,
                   initialDate: DateTime.now(),
@@ -120,15 +135,14 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
                   Toast.showErrorToast(S().end_date_must_be_after_start_date);
                   return;
                 }
-
-                ref.read(addTaskControllerProvider.notifier).setData(
-                        endDate: DateTime(
-                      endDate.year,
-                      endDate.month,
-                      endDate.day,
-                      selectedTime.hour,
-                      selectedTime.minute,
-                    ));
+                reader.setData(
+                    endDate: DateTime(
+                  endDate.year,
+                  endDate.month,
+                  endDate.day,
+                  selectedTime.hour,
+                  selectedTime.minute,
+                ));
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,14 +158,19 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${ref.read(addTaskControllerProvider.notifier).getFormattedEndDate()}',
+                          '${reader.getFormattedEndDate()}',
                           style: TextStyle(
                               fontSize: 11.sp,
                               color: watcher.startDate == null
                                   ? ColorSystemLight().black2
                                   : ColorSystemLight().black),
                         ),
-                        SvgPicture.asset(Assets.icons.pickDate)
+                        SvgPicture.asset(
+                          Assets.icons.pickDate,
+                          colorFilter: Theme.of(context)
+                              .unselectedWidgetColor
+                              .toColorFilter,
+                        )
                       ],
                     ),
                   ),

@@ -1,14 +1,12 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:intl/intl.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:taskaty/core/constants/assets.dart';
+import 'package:taskaty/core/constants/constants.dart';
 import 'package:taskaty/core/helpers/toast_helper.dart';
 import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
 import 'package:taskaty/features/admin/get_managers/data/model/get_managers_model.dart';
@@ -27,14 +25,7 @@ part 'add_task_state.dart';
 
 @riverpod
 class AddTaskController extends _$AddTaskController {
-  AddTaskState build() {
-    return AddTaskState(
-      startDate: null,
-      endDate: null,
-      isAddTask: false,
-      searchManagerList: [],
-    );
-  }
+  AddTaskState build() => AddTaskState();
 
   void clearList() {
     state = state.copyWith(searchManagerList: []);
@@ -68,7 +59,6 @@ class AddTaskController extends _$AddTaskController {
       priorityId: selectedPriority ?? state.priorityId,
       selectedManager: selectedManager ?? state.selectedManager,
       startDate: startDate ?? state.startDate,
-      isAddTask: isAddTask ?? state.isAddTask,
       endDate: endDate ?? state.endDate,
       filePickerResult: filePickerResult ?? state.filePickerResult,
     );
@@ -96,13 +86,13 @@ class AddTaskController extends _$AddTaskController {
   String getFormattedStartDate() {
     return state.startDate == null
         ? S().start_date
-        : '${DateFormat('dd-MMM-yyyy - HH:mm').format(state.startDate!)}';
+        : '${DateFormat(AppConstants.normalFormat).format(state.startDate!)}';
   }
 
   String getFormattedEndDate() {
     return state.endDate == null
         ? S().end_date
-        : '${DateFormat('dd-MMM-yyyy - HH:mm').format(state.endDate!)}';
+        : '${DateFormat(AppConstants.normalFormat).format(state.endDate!)}';
   }
 
   Future<void> addTask({
@@ -136,7 +126,7 @@ class AddTaskController extends _$AddTaskController {
     //   };
     // }).toList();
 
-    Response? response = await DioHelper.postData(
+    final response = await DioHelper.postData(
       url: Api.addTask,
       data: {
         "title": title,
@@ -165,14 +155,5 @@ class AddTaskController extends _$AddTaskController {
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
     }
-  }
-
-  priorityIconMapper(int? priorityId) {
-    Map<int, String> map = {
-      1: Assets.icons.flag0,
-      2: Assets.icons.flag1,
-      3: Assets.icons.flag2,
-    };
-    if (priorityId != null) return SvgPicture.asset(map[priorityId]!);
   }
 }

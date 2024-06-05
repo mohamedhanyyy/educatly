@@ -7,14 +7,13 @@ abstract class AddTaskState with _$AddTaskState {
   const factory AddTaskState({
     String? taskTitle,
     String? taskDescription,
-    required DateTime? startDate,
-    required DateTime? endDate,
+    DateTime? startDate,
+    DateTime? endDate,
     int? priorityId,
     String? comment,
     ManagerModel? selectedManager,
     List<ManagerModel>? searchManagerList,
     List<File>? filePickerResult,
-    bool? isAddTask,
     bool? isSaveClick,
     List<String>? tasks,
   }) = _AddTaskState;

@@ -6,7 +6,7 @@ part of 'add_company_usecase.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$addCompanyUseCaseHash() => r'9dc3f1610307013e8f1fe07645d7a813f73d130f';
+String _$addCompanyUseCaseHash() => r'ae1857cdef1d70664ac52cb656936807ee55dd3c';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -34,7 +34,7 @@ class _SystemHash {
 const addCompanyUseCaseProvider = AddCompanyUseCaseFamily();
 
 /// See also [addCompanyUseCase].
-class AddCompanyUseCaseFamily extends Family<AsyncValue<AddTaskResponse>> {
+class AddCompanyUseCaseFamily extends Family<AsyncValue<void>> {
   /// See also [addCompanyUseCase].
   const AddCompanyUseCaseFamily();
 
@@ -84,8 +84,7 @@ class AddCompanyUseCaseFamily extends Family<AsyncValue<AddTaskResponse>> {
 }
 
 /// See also [addCompanyUseCase].
-class AddCompanyUseCaseProvider
-    extends AutoDisposeFutureProvider<AddTaskResponse> {
+class AddCompanyUseCaseProvider extends AutoDisposeFutureProvider<void> {
   /// See also [addCompanyUseCase].
   AddCompanyUseCaseProvider({
     required String arabicName,
@@ -140,7 +139,7 @@ class AddCompanyUseCaseProvider
 
   @override
   Override overrideWith(
-    FutureOr<AddTaskResponse> Function(AddCompanyUseCaseRef provider) create,
+    FutureOr<void> Function(AddCompanyUseCaseRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -161,7 +160,7 @@ class AddCompanyUseCaseProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<AddTaskResponse> createElement() {
+  AutoDisposeFutureProviderElement<void> createElement() {
     return _AddCompanyUseCaseProviderElement(this);
   }
 
@@ -188,7 +187,7 @@ class AddCompanyUseCaseProvider
   }
 }
 
-mixin AddCompanyUseCaseRef on AutoDisposeFutureProviderRef<AddTaskResponse> {
+mixin AddCompanyUseCaseRef on AutoDisposeFutureProviderRef<void> {
   /// The parameter `arabicName` of this provider.
   String get arabicName;
 
@@ -206,8 +205,7 @@ mixin AddCompanyUseCaseRef on AutoDisposeFutureProviderRef<AddTaskResponse> {
 }
 
 class _AddCompanyUseCaseProviderElement
-    extends AutoDisposeFutureProviderElement<AddTaskResponse>
-    with AddCompanyUseCaseRef {
+    extends AutoDisposeFutureProviderElement<void> with AddCompanyUseCaseRef {
   _AddCompanyUseCaseProviderElement(super.provider);
 
   @override

@@ -55,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("هذا التعليق فارغ !"),
         "comments": MessageLookupByLibrary.simpleMessage("التعليقات"),
         "companies": MessageLookupByLibrary.simpleMessage("الشركات"),
+        "company_added_successfully":
+            MessageLookupByLibrary.simpleMessage("تم إضافة الشركة بنجاح"),
         "company_address": MessageLookupByLibrary.simpleMessage("عنوان الشركة"),
         "company_arabic_name":
             MessageLookupByLibrary.simpleMessage("اسم الشركة بالعربية"),
@@ -248,6 +250,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "something_went_wrong":
             MessageLookupByLibrary.simpleMessage("حدث خطأ ما ! "),
         "start_date": MessageLookupByLibrary.simpleMessage("تاريخ البدء"),
+        "start_date_must_precede_end_date":
+            MessageLookupByLibrary.simpleMessage(
+                "تاريخ البداية يجب أن يسبق تاريخ النهاية"),
         "status": MessageLookupByLibrary.simpleMessage("الحالة"),
         "subTask_must_be_at_least_three_words":
             MessageLookupByLibrary.simpleMessage(

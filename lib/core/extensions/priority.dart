@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../config/l10n/generated/l10n.dart';
 import '../constants/assets.dart';
@@ -36,4 +37,13 @@ extension PriorityExtension on int {
         return S().high;
     }
   }
+}
+
+priorityIconMapper(int? priorityId) {
+  Map<int, String> map = {
+    1: Assets.icons.flag0,
+    2: Assets.icons.flag1,
+    3: Assets.icons.flag2,
+  };
+  if (priorityId != null) return SvgPicture.asset(map[priorityId]!);
 }

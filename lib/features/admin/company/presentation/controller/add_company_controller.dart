@@ -1,16 +1,17 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:taskaty/core/extensions/async_value_extension.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/router/app_router.dart';
 import '../../../../../core/controllers/button/button_controller.dart';
 import '../../../../../core/helpers/toast_helper.dart';
+import '../../../../../core/services/dio_helper/dio_helper.dart';
+import '../../../../../core/services/network/api/network_api.dart';
 import '../../../get_managers/data/model/get_managers_model.dart';
-import '../../domain/usecase/add_company_usecase.dart';
 import 'get_companies_controller.dart';
 
 part 'add_company_controller.freezed.dart';
@@ -66,26 +67,55 @@ class AddCompanyController extends _$AddCompanyController {
     }
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
-    final result = await AsyncValue.guard(() => ref.read(
-        addCompanyUseCaseProvider(
-                managerId: managerId,
-                arabicName: arabicName,
-                englishName: englishName,
-                logo: companyLogo,
-                address: address)
-            .future));
+    final formData = FormData.fromMap({
+      "NameAr": arabicName,
+      "NameEn": englishName,
+      'Address': address,
+      "ManagerId": managerId,
+      "Logo": await MultipartFile.fromFile(companyLogo.path),
+    });
 
-    result.handleGuardResults(
-      ref: ref,
-      onError: () {
-        ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
-      },
-      onSuccess: () async {
-        await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
-        ref.invalidate(getCompaniesControllerProvider);
-        Toast.showSuccessToast(S().company_added_successfully);
-        AppRouter.router.pop();
-      },
-    );
+    Response? respone =
+        await DioHelper.postData(url: Api.addCompany, data: formData);
+    if (respone?.statusCode == 200) {
+      await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
+      ref.invalidate(getCompaniesControllerProvider);
+      AppRouter.router.pop();
+    } else {
+      ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
+    }
+  }
+
+  Future<void> editCompany({
+    required Key key,
+    required String arabicName,
+    required String englishName,
+    required String address,
+    required String managerId,
+    required File? companyLogo,
+  }) async {
+    if (companyLogo == null) {
+      Toast.showErrorToast(S().choose_company_image);
+      return;
+    }
+    ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
+
+    final formData = FormData.fromMap({
+      "NameAr": arabicName,
+      "NameEn": englishName,
+      'Address': address,
+      "ManagerId": managerId,
+      "Logo": await MultipartFile.fromFile(companyLogo.path),
+    });
+
+    Response? respone =
+        await DioHelper.putData(url: Api.editCompany, data: formData);
+    if (respone?.statusCode == 200) {
+      await ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
+      ref.invalidate(getCompaniesControllerProvider);
+      AppRouter.router.pop();
+    } else {
+      ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
+    }
   }
 }

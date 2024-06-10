@@ -8,6 +8,7 @@ import '../../../../../config/router/app_routing_paths.dart';
 import '../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../core/constants/assets.dart';
 import '../../../../../core/controllers/theme/theme_controller.dart';
+import '../../../../../core/services/notification/firebase_notification.dart';
 
 class AdminHomeScreen extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -23,6 +24,12 @@ class AdminHomeScreen extends StatefulWidget {
 
 class _AdminHomeScreenState extends State<AdminHomeScreen> {
   int index = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseCustomNotification.setUpFirebase();
+  }
 
   void _goBranch(int index) {
     this.index = index;

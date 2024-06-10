@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "888482800293",
+    "project_id": "pstt-taskaty",
+    "storage_bucket": "pstt-taskaty.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888482800293:android:297b755f3d44d7a97b234c",
+        "android_client_info": {
+          "package_name": "com.nuumex.taskaty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl_iLhR9ZfY9TpDXmETzYCGNJ75kMKZHQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

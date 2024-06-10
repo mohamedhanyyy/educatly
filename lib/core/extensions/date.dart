@@ -44,7 +44,11 @@ extension DateDifferenceExtension on DateTime {
       } else if (difference.inDays >= 30 && difference.inDays < 365) {
         final months = (difference.inDays / 30).round();
         if (months == 1) return S().last_month;
-        return S().ago + '$months ' + S().months_ago;
+        if (AppRouter.navigatorState.currentContext!.isCurrentArabic) {
+          return S().ago + '$months ' + S().months_ago;
+        } else {
+          return '$months ' + S().months_ago;
+        }
       } else if (now.year >= this.year) {
         final years = now.year - this.year;
         if (years == 1) return S().last_year;
@@ -71,7 +75,9 @@ extension DateDifferenceExtension on DateTime {
       } else if (difference.inDays >= 30 && difference.inDays < 365) {
         final months = (difference.inDays / 30).round();
         if (months == 1) return S().next_month;
-        return S().in_date + ' $months ' + S().months;
+        {
+          return S().in_date + ' $months ' + S().months;
+        }
       } else if (this.year >= now.year) {
         final years = this.year - now.year;
         if (years == 1) return S().next_year;

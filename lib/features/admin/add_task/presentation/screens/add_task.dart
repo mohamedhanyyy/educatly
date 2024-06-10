@@ -37,8 +37,8 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
   static final buttonKey = UniqueKey();
   @override
   Widget build(BuildContext context) {
-    final controller = ref.read(addTaskControllerProvider.notifier);
-    final controllerWatcher = ref.watch(addTaskControllerProvider);
+    final reader = ref.read(addTaskControllerProvider.notifier);
+    final watcher = ref.watch(addTaskControllerProvider);
     return Scaffold(
       appBar: AppBar(title: Text(S().add_new_task)),
       body: SingleChildScrollView(
@@ -91,21 +91,20 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
               AppSizes.size15.verticalSpace,
               AddTaskDatePickerWidget(),
               customDropDown(
-                widget: priorityIconMapper(controllerWatcher.priorityId),
-                textColor: controllerWatcher.priorityId != null
+                widget: priorityIconMapper(watcher.priorityId),
+                textColor: watcher.priorityId != null
                     ? Theme.of(context).secondaryHeaderColor
                     : Theme.of(context).hintColor,
-                title: controllerWatcher.priorityId == null
+                title: watcher.priorityId == null
                     ? S().priority
-                    : priorityIdMapper(controllerWatcher.priorityId),
+                    : priorityIdMapper(watcher.priorityId),
                 function: () {
                   showModalBottomSheet(
                       context: context,
                       builder: (context) => AdminAddTaskPriority());
                 },
               ),
-              if (controllerWatcher.priorityId == null &&
-                  controllerWatcher.isSaveClick == true)
+              if (watcher.priorityId == null && watcher.isSaveClick == true)
                 Padding(
                   padding: EdgeInsets.only(
                       bottom: AppSizes.size5.h, top: AppSizes.size8.h),
@@ -116,12 +115,11 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                 ),
               AppSizes.size10.verticalSpace,
               customDropDown(
-                  textColor: controllerWatcher.selectedManager != null
+                  textColor: watcher.selectedManager != null
                       ? Theme.of(context).secondaryHeaderColor
                       : Theme.of(context).hintColor,
-                  title: controllerWatcher.selectedManager?.userName ??
-                      S().manager_name,
-                  widget: controllerWatcher.selectedManager == null
+                  title: watcher.selectedManager?.userName ?? S().manager_name,
+                  widget: watcher.selectedManager == null
                       ? const SizedBox.shrink()
                       : Container(
                           width: 40.h,
@@ -134,14 +132,14 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                           ),
                           child: ClipOval(
                             child: AppCachedNetworkImage(
-                                "${AppConstants.subDomain}${controllerWatcher.selectedManager?.imageName}"),
+                                "${AppConstants.subDomain}${watcher.selectedManager?.imageName}"),
                           ),
                         ),
                   function: () {
                     searchManagers(context, ref);
                   }),
-              if (controllerWatcher.selectedManager == null &&
-                  controllerWatcher.isSaveClick == true)
+              if (watcher.selectedManager == null &&
+                  watcher.isSaveClick == true)
                 Padding(
                   padding: EdgeInsets.only(
                       bottom: AppSizes.size5.h, top: AppSizes.size8.h),
@@ -172,9 +170,9 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
           textColor: ColorSystemLight().scaffold,
           backgroundColor: AppColors.colors.darkBlue,
           onPressed: () {
-            controller.setData(isSave: true);
+            reader.setData(isSave: true);
             if (formKey.currentState!.validate()) {
-              controller.addTask(
+              reader.addTask(
                 title: taskTitleController.text,
                 description: taskDetailsController.text,
                 key: buttonKey,

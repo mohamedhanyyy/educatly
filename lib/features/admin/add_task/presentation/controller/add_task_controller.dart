@@ -104,8 +104,10 @@ class AddTaskController extends _$AddTaskController {
         state.selectedManager == null ||
         state.startDate == null ||
         state.endDate == null ||
-        state.tasks == null) {
-      if (state.tasks == null) Toast.showErrorToast(S().subtasks_empty);
+        state.tasks == null ||
+        state.tasks?.isEmpty == true) {
+      if (state.tasks == null || state.tasks?.isEmpty == true)
+        Toast.showErrorToast(S().subtasks_empty);
       return;
     }
 

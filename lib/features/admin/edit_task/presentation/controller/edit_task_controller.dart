@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -121,7 +120,7 @@ class EditTaskController extends _$EditTaskController {
 
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
-    Response? response = await DioHelper.postData(url: Api.updateTask, data: {
+    final response = await DioHelper.postData(url: Api.updateTask, data: {
       "title": title,
       "id": state.taskId,
       "description": description,
@@ -141,9 +140,8 @@ class EditTaskController extends _$EditTaskController {
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
       showModalBottomSheet(
           context: AppRouter.navigatorState.currentContext!,
-          builder: (context) {
-            return DoneBottomSheet(message: S().task_edited_successfully);
-          });
+          builder: (context) =>
+              DoneBottomSheet(message: S().task_edited_successfully));
       ref.invalidate(getAdminTasksControllerProvider);
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);

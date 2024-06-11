@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,9 +24,10 @@ class LoginCubit extends Cubit<CubitState> {
       required WidgetRef ref}) async {
     ref.read(buttonControllerProvider.notifier).setLoadingStatus(key);
 
-    Response? response = await DioHelper.postData(url: Api.login, data: {
+    final response = await DioHelper.postData(url: Api.login, data: {
       "email": email,
       "password": password,
+      'UserToken': await FirebaseMessaging.instance.getToken(),
     });
     loginModel = LoginModel.fromJson(response?.data);
     if (response?.statusCode == 200) {

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../../../core/services/network/api/network_api.dart';
@@ -81,6 +82,8 @@ class SettingsRemoteRequestImpl implements SettingsRemoteRequest {
       params: {
         'newPassword': newPass,
         'currentPassword': currentPass,
+        'UserToken':await FirebaseMessaging.instance.getToken(),
+
       },
     );
     return response;

@@ -32,7 +32,6 @@ class _FilterTaskStatusState extends ConsumerState<FilterTaskStatus> {
           1: Text(S().in_progress),
           2: Text(S().completed),
         },
-        // borderWidth: 1,
         borderWidth: .3,
         selectedTextStyle: TextStyle(fontFamily: 'Cairo', fontSize: 15),
         unselectedTextStyle: TextStyle(

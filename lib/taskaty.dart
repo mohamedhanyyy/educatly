@@ -13,6 +13,7 @@ import 'core/controllers/theme/theme_controller.dart';
 import 'features/admin/home/presentation/bloc/statstics_bloc.dart';
 import 'features/admin/tasks/presentation/bloc/get_admin_tasks_bloc.dart';
 import 'features/manager/stats/bloc/manager_statistics_bloc.dart';
+import 'features/shared/notifications/presentation/cubit/notification_cubit.dart';
 
 class Taskaty extends ConsumerWidget {
   const Taskaty({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class Taskaty extends ConsumerWidget {
           providers: [
             BlocProvider<LoginCubit>(create: (_) => LoginCubit()),
             BlocProvider<AdminGetTasksBloc>(create: (_) => AdminGetTasksBloc()),
+            BlocProvider<NotificationCubit>(create: (_) => NotificationCubit()),
             BlocProvider<AdminStatsticsCubit>(
                 create: (_) => AdminStatsticsCubit()),
             BlocProvider<ManagerStatisticsCubit>(

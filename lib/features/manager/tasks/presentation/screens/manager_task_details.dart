@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -108,7 +107,7 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
               list.add(SubTasks(
                   isCompleted: selected[i], id: taskDetails.subTasks![i].id));
             }
-            Response? response = await DioHelper.putData(
+            final response = await DioHelper.putData(
                 url: Api.updateSubTask,
                 data: list.map((e) {
                   return {'id': e.id, 'isCompleted': e.isCompleted};

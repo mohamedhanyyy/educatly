@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,12 +16,12 @@ Future<void> main() async {
   DioHelper.init();
   await PreferencesHelper.init();
   await Firebase.initializeApp();
-  DateTime loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
-  Duration duration = loginTime.difference(DateTime.now());
-  debugPrint('ZZZ ${duration.inDays}');
+  final loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
+  final duration = loginTime.difference(DateTime.now());
+  debugPrint('Diffrence date: ${duration.inDays}');
 
-  // debugPrint(PreferencesHelper.getToken);
-  // debugPrint('${await FirebaseMessaging.instance.getToken()}');
+  debugPrint(PreferencesHelper.getToken);
+  debugPrint('${await FirebaseMessaging.instance.getToken()}');
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 

@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
@@ -15,15 +12,10 @@ class CustomLocalNotification {
     if (isFlutterLocalNotificationsInitialized) {
       return;
     }
-    // debugPrint('setup firebase notification');
     channel = const AndroidNotificationChannel(
       'high_importance_channel', // id
       'High Importance Notifications',
       description: 'This channel is used for important notifications.',
-      importance: Importance.high,
-      playSound: true,
-      enableVibration: true,
-      sound: RawResourceAndroidNotificationSound('synth'),
     );
 
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -58,13 +50,11 @@ class CustomLocalNotification {
           ),
         ),
       );
-      if (kDebugMode) {
-        print('local notification ${message.notification?.title}');
-      }
     }
   }
 
   static Future<void> onMessageOpenedApp(RemoteMessage message) async {
-    log('${message.data}');
+    // final data = message.data;
+    // AppRouter.router.pushNamed(AppRoutes.re);
   }
 }

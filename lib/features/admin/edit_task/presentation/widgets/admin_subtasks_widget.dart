@@ -82,22 +82,16 @@ class AdminEditSubTask extends ConsumerWidget {
               border:
                   Border.all(color: Theme.of(context).scaffoldBackgroundColor)),
           child: CustomTextInputField(
-            suffix: Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: CircleAvatar(
-                radius: 15,
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  icon: Icon(Icons.done),
-                  onPressed: () {
-                    if (controller.text != '')
-                      reader.setTask(
-                          task: SubTasks(description: controller.text));
-                    reader.setData(isEditTask: false);
-                    controller.clear();
-                  },
-                ),
-              ),
+            suffix: IconButton(
+              padding: EdgeInsets.zero,
+              icon: Icon(Icons.done),
+              color: AppColors.colors.primary,
+              onPressed: () {
+                if (controller.text != '')
+                  reader.setTask(task: SubTasks(description: controller.text));
+                reader.setData(isEditTask: false);
+                controller.clear();
+              },
             ),
             controller: controller,
             fillColor: Theme.of(context).scaffoldBackgroundColor,

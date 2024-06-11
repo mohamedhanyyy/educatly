@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
+import 'package:taskaty/config/router/app_routing_paths.dart';
 
+import '../../../config/router/app_router.dart';
 import 'local_notification.dart';
 
 class FirebaseCustomNotification {
@@ -11,18 +10,13 @@ class FirebaseCustomNotification {
   static NotificationSettings? settings;
 
   static Future<void> firebaseMessagingAppOpen() async {
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-      if (kDebugMode) {
-        String? token = await FirebaseMessaging.instance.getToken();
-        print('Firebase token: $token');
-      }
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      AppRouter.router.push(AppRoutes.resetPassword);
     });
   }
 
   static Future<void> firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {
-    log('firebaseMessagingBackgroundHandler');
-  }
+      RemoteMessage message) async {}
 
   static Future<bool> requestNotificationPermission() async {
     NotificationSettings settings = await messaging.requestPermission();
@@ -40,10 +34,6 @@ class FirebaseCustomNotification {
           .listen(CustomLocalNotification.showFlutterNotification);
       FirebaseMessaging.onMessageOpenedApp
           .listen((CustomLocalNotification.onMessageOpenedApp));
-      if (kDebugMode) {
-        String? token = await FirebaseMessaging.instance.getToken();
-        print('FIREBASE TOKEN: $token');
-      }
     }
   }
 }

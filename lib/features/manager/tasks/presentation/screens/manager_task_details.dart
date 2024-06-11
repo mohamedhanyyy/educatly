@@ -107,11 +107,13 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
               list.add(SubTasks(
                   isCompleted: selected[i], id: taskDetails.subTasks![i].id));
             }
-            final response = await DioHelper.putData(
-                url: Api.updateSubTask,
-                data: list.map((e) {
-                  return {'id': e.id, 'isCompleted': e.isCompleted};
-                }).toList());
+            final response =
+                await DioHelper.putData(url: Api.updateSubTask, data: {
+              'taskId': taskDetails.id,
+              'userSubTasks': list
+                  .map((e) => {'id': e.id, 'isCompleted': e.isCompleted})
+                  .toList()
+            });
             if (response?.statusCode == 200) {
               ref
                   .read(buttonControllerProvider.notifier)

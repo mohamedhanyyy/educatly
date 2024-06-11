@@ -27,7 +27,7 @@ class LoginCubit extends Cubit<CubitState> {
     final response = await DioHelper.postData(url: Api.login, data: {
       "email": email,
       "password": password,
-      'UserToken': await FirebaseMessaging.instance.getToken(),
+      'userToken': '${await FirebaseMessaging.instance.getToken()}',
     });
     loginModel = LoginModel.fromJson(response?.data);
     if (response?.statusCode == 200) {

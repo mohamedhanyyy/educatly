@@ -82,8 +82,7 @@ class SettingsRemoteRequestImpl implements SettingsRemoteRequest {
       params: {
         'newPassword': newPass,
         'currentPassword': currentPass,
-        'UserToken':await FirebaseMessaging.instance.getToken(),
-
+        'userToken': '${await FirebaseMessaging.instance.getToken()}'
       },
     );
     return response;

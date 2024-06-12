@@ -16,7 +16,9 @@ class FirebaseCustomNotification {
   }
 
   static Future<void> firebaseMessagingBackgroundHandler(
-      RemoteMessage message) async {}
+      RemoteMessage message) async {
+    // CustomLocalNotification.showFlutterNotification;
+  }
 
   static Future<bool> requestNotificationPermission() async {
     NotificationSettings settings = await messaging.requestPermission();

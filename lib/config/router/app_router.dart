@@ -58,8 +58,8 @@ class AppRouter {
         builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
-        name: AppRoutes.testGetCompany,
-        path: AppRoutes.testGetCompany,
+        name: AppRoutes.getCompanies,
+        path: AppRoutes.getCompanies,
         builder: (context, state) => GetCompaniesScreen(),
       ),
 
@@ -196,10 +196,11 @@ class AppRouter {
           builder: (context, state) => EditTaskScreen(
               editTaskId: state.uri.queryParameters[AppRouterKeys.editTask]!)),
       GoRoute(
-          path: AppRoutes.taskaDetails,
-          name: AppRoutes.taskaDetails,
+          path: AppRoutes.adminTaskDetails,
+          name: AppRoutes.adminTaskDetails,
           builder: (context, state) => AdminTaskDetailsScreen(
-              task: state.uri.queryParameters[AppRouterKeys.taskaDetails]!)),
+              task:
+                  state.uri.queryParameters[AppRouterKeys.adminTaskDetails]!)),
 
       ///? Main
       StatefulShellRoute.indexedStack(

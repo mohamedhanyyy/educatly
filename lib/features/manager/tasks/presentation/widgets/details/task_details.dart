@@ -46,6 +46,7 @@ class _TaskDetailsWidgetState extends State<TaskDetailsWidget> {
                   ),
                 ),
                 Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     StatusWidget(statusId: widget.statusId),
                     AppSizes.size10.horizontalSpace,

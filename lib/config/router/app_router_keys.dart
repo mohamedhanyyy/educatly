@@ -5,5 +5,5 @@ class AppRouterKeys {
   static const String editTask = 'editTask';
   static const String managerTaskDetails = 'managerTaskDetails';
   static const String resetToken = 'resetToken';
-  static const String taskaDetails = 'taskaDetails';
+  static const String adminTaskDetails = 'adminTaskDetails';
 }

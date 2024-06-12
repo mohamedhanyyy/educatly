@@ -24,7 +24,7 @@ class ManagerAddCommentWidget extends ConsumerWidget {
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Theme.of(context).secondaryHeaderColor)),
+          border: Border.all(color: Theme.of(context).cardColor)),
       padding: EdgeInsets.all(5),
       child: InkWell(
         onTap: () {

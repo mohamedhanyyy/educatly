@@ -26,6 +26,7 @@ import '../../../../../core/controllers/button/button_controller.dart';
 import '../../../../../core/helpers/toast_helper.dart';
 import '../../../../../core/services/network/api/network_api.dart';
 import '../../../../admin/tasks/data/model/admin_tasks_model.dart';
+import '../../../home/presentation/controller/dashboard_controller.dart';
 import '../../../stats/bloc/manager_statistics_bloc.dart';
 import '../widgets/description/description_widget.dart';
 import '../widgets/details/task_details.dart';
@@ -81,6 +82,7 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
             startDate: DateTime.parse(taskDetails.startDate!),
           ),
           DescriptionWidget(description: '${taskDetails.description}'),
+          AppSizes.size20.verticalSpace,
           TaskHeadLineWidget(
               title: S().subtasks_click_to_select, icon: Assets.icons.subtasks),
           ManagerSubTaskWidget(taskDetails: taskDetails, selected: selected),
@@ -115,11 +117,13 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
                   .toList()
             });
             if (response?.statusCode == 200) {
+              ref.invalidate(filtersControllerProvider);
+              ref.invalidate(dashboardControllerProvider);
+              ref.invalidate(managerAllTasksControllerProvider);
               ref
                   .read(buttonControllerProvider.notifier)
                   .setSuccessStatus(widget.buttonKey);
-              ref.invalidate(managerAllTasksControllerProvider);
-              ref.invalidate(filtersControllerProvider);
+
               context.read<ManagerStatisticsCubit>().getManagerStatistics();
               AppRouter.router.pop();
               Toast.showSuccessToast(S().task_edited_successfully);

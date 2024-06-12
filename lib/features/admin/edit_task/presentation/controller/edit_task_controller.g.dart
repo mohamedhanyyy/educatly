@@ -7,7 +7,7 @@ part of 'edit_task_controller.dart';
 // **************************************************************************
 
 String _$editTaskControllerHash() =>
-    r'784a83d7d3cf9f0a7bfc67464a4854878bd1ec28';
+    r'2248dbc29dc2aec3d29a54adf990baebdbfd298a';
 
 /// See also [EditTaskController].
 @ProviderFor(EditTaskController)

@@ -1,6 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import '../../../config/router/app_router.dart';
+
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 class CustomLocalNotification {
@@ -53,8 +55,9 @@ class CustomLocalNotification {
     }
   }
 
-  static Future<void> onMessageOpenedApp(RemoteMessage message) async {
-    // final data = message.data;
-    // AppRouter.router.pushNamed(AppRoutes.re);
+  static void onMessageOpenedApp(RemoteMessage message) {
+    final route = message.data['route'];
+    if (route == 'admin-tasks') {}
+    AppRouter.router.pushNamed(route);
   }
 }

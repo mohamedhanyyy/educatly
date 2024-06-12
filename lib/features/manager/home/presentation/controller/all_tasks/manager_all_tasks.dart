@@ -6,7 +6,7 @@ import '../../../../../admin/tasks/data/model/admin_tasks_model.dart';
 
 part 'manager_all_tasks.g.dart';
 
-@Riverpod(keepAlive: true)
+@riverpod
 class ManagerAllTasksController extends _$ManagerAllTasksController {
   Future<List<AdminTasksModel>> build() async {
     return await getTasksList();

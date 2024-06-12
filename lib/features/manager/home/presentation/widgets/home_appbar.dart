@@ -6,12 +6,9 @@ import '../../../../../config/router/app_routing_paths.dart';
 import '../../../../../config/theme/sizes_manager.dart';
 import '../../../../../core/widgets/notification_button.dart';
 import '../../../../settings/presentation/widgets/profile_avatar.dart';
-// import '../../../../shared/settings/presentation/widgets/profile_avatar.dart';
 
 class HomeAppbar extends StatelessWidget {
-  const HomeAppbar({
-    super.key,
-  });
+  const HomeAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {

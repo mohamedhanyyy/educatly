@@ -16,11 +16,10 @@ Future<void> main() async {
   DioHelper.init();
   await PreferencesHelper.init();
   await Firebase.initializeApp();
-  final loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
-  final duration = loginTime.difference(DateTime.now());
-  debugPrint('Diffrence date: ${duration.inDays}');
-
-  debugPrint(PreferencesHelper.getToken);
+  // final loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
+  // final duration = loginTime.difference(DateTime.now());
+  // debugPrint('Diffrence date: ${duration.inDays}');
+  // debugPrint(PreferencesHelper.getToken);
   debugPrint('${await FirebaseMessaging.instance.getToken()}');
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

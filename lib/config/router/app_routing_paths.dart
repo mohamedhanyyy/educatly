@@ -19,7 +19,7 @@ class AppRoutes {
   static const String addTask = "/add_task";
   static const String admin = "/admin";
   static const String managerTaskDetails = "/managerTaskDetails";
-  static const String testGetCompany = "/zz";
+  static const String getCompanies = "/get_companies";
   static const String addCompany = "/add-company";
   static const String adminHome = "/admin-home";
   static const String adminMain = "/admin-main";
@@ -27,7 +27,7 @@ class AppRoutes {
   static const String adminTasks = "/admin-tasks";
   static const String allCompanies = "/all-companies";
   static const String editTask = "/edit-task";
-  static const String taskaDetails = "/taska-details";
+  static const String adminTaskDetails = "/adminTaskDetails";
   static const String getManagers = "/get-managers";
   static const String managerTasks = "/manager-tasks";
 }

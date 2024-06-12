@@ -60,7 +60,7 @@ class DrawerWidget extends ConsumerWidget {
               title: S().companies,
               icon: 'companies',
               context: context,
-              route: AppRoutes.testGetCompany),
+              route: AppRoutes.getCompanies),
           buildDrawerItemWidget(
               title: S().managers,
               icon: 'managers',

@@ -30,7 +30,7 @@ class TaskHeadLineWidget extends StatelessWidget {
         AppSizes.size6.horizontalSpace,
         Text(
           title,
-          style: StylesManager.semiBold(
+          style: StylesManager.bold(
             fontSize: AppFonts.font.medium.sp,
           ),
         ),

@@ -47,9 +47,10 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
       borderRadius: BorderRadius.circular(15),
       child: GestureDetector(
         onTap: () {
-          AppRouter.router.pushNamed(AppRoutes.taskaDetails, queryParameters: {
-            AppRouterKeys.taskaDetails: jsonEncode(widget.task)
-          });
+          AppRouter.router.pushNamed(AppRoutes.adminTaskDetails,
+              queryParameters: {
+                AppRouterKeys.adminTaskDetails: jsonEncode(widget.task)
+              });
         },
         child: Container(
           decoration: BoxDecoration(

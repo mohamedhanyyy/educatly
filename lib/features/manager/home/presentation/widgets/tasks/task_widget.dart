@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,8 +40,8 @@ class ManagerTaskWidget extends ConsumerWidget {
         shadowColor: Colors.grey,
         child: InkWell(
           onTap: () {
-            AppRouter.router.pushTaskScreen(
-                managerTaskDetails: '${json.encode(taskDetails)}');
+            AppRouter.router
+                .pushTaskScreen(managerTaskDetails: '${(taskDetails.id)}');
           },
           child: SizedBox(
             child: Row(

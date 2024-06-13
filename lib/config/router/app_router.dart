@@ -164,7 +164,7 @@ class AppRouter {
         path: AppRoutes.managerTaskDetails,
         name: AppRoutes.managerTaskDetails,
         builder: (context, state) => ManagerTaskDetailsScreen(
-            managerTaskDetails:
+            taskId:
                 (state.uri.queryParameters[AppRouterKeys.managerTaskDetails]!)),
       ),
 

@@ -2,6 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../../config/router/app_router.dart';
+import '../../../config/router/app_router_keys.dart';
 
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
@@ -56,8 +57,17 @@ class CustomLocalNotification {
   }
 
   static void onMessageOpenedApp(RemoteMessage message) {
-    final route = message.data['route'];
-    if (route == 'admin-tasks') {}
-    AppRouter.router.pushNamed(route);
+    print(message.data);
+    final route = message.data['Route'];
+    final id = message.data['TaskId'];
+    print(route);
+    print(id);
+    if (route == '/managerTaskDetails') {
+      AppRouter.router.pushNamed('$route',
+          queryParameters: {AppRouterKeys.managerTaskDetails: id});
+    } else {
+      AppRouter.router.pushNamed('$route',
+          queryParameters: {AppRouterKeys.adminTaskDetails: id});
+    }
   }
 }

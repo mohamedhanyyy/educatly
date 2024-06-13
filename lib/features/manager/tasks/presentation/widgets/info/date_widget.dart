@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:taskaty/config/theme/color_system/app_colors.dart';
 import 'package:taskaty/config/theme/sizes_manager.dart';
 import 'package:taskaty/config/theme/styles_manager.dart';
+import 'package:taskaty/core/constants/constants.dart';
 
 import '../../../../../../config/l10n/generated/l10n.dart';
 
@@ -17,45 +18,38 @@ class DateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 70.h,
-      child: FittedBox(
-        child: Column(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: AppSizes.size10.h,
-                  height: AppSizes.size10.h,
-                  child: FittedBox(
-                    child: Icon(
-                      Icons.access_time_rounded,
-                      color: dateType == DateType.start
-                          ? AppColors.colors.success
-                          : AppColors.colors.error,
-                    ),
-                  ),
-                ),
-                AppSizes.size4.horizontalSpace,
-                Text(dateType == DateType.start ? S().start_date : S().end_date)
-              ],
+            Icon(
+              Icons.access_time_rounded,
+              color: dateType == DateType.start
+                  ? AppColors.colors.success
+                  : AppColors.colors.error,
+              size: 13,
             ),
-            AppSizes.size4.verticalSpace,
+            AppSizes.size4.horizontalSpace,
             Text(
-              DateFormat('dd-MM-yyyy \n HH : MM').format(date),
-              style: StylesManager.light(
-                fontSize: 11.sp,
-                textOverflow: TextOverflow.ellipsis,
-              ).copyWith(),
-              textAlign: TextAlign.center,
+              dateType == DateType.start ? S().start_date : S().end_date,
+              style: TextStyle(fontSize: 15),
             )
           ],
         ),
-      ),
+        AppSizes.size4.verticalSpace,
+        Text(
+          DateFormat(AppConstants.normalFormat).format(date),
+          style: StylesManager.light(
+            fontSize: 12,
+            textOverflow: TextOverflow.ellipsis,
+          ),
+          textAlign: TextAlign.center,
+        )
+      ],
     );
   }
 }

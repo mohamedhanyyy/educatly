@@ -1,25 +1,23 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskaty/core/services/dio_helper/dio_helper.dart';
-import 'package:taskaty/features/manager/stats/bloc/manager_statistics_bloc.dart';
+import 'package:taskaty/features/admin/task_details/task_details_state.dart';
 
 import '../tasks/data/model/admin_tasks_model.dart';
 
-class TaskDetailsBloc extends Cubit<CubitState> {
-  TaskDetailsBloc() : super(CubitState.initial);
+class TaskDetailsBloc extends Cubit<TaskDetailsState> {
+  TaskDetailsBloc() : super(TaskDetailsInitial());
   AdminTasksModel? taskDetails;
   Future<void> getTaskDetailsById(id) async {
-    emit(CubitState.loading);
-    final response = await DioHelper.getData(url: 'Tasks', data: {'id': id});
-    print(id);
+    emit(TaskDetailsLoading());
+    final response =
+        await DioHelper.getData(url: 'Tasks/$id', query: {'id': id});
+
     if (response?.statusCode == 200) {
-      taskDetails = AdminTasksModel.fromJson(response?.data);
-      print(taskDetails?.startDate);
-      print(taskDetails?.endDate);
-      print(taskDetails?.description);
-      print(taskDetails?.subTasks?.length);
-      emit(CubitState.done);
+      taskDetails = AdminTasksModel.fromJson(response?.data['data']);
+
+      emit(TaskDetailsDone(taskDetails!));
     } else {
-      emit(CubitState.error);
+      emit(TaskDetailsError());
     }
   }
 }

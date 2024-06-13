@@ -8,7 +8,7 @@ import 'package:taskaty/config/theme/widget_manager.dart';
 import 'package:taskaty/core/constants/constants.dart';
 import 'package:taskaty/core/extensions/iterator_extension.dart';
 import 'package:taskaty/core/widgets/loading_widget.dart';
-import 'package:taskaty/features/manager/stats/bloc/manager_statistics_bloc.dart';
+import 'package:taskaty/features/admin/task_details/task_details_state.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../config/theme/sizes_manager.dart';
@@ -33,41 +33,43 @@ class AdminTaskDetailsScreen extends ConsumerStatefulWidget {
 }
 
 class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
-  late TaskDetailsBloc taskDetailsBloc;
   @override
   void initState() {
     super.initState();
-    taskDetailsBloc = context.read<TaskDetailsBloc>();
-    taskDetailsBloc.getTaskDetailsById(widget.taskId);
+    context.read<TaskDetailsBloc>().getTaskDetailsById(widget.taskId);
   }
 
   @override
   Widget build(BuildContext context) {
     final watcher = ref.watch(editTaskControllerProvider);
     return Scaffold(
-      body: BlocBuilder<TaskDetailsBloc, CubitState>(
-        builder: (context, state) {
-          if (state == CubitState.done) {
-            final taskDetails = taskDetailsBloc.taskDetails!;
+      body: BlocConsumer<TaskDetailsBloc, TaskDetailsState>(
+        listener: (context, state) {
+          if (state is TaskDetailsDone) {
+            final taskDetails = state.adminTasksModel;
 
+            ref.read(editTaskControllerProvider.notifier).setData(
+                selectedPriority: (taskDetails.priorityId),
+                taskTitle: taskDetails.title,
+                taskId: taskDetails.id,
+                selectedAssigne: taskDetails.user,
+                comments: taskDetails.comments,
+                statusId: taskDetails.statusId,
+                tasks: taskDetails.subTasks,
+                taskDescription: taskDetails.description,
+                startDate: DateTime.parse(taskDetails.startDate ?? ""),
+                endDate: DateTime.parse(taskDetails.endDate ?? ''));
+          }
+        },
+        builder: (context, state) {
+          if (state is TaskDetailsDone) {
+            final taskDetails = state.adminTasksModel;
             int progressCount = 0;
 
             taskDetails.subTasks?.map((e) {
               if (e.isCompleted!) progressCount++;
             }).toList();
 
-            // ref.read(editTaskControllerProvider.notifier).setData(
-            //       selectedPriority: (taskDetails.priorityId),
-            //       taskTitle: taskDetails.title,
-            //       taskId: taskDetails.id,
-            //       selectedAssigne: taskDetails.user,
-            //       comments: taskDetails.comments,
-            //       statusId: taskDetails.statusId,
-            //       tasks: taskDetails.subTasks,
-            //       taskDescription: taskDetails.description,
-            //       startDate: DateTime.parse(taskDetails.startDate ?? ""),
-            //       endDate: DateTime.parse(taskDetails.endDate ?? ''),
-            //     );
             return Scaffold(
               appBar: AppBar(
                 title: Text(S().task_details),
@@ -107,10 +109,10 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
                       children: [
                         AppSizes.size10.verticalSpace,
                         Text(S().subtasks),
-                        if (taskDetails.subTasks?.isNotEmpty == true)
+                        if (watcher.subTasks?.isNotEmpty == true)
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: taskDetails.subTasks!
+                              children: watcher.subTasks!
                                   .map(
                                     (e) => Container(
                                       padding: EdgeInsets.symmetric(
@@ -146,10 +148,10 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
                                   .toList()),
                         AppSizes.size10.verticalSpace,
                         Text(S().comments),
-                        if (taskDetails.comments?.isNotEmpty == true)
+                        if (watcher.comments?.isNotEmpty == true)
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: taskDetails.comments!.map((e) {
+                              children: watcher.comments!.map((e) {
                                 return Container(
                                   margin:
                                       const EdgeInsets.symmetric(vertical: 8.0),
@@ -181,7 +183,12 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
               ),
               bottomNavigationBar: AdminCommentsWidget(taskDetails),
             );
-          } else if (state == CubitState.loading) return CustomLoadingWidget();
+          } else if (state is TaskDetailsLoading)
+            return Scaffold(
+                appBar: AppBar(
+                  title: Text(S().task_details),
+                ),
+                body: CustomLoadingWidget());
           return const SizedBox.shrink();
         },
       ),

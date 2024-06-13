@@ -80,6 +80,7 @@ class SettingsController extends _$SettingsController {
       ref.read(buttonControllerProvider.notifier).setSuccessStatus(key);
       final editedUserModel = AuthResponse(
           token: authResponse.token,
+          imageName: response?.data['data']['imageName'],
           role: authResponse.role,
           id: authResponse.id,
           fullName: response?.data['data']['fullName'],

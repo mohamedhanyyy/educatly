@@ -11,6 +11,7 @@ import '../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../config/theme/font_system/app_fonts.dart';
 import '../../../../../config/theme/styles_manager.dart';
 import '../../../../../core/widgets/network_image.dart';
+import '../../model/notifications_model.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -42,9 +43,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
               );
             else if (state == CubitState.done) {
               return ListView.builder(
-                  itemBuilder: (context, index) => buildDefaultScreenPadding(),
+                  itemBuilder: (context, index) => notificationWidget(
+                      notificationCubit.notificationsModel!.data![index]),
                   shrinkWrap: true,
-                  itemCount: 5);
+                  itemCount:
+                      notificationCubit.notificationsModel?.data?.length);
             } else if (state == CubitState.loading) {
               return CustomLoadingWidget();
             }
@@ -53,7 +56,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         ));
   }
 
-  Widget buildDefaultScreenPadding() {
+  Widget notificationWidget(NotificationData data) {
     return ListTile(
       leading: Container(
         width: 40.h,
@@ -71,12 +74,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
         ),
       ),
       title: Text(
-        "تم إنهاء المهمة الأولى بنجاح",
+        "${data.title}",
         style: StylesManager.regular(
             fontSize: AppFonts.font.medium.sp, color: Colors.green),
       ),
       subtitle: Text(
-        '04:30 AM',
+        '${data.body}',
         style: StylesManager.regular(
           fontSize: AppFonts.font.xSmall.sp,
         ),

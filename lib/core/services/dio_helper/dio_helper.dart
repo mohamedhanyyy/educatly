@@ -69,13 +69,16 @@ class DioHelper {
   }
 
   static Future<Response?> getData(
-      {required String url, Map<String, dynamic>? data}) async {
+      {required String url,
+      Map<String, dynamic>? data,
+      Map<String, dynamic>? query}) async {
     String? token = PreferencesHelper.getToken;
 
     try {
       Response? response = await dio?.get(url,
           options: Options(headers: {'Authorization': 'Bearer $token'}),
-          data: data);
+          data: data,
+          queryParameters: query);
       log('RESPONSE STATUS CODE:${response?.headers}');
       log('RESPONSE DATA:${response?.data}');
       log('RESPONSE REQUEST OPTIONS:${response?.requestOptions.data}');

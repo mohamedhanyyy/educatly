@@ -1,7 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:taskaty/config/router/app_routing_paths.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../../config/router/app_router.dart';
+import '../../../config/router/app_router_keys.dart';
 import 'local_notification.dart';
 
 class FirebaseCustomNotification {
@@ -11,7 +12,18 @@ class FirebaseCustomNotification {
 
   static Future<void> firebaseMessagingAppOpen() async {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      AppRouter.router.push(AppRoutes.resetPassword);
+      print(message.data);
+      final route = message.data['Route'];
+      final id = message.data['TaskId'];
+      debugPrint(route);
+      print(id);
+      if (route == '/managerTaskDetails') {
+        AppRouter.router.pushNamed('$route',
+            queryParameters: {AppRouterKeys.managerTaskDetails: id});
+      } else {
+        AppRouter.router.pushNamed('$route',
+            queryParameters: {AppRouterKeys.adminTaskDetails: id});
+      }
     });
   }
 

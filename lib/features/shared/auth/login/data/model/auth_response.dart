@@ -6,12 +6,14 @@ class AuthResponse extends Equatable {
   final String? userName;
   final String? fullName;
   final String? email;
+  final String? imageName;
   final id;
   final bool? firstLogin;
 
   AuthResponse(
       {required this.token,
       required this.role,
+      required this.imageName,
       required this.id,
       required this.fullName,
       required this.email,
@@ -24,6 +26,7 @@ class AuthResponse extends Equatable {
 
   Map<String, dynamic> toJson() => {
         'token': token,
+        'imageName': imageName,
         'role': role,
         'userName': userName,
         'fullName': fullName,
@@ -36,6 +39,7 @@ class AuthResponse extends Equatable {
     return AuthResponse(
       token: json['token'],
       fullName: json['fullName'],
+      imageName: json['imageName'],
       role: json['role'],
       id: json['id'],
       email: json['email'],

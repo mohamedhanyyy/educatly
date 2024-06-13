@@ -36,10 +36,7 @@ class TaskInfoWidget extends StatelessWidget {
         children: [
           Expanded(
             flex: 1,
-            child: DateWidget(
-              date: startDate,
-              dateType: DateType.start,
-            ),
+            child: DateWidget(date: startDate, dateType: DateType.start),
           ),
           Expanded(
             flex: 1,
@@ -52,7 +49,7 @@ class TaskInfoWidget extends StatelessWidget {
             flex: 1,
             child: UserWidget(
               userName: '$userName',
-              userImage: '${AppConstants.subDomain}${userImage}',
+              userImage: '${userImage}',
             ),
           )
         ]

@@ -12,10 +12,9 @@ import '../../../../../core/services/validation/validation_service.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../controller/add_task_controller.dart';
 
-class AdminAddSubTask extends ConsumerWidget {
-  final TextEditingController controller = TextEditingController();
-  final FocusNode focusNode = FocusNode();
+final TextEditingController controller = TextEditingController();
 
+class AdminAddSubTask extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final watcher = ref.watch(addTaskControllerProvider);
@@ -26,6 +25,7 @@ class AdminAddSubTask extends ConsumerWidget {
           Column(
               mainAxisSize: MainAxisSize.min,
               children: watcher.tasks!.map((e) {
+                // TextEditingController cont = TextEditingController(text: e);
                 return Container(
                   margin: EdgeInsets.symmetric(vertical: AppSizes.size5.h),
                   decoration: BoxDecoration(
@@ -94,6 +94,7 @@ class AdminAddSubTask extends ConsumerWidget {
               }
               if (value != '') reader.setTask(task: value!);
               reader.setData(isAddTask: false);
+              controller.clear();
             },
           ),
         ),

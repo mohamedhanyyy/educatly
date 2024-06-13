@@ -19,7 +19,7 @@ Future<void> main() async {
   // final loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
   // final duration = loginTime.difference(DateTime.now());
   // debugPrint('Diffrence date: ${duration.inDays}');
-  // debugPrint(PreferencesHelper.getToken);
+  debugPrint(PreferencesHelper.getToken);
   debugPrint('${await FirebaseMessaging.instance.getToken()}');
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,7 +47,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
         onTap: () {
           AppRouter.router.pushNamed(AppRoutes.adminTaskDetails,
               queryParameters: {
-                AppRouterKeys.adminTaskDetails: jsonEncode(widget.task)
+                AppRouterKeys.adminTaskDetails: widget.task.id.toString()
               });
         },
         child: Container(

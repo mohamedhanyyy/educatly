@@ -8,9 +8,11 @@ class NotificationCubit extends Cubit<CubitState> {
   Future<void> getUserNotifications() async {
     emit(CubitState.loading);
 
-    final response = await DioHelper.getData(url: 'url');
+    final response = await DioHelper.getData(
+        url: 'Notification/GetUserNotifications',
+        data: {"pageNumber": 0, "pageSize": 1000});
 
-    if (response!.statusCode == 200) {
+    if (response?.statusCode == 200) {
       emit(CubitState.done);
     }
   }

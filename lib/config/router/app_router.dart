@@ -199,7 +199,7 @@ class AppRouter {
           path: AppRoutes.adminTaskDetails,
           name: AppRoutes.adminTaskDetails,
           builder: (context, state) => AdminTaskDetailsScreen(
-              task:
+              taskId:
                   state.uri.queryParameters[AppRouterKeys.adminTaskDetails]!)),
 
       ///? Main

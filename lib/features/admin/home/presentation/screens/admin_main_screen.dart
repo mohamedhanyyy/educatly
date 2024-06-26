@@ -22,25 +22,25 @@ class AdminMainScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       key: scaffoldKey,
-      drawer: DrawerWidget(),
+      drawer: const DrawerWidget(),
       appBar: PreferredSize(
         preferredSize: Size(double.infinity, AppSizes.size80.h),
-        child: AdminHomeAppBar(),
+        child: const AdminHomeAppBar(),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            AdminStatisticsWidget(),
+            const AdminStatisticsWidget(),
             AdminHomeFilterWidget(),
-            AdminHomeSearchWidget(),
+            const AdminHomeSearchWidget(),
             ref.watch(getAdminTasksControllerProvider).when(
-                  loading: () => CustomLoadingWidget(50.h),
+                  loading: () => CustomLoadingWidget(topPadding: 50.h),
                   error: (error, stackTrace) => RefreshWidget(
                       onTap: () async =>
                           await ref.refresh(getAdminTasksControllerProvider)),
                   data: (tasks) {
                     return tasks.isEmpty
-                        ? NoTasksWidget()
+                        ? const NoTasksWidget()
                         : AnimationList(
                             duration: 1250,
                             reBounceDepth: 0,

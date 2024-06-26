@@ -116,9 +116,9 @@ class _AddCompanyScreenState extends ConsumerState<AddCompanyScreen> {
                 child: DottedBorder(
                   borderType: BorderType.RRect,
                   color: Colors.grey,
-                  radius: Radius.circular(12),
+                  radius: const Radius.circular(12),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
                     child: Container(
                       width: double.infinity,
                       height: 172.sp,
@@ -160,7 +160,7 @@ class _AddCompanyScreenState extends ConsumerState<AddCompanyScreen> {
                                         file = null;
                                       });
                                     },
-                                    icon: Icon(Icons.close),
+                                    icon: const Icon(Icons.close),
                                   ),
                                 )
                               ],

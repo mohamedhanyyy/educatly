@@ -45,7 +45,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   color: AppColors.colors.primary,
                   border: Border.all(
                     width: AppSizes.size10.h,
-                    color: Color(0xffF8F8F8),
+                    color: const Color(0xffF8F8F8),
                   ),
                 ),
                 child: Center(

@@ -15,6 +15,8 @@ import '../../../tasks/presentation/controller/admin_tasks_filter_controller.dar
 final TextEditingController searchController = TextEditingController();
 
 class AdminHomeSearchWidget extends ConsumerWidget {
+  const AdminHomeSearchWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filterWatcher = ref.watch(adminTasksFilterControllerProvider);

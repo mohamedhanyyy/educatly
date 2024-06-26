@@ -14,7 +14,7 @@ part 'button_state.dart';
 class ButtonController extends _$ButtonController {
   @override
   ButtonState build() {
-    return ButtonState();
+    return const ButtonState();
   }
 
   setLoadingStatus(Key key) => state = state.copyWith(

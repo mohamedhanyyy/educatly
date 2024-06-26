@@ -18,10 +18,10 @@ class RemainingTimeWidget extends StatelessWidget {
       height: 30.h,
       padding: AppConstants.defaultHorizontalPadding,
       decoration: BoxDecoration(
-        color: Color(0xff01DF85).withOpacity(0.3),
+        color: const Color(0xff01DF85).withOpacity(0.3),
         borderRadius: AppConstants.defaultBorderRadius,
         border: Border.all(
-          color: Color(0xff01DF85),
+          color: const Color(0xff01DF85),
         ),
       ),
       alignment: Alignment.center,
@@ -30,14 +30,14 @@ class RemainingTimeWidget extends StatelessWidget {
           Text(
             date.getDifferenceFromToday(),
             style: StylesManager.extraBold(
-              color: Color(0xff01DF85),
+              color: const Color(0xff01DF85),
               fontSize: AppFonts.font.small.sp,
             ),
           ),
           AppSizes.size4.horizontalSpace,
           SizedBox(
             height: AppSizes.size16.h,
-            child: FittedBox(
+            child: const FittedBox(
               child: Icon(
                 Icons.access_time_rounded,
                 color: Color(0xff01DF85),

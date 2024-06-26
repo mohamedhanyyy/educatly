@@ -36,7 +36,7 @@ class DioHelper {
       log('RESPONSE DATA:${response?.data}');
       log('RESPONSE REQUEST OPTIONS:${response?.requestOptions.data}');
       if (response?.statusCode != 200) {
-        LoginModel loginModel = LoginModel.fromJson(response?.data);
+        BasicModel loginModel = BasicModel.fromJson(response?.data);
         Toast.showErrorToast(loginModel.errors?.first ?? 'error happened');
       }
       return response;
@@ -57,7 +57,7 @@ class DioHelper {
       log('RESPONSE DATA:${response?.data}');
       log('RESPONSE REQUEST OPTIONS:${response?.requestOptions.data}');
       if (response?.statusCode != 200) {
-        LoginModel loginModel = LoginModel.fromJson(response?.data);
+        BasicModel loginModel = BasicModel.fromJson(response?.data);
         Toast.showErrorToast(loginModel.errors?.first ?? 'error happened');
       }
       return response;
@@ -83,7 +83,7 @@ class DioHelper {
       log('RESPONSE DATA:${response?.data}');
       log('RESPONSE REQUEST OPTIONS:${response?.requestOptions.data}');
       if (response!.statusCode! > 202) {
-        LoginModel loginModel = LoginModel.fromJson(response.data);
+        BasicModel loginModel = BasicModel.fromJson(response.data);
         Toast.showErrorToast(loginModel.errors?.first ?? 'error happened');
       }
       return response;

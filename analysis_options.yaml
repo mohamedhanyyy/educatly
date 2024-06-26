@@ -10,6 +10,6 @@ linter:
   rules:
     avoid_print: true
     avoid_empty_else: true
-    prefer_const_constructors: false
+    prefer_const_constructors: true
     invalid_annotation_target: ignore
-    use_key_in_widget_constructors: false
+    use_key_in_widget_constructors: true

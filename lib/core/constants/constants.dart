@@ -38,7 +38,7 @@ class AppConstants {
       BoxShadow(
         blurRadius: 2,
         spreadRadius: 1,
-        offset: Offset(0, 0.1),
+        offset: const Offset(0, 0.1),
         color: Colors.grey.withOpacity(0.2),
       ),
     ],

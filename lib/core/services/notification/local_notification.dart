@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../../config/router/app_router.dart';
@@ -57,16 +58,16 @@ class CustomLocalNotification {
   }
 
   static void onMessageOpenedApp(RemoteMessage message) {
-    print(message.data);
+    debugPrint('${message.data}');
     final route = message.data['Route'];
     final id = message.data['TaskId'];
-    print(route);
-    print(id);
+    debugPrint(route);
+    debugPrint(id);
     if (route == '/managerTaskDetails') {
-      AppRouter.router.pushNamed('$route',
+      AppRouter.router.pushNamed(route,
           queryParameters: {AppRouterKeys.managerTaskDetails: id});
     } else {
-      AppRouter.router.pushNamed('$route',
+      AppRouter.router.pushNamed(route,
           queryParameters: {AppRouterKeys.adminTaskDetails: id});
     }
   }

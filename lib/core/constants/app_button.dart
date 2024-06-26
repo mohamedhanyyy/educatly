@@ -41,17 +41,17 @@ class AppButtonConstants {
         return SizedBox(
           width: AppSizes.size30.h,
           height: AppSizes.size30.h,
-          child: CircularProgressIndicator.adaptive(
+          child: const CircularProgressIndicator.adaptive(
             backgroundColor: Colors.white,
           ),
         );
       case ButtonStatus.success:
-        return Icon(
+        return const Icon(
           color: Colors.white,
           Icons.check_circle_outline_outlined,
         );
       case ButtonStatus.error:
-        return Icon(
+        return const Icon(
           color: Colors.white,
           Icons.error_outline_rounded,
         );

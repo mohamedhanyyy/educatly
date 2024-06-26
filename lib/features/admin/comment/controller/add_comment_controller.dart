@@ -16,7 +16,7 @@ part 'add_comment_state.dart';
 @riverpod
 class AddCommentController extends _$AddCommentController {
   AddCommentState build() {
-    return AddCommentState();
+    return const AddCommentState();
   }
 
   Future<void> addComment({

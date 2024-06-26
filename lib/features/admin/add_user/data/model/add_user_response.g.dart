@@ -8,7 +8,7 @@ part of 'add_user_response.dart';
 
 _$AddUserResponseImpl _$$AddUserResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$AddUserResponseImpl();
+    const _$AddUserResponseImpl();
 
 Map<String, dynamic> _$$AddUserResponseImplToJson(
         _$AddUserResponseImpl instance) =>

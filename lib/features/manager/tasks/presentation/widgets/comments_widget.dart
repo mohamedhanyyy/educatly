@@ -18,8 +18,8 @@ class ManagerCommentsWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: tasksModel.comments!.map((e) {
               return Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.only(bottom: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: Theme.of(context).highlightColor),
@@ -34,6 +34,6 @@ class ManagerCommentsWidget extends StatelessWidget {
                 ),
               );
             }).toList())
-        : SizedBox.shrink();
+        : const SizedBox.shrink();
   }
 }

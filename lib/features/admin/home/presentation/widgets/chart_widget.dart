@@ -53,12 +53,12 @@ class _ChartWidgetState extends State<ChartWidget> {
                   title:
                       '${(completedCountPrcentage * 100).toStringAsFixed(1)}%',
                   color: Colors.red,
-                  titleStyle: TextStyle(fontSize: 10)),
+                  titleStyle: const TextStyle(fontSize: 10)),
               PieChartSectionData(
                   value: newCountPrcentage != 0 ? newCountPrcentage : 1,
                   title: '${(newCountPrcentage * 100).toStringAsFixed(1)}%',
                   color: Colors.green,
-                  titleStyle: TextStyle(fontSize: 10)),
+                  titleStyle: const TextStyle(fontSize: 10)),
               PieChartSectionData(
                   value: inProgressCountPrcentage != 0
                       ? inProgressCountPrcentage
@@ -66,12 +66,12 @@ class _ChartWidgetState extends State<ChartWidget> {
                   title:
                       '${(inProgressCountPrcentage * 100).toStringAsFixed(1)}%',
                   color: Colors.orange,
-                  titleStyle: TextStyle(fontSize: 12)),
+                  titleStyle: const TextStyle(fontSize: 12)),
             ],
           ),
         );
       } else if (state == CubitState.loading)
-        return Center(child: CircularProgressIndicator.adaptive());
+        return const Center(child: CircularProgressIndicator.adaptive());
       return const SizedBox.shrink();
     });
   }
@@ -88,7 +88,7 @@ class ChartData {
 
 List<ChartData> chartData(StatsData model) => [
       ChartData(model.taskNewCount!, model.taskAllCount!,
-          '${model.taskNewCount}%', Color(0xff14BBD8)),
+          '${model.taskNewCount}%', const Color(0xff14BBD8)),
       ChartData(model.taskInProgressCount, model.taskAllCount,
           '${model.taskInProgressCount}%', Colors.orange),
       ChartData(model.taskCompleteCount, model.taskAllCount,

@@ -56,7 +56,7 @@ class AppCachedNetworkImage extends StatelessWidget {
                         child: loaderWidget ??
                             (isLoaderShimmer
                                 ? Shimmer(width: width, height: height)
-                                : Center(
+                                : const Center(
                                     child: CircularProgressIndicator.adaptive(),
                                   )),
                       ),
@@ -76,7 +76,7 @@ class AppCachedNetworkImage extends StatelessWidget {
                         child: loaderWidget ??
                             (isLoaderShimmer
                                 ? Shimmer(width: width, height: height)
-                                : CustomLoadingWidget()),
+                                : const CustomLoadingWidget()),
                       ),
               errorWidget: customErrorWidgetBuilder ??
                   (BuildContext context, String url, error) {

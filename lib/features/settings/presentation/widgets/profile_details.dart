@@ -21,7 +21,7 @@ class ProfileDetailsWidget extends ConsumerWidget {
           child: SizedBox(
             width: 80.h,
             height: 80.h,
-            child: ProfileAvatar(),
+            child: const ProfileAvatar(),
           ),
         ),
         AppSizes.size10.verticalSpace,

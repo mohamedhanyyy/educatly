@@ -17,7 +17,8 @@ class PrivacyPolicyScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(S().privacy_policy)),
       body: ref.watch(privacyControllerProvider).when(
-            loading: () => Center(child: CircularProgressIndicator.adaptive()),
+            loading: () =>
+                const Center(child: CircularProgressIndicator.adaptive()),
             error: (error, stackTrace) => Center(
               child: RefreshWidget(
                 onTap: () async => ref.refresh(privacyControllerProvider),

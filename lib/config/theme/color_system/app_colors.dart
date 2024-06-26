@@ -34,7 +34,7 @@ class AppColors {
 }
 
 MaterialColor getMaterialColor(Color color) {
-  final primary = Color(0xFF3D7DF6);
+  final primary = const Color(0xFF3D7DF6);
 
   final Map<int, Color> shades = {
     50: primary,

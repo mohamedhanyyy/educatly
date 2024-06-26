@@ -10,6 +10,8 @@ import '../../../../../config/theme/sizes_manager.dart';
 import '../controller/edit_task_controller.dart';
 
 class EditStatusWidget extends ConsumerWidget {
+  const EditStatusWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(editTaskControllerProvider.notifier);

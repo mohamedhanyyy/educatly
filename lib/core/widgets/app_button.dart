@@ -95,6 +95,8 @@ class AppDefaultButton extends ConsumerWidget {
 }
 
 class AppLoadingButton extends StatelessWidget {
+  const AppLoadingButton({super.key});
+
   Widget build(context) {
     return Container(
       height: AppSizes.size50.h,

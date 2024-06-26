@@ -14,13 +14,13 @@ class ManagerTasksListWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(dashboardControllerProvider).when(
-          loading: () => CustomLoadingWidget(),
+          loading: () => const CustomLoadingWidget(),
           error: (error, stackTrace) => RefreshWidget(
               onTap: () async =>
                   await ref.refresh(dashboardControllerProvider)),
           data: (tasks) {
             return tasks.isEmpty
-                ? NoTasksWidget()
+                ? const NoTasksWidget()
                 : AnimationList(
                     duration: 1250,
                     reBounceDepth: 10,

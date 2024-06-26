@@ -12,6 +12,8 @@ import '../../../../../core/constants/assets.dart';
 import '../controller/add_task_controller.dart';
 
 class AdminAddTaskPriority extends ConsumerWidget {
+  const AdminAddTaskPriority({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(addTaskControllerProvider.notifier);

@@ -33,7 +33,7 @@ class GetAdminTasksController extends _$GetAdminTasksController {
     String? searchText,
     ManagerModel? selectedManager,
   }) async {
-    state = AsyncValue.loading();
+    state = const AsyncValue.loading();
     final result = await AsyncValue.guard(
       () => ref.read(getAdminTasksUsecaseProvider(
         selectedPriorityId: selectedPriorityId,

@@ -14,7 +14,7 @@ class GetCompaniesController extends _$GetCompaniesController {
   }
 
   Future<List<CompanyModel>> getCompanies() async {
-    state = AsyncValue.loading();
+    state = const AsyncValue.loading();
     final result = await AsyncValue.guard(
       () => ref.read(getCompaniesUseCaseProvider.future),
     );

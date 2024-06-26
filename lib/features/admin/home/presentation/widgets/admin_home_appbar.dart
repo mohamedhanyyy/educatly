@@ -13,6 +13,8 @@ import '../../../../../core/controllers/theme/theme_controller.dart';
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class AdminHomeAppBar extends ConsumerWidget {
+  const AdminHomeAppBar({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -40,7 +42,7 @@ class AdminHomeAppBar extends ConsumerWidget {
                 children: [
                   IconButton(
                     padding: EdgeInsets.zero,
-                    icon: Icon(Icons.menu),
+                    icon: const Icon(Icons.menu),
                     onPressed: () {
                       scaffoldKey.currentState?.openDrawer();
                     },
@@ -51,7 +53,7 @@ class AdminHomeAppBar extends ConsumerWidget {
                       style: StylesManager.semiBold(fontSize: 23.sp),
                     ),
                   ),
-                  NotificationButton(),
+                  const NotificationButton(),
                 ],
               ),
             ),

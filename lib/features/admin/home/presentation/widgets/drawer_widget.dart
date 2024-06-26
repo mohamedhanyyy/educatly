@@ -35,7 +35,7 @@ class DrawerWidget extends ConsumerWidget {
                   fit: BoxFit.fill,
                   width: 240.w),
               Padding(
-                padding: EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 20),
                 child: ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     clipBehavior: Clip.antiAlias,
@@ -93,7 +93,7 @@ class DrawerWidget extends ConsumerWidget {
             showDragHandle: true,
             useRootNavigator: true,
             isScrollControlled: true,
-            builder: (context) => LanguageSheet(),
+            builder: (context) => const LanguageSheet(),
           );
         } else if (route != null) {
           AppRouter.router.pop();

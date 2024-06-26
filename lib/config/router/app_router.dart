@@ -60,28 +60,28 @@ class AppRouter {
       GoRoute(
         name: AppRoutes.getCompanies,
         path: AppRoutes.getCompanies,
-        builder: (context, state) => GetCompaniesScreen(),
+        builder: (context, state) => const GetCompaniesScreen(),
       ),
 
       ///? Login
       GoRoute(
         name: AppRoutes.login,
         path: AppRoutes.login,
-        builder: (context, state) => LoginScreen(),
+        builder: (context, state) => const LoginScreen(),
       ),
 
       ///? Manager tasks
       GoRoute(
         name: AppRoutes.managerTasks,
         path: AppRoutes.managerTasks,
-        builder: (context, state) => ManagerTasksScreen(),
+        builder: (context, state) => const ManagerTasksScreen(),
       ),
 
       ///? Forget Password
       GoRoute(
         name: AppRoutes.forgetPassword,
         path: AppRoutes.forgetPassword,
-        builder: (context, state) => ForgetPasswordScreen(),
+        builder: (context, state) => const ForgetPasswordScreen(),
       ),
 
       ///? OTP
@@ -121,7 +121,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.addUserSuperAdmin,
         name: AppRoutes.addUserSuperAdmin,
-        builder: (context, state) => SuperAdminScreen(),
+        builder: (context, state) => const SuperAdminScreen(),
       ),
 
       ///? Change Password
@@ -135,28 +135,28 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.addTask,
         name: AppRoutes.addTask,
-        builder: (context, state) => AddTaskScreen(),
+        builder: (context, state) => const AddTaskScreen(),
       ),
 
       ///? Create Password
       GoRoute(
         path: AppRoutes.createPassword,
         name: AppRoutes.createPassword,
-        builder: (context, state) => CreatePasswordScreen(),
+        builder: (context, state) => const CreatePasswordScreen(),
       ),
 
       ///? Privacy Policy
       GoRoute(
         path: AppRoutes.privacyPolicy,
         name: AppRoutes.privacyPolicy,
-        builder: (context, state) => PrivacyPolicyScreen(),
+        builder: (context, state) => const PrivacyPolicyScreen(),
       ),
 
       ///? Notifications
       GoRoute(
         path: AppRoutes.notifications,
         name: AppRoutes.notifications,
-        builder: (context, state) => NotificationScreen(),
+        builder: (context, state) => const NotificationScreen(),
       ),
 
       ///? Task
@@ -186,7 +186,7 @@ class AppRouter {
       GoRoute(
         path: AppRoutes.getManagers,
         name: AppRoutes.getManagers,
-        builder: (context, state) => GetManagersScreen(),
+        builder: (context, state) => const GetManagersScreen(),
       ),
 
       ///? Edit Task
@@ -215,7 +215,7 @@ class AppRouter {
               GoRoute(
                 path: AppRoutes.managerHome,
                 name: AppRoutes.managerHome,
-                builder: (context, state) => ManagerMainScreen(),
+                builder: (context, state) => const ManagerMainScreen(),
               ),
             ],
           ),

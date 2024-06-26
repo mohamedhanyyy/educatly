@@ -18,6 +18,8 @@ import '../../../../../../core/widgets/refresh_widget.dart';
 import '../controller/get_managers_controller.dart';
 
 class GetManagersScreen extends ConsumerWidget {
+  const GetManagersScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -25,7 +27,7 @@ class GetManagersScreen extends ConsumerWidget {
         title: Text(S().all_managers),
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             iconSize: 30.sp,
             padding: EdgeInsets.zero,
             onPressed: () {
@@ -37,7 +39,7 @@ class GetManagersScreen extends ConsumerWidget {
       body: ref
           .watch(getManagersControllerProvider)
           .when(
-            loading: () => CustomLoadingWidget(),
+            loading: () => const CustomLoadingWidget(),
             error: (error, stackTrace) => RefreshWidget(
               onTap: () async =>
                   await ref.refresh(getManagersControllerProvider),

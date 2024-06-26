@@ -81,7 +81,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
                             builder: (context) =>
                                 TaskActionWidget(taskDetails));
                       },
-                      icon: Icon(Icons.more_vert_rounded))
+                      icon: const Icon(Icons.more_vert_rounded))
                 ],
               ),
               body: SingleChildScrollView(
@@ -155,7 +155,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
                                 return Container(
                                   margin:
                                       const EdgeInsets.symmetric(vertical: 8.0),
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Theme.of(context)
@@ -188,7 +188,7 @@ class _AdminTaskDetailsState extends ConsumerState<AdminTaskDetailsScreen> {
                 appBar: AppBar(
                   title: Text(S().task_details),
                 ),
-                body: CustomLoadingWidget());
+                body: const CustomLoadingWidget());
           return const SizedBox.shrink();
         },
       ),

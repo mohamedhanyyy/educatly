@@ -114,7 +114,7 @@ class NetworkRequest {
       } else {
         if (result.code == StatusCode.unauthenticated) {
           AppRouter.router.goNamed(AppRoutes.login);
-          throw (UnAuthorizedException());
+          throw (const UnAuthorizedException());
         } else if (result.code == StatusCode.badRequest) {
         } else if (result.code == StatusCode.tooManyAttempts) {
           showDialog(
@@ -129,7 +129,7 @@ class NetworkRequest {
           debugPrint(result.errors.toString());
           Toast.showToast(result.errors.toString());
         } else if (result.code == StatusCode.serviceUnavailable) {
-          throw (ServerException(
+          throw (const ServerException(
               message:
                   "We Are in Deployment Mode now!\nPlease Try app later."));
         } else if (result.code == StatusCode.conflict) {
@@ -153,7 +153,8 @@ class NetworkRequest {
       NetError error = ExceptionHandle.handleException(e);
       if (error.code == StatusCode.timeoutError) {
         throw (
-          ServerException(message: "Connection Timeout\nPlease try app later."),
+          const ServerException(
+              message: "Connection Timeout\nPlease try app later."),
         );
       }
     });

@@ -21,7 +21,7 @@ part 'super_admin_state.dart';
 @riverpod
 class SuperAdminController extends _$SuperAdminController {
   SuperAdminState build() {
-    return SuperAdminState();
+    return const SuperAdminState();
   }
 
   void setData({

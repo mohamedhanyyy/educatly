@@ -28,7 +28,7 @@ part 'edit_task_state.dart';
 @riverpod
 class EditTaskController extends _$EditTaskController {
   EditTaskState build() {
-    return EditTaskState();
+    return const EditTaskState();
   }
 
   void clearList() {
@@ -145,7 +145,7 @@ class EditTaskController extends _$EditTaskController {
       ref.invalidate(getAdminTasksControllerProvider);
     } else {
       ref.read(buttonControllerProvider.notifier).setErrorStatus(key);
-      LoginModel loginModel = LoginModel.fromJson(response?.data);
+      BasicModel loginModel = BasicModel.fromJson(response?.data);
       if (loginModel.errors != null)
         Toast.showErrorToast('${loginModel.errors?.first}');
     }

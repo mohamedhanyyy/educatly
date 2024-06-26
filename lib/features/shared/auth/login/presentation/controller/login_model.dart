@@ -1,6 +1,6 @@
 import 'package:taskaty/features/shared/auth/login/data/model/auth_response.dart';
 
-class LoginModel {
+class BasicModel {
   AuthResponse? data;
   List<String>? errors;
   List<String>? successMessages;
@@ -8,7 +8,7 @@ class LoginModel {
   bool? success;
   bool? hasException;
 
-  LoginModel(
+  BasicModel(
       {this.data,
       this.errors,
       this.successMessages,
@@ -16,7 +16,7 @@ class LoginModel {
       this.success,
       this.hasException});
 
-  LoginModel.fromJson(Map<String, dynamic> json) {
+  BasicModel.fromJson(Map<String, dynamic> json) {
     data =
         json['data'] != null ? new AuthResponse.fromJson(json['data']) : null;
     errors = json['errors'].cast<String>();

@@ -15,6 +15,8 @@ import '../controller/edit_task_controller.dart';
 export 'package:flutter_svg/svg.dart';
 
 class EditTaskDatePickerWidget extends ConsumerWidget {
+  const EditTaskDatePickerWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final watcher = ref.watch(editTaskControllerProvider);
@@ -28,7 +30,7 @@ class EditTaskDatePickerWidget extends ConsumerWidget {
                 context: context,
                 initialDate: DateTime.now(),
                 firstDate: DateTime.now(),
-                lastDate: DateTime.now().add(Duration(days: 30)),
+                lastDate: DateTime.now().add(const Duration(days: 30)),
               );
               if (selectedDate == null) return;
 
@@ -73,7 +75,7 @@ class EditTaskDatePickerWidget extends ConsumerWidget {
                 context: context,
                 initialDate: DateTime.now(),
                 firstDate: DateTime.now(),
-                lastDate: DateTime.now().add(Duration(days: 30)),
+                lastDate: DateTime.now().add(const Duration(days: 30)),
               );
 
               if (endDate == null) return;

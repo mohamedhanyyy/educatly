@@ -13,6 +13,8 @@ import '../../../../../core/helpers/toast_helper.dart';
 export 'package:flutter_svg/svg.dart';
 
 class FilterTasksDatePickerWidget extends ConsumerStatefulWidget {
+  const FilterTasksDatePickerWidget({super.key});
+
   @override
   ConsumerState<FilterTasksDatePickerWidget> createState() =>
       _FilterTasksDatePickerWidgetState();
@@ -34,7 +36,7 @@ class _FilterTasksDatePickerWidgetState
                 context: context,
                 initialDate: DateTime.now(),
                 firstDate: DateTime.utc(2024, 5, 1),
-                lastDate: DateTime.now().add(Duration(days: 30)),
+                lastDate: DateTime.now().add(const Duration(days: 30)),
               );
               if (selectedDate == null) return;
 
@@ -86,7 +88,7 @@ class _FilterTasksDatePickerWidgetState
                 context: context,
                 initialDate: DateTime.now(),
                 firstDate: DateTime.now(),
-                lastDate: DateTime.now().add(Duration(days: 100)),
+                lastDate: DateTime.now().add(const Duration(days: 100)),
               );
               if (endDate == null) return;
               final selectedTime = await showTimePicker(

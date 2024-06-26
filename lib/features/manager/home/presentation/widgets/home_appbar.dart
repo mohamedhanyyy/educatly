@@ -15,7 +15,7 @@ class HomeAppbar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        NotificationButton(),
+        const NotificationButton(),
         SizedBox(
           width: AppSizes.size44.h,
           height: AppSizes.size44.h,

@@ -22,4 +22,12 @@ class NotificationCubit extends Cubit<CubitState> {
       emit(CubitState.done);
     }
   }
+
+  Future<void> makeNotificationAsRead(notificationId) async {
+    await DioHelper.putData(
+        url:
+            'Notification/UpdateNotificationIsRead?notificationId=${notificationId}');
+
+    getUserNotifications();
+  }
 }

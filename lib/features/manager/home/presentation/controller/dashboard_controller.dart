@@ -22,7 +22,7 @@ class DashboardController extends _$DashboardController {
     int? filter,
     DateTime? date,
   }) async {
-    state = AsyncValue.loading();
+    state = const AsyncValue.loading();
     final result = await AsyncValue.guard(
       () => ref.read(
         getTasksUseCaseProvider(date: date, filter: filter).future,

@@ -17,7 +17,7 @@ part 'manager_comments_state.dart';
 @riverpod
 class ManagerCommentsController extends _$ManagerCommentsController {
   ManagerCommentsState build() {
-    return ManagerCommentsState();
+    return const ManagerCommentsState();
   }
 
   void setData({

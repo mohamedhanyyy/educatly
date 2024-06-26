@@ -26,7 +26,7 @@ class SettingsScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ProfileDetailsWidget(),
+              const ProfileDetailsWidget(),
               ...[
                 Text(
                   S().personal_info,
@@ -78,7 +78,7 @@ class SettingsScreen extends ConsumerWidget {
                       showDragHandle: true,
                       useRootNavigator: true,
                       isScrollControlled: true,
-                      builder: (context) => LanguageSheet(),
+                      builder: (context) => const LanguageSheet(),
                     );
                   },
                 ),
@@ -114,7 +114,7 @@ class SettingsScreen extends ConsumerWidget {
                     showDragHandle: true,
                     useRootNavigator: true,
                     isScrollControlled: true,
-                    builder: (context) => LogoutSheet(),
+                    builder: (context) => const LogoutSheet(),
                   );
                 },
               ),

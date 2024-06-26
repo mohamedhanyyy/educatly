@@ -22,7 +22,7 @@ class Taskaty extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ScreenUtilInit(
-      designSize: Size(430, 932),
+      designSize: const Size(430, 932),
       builder: (BuildContext _, child) {
         return MultiBlocProvider(
           providers: [

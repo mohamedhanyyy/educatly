@@ -12,6 +12,8 @@ import '../../../../../core/constants/assets.dart';
 import '../controller/edit_task_controller.dart';
 
 class EditPriorityWidget extends ConsumerWidget {
+  const EditPriorityWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(editTaskControllerProvider.notifier);

@@ -16,6 +16,8 @@ import '../controller/add_task_controller.dart';
 class AddTaskFilesWidget extends ConsumerWidget {
   final List<File> file = [];
 
+  AddTaskFilesWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
@@ -33,7 +35,7 @@ class AddTaskFilesWidget extends ConsumerWidget {
                   .filePickerResult!
                   .map((e) {
                 return Container(
-                  margin: EdgeInsets.symmetric(horizontal: 4),
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.grey.shade200),
@@ -65,8 +67,8 @@ class AddTaskFilesWidget extends ConsumerWidget {
                           child: Container(
                             width: 20,
                             height: 20,
-                            padding: EdgeInsets.all(1),
-                            child: FittedBox(
+                            padding: const EdgeInsets.all(1),
+                            child: const FittedBox(
                               child: Icon(Icons.delete, color: Colors.red),
                             ),
                           ),

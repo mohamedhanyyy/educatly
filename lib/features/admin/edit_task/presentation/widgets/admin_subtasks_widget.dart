@@ -17,6 +17,8 @@ import '../controller/edit_task_controller.dart';
 final TextEditingController controller = TextEditingController();
 
 class AdminEditSubTask extends ConsumerWidget {
+  const AdminEditSubTask({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reader = ref.read(editTaskControllerProvider.notifier);
@@ -54,7 +56,7 @@ class AdminEditSubTask extends ConsumerWidget {
                 ),
                 suffix: IconButton(
                     padding: EdgeInsets.zero,
-                    icon: Icon(Icons.delete, color: Colors.red),
+                    icon: const Icon(Icons.delete, color: Colors.red),
                     onPressed: () {
                       ref
                           .read(editTaskControllerProvider.notifier)
@@ -84,7 +86,7 @@ class AdminEditSubTask extends ConsumerWidget {
           child: CustomTextInputField(
             suffix: IconButton(
               padding: EdgeInsets.zero,
-              icon: Icon(Icons.done),
+              icon: const Icon(Icons.done),
               color: AppColors.colors.primary,
               onPressed: () {
                 if (controller.text != '')

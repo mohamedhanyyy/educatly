@@ -34,7 +34,7 @@ class TaskHeadLineWidget extends StatelessWidget {
             fontSize: AppFonts.font.medium.sp,
           ),
         ),
-        if (trailing != null) ...[Spacer(), trailing!]
+        if (trailing != null) ...[const Spacer(), trailing!]
       ],
     );
   }

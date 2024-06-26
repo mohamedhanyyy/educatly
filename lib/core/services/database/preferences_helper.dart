@@ -13,7 +13,7 @@ class PreferencesHelper {
 
   static Future<void> saveLoginDate() async {
     await preferences?.setString(
-        'loginDate', '${DateTime.now().add(Duration(days: 10))}');
+        'loginDate', '${DateTime.now().add(const Duration(days: 10))}');
     debugPrint('HANY ${preferences?.getString('loginDate')}');
   }
 

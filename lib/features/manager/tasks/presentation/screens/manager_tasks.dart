@@ -21,7 +21,7 @@ class _ManagerTasksScreenState extends ConsumerState<ManagerTasksScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(S().all_tasks)),
       body: ref.watch(managerAllTasksControllerProvider).when(
-            loading: () => CustomLoadingWidget(0),
+            loading: () => const CustomLoadingWidget(),
             error: (error, stackTrace) => RefreshWidget(
                 onTap: () async =>
                     await ref.refresh(managerAllTasksControllerProvider)),

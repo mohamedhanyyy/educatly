@@ -21,7 +21,7 @@ part 'add_company_state.dart';
 @riverpod
 class AddCompanyController extends _$AddCompanyController {
   AddCompanyState build() {
-    return AddCompanyState(
+    return const AddCompanyState(
       searchManagerList: [],
     );
   }

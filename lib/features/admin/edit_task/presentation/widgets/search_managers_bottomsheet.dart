@@ -33,12 +33,15 @@ adminEditManagers(BuildContext context, WidgetRef ref) {
 class editTaskManagers extends ConsumerWidget {
   final TextEditingController searchController = TextEditingController();
 
+  editTaskManagers({super.key});
+
   @override
   Widget build(BuildContext context, ref) {
     return ref
         .watch(getManagersControllerProvider)
         .when(
-            loading: () => Center(child: CircularProgressIndicator.adaptive()),
+            loading: () =>
+                const Center(child: CircularProgressIndicator.adaptive()),
             error: (error, stackTrace) => RefreshWidget(
                   onTap: () async =>
                       await ref.refresh(getManagersControllerProvider),

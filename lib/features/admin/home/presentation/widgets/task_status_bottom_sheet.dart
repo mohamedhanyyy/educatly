@@ -10,6 +10,8 @@ import '../../../../../config/router/app_router.dart';
 import '../../../../../config/theme/sizes_manager.dart';
 
 class AdminFilterTaskStatusWidget extends ConsumerWidget {
+  const AdminFilterTaskStatusWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reader = ref.read(adminTasksFilterControllerProvider.notifier);

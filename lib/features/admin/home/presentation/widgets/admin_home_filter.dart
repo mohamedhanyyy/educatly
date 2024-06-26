@@ -14,12 +14,14 @@ import 'admin_home_select_manager_widget.dart';
 class AdminHomeFilterWidget extends ConsumerWidget {
   final customWidth = ScreenUtil().screenWidth;
 
+  AdminHomeFilterWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filterWatcher = ref.watch(adminTasksFilterControllerProvider);
 
     return Padding(
-      padding: EdgeInsets.only(right: 4, left: 4, top: 10),
+      padding: const EdgeInsets.only(right: 4, left: 4, top: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -30,7 +32,7 @@ class AdminHomeFilterWidget extends ConsumerWidget {
                   useRootNavigator: true,
                   isScrollControlled: true,
                   context: context,
-                  builder: (context) => AdminFilterTaskStatusWidget());
+                  builder: (context) => const AdminFilterTaskStatusWidget());
             },
             child: Container(
               height: AppSizes.size40.h,
@@ -56,7 +58,7 @@ class AdminHomeFilterWidget extends ConsumerWidget {
                     textAlign: TextAlign.center,
                     style: StylesManager.medium(fontSize: AppSizes.size12.sp),
                   ),
-                  underline: SizedBox.shrink(),
+                  underline: const SizedBox.shrink(),
                   icon: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                     child: Image.asset(
@@ -101,7 +103,7 @@ class AdminHomeFilterWidget extends ConsumerWidget {
                           : S().manager,
                       style: StylesManager.medium(fontSize: 13.sp),
                     ),
-                    underline: SizedBox.shrink(),
+                    underline: const SizedBox.shrink(),
                     icon: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
@@ -120,7 +122,7 @@ class AdminHomeFilterWidget extends ConsumerWidget {
                   useRootNavigator: true,
                   context: context,
                   isScrollControlled: true,
-                  builder: (context) => AdminHomeSelectPriorityWidget());
+                  builder: (context) => const AdminHomeSelectPriorityWidget());
             },
             child: Container(
               height: AppSizes.size40.h,
@@ -145,7 +147,7 @@ class AdminHomeFilterWidget extends ConsumerWidget {
                         : S().priority,
                     style: StylesManager.medium(fontSize: 13.sp),
                   ),
-                  underline: SizedBox.shrink(),
+                  underline: const SizedBox.shrink(),
                   icon: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                     child: Image.asset(

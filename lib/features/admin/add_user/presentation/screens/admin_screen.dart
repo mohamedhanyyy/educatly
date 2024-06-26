@@ -29,6 +29,8 @@ class AdminScreen extends ConsumerWidget {
     UserTypeModel(3, "Manager"),
   ];
 
+  AdminScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.read(adminControllerProvider.notifier);
@@ -76,7 +78,7 @@ class AdminScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(5),
                       child: DropdownButtonFormField2(
                         isExpanded: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: 0, vertical: AppSizes.size12),
                         ),

@@ -21,7 +21,7 @@ class EditAvatarWidget extends ConsumerWidget {
         size: 20.h,
         color: Theme.of(context).scaffoldBackgroundColor,
       ),
-      badgeAnimation: badges.BadgeAnimation.scale(),
+      badgeAnimation: const badges.BadgeAnimation.scale(),
       position: badges.BadgePosition.bottomEnd(end: 9.h, bottom: 0),
       badgeStyle: badges.BadgeStyle(
         padding: EdgeInsets.all(5.h),
@@ -67,7 +67,7 @@ class EditAvatarWidget extends ConsumerWidget {
               : SizedBox(
                   width: 120.h,
                   height: 120.h,
-                  child: ProfileAvatar(),
+                  child: const ProfileAvatar(),
                 ),
     );
   }

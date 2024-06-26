@@ -12,11 +12,11 @@ class FirebaseCustomNotification {
 
   static Future<void> firebaseMessagingAppOpen() async {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      print(message.data);
+      debugPrint('${message.data}');
       final route = message.data['Route'];
       final id = message.data['TaskId'];
       debugPrint(route);
-      print(id);
+      debugPrint(id);
       if (route == '/managerTaskDetails') {
         AppRouter.router.pushNamed('$route',
             queryParameters: {AppRouterKeys.managerTaskDetails: id});

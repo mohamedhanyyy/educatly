@@ -36,7 +36,7 @@ class DateWidget extends StatelessWidget {
             AppSizes.size4.horizontalSpace,
             Text(
               dateType == DateType.start ? S().start_date : S().end_date,
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
             )
           ],
         ),

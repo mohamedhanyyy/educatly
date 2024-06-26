@@ -15,6 +15,8 @@ import '../controller/add_task_controller.dart';
 final TextEditingController controller = TextEditingController();
 
 class AdminAddSubTask extends ConsumerWidget {
+  const AdminAddSubTask({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final watcher = ref.watch(addTaskControllerProvider);
@@ -35,7 +37,7 @@ class AdminAddSubTask extends ConsumerWidget {
                   ),
                   child: CustomTextInputField(
                     label: null,
-                    contentPadding: EdgeInsets.symmetric(vertical: 15),
+                    contentPadding: const EdgeInsets.symmetric(vertical: 15),
                     prefix: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8),
                       child: Icon(Icons.task_alt_outlined,
@@ -50,7 +52,7 @@ class AdminAddSubTask extends ConsumerWidget {
                           onTap: () {
                             reader.removeTask(task: e);
                           },
-                          child: Icon(Icons.clear, color: Colors.red),
+                          child: const Icon(Icons.clear, color: Colors.red),
                         ),
                       ),
                     ),

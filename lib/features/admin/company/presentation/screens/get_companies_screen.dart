@@ -12,6 +12,8 @@ import '../controller/get_companies_controller.dart';
 import '../widgets/company_item_widget.dart';
 
 class GetCompaniesScreen extends ConsumerWidget {
+  const GetCompaniesScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
@@ -19,7 +21,7 @@ class GetCompaniesScreen extends ConsumerWidget {
         title: Text(S().all_companies),
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             iconSize: 30.sp,
             padding: EdgeInsets.zero,
             onPressed: () {
@@ -32,7 +34,7 @@ class GetCompaniesScreen extends ConsumerWidget {
         child: ref
             .watch(getCompaniesControllerProvider)
             .when(
-              loading: () => CustomLoadingWidget(),
+              loading: () => const CustomLoadingWidget(),
               error: (error, stackTrace) => RefreshWidget(
                 onTap: () async =>
                     await ref.refresh(getCompaniesControllerProvider),

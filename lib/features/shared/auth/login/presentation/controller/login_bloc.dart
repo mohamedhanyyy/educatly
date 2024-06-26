@@ -15,7 +15,7 @@ import '../../../../../../core/services/network/api/network_api.dart';
 class LoginCubit extends Cubit<CubitState> {
   LoginCubit() : super(CubitState.initial);
 
-  LoginModel? loginModel;
+  BasicModel? loginModel;
 
   Future<void> login(
       {required String email,
@@ -29,7 +29,7 @@ class LoginCubit extends Cubit<CubitState> {
       "password": password,
       'userToken': '${await FirebaseMessaging.instance.getToken()}',
     });
-    loginModel = LoginModel.fromJson(response?.data);
+    loginModel = BasicModel.fromJson(response?.data);
     if (response?.statusCode == 200) {
       emit(CubitState.done);
       PreferencesHelper.saveUserModel(userModel: loginModel!.data!);

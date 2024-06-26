@@ -53,8 +53,9 @@ class ProfileOption extends StatelessWidget {
         title,
         style: StylesManager.semiBold(fontSize: AppFonts.font.medium.sp),
       ),
-      trailing:
-          hasTrailing ? trailing ?? Icon(Icons.navigate_next_rounded) : null,
+      trailing: hasTrailing
+          ? trailing ?? const Icon(Icons.navigate_next_rounded)
+          : null,
     );
   }
 }

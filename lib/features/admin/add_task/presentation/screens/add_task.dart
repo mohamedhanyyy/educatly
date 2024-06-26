@@ -25,6 +25,8 @@ import '../widgets/priority_bottom_sheet.dart';
 import '../widgets/search_managers.dart';
 
 class AddTaskScreen extends ConsumerStatefulWidget {
+  const AddTaskScreen({super.key});
+
   @override
   ConsumerState<AddTaskScreen> createState() => _AddTaskScreenState();
 }
@@ -89,7 +91,7 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                 validator: (value) => ValidationService.notEmptyField(value),
               ),
               AppSizes.size15.verticalSpace,
-              AddTaskDatePickerWidget(),
+              const AddTaskDatePickerWidget(),
               customDropDown(
                 widget: priorityIconMapper(watcher.priorityId),
                 textColor: watcher.priorityId != null
@@ -101,7 +103,7 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                 function: () {
                   showModalBottomSheet(
                       context: context,
-                      builder: (context) => AdminAddTaskPriority());
+                      builder: (context) => const AdminAddTaskPriority());
                 },
               ),
               if (watcher.priorityId == null && watcher.isSaveClick == true)
@@ -156,7 +158,7 @@ class _AddTaskScreenState extends ConsumerState<AddTaskScreen> {
                   style: StylesManager.semiBold(fontSize: AppSizes.size12),
                 ),
               ),
-              AdminAddSubTask(),
+              const AdminAddSubTask(),
               AddTaskCommentsWidget(),
             ],
           ),

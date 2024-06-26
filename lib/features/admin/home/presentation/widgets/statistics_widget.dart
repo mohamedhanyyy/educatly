@@ -12,8 +12,8 @@ class AdminStatisticsWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.all(3),
+      padding: const EdgeInsets.all(20),
+      margin: const EdgeInsets.all(3),
       height: 200.h,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
@@ -35,8 +35,8 @@ class AdminStatisticsWidget extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  CircleAvatar(backgroundColor: Colors.green, radius: 6),
-                  SizedBox(width: 8),
+                  const CircleAvatar(backgroundColor: Colors.green, radius: 6),
+                  const SizedBox(width: 8),
                   Text(S().neww),
                 ],
               ),
@@ -44,23 +44,24 @@ class AdminStatisticsWidget extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: Row(
                   children: [
-                    CircleAvatar(backgroundColor: Colors.orange, radius: 6),
-                    SizedBox(width: 8),
+                    const CircleAvatar(
+                        backgroundColor: Colors.orange, radius: 6),
+                    const SizedBox(width: 8),
                     Text(S().in_progress),
                   ],
                 ),
               ),
               Row(
                 children: [
-                  CircleAvatar(backgroundColor: Colors.red, radius: 6),
-                  SizedBox(width: 8),
+                  const CircleAvatar(backgroundColor: Colors.red, radius: 6),
+                  const SizedBox(width: 8),
                   Text(S().completed),
                 ],
               ),
             ],
           ),
           AppSizes.size80.horizontalSpace,
-          Flexible(child: ChartWidget())
+          const Flexible(child: ChartWidget())
         ],
       ),
     );

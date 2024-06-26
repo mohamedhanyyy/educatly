@@ -47,6 +47,6 @@ class AddUserRemoteRequestImpl implements AddUserRemoteRequest {
         Toast.showToast('Add user done');
       },
     );
-    return AddUserResponse();
+    return const AddUserResponse();
   }
 }

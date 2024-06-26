@@ -1,8 +1,9 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:taskaty/core/extensions/async_value_extension.dart';
+
 import '../../data/model/get_managers_model.dart';
 import '../../domain/usecase/get_managers_usecase.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'get_managers_controller.freezed.dart';
 part 'get_managers_controller.g.dart';
@@ -16,7 +17,7 @@ class GetManagersController extends _$GetManagersController {
   }
 
   Future<List<ManagerModel>> getManagers() async {
-    state = AsyncValue.loading();
+    state = const AsyncValue.loading();
     final result = await AsyncValue.guard(
       () => ref.read(getManagersUseCaseProvider.future),
     );

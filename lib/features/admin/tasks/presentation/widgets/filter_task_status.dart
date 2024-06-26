@@ -33,7 +33,7 @@ class _FilterTaskStatusState extends ConsumerState<FilterTaskStatus> {
           2: Text(S().completed),
         },
         borderWidth: .3,
-        selectedTextStyle: TextStyle(fontFamily: 'Cairo', fontSize: 15),
+        selectedTextStyle: const TextStyle(fontFamily: 'Cairo', fontSize: 15),
         unselectedTextStyle: TextStyle(
             fontFamily: 'Cairo',
             fontSize: 13,

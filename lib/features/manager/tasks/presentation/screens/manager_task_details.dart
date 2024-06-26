@@ -105,7 +105,7 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
                           vertical: AppSizes.size20.h,
                           horizontal: AppSizes.size10.w)),
                   bottomNavigationBar: Padding(
-                    padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                     child: AppDefaultButton(
                       key: widget.buttonKey,
                       backgroundColor: AppColors.colors.darkBlue,
@@ -163,9 +163,9 @@ class _TaskDetailsScreenState extends ConsumerState<ManagerTaskDetailsScreen> {
                   ),
                 );
               } else if (state is TaskDetailsLoading) {
-                return CustomLoadingWidget();
+                return const CustomLoadingWidget();
               }
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             }));
   }
 }

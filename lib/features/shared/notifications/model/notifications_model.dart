@@ -29,7 +29,7 @@ class NotificationData {
   String? senderTime;
   String? userId;
   bool? isRead;
-  int? taksId;
+  int? taskId;
 
   NotificationData(
       {this.id,
@@ -38,7 +38,7 @@ class NotificationData {
       this.senderTime,
       this.userId,
       this.isRead,
-      this.taksId});
+      this.taskId});
 
   NotificationData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -47,7 +47,7 @@ class NotificationData {
     senderTime = json['senderTime'];
     userId = json['userId'];
     isRead = json['isRead'];
-    taksId = json['taksId'];
+    taskId = json['taksId'];
   }
 
   Map<String, dynamic> toJson() {
@@ -58,7 +58,7 @@ class NotificationData {
     data['senderTime'] = this.senderTime;
     data['userId'] = this.userId;
     data['isRead'] = this.isRead;
-    data['taksId'] = this.taksId;
+    data['taksId'] = this.taskId;
     return data;
   }
 }

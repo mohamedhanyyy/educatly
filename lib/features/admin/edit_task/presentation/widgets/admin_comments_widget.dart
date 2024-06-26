@@ -14,7 +14,7 @@ import '../../../comment/controller/add_comment_controller.dart';
 import '../../../tasks/data/model/admin_tasks_model.dart';
 
 class AdminCommentsWidget extends ConsumerWidget {
-  AdminCommentsWidget(this.taskDetails);
+  AdminCommentsWidget(this.taskDetails, {super.key});
   static final commentButtonKey = UniqueKey();
   final TextEditingController commentsController = TextEditingController();
   late final AdminTasksModel taskDetails;
@@ -25,8 +25,8 @@ class AdminCommentsWidget extends ConsumerWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: Theme.of(context).secondaryHeaderColor)),
-      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-      padding: EdgeInsets.all(5),
+      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+      padding: const EdgeInsets.all(5),
       child: InkWell(
         onTap: () {
           showModalBottomSheet(

@@ -13,7 +13,7 @@ part 'admin_tasks_filter_state.dart';
 @riverpod
 class AdminTasksFilterController extends _$AdminTasksFilterController {
   AdminTasksFilterState build() {
-    return AdminTasksFilterState();
+    return const AdminTasksFilterState();
   }
 
   void searchManager(

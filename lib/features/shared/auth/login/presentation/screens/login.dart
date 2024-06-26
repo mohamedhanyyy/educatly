@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: const AppLogo()),
+          const Center(child: AppLogo()),
           AppSizes.size20.verticalSpace,
           Text(
             S().welcome,

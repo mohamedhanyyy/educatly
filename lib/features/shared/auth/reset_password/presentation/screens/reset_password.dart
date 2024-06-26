@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:taskaty/config/theme/widget_manager.dart';
+
 import '../../../../../../config/l10n/generated/l10n.dart';
 import '../../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../../config/theme/font_system/app_fonts.dart';
@@ -47,7 +48,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   color: AppColors.colors.primary,
                   border: Border.all(
                     width: AppSizes.size10.h,
-                    color: Color(0xffF8F8F8),
+                    color: const Color(0xffF8F8F8),
                   ),
                 ),
                 child: Center(

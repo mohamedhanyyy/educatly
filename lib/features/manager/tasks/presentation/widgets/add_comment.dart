@@ -14,7 +14,7 @@ import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../admin/tasks/data/model/admin_tasks_model.dart';
 
 class ManagerAddCommentWidget extends ConsumerWidget {
-  ManagerAddCommentWidget(this.taskDetails);
+  ManagerAddCommentWidget(this.taskDetails, {super.key});
   static final commentButtonKey = UniqueKey();
   final TextEditingController commentsController = TextEditingController();
   late final AdminTasksModel taskDetails;
@@ -25,7 +25,7 @@ class ManagerAddCommentWidget extends ConsumerWidget {
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: Theme.of(context).cardColor)),
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       child: InkWell(
         onTap: () {
           showModalBottomSheet(

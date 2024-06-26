@@ -28,7 +28,7 @@ import '../widgets/search_managers_bottomsheet.dart';
 class EditTaskScreen extends ConsumerStatefulWidget {
   final String editTaskId;
 
-  EditTaskScreen({required this.editTaskId, Key? key});
+  EditTaskScreen({super.key, required this.editTaskId});
 
   @override
   ConsumerState<EditTaskScreen> createState() => _EditTaskScreenState();
@@ -97,7 +97,7 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                   validator: (value) => ValidationService.notEmptyField(value),
                 ),
                 AppSizes.size10.verticalSpace,
-                EditTaskDatePickerWidget(),
+                const EditTaskDatePickerWidget(),
                 AppSizes.size10.verticalSpace,
                 customDropDown(
                   widget: controller.buildSvgPicture(
@@ -108,7 +108,7 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                   function: () {
                     showModalBottomSheet(
                         context: context,
-                        builder: (context) => EditPriorityWidget());
+                        builder: (context) => const EditPriorityWidget());
                   },
                 ),
                 AppSizes.size10.verticalSpace,
@@ -119,7 +119,7 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                   function: () {
                     showModalBottomSheet(
                         context: context,
-                        builder: (context) => EditStatusWidget());
+                        builder: (context) => const EditStatusWidget());
                   },
                 ),
                 AppSizes.size10.verticalSpace,
@@ -150,7 +150,7 @@ class _EditTaskScreenState extends ConsumerState<EditTaskScreen> {
                       adminEditManagers(context, ref);
                     }),
                 AppSizes.size10.verticalSpace,
-                AdminEditSubTask(),
+                const AdminEditSubTask(),
               ],
             ),
           ).defaultScreenPadding,

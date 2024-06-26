@@ -34,7 +34,7 @@ class SingleStatisticsWidget extends StatelessWidget {
             width: AppSizes.size50.h,
             height: AppSizes.size50.h,
             clipBehavior: Clip.antiAlias,
-            margin: EdgeInsets.all(5),
+            margin: const EdgeInsets.all(5),
             padding: EdgeInsets.all(AppSizes.size12.h),
             decoration: BoxDecoration(
               shape: BoxShape.circle,

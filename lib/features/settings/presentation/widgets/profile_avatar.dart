@@ -30,7 +30,7 @@ class ProfileAvatar extends StatelessWidget {
                 ),
               )
             : Container(
-                child: Icon(Icons.person_rounded),
+                child: const Icon(Icons.person_rounded),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Theme.of(context).cardColor,

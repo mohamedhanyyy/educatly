@@ -12,7 +12,7 @@ part 'admin_task_details_state.dart';
 class AdminTaskDetailsController extends _$AdminTaskDetailsController {
   @override
   AdminTaskDetailsState build() {
-    return AdminTaskDetailsState();
+    return const AdminTaskDetailsState();
   }
 
   void setData({List<SubTasks>? subTasks}) {

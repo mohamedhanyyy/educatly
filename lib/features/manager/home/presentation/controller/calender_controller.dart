@@ -38,7 +38,7 @@ class CalenderController extends _$CalenderController {
     );
     controller.animateToItem(
       curve: Curves.linear,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       state.currentMonth.month == state.selectedDate.month
           ? state.selectedDate.day - 1
           : 0,
@@ -57,7 +57,7 @@ class CalenderController extends _$CalenderController {
     );
     controller.animateToItem(
       curve: Curves.linear,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       state.currentMonth.month == state.selectedDate.month
           ? state.selectedDate.day - 1
           : 0,
@@ -73,7 +73,7 @@ class CalenderController extends _$CalenderController {
     await ref.refresh(dashboardControllerProvider.notifier);
     controller.animateToItem(
       curve: Curves.linear,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       state.currentMonth.month == state.selectedDate.month
           ? state.selectedDate.day - 1
           : 0,
@@ -84,7 +84,7 @@ class CalenderController extends _$CalenderController {
     controller.animateToItem(
       curve: Curves.linear,
       state.selectedDate.day - 1,
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
     );
   }
 }

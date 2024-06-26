@@ -12,6 +12,8 @@ import '../../../../../config/theme/sizes_manager.dart';
 import '../../../../../core/constants/assets.dart';
 
 class AdminHomeSelectPriorityWidget extends ConsumerWidget {
+  const AdminHomeSelectPriorityWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reader = ref.read(adminTasksFilterControllerProvider.notifier);

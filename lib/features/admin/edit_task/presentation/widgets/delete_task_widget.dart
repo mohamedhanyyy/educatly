@@ -21,7 +21,7 @@ class DeleteTaskWidget extends ConsumerWidget {
   static final buttonKey = UniqueKey();
   final id;
 
-  DeleteTaskWidget({required this.id});
+  DeleteTaskWidget({super.key, required this.id});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
@@ -81,7 +81,7 @@ class DeleteTaskWidget extends ConsumerWidget {
 
 class TaskActionWidget extends StatelessWidget {
   final AdminTasksModel task;
-  TaskActionWidget(this.task);
+  TaskActionWidget(this.task, {super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(

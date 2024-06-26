@@ -19,6 +19,8 @@ import '../../../../../core/widgets/network_image.dart';
 class AdminHomeSelectManagerWidget extends ConsumerWidget {
   final TextEditingController controller = TextEditingController();
 
+  AdminHomeSelectManagerWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reader = ref.read(adminTasksFilterControllerProvider.notifier);
@@ -112,6 +114,6 @@ class AdminHomeSelectManagerWidget extends ConsumerWidget {
             ref.invalidate(getManagersControllerProvider);
           });
         },
-        loading: () => CustomLoadingWidget(0));
+        loading: () => const CustomLoadingWidget(topPadding: 0));
   }
 }

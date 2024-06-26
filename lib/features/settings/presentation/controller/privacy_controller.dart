@@ -14,7 +14,7 @@ class PrivacyController extends _$PrivacyController {
   }
 
   Future<List<Privacy>> getPrivacyPolicy() async {
-    state = AsyncValue.loading();
+    state = const AsyncValue.loading();
     final result = await AsyncValue.guard(
       () => ref.read(getPrivacyUseCaseProvider.future),
     );

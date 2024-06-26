@@ -15,6 +15,8 @@ import '../controller/add_task_controller.dart';
 export 'package:flutter_svg/svg.dart';
 
 class AddTaskDatePickerWidget extends ConsumerWidget {
+  const AddTaskDatePickerWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final watcher = ref.watch(addTaskControllerProvider);
@@ -35,7 +37,7 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
                   context: context,
                   initialDate: DateTime.now(),
                   firstDate: DateTime.now(),
-                  lastDate: DateTime.now().add(Duration(days: 30)),
+                  lastDate: DateTime.now().add(const Duration(days: 30)),
                 );
                 if (selectedDate == null) return;
                 if (watcher.endDate != null) {
@@ -112,7 +114,7 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
                   context: context,
                   initialDate: DateTime.now(),
                   firstDate: DateTime.now(),
-                  lastDate: DateTime.now().add(Duration(days: 100)),
+                  lastDate: DateTime.now().add(const Duration(days: 100)),
                 );
                 if (endDate == null) return;
                 final selectedTime = await showTimePicker(

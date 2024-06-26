@@ -31,7 +31,7 @@ class _HomeScreenState extends ConsumerState<ManagerMainScreen> {
     cubit = context.read<ManagerStatisticsCubit>();
     cubit.getManagerStatistics();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
       ref
           .watch(calenderControllerProvider.notifier)
           .animateToSelectedDate(_controller);
@@ -41,7 +41,7 @@ class _HomeScreenState extends ConsumerState<ManagerMainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: HomeAppbar()),
+      appBar: AppBar(title: const HomeAppbar()),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -52,7 +52,7 @@ class _HomeScreenState extends ConsumerState<ManagerMainScreen> {
                 return ManagerStatisticsWidget(
                     statsData: cubit.statisticsModel!.statsData!);
               } else if (state == CubitState.loading)
-                return CustomLoadingWidget();
+                return const CustomLoadingWidget();
 
               return const SizedBox.shrink();
             }),
@@ -61,7 +61,7 @@ class _HomeScreenState extends ConsumerState<ManagerMainScreen> {
             AppSizes.size10.verticalSpace,
             FiltersListWidget(controller: _controller),
             AppSizes.size20.verticalSpace,
-            ManagerTasksListWidget()
+            const ManagerTasksListWidget()
           ],
         ).defaultScreenPadding,
       ),

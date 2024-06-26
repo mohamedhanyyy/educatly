@@ -22,6 +22,8 @@ import '../../data/model/user_type_model.dart';
 import '../controller/super_admin/super_admin_controller.dart';
 
 class SuperAdminScreen extends ConsumerStatefulWidget {
+  const SuperAdminScreen({super.key});
+
   @override
   ConsumerState<SuperAdminScreen> createState() => _SuperAdminScreenState();
 }
@@ -80,7 +82,7 @@ class _SuperAdminScreenState extends ConsumerState<SuperAdminScreen> {
                 child: DropdownButtonFormField2(
                   isExpanded: true,
                   value: controllerWatcher.userType,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     contentPadding: EdgeInsets.symmetric(
                         horizontal: 0, vertical: AppSizes.size12),
                   ),
@@ -122,9 +124,9 @@ class _SuperAdminScreenState extends ConsumerState<SuperAdminScreen> {
                 child: DottedBorder(
                   borderType: BorderType.RRect,
                   color: Colors.grey,
-                  radius: Radius.circular(12),
+                  radius: const Radius.circular(12),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
                     child: Container(
                       width: double.infinity,
                       height: 200.sp,
@@ -161,7 +163,7 @@ class _SuperAdminScreenState extends ConsumerState<SuperAdminScreen> {
                                         file = null;
                                       });
                                     },
-                                    icon: Icon(Icons.close),
+                                    icon: const Icon(Icons.close),
                                   ),
                                 )
                               ],

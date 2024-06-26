@@ -45,7 +45,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
     return Scaffold(
       body: widget.navigationShell,
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: 6, top: 6),
+        padding: const EdgeInsets.only(bottom: 6, top: 6),
         child: Container(
           height: 80,
           child: Stack(
@@ -55,7 +55,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                 builder: (BuildContext context, WidgetRef ref, Widget? child) {
                   return Container(
                     height: 70,
-                    margin: EdgeInsets.symmetric(horizontal: 45),
+                    margin: const EdgeInsets.symmetric(horizontal: 45),
                     decoration: BoxDecoration(
                       color:
                           ref.watch(themeControllerProvider) == ThemeMode.dark
@@ -105,16 +105,16 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
               Positioned(
                 bottom: 4,
                 child: Container(
-                  margin: EdgeInsets.only(bottom: 10),
+                  margin: const EdgeInsets.only(bottom: 10),
                   clipBehavior: Clip.antiAlias,
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Theme.of(context).scaffoldBackgroundColor,
                   ),
                   child: Container(
                     clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(shape: BoxShape.circle),
+                    decoration: const BoxDecoration(shape: BoxShape.circle),
                     child: FloatingActionButton(
                         elevation: 0,
                         backgroundColor: AppColors.colors.primary,

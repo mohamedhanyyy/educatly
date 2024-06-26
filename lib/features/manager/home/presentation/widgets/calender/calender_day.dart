@@ -52,7 +52,7 @@ class _CalenderDayWidgetState extends ConsumerState<CalenderDayWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Spacer(flex: 2),
+            const Spacer(flex: 2),
             Text(
               DateFormat('dd').format(widget._dateTime),
               style: _isSelected
@@ -61,7 +61,7 @@ class _CalenderDayWidgetState extends ConsumerState<CalenderDayWidget> {
                       color: Theme.of(context).scaffoldBackgroundColor)
                   : StylesManager.medium(fontSize: AppFonts.font.xXLarge.sp),
             ),
-            Spacer(),
+            const Spacer(),
             FittedBox(
               child: Text(
                 DateFormat('EEE').format(widget._dateTime),
@@ -77,7 +77,7 @@ class _CalenderDayWidgetState extends ConsumerState<CalenderDayWidget> {
                       ),
               ),
             ),
-            Spacer(flex: 2),
+            const Spacer(flex: 2),
           ],
         ),
       ),

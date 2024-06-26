@@ -16,7 +16,7 @@ part 'admin_state.dart';
 @riverpod
 class AdminController extends _$AdminController {
   AdminState build() {
-    return AdminState();
+    return const AdminState();
   }
 
   void setData({

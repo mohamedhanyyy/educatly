@@ -70,7 +70,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
         title: Text(S().all_tasks),
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             iconSize: 30.sp,
             padding: EdgeInsets.zero,
             onPressed: () {
@@ -109,7 +109,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                           showModalBottomSheet(
                               context: context,
                               builder: (context) =>
-                                  AdminHomeSelectPriorityWidget());
+                                  const AdminHomeSelectPriorityWidget());
                         },
                         child: DropdownButton(
                           isExpanded: true,
@@ -120,7 +120,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                                 : S().priority,
                             style: StylesManager.medium(fontSize: 13.sp),
                           ),
-                          underline: SizedBox.shrink(),
+                          underline: const SizedBox.shrink(),
                           icon: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 5, 0, 0, 0),
@@ -167,7 +167,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                                 : S().manager,
                             style: StylesManager.medium(fontSize: 13.sp),
                           ),
-                          underline: SizedBox.shrink(),
+                          underline: const SizedBox.shrink(),
                           icon: Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 10, 0, 0, 0),
@@ -184,7 +184,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
               ),
             ),
             AppSizes.size10.verticalSpace,
-            FilterTasksDatePickerWidget(),
+            const FilterTasksDatePickerWidget(),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10.h),
               child: Row(
@@ -200,7 +200,7 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                       },
                       label: S().search_by_task_name,
                       prefix: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: SvgPicture.asset('assets/icons/search1.svg',
                             colorFilter: Theme.of(context)
                                 .secondaryHeaderColor
@@ -242,20 +242,20 @@ class _AdminTasksScreenState extends ConsumerState<AdminTasksScreen> {
                 ],
               ),
             ),
-            FilterTaskStatus(),
+            const FilterTaskStatus(),
             AppSizes.size10.verticalSpace,
             ref.watch(getAdminTasksControllerProvider).when(
                   loading: () => Padding(
                       padding: EdgeInsets.only(top: 100.h),
-                      child:
-                          Center(child: CircularProgressIndicator.adaptive())),
+                      child: const Center(
+                          child: CircularProgressIndicator.adaptive())),
                   error: (error, stackTrace) => RefreshWidget(
                     onTap: () async =>
                         await ref.refresh(getAdminTasksControllerProvider),
                   ),
                   data: (tasks) {
                     return tasks.isEmpty
-                        ? NoTasksWidget()
+                        ? const NoTasksWidget()
                         : AnimationList(
                             duration: 1250,
                             reBounceDepth: 0,

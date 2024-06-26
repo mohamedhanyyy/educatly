@@ -7,9 +7,13 @@ import 'package:taskaty/features/manager/stats/bloc/manager_statistics_bloc.dart
 import 'package:taskaty/features/shared/notifications/presentation/cubit/notification_cubit.dart';
 
 import '../../../../../config/l10n/generated/l10n.dart';
+import '../../../../../config/router/app_router.dart';
+import '../../../../../config/router/app_router_keys.dart';
+import '../../../../../config/router/app_routing_paths.dart';
 import '../../../../../config/theme/color_system/app_colors.dart';
 import '../../../../../config/theme/font_system/app_fonts.dart';
 import '../../../../../config/theme/styles_manager.dart';
+import '../../../../../core/services/database/preferences_helper.dart';
 import '../../../../../core/widgets/network_image.dart';
 import '../../model/notifications_model.dart';
 
@@ -38,8 +42,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
             if (state == CubitState.empty)
               return Center(
                 child: Text(S().no_notifications_right_now,
-                    style:
-                        TextStyle(fontSize: 15, fontWeight: FontWeight.w700)),
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w700)),
               );
             else if (state == CubitState.done) {
               return ListView.builder(
@@ -49,7 +53,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   itemCount:
                       notificationCubit.notificationsModel?.data?.length);
             } else if (state == CubitState.loading) {
-              return CustomLoadingWidget();
+              return const CustomLoadingWidget();
             }
             return const SizedBox.shrink();
           },
@@ -57,33 +61,61 @@ class _NotificationScreenState extends State<NotificationScreen> {
   }
 
   Widget notificationWidget(NotificationData data) {
-    return ListTile(
-      leading: Container(
-        width: 40.h,
-        height: 40.h,
-        padding: EdgeInsets.all(1.h),
-        clipBehavior: Clip.antiAlias,
+    return InkWell(
+      onTap: () {
+        if (PreferencesHelper.getUserModel?.role == 'Manager') {
+          AppRouter.router.pushNamed('${AppRoutes.managerTaskDetails}',
+              queryParameters: {
+                AppRouterKeys.managerTaskDetails: data.id.toString()
+              });
+        } else {
+          AppRouter.router.pushNamed('${AppRoutes.adminTaskDetails}',
+              queryParameters: {AppRouterKeys.adminTaskDetails: data.id});
+        }
+        if (data.isRead != true) {
+          notificationCubit.makeNotificationAsRead(data.id);
+        }
+      },
+      child: Container(
+        margin: const EdgeInsets.all(5),
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.colors.background.withOpacity(0.5),
+          border: Border.all(
+              color: data.isRead == false
+                  ? AppColors.colors.black
+                  : AppColors.colors.black2),
         ),
-        child: ClipOval(
-          child: AppCachedNetworkImage(
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjIE9x_0IgzoW3whWyqVDXqK0K1hNxzNf_6meiHJJVTh4z7cz_LLY7aYXo6B-PfxqmYDc&usqp=CAU",
+        child: ListTile(
+          tileColor: data.isRead == false
+              ? AppColors.colors.black2
+              : AppColors.colors.black,
+          leading: Container(
+            width: 40.h,
+            height: 40.h,
+            padding: EdgeInsets.all(1.h),
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppColors.colors.background.withOpacity(0.5),
+            ),
+            child: const ClipOval(
+              child: AppCachedNetworkImage(
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjIE9x_0IgzoW3whWyqVDXqK0K1hNxzNf_6meiHJJVTh4z7cz_LLY7aYXo6B-PfxqmYDc&usqp=CAU",
+              ),
+            ),
           ),
-        ),
+          title: Text(
+            "${data.title}",
+            style: StylesManager.regular(
+                fontSize: AppFonts.font.medium.sp, color: Colors.green),
+          ),
+          subtitle: Text(
+            '${data.body}',
+            style: StylesManager.regular(
+              fontSize: AppFonts.font.xSmall.sp,
+            ),
+          ),
+        ).defaultScreenPadding,
       ),
-      title: Text(
-        "${data.title}",
-        style: StylesManager.regular(
-            fontSize: AppFonts.font.medium.sp, color: Colors.green),
-      ),
-      subtitle: Text(
-        '${data.body}',
-        style: StylesManager.regular(
-          fontSize: AppFonts.font.xSmall.sp,
-        ),
-      ),
-    ).defaultScreenPadding;
+    );
   }
 }

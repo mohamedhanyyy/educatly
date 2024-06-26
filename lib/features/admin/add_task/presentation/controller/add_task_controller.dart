@@ -25,7 +25,7 @@ part 'add_task_state.dart';
 
 @riverpod
 class AddTaskController extends _$AddTaskController {
-  AddTaskState build() => AddTaskState();
+  AddTaskState build() => const AddTaskState();
 
   void clearList() {
     state = state.copyWith(searchManagerList: []);

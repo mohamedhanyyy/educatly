@@ -55,8 +55,8 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
             borderRadius: BorderRadius.circular(15),
             color: colorStatusIdMapper(widget.task.statusId),
           ),
-          margin: EdgeInsets.symmetric(vertical: 5),
-          padding: EdgeInsetsDirectional.only(start: 5),
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsetsDirectional.only(start: 5),
           child: Card(
             elevation: 0,
             borderOnForeground: false,
@@ -99,7 +99,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                               child: Row(
                                 children: [
                                   Container(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         vertical: 8, horizontal: 10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
@@ -114,7 +114,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                                         SvgPicture.asset(Assets.icons.clock,
                                             colorFilter: AppColors
                                                 .colors.green.toColorFilter),
-                                        SizedBox(width: 5),
+                                        const SizedBox(width: 5),
                                         Text(
                                           '${DateTime.parse(widget.task.startDate!).getDifferenceFromToday()}',
                                           style: StylesManager.bold(
@@ -129,7 +129,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -141,7 +141,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.circular(50),
                                     clipBehavior: Clip.antiAlias,
-                                    child: AppCachedNetworkImage(
+                                    child: const AppCachedNetworkImage(
                                       AppConstants.userAvatar,
                                       width: 30,
                                       height: 30,
@@ -168,7 +168,7 @@ class _TaskItemWidgetState extends ConsumerState<TaskItemWidget> {
                         animation: true,
                         animationDuration: 100,
                         progressColor: AppColors.colors.darkBlue,
-                        barRadius: Radius.circular(10),
+                        barRadius: const Radius.circular(10),
                         trailing: Text(
                           ' ${(completedCount * 100 / (widget.task.subTasks!.length)).toStringAsFixed(1)} %  ',
                           style: StylesManager.bold(

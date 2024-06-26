@@ -34,6 +34,8 @@ addCompanySearchManagers(BuildContext context, WidgetRef ref) {
 class AddCompanySearchManagers extends ConsumerWidget {
   final TextEditingController searchController = TextEditingController();
 
+  AddCompanySearchManagers({super.key});
+
   @override
   Widget build(BuildContext context, ref) {
     final watcher = ref.watch(addCompanyControllerProvider);
@@ -41,7 +43,7 @@ class AddCompanySearchManagers extends ConsumerWidget {
     return ref
         .watch(getManagersControllerProvider)
         .when(
-            loading: () => CustomLoadingWidget(),
+            loading: () => const CustomLoadingWidget(),
             error: (error, _) => RefreshWidget(
                 onTap: () async =>
                     await ref.refresh(getManagersControllerProvider)),

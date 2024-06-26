@@ -21,7 +21,7 @@ class UserWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
-          margin: EdgeInsets.only(bottom: 4),
+          margin: const EdgeInsets.only(bottom: 4),
           width: AppSizes.size40.h,
           height: AppSizes.size40.h,
           clipBehavior: Clip.antiAlias,

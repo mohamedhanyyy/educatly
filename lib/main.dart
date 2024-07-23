@@ -9,13 +9,15 @@ import 'package:taskaty/taskaty.dart';
 
 import 'core/services/database/preferences_helper.dart';
 import 'core/services/dio_helper/dio_helper.dart';
+import 'core/services/notification/firebase_notification.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp();
+  FirebaseCustomNotification.setUpFirebase();
   DioHelper.init();
   await PreferencesHelper.init();
-  await Firebase.initializeApp();
+
   final loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
   final duration = loginTime.difference(DateTime.now());
   debugPrint('Diffrence date: ${duration.inDays}');

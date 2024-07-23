@@ -43,7 +43,7 @@ class _EditProfileFormState extends ConsumerState<EditProfileForm> {
       autovalidateMode: AutovalidateMode.always,
       child: Column(
         children: [
-          EditAvatarWidget(imageName: widget.user.imageName!)
+          EditAvatarWidget(imageName: widget.user.imageName)
               .paddingSymmetric(vertical: AppSizes.size20.h),
           CustomTextInputField(
             label: S().name,

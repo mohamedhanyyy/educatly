@@ -1,74 +1,79 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import '../../../config/router/app_router.dart';
 import '../../../config/router/app_router_keys.dart';
 
-late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
 class CustomLocalNotification {
-  static late AndroidNotificationChannel channel;
+  static final CustomLocalNotification _instance =
+      CustomLocalNotification._internal();
 
-  static bool isFlutterLocalNotificationsInitialized = false;
-
-  static Future<void> setupLocalNotifications() async {
-    if (isFlutterLocalNotificationsInitialized) {
-      return;
-    }
-    channel = const AndroidNotificationChannel(
-      'high_importance_channel', // id
-      'High Importance Notifications',
-      description: 'This channel is used for important notifications.',
-    );
-
-    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
-
-    await FirebaseMessaging.instance
-        .setForegroundNotificationPresentationOptions(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
-
-    isFlutterLocalNotificationsInitialized = true;
+  factory CustomLocalNotification() {
+    return _instance;
   }
 
-  static void showFlutterNotification(RemoteMessage message) {
-    if (message.notification != null && message.notification?.android != null) {
-      flutterLocalNotificationsPlugin.show(
-        message.notification.hashCode,
-        message.notification?.title,
-        message.notification?.body,
-        NotificationDetails(
-          android: AndroidNotificationDetails(
-            channel.id,
-            channel.name,
-            channelDescription: channel.description,
-            icon: '@mipmap/launcher_icon',
-          ),
-        ),
-      );
-    }
+  CustomLocalNotification._internal();
+
+  static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  static Future<void> init() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/launcher_icon');
+
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
+      android: initializationSettingsAndroid,
+    );
+
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse: (respone) {
+        handleLocalNotificationTap(respone.payload);
+      },
+    );
   }
 
-  static void onMessageOpenedApp(RemoteMessage message) {
-    debugPrint('${message.data}');
-    final route = message.data['Route'];
-    final id = message.data['TaskId'];
-    debugPrint(route);
-    debugPrint(id);
-    if (route == '/managerTaskDetails') {
-      AppRouter.router.pushNamed(route,
-          queryParameters: {AppRouterKeys.managerTaskDetails: id});
-    } else {
-      AppRouter.router.pushNamed(route,
-          queryParameters: {AppRouterKeys.adminTaskDetails: id});
+  static Future<void> showLocalNotification(
+      int id, String title, String body, String payload) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'your_channel_id',
+      'your_channel_name',
+      channelDescription: 'your_channel_description',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      id,
+      title,
+      body,
+      platformChannelSpecifics,
+      payload: payload,
+    );
+  }
+
+  static Future<void> handleLocalNotificationTap(String? payload) async {
+    if (payload != null) {
+      RegExp taskIdRegExp = RegExp(r'TaskId: (\d+)');
+      final id = taskIdRegExp.firstMatch(payload)?.group(1);
+
+      RegExp routeRegExp = RegExp(r'Route: ([^,}]+)');
+      String? route = routeRegExp.firstMatch(payload)?.group(1);
+
+      // // Print the results
+      // print('TaskId: $id');
+      // print('Route: $route');
+      if (route == '/managerTaskDetails') {
+        AppRouter.router.pushNamed(route!,
+            queryParameters: {AppRouterKeys.managerTaskDetails: id});
+      } else {
+        AppRouter.router.pushNamed(route!,
+            queryParameters: {AppRouterKeys.adminTaskDetails: id});
+      }
     }
   }
 }

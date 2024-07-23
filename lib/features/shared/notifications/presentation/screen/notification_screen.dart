@@ -47,6 +47,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               );
             else if (state == CubitState.done) {
               return ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   itemBuilder: (context, index) => notificationWidget(
                       notificationCubit.notificationsModel!.data![index]),
                   shrinkWrap: true,
@@ -70,7 +71,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
               });
         } else {
           AppRouter.router.pushNamed('${AppRoutes.adminTaskDetails}',
-              queryParameters: {AppRouterKeys.adminTaskDetails: data.id});
+              queryParameters: {
+                AppRouterKeys.adminTaskDetails: data.id.toString()
+              });
         }
         if (data.isRead != true) {
           notificationCubit.makeNotificationAsRead(data.id);
@@ -79,20 +82,22 @@ class _NotificationScreenState extends State<NotificationScreen> {
       child: Container(
         margin: const EdgeInsets.all(5),
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: data.isRead == true
+              ? Theme.of(context).scaffoldBackgroundColor
+              : Theme.of(context).highlightColor,
           border: Border.all(
               color: data.isRead == false
                   ? AppColors.colors.black
-                  : AppColors.colors.black2),
+                  : Theme.of(context).highlightColor),
         ),
         child: ListTile(
-          tileColor: data.isRead == false
-              ? AppColors.colors.black2
-              : AppColors.colors.black,
+          tileColor: Colors.transparent,
           leading: Container(
             width: 40.h,
             height: 40.h,
             padding: EdgeInsets.all(1.h),
-            clipBehavior: Clip.antiAlias,
+            // clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.colors.background.withOpacity(0.5),

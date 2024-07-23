@@ -26,10 +26,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   static final buttonKey = UniqueKey();
-  TextEditingController mailController =
-      TextEditingController(text: 'basicuser@domain.com');
-  TextEditingController passwordController =
-      TextEditingController(text: 'P@ssword123');
+  TextEditingController mailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   static final GlobalKey<FormState> loginKey = GlobalKey<FormState>();
   late LoginCubit loginCubit = context.read<LoginCubit>();
 

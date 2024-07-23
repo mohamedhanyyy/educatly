@@ -1,8 +1,7 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:math';
 
-import '../../../config/router/app_router.dart';
-import '../../../config/router/app_router_keys.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'local_notification.dart';
 
 class FirebaseCustomNotification {
@@ -10,26 +9,14 @@ class FirebaseCustomNotification {
 
   static NotificationSettings? settings;
 
-  static Future<void> firebaseMessagingAppOpen() async {
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-      debugPrint('${message.data}');
-      final route = message.data['Route'];
-      final id = message.data['TaskId'];
-      debugPrint(route);
-      debugPrint(id);
-      if (route == '/managerTaskDetails') {
-        AppRouter.router.pushNamed('$route',
-            queryParameters: {AppRouterKeys.managerTaskDetails: id});
-      } else {
-        AppRouter.router.pushNamed('$route',
-            queryParameters: {AppRouterKeys.adminTaskDetails: id});
-      }
-    });
-  }
+  // static Future<void> firebaseMessagingAppOpen() async {
+  //   FirebaseMessaging.onMessageOpenedApp
+  //       .listen((RemoteMessage message) async {});
+  // }
 
   static Future<void> firebaseMessagingBackgroundHandler(
       RemoteMessage message) async {
-    // CustomLocalNotification.showFlutterNotification;
+    // log('firebaseMessagingBackgroundHandler');
   }
 
   static Future<bool> requestNotificationPermission() async {
@@ -41,13 +28,16 @@ class FirebaseCustomNotification {
   static Future<void> setUpFirebase() async {
     bool notificationStatus = await requestNotificationPermission();
     if (notificationStatus) {
-      await CustomLocalNotification.setupLocalNotifications();
+      await CustomLocalNotification.init();
       FirebaseMessaging.onBackgroundMessage(
           FirebaseCustomNotification.firebaseMessagingBackgroundHandler);
-      FirebaseMessaging.onMessage
-          .listen(CustomLocalNotification.showFlutterNotification);
-      FirebaseMessaging.onMessageOpenedApp
-          .listen((CustomLocalNotification.onMessageOpenedApp));
+      FirebaseMessaging.onMessage.listen((e) {
+        CustomLocalNotification.showLocalNotification(
+            Random().nextInt(10), 'title', 'body', '${e.data}');
+      });
+      FirebaseMessaging.onMessageOpenedApp.listen((e) {
+        CustomLocalNotification.handleLocalNotificationTap('${e.data}');
+      });
     }
   }
 }

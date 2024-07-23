@@ -79,7 +79,7 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
                               fontSize: 11.sp,
                               color: watcher.startDate == null
                                   ? ColorSystemLight().black2
-                                  : ColorSystemLight().black),
+                                  : Theme.of(context).secondaryHeaderColor),
                         ),
                         SvgPicture.asset(
                           Assets.icons.pickDate,
@@ -165,7 +165,7 @@ class AddTaskDatePickerWidget extends ConsumerWidget {
                               fontSize: 11.sp,
                               color: watcher.startDate == null
                                   ? ColorSystemLight().black2
-                                  : ColorSystemLight().black),
+                                  : Theme.of(context).secondaryHeaderColor),
                         ),
                         SvgPicture.asset(
                           Assets.icons.pickDate,

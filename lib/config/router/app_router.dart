@@ -27,7 +27,8 @@ import '../../features/shared/auth/forget_password/presentation/screens/forget_p
 import '../../features/shared/auth/login/presentation/screens/login.dart';
 import '../../features/shared/auth/otp/presentation/screens/otp.dart';
 import '../../features/shared/auth/reset_password/presentation/screens/reset_password.dart';
-import '../../features/shared/notifications/presentation/screen/notification.dart';
+// import '../../features/shared/notifications/presentation/screen/notification.dart';
+import '../../features/shared/notifications/presentation/screen/notification_screen.dart';
 import '../../features/shared/splash/presentation/screens/splash.dart';
 import 'app_router_keys.dart';
 import 'app_routing_paths.dart';

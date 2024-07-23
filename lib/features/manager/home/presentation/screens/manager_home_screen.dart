@@ -9,7 +9,6 @@ import 'package:taskaty/core/controllers/theme/theme_controller.dart';
 import 'package:taskaty/core/services/database/preferences_helper.dart';
 
 import '../../../../../config/router/app_router.dart';
-import '../../../../../core/services/notification/firebase_notification.dart';
 
 class ManagerHomeScreen extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
@@ -25,11 +24,11 @@ class ManagerHomeScreen extends StatefulWidget {
 
 class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
   int index = 0;
-  @override
-  void initState() {
-    super.initState();
-    FirebaseCustomNotification.setUpFirebase();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   FirebaseCustomNotification.setUpFirebase();
+  // }
 
   void _goBranch(int index) {
     this.index = index;

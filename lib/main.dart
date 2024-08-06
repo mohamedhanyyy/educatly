@@ -18,16 +18,15 @@ Future<void> main() async {
   DioHelper.init();
   await PreferencesHelper.init();
 
-  final loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
-  final duration = loginTime.difference(DateTime.now());
-  debugPrint('Diffrence date: ${duration.inDays}');
-  debugPrint(PreferencesHelper.getToken);
-  debugPrint('${await FirebaseMessaging.instance.getToken()}');
+  // final loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
+  // final duration = loginTime.difference(DateTime.now());
+  // debugPrint('Diffrence date: ${duration.inDays}');
+  // debugPrint(PreferencesHelper.getToken);
+  // debugPrint('${await FirebaseMessaging.instance.getToken()}');
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  runApp(
-    const ProviderScope(
+  runApp(const ProviderScope(
       child: RequestsInspector(
         child: Taskaty(),
         enabled: kDebugMode,
@@ -35,8 +34,7 @@ Future<void> main() async {
         navigatorKey: null,
         hideInspectorBanner: true,
       ),
-    ),
-  );
+    ));
 }
 
 //{"email":"superadmin@domain.com","password":"P@ssword123"}

@@ -7,7 +7,7 @@ part of 'admin_task_details_controller.dart';
 // **************************************************************************
 
 String _$adminTaskDetailsControllerHash() =>
-    r'2c8b4c43d0b503a7ba26ce0b2629274aca0a641b';
+    r'4c69b136dc2d11e630e857ae5c4e205ca1670196';
 
 /// See also [AdminTaskDetailsController].
 @ProviderFor(AdminTaskDetailsController)

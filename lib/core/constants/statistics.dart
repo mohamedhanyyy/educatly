@@ -27,6 +27,11 @@ class StatisticsData {
       color: 0xff14BBD8,
       icon: "assets/icons/next.svg",
     ),
+    StatisticsModel(
+      id: 4,
+      color: 0xff14BBD8,
+      icon: "assets/icons/next.svg",
+    ),
   ];
 
   static String getStatisticsTitle(int id) {
@@ -48,7 +53,8 @@ class StatisticsData {
     0: "جميع المهام",
     1: "جديدة",
     2: "قيد التنفيذ",
-    3: "مكتملة"
+    3: "مكتملة",
+    4: "قيد المراجعة"
   };
 
   /// Statistics Titles English
@@ -56,6 +62,8 @@ class StatisticsData {
     0: "All",
     1: "New",
     2: "In progress",
-    3: "Completed"
+    3: "Completed",
+    4: "In review"
+
   };
 }

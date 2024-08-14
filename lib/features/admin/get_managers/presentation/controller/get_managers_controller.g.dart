@@ -7,7 +7,7 @@ part of 'get_managers_controller.dart';
 // **************************************************************************
 
 String _$getManagersControllerHash() =>
-    r'2773cf1cb562705e079a0973f700b9166ee55959';
+    r'7285bdc50a39aaa882976e4f12e8641d2c3c4381';
 
 /// See also [GetManagersController].
 @ProviderFor(GetManagersController)

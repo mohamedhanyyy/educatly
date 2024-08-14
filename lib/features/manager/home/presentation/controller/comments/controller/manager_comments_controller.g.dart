@@ -7,7 +7,7 @@ part of 'manager_comments_controller.dart';
 // **************************************************************************
 
 String _$managerCommentsControllerHash() =>
-    r'a5fa41ba557ceda4ed4a0a48c33716779e7b0705';
+    r'f508beb89e52270f4cb3cf0cf494ecdcc80c9b34';
 
 /// See also [ManagerCommentsController].
 @ProviderFor(ManagerCommentsController)

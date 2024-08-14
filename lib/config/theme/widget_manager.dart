@@ -58,7 +58,8 @@ extension WidgetMarginX on Widget {
   Widget marginSymmetric({double horizontal = 0.0, double vertical = 0.0}) =>
       Container(
           margin:
-              EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
+
+          EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
           child: this);
 
   Widget marginOnly({

@@ -6,7 +6,7 @@ part of 'button_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$buttonControllerHash() => r'bf6a9498cd813d7979fcbc189732b6a413d2f5b1';
+String _$buttonControllerHash() => r'57e1311c67261c5795d2ba6974875ac1ddfca34c';
 
 /// See also [ButtonController].
 @ProviderFor(ButtonController)

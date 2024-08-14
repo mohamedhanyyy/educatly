@@ -15,10 +15,9 @@ import 'filter_widget.dart';
 class FiltersListWidget extends StatelessWidget {
   final FixedExtentScrollController _controller;
 
-  const FiltersListWidget({
-    super.key,
-    required FixedExtentScrollController controller,
-  }) : _controller = controller;
+  const FiltersListWidget(
+      {super.key, required FixedExtentScrollController controller})
+      : _controller = controller;
 
   @override
   Widget build(BuildContext context) {

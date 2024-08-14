@@ -6,7 +6,7 @@ part of 'admin_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$adminControllerHash() => r'f0cc4e97f4f13854584a65bd196bdf5122606554';
+String _$adminControllerHash() => r'd55847d6fa9413f9510099817c0628cfaabc5c1e';
 
 /// See also [AdminController].
 @ProviderFor(AdminController)

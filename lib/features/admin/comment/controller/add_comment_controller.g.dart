@@ -7,7 +7,7 @@ part of 'add_comment_controller.dart';
 // **************************************************************************
 
 String _$addCommentControllerHash() =>
-    r'e6aa1adecf296f1641076914dfe5cdfbc5b73059';
+    r'ceb32525c4ab54cefd372bd22a0b3275d3f6a1aa';
 
 /// See also [AddCommentController].
 @ProviderFor(AddCommentController)

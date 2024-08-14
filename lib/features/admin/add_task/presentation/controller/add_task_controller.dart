@@ -39,8 +39,7 @@ class AddTaskController extends _$AddTaskController {
       }
     }).toList();
 
-    state = state.copyWith(
-        searchManagerList: searchList.isEmpty ? managersList : searchList);
+    state = state.copyWith(searchManagerList: searchList.isEmpty ? managersList : searchList);
   }
 
   void setData({

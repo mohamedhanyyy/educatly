@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,25 +15,27 @@ Future<void> main() async {
   await Firebase.initializeApp();
   FirebaseCustomNotification.setUpFirebase();
   DioHelper.init();
-  await PreferencesHelper.init();
 
+  await PreferencesHelper.init();
   // final loginTime = DateTime.parse(PreferencesHelper.getLoginDate!);
   // final duration = loginTime.difference(DateTime.now());
   // debugPrint('Diffrence date: ${duration.inDays}');
   // debugPrint(PreferencesHelper.getToken);
   // debugPrint('${await FirebaseMessaging.instance.getToken()}');
+
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  runApp(const ProviderScope(
+  runApp(
+    const ProviderScope(
       child: RequestsInspector(
         child: Taskaty(),
         enabled: kDebugMode,
-        showInspectorOn: ShowInspectorOn.Both,
         navigatorKey: null,
         hideInspectorBanner: true,
       ),
-    ));
+    ),
+  );
 }
 
 //{"email":"superadmin@domain.com","password":"P@ssword123"}

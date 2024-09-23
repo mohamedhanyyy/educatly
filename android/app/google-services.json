@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "888482800293",
-    "project_id": "pstt-taskaty",
-    "storage_bucket": "pstt-taskaty.appspot.com"
+    "project_number": "261977937026",
+    "project_id": "hr-pstt",
+    "storage_bucket": "hr-pstt.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:888482800293:android:297b755f3d44d7a97b234c",
+        "mobilesdk_app_id": "1:261977937026:android:8d24b5d0b9ad909f7c509b",
         "android_client_info": {
-          "package_name": "com.nuumex.taskaty"
+          "package_name": "com.nuumex.taskaty1"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAl_iLhR9ZfY9TpDXmETzYCGNJ75kMKZHQ"
+          "current_key": "AIzaSyD24qI4hQIbJo7dipgNpAkPcbsIetmZhr8"
         }
       ],
       "services": {

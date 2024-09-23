@@ -4,13 +4,13 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />    
     <application
-        android:label="Taskaty"
+        android:label="Educatly task"
         android:enableOnBackInvokedCallback="true"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="high_importance_channel" />
+            android:value="@string/default_notification_channel_id" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

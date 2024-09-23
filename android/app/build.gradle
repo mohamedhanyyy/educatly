@@ -28,7 +28,7 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 android {
-    namespace "com.nuumex.taskaty"
+    namespace "com.nuumex.taskaty1"
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
@@ -45,8 +45,9 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.nuumex.taskaty"
-        minSdkVersion 21
+        applicationId "com.nuumex.taskaty1"
+        minSdkVersion 23
+        multiDexEnabled true
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

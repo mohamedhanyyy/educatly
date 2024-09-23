@@ -17,18 +17,19 @@ class MessageBubble extends StatelessWidget {
   Widget build(BuildContext context) => Align(
         alignment: isMe ? Alignment.topLeft : Alignment.topRight,
         child: Container(
+          width: double.infinity,
           decoration: BoxDecoration(
-            color: isMe ? AppColors.primaryColor : Colors.grey,
+            color: !isMe ? const Color(0xff333333) : const Color(0xff048067),
             borderRadius: isMe
                 ? const BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                    topLeft: Radius.circular(10),
                   )
                 : const BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
+                    topLeft: Radius.circular(10),
                   ),
           ),
           margin: const EdgeInsets.only(top: 10, right: 10, left: 10),
@@ -36,17 +37,29 @@ class MessageBubble extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment:
-                isMe ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+                !isMe ? CrossAxisAlignment.start : CrossAxisAlignment.end,
             children: [
               Text(message.content,
-                  style: Theme.of(context).textTheme.bodyLarge),
-              const SizedBox(height: 5),
-              Text(
-                timeago.format(message.sentTime),
                 style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
+                  color: AppColors.whiteColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400
                 ),
+              ),
+              const SizedBox(height: 5),
+
+              Row(
+mainAxisAlignment: isMe?MainAxisAlignment.start:MainAxisAlignment.end,
+                children: [
+
+                   Text(
+                    timeago.format(message.sentTime),
+                    style:   TextStyle(
+                      color: Colors.white.withOpacity(0.5),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

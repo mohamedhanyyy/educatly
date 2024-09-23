@@ -26,7 +26,13 @@ class _UserItemState extends State<UserItem> {
         onTap: () => Navigator.of(context).push(MaterialPageRoute(
             builder: (_) => ChatScreen(userId: widget.user.uid))),
         child: ListTile(
-          contentPadding: EdgeInsets.zero,
+
+          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+          tileColor: AppColors.primaryColor,
+          shape:RoundedRectangleBorder
+            (
+            borderRadius: BorderRadius.circular(10)
+          ),
           leading: Stack(
             alignment: Alignment.bottomRight,
             children: [
@@ -45,13 +51,15 @@ class _UserItemState extends State<UserItem> {
             ],
           ),
           title: Text(widget.user.name,
-              style: TextStyle(
-                color: Theme.of(context).cardColor
+              style: const TextStyle(
+                color:AppColors.blackColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 18
               )),
           subtitle: Text(
               'Last Active : ${timeago.format(widget.user.lastActive)}',
               maxLines: 2,
-              style: const TextStyle(color: AppColors.primaryColor)),
+              style: const TextStyle(color: AppColors.blackColor)),
         ),
       );
 }

@@ -16,7 +16,7 @@ class ChatTextField extends StatefulWidget {
 
 class _ChatTextFieldState extends State<ChatTextField> {
   final controller = TextEditingController();
-  final notificationService=NotificationsService();
+  final notificationService = NotificationsService();
 
   @override
   void initState() {
@@ -24,6 +24,7 @@ class _ChatTextFieldState extends State<ChatTextField> {
     super.initState();
     notificationService.getReceiverToken(widget.receiverId);
   }
+
   @override
   void dispose() {
     controller.dispose();
@@ -31,25 +32,36 @@ class _ChatTextFieldState extends State<ChatTextField> {
   }
 
   @override
-  Widget build(BuildContext context) => Row(
-        children: [
-          Expanded(
-            child: CustomTextFormField(
-              controller: controller,
-              hintText: 'Add Message...',
+  Widget build(BuildContext context) {
+    return Container
+    (
+    decoration: BoxDecoration(
+
+      color: const Color(0xff222222),
+borderRadius: BorderRadius.circular(15)
+    ),
+    child: Row(
+          children: [
+            Expanded(
+              child: CustomTextFormField(
+                suffixIcon:  (Icons.add),
+                controller: controller,
+                hintText: 'Type a message...',
+              ),
             ),
-          ),
-          const SizedBox(width: 5),
-          CircleAvatar(
-            backgroundColor: AppColors.primaryColor,
-            radius: 20,
-            child: IconButton(
-              icon: const Icon(Icons.send, color: Colors.white),
-              onPressed: () => _sendText(context),
+            const SizedBox(width: 5),
+            CircleAvatar(
+              backgroundColor: AppColors.primaryColor,
+              radius: 20,
+              child: IconButton(
+                icon: const Icon(Icons.send, color: Colors.white),
+                onPressed: () => _sendText(context),
+              ),
             ),
-          ),
-        ],
-      );
+          ],
+        ),
+  );
+  }
 
   Future<void> _sendText(BuildContext context) async {
     if (controller.text.isNotEmpty) {
@@ -57,7 +69,9 @@ class _ChatTextFieldState extends State<ChatTextField> {
         receiverId: widget.receiverId,
         content: controller.text,
       );
-      await notificationService.sendNotification(body: controller.text, senderId: FirebaseAuth.instance.currentUser!.uid);
+      await notificationService.sendNotification(
+          body: controller.text,
+          senderId: FirebaseAuth.instance.currentUser!.uid);
       controller.clear();
       FocusScope.of(context).unfocus();
     }

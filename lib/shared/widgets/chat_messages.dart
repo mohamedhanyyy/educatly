@@ -15,7 +15,8 @@ class ChatMessages extends StatelessWidget {
               )
             : Expanded(
                 child: ListView.builder(
-                  controller:
+                  padding: EdgeInsets.only(bottom: 20),
+                   controller:
                       Provider.of<FirebaseProvider>(context, listen: false)
                           .scrollController,
                   itemCount: value.messages.length,

@@ -9,6 +9,7 @@ import 'package:taskaty/service/navigation/navigation.dart';
 import '../../provider/firebase_provider.dart';
 import '../service/firebase/firebase_firestore_service.dart';
 import '../service/notifications/notification_service.dart';
+import '../shared/themes/colors.dart';
 import '../shared/widgets/user_item.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -79,7 +80,7 @@ class _ChatsScreenState extends State<ChatsScreen> with WidgetsBindingObserver {
                 final storage = const FlutterSecureStorage();
                 await storage.deleteAll();
               },
-              icon: const Icon(Icons.logout, color: Colors.white),
+              icon:   const Icon(Icons.logout, color: AppColors.redColor),
             ),
           ],
         ),

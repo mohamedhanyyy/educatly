@@ -27,14 +27,11 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            ChatMessages(receiverId: widget.userId),
-            ChatTextField(receiverId: widget.userId)
-          ],
-        ),
+      body: Column(
+        children: [
+          ChatMessages(receiverId: widget.userId),
+          ChatTextField(receiverId: widget.userId)
+        ],
       ),
     );
   }
